@@ -1,6 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://r3nb3djoacxm"]
+[gd_scene load_steps=13 format=3 uid="uid://r3nb3djoacxm"]
 
 [ext_resource type="AudioStream" uid="uid://bdcf48rpsd10k" path="res://import/jute-dh-steps/stepdirt_5.wav" id="1_6mnuc"]
+[ext_resource type="Script" path="res://boss_1.gd" id="1_rs5qt"]
+[ext_resource type="AudioStream" uid="uid://chy3uwn0hlqjc" path="res://import/jute-dh-steps/stepdirt_1.wav" id="2_tgton"]
+[ext_resource type="AudioStream" uid="uid://lky2s6lpvtn5" path="res://import/jute-dh-steps/stepdirt_2.wav" id="3_vpcd2"]
+[ext_resource type="AudioStream" uid="uid://cpibwf5bya5nt" path="res://import/jute-dh-steps/stepdirt_3.wav" id="4_knmrh"]
+[ext_resource type="AudioStream" uid="uid://pwb0oc78mb3w" path="res://import/jute-dh-steps/stepdirt_4.wav" id="5_cu7dq"]
+[ext_resource type="AudioStream" uid="uid://ckagbohbcdk4w" path="res://import/jute-dh-steps/stepdirt_6.wav" id="7_g8v14"]
+[ext_resource type="AudioStream" uid="uid://blebvyohfm0hh" path="res://import/jute-dh-steps/stepdirt_7.wav" id="8_4embh"]
+[ext_resource type="AudioStream" uid="uid://dkgnp5ge3tnn8" path="res://import/jute-dh-steps/stepdirt_8.wav" id="9_28vn0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oki8h"]
 
@@ -10,6 +18,7 @@ albedo_color = Color(1, 0, 0, 1)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rty5b"]
 
 [node name="boss_1" type="RigidBody3D"]
+script = ExtResource("1_rs5qt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_oki8h")
@@ -20,6 +29,36 @@ mesh = SubResource("CapsuleMesh_rty5b")
 
 [node name="sounds" type="Node3D" parent="."]
 
-[node name="walk" type="AudioStreamPlayer3D" parent="sounds"]
+[node name="walking_dirt" type="Node3D" parent="sounds"]
+
+[node name="1" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
+stream = ExtResource("2_tgton")
+autoplay = true
+
+[node name="2" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
+stream = ExtResource("3_vpcd2")
+autoplay = true
+
+[node name="3" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
+stream = ExtResource("4_knmrh")
+autoplay = true
+
+[node name="4" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
+stream = ExtResource("5_cu7dq")
+autoplay = true
+
+[node name="5" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("1_6mnuc")
+autoplay = true
+
+[node name="6" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
+stream = ExtResource("7_g8v14")
+autoplay = true
+
+[node name="7" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
+stream = ExtResource("8_4embh")
+autoplay = true
+
+[node name="8" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
+stream = ExtResource("9_28vn0")
 autoplay = true
