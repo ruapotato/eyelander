@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://r3nb3djoacxm"]
+
+[ext_resource type="AudioStream" uid="uid://bdcf48rpsd10k" path="res://import/jute-dh-steps/stepdirt_5.wav" id="1_6mnuc"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oki8h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_54gwx"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rty5b"]
+
+[node name="boss_1" type="RigidBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_oki8h")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_54gwx")
+mesh = SubResource("CapsuleMesh_rty5b")
+
+[node name="sounds" type="Node3D" parent="."]
+
+[node name="walk" type="AudioStreamPlayer3D" parent="sounds"]
+stream = ExtResource("1_6mnuc")
+autoplay = true

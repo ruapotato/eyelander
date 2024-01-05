@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://djl75nao1pxlp"]
+
+[ext_resource type="PackedScene" uid="uid://hj5galx0bqtw" path="res://player.tscn" id="1_ljbio"]
+[ext_resource type="PackedScene" uid="uid://r3nb3djoacxm" path="res://boss_1.tscn" id="2_iid7c"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xa6tv"]
+size = Vector3(100, 0.5, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2s4qj"]
+size = Vector3(100, 0.5, 100)
+
+[node name="World" type="Node3D"]
+
+[node name="player" parent="." instance=ExtResource("1_ljbio")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28402, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.285429, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_xa6tv")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_2s4qj")
+
+[node name="boss_1" parent="." instance=ExtResource("2_iid7c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31092, -7.16744)

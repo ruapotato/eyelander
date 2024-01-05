@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://hj5galx0bqtw"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_m0rko"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bxwvh"]
+
+[node name="player" type="RigidBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_m0rko")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_bxwvh")
+
+[node name="piv" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00339, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="piv"]
+
+[node name="Camera3D" type="Camera3D" parent="piv/SpringArm3D"]
+
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.985374, 0)
+current = true
