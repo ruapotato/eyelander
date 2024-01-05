@@ -33,32 +33,24 @@ mesh = SubResource("CapsuleMesh_rty5b")
 
 [node name="1" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("2_tgton")
-autoplay = true
 
 [node name="2" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("3_vpcd2")
-autoplay = true
 
 [node name="3" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("4_knmrh")
-autoplay = true
 
 [node name="4" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("5_cu7dq")
-autoplay = true
 
 [node name="5" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("1_6mnuc")
-autoplay = true
 
 [node name="6" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("7_g8v14")
-autoplay = true
 
 [node name="7" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("8_4embh")
-autoplay = true
 
 [node name="8" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("9_28vn0")
-autoplay = true
