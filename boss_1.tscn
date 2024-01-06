@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://r3nb3djoacxm"]
+[gd_scene load_steps=14 format=3 uid="uid://r3nb3djoacxm"]
 
 [ext_resource type="AudioStream" uid="uid://bdcf48rpsd10k" path="res://import/jute-dh-steps/stepdirt_5.wav" id="1_6mnuc"]
 [ext_resource type="Script" path="res://boss_1.gd" id="1_rs5qt"]
 [ext_resource type="AudioStream" uid="uid://chy3uwn0hlqjc" path="res://import/jute-dh-steps/stepdirt_1.wav" id="2_tgton"]
+[ext_resource type="Script" path="res://Light_sounds.gd" id="3_t7c3m"]
 [ext_resource type="AudioStream" uid="uid://lky2s6lpvtn5" path="res://import/jute-dh-steps/stepdirt_2.wav" id="3_vpcd2"]
 [ext_resource type="AudioStream" uid="uid://cpibwf5bya5nt" path="res://import/jute-dh-steps/stepdirt_3.wav" id="4_knmrh"]
 [ext_resource type="AudioStream" uid="uid://pwb0oc78mb3w" path="res://import/jute-dh-steps/stepdirt_4.wav" id="5_cu7dq"]
@@ -30,27 +31,62 @@ mesh = SubResource("CapsuleMesh_rty5b")
 [node name="sounds" type="Node3D" parent="."]
 
 [node name="walking_dirt" type="Node3D" parent="sounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.09882, 0)
 
 [node name="1" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("2_tgton")
+script = ExtResource("3_t7c3m")
+
+[node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0348836, 0.64523)
+light_color = Color(0, 0.552941, 1, 1)
+light_energy = 15.03
 
 [node name="2" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("3_vpcd2")
 
+[node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/2"]
+light_color = Color(0, 0.552941, 1, 1)
+light_energy = 0.0
+
 [node name="3" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("4_knmrh")
+
+[node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/3"]
+light_color = Color(0, 0.552941, 1, 1)
+light_energy = 0.0
 
 [node name="4" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("5_cu7dq")
 
+[node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/4"]
+light_color = Color(0, 0.552941, 1, 1)
+light_energy = 0.0
+
 [node name="5" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("1_6mnuc")
+
+[node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/5"]
+light_color = Color(0, 0.552941, 1, 1)
+light_energy = 0.0
 
 [node name="6" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("7_g8v14")
 
+[node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/6"]
+light_color = Color(0, 0.552941, 1, 1)
+light_energy = 0.0
+
 [node name="7" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("8_4embh")
 
+[node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/7"]
+light_color = Color(0, 0.552941, 1, 1)
+light_energy = 0.0
+
 [node name="8" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("9_28vn0")
+
+[node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/8"]
+light_color = Color(0, 0.552941, 1, 1)
+light_energy = 0.0

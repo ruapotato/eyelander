@@ -16,12 +16,12 @@ mesh = SubResource("CapsuleMesh_m0rko")
 shape = SubResource("CapsuleShape3D_bxwvh")
 
 [node name="piv" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00339, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.699406, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="piv"]
+spring_length = -0.1
 
 [node name="Camera3D" type="Camera3D" parent="piv/SpringArm3D"]
 
-[node name="AudioListener3D" type="AudioListener3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.985374, 0)
+[node name="AudioListener3D" type="AudioListener3D" parent="piv"]
 current = true

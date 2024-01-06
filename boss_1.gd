@@ -9,12 +9,16 @@ var walk_sounds_timer = 0
 var walking_on = "dirt"
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	set_lock_rotation_enabled(true)
+
 
 
 func walk_sound():
 	if walking_on == "dirt":
-		var sound_to_use = dirt_sounds.get_children().pick_random()
+		#var sound_to_use = dirt_sounds.get_children().pick_random()
+		var sound_to_use = dirt_sounds.get_children()[0]
+		#$"sounds/walking_dirt/1/sound_light".light_energy
+		#$"sounds/walking_dirt/1".
 		sound_to_use.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
