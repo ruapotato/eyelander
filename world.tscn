@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://djl75nao1pxlp"]
+[gd_scene load_steps=6 format=3 uid="uid://djl75nao1pxlp"]
 
+[ext_resource type="Script" path="res://world.gd" id="1_1w3vy"]
 [ext_resource type="PackedScene" uid="uid://hj5galx0bqtw" path="res://player.tscn" id="1_ljbio"]
 [ext_resource type="PackedScene" uid="uid://r3nb3djoacxm" path="res://boss_1.tscn" id="2_iid7c"]
 
@@ -10,6 +11,7 @@ size = Vector3(100, 0.5, 100)
 size = Vector3(100, 0.5, 100)
 
 [node name="World" type="Node3D"]
+script = ExtResource("1_1w3vy")
 
 [node name="player" parent="." instance=ExtResource("1_ljbio")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28402, 0)

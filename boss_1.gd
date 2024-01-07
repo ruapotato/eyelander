@@ -3,7 +3,7 @@ extends RigidBody3D
 @onready var sounds = $sounds
 @onready var dirt_sounds = $sounds/walking_dirt
 
-var walk_sound_every = 1
+var walk_sound_every = randi() % 3
 var walk_sounds_timer = 0
 
 var walking_on = "dirt"

@@ -6,10 +6,10 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bxwvh"]
 
-[node name="player" type="RigidBody3D"]
+[node name="player" type="CharacterBody3D"]
 script = ExtResource("1_oeri7")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_m0rko")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
