@@ -1,8 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://djl75nao1pxlp"]
+[gd_scene load_steps=9 format=3 uid="uid://djl75nao1pxlp"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_1w3vy"]
 [ext_resource type="PackedScene" uid="uid://hj5galx0bqtw" path="res://player.tscn" id="1_ljbio"]
 [ext_resource type="PackedScene" uid="uid://r3nb3djoacxm" path="res://boss_1.tscn" id="2_iid7c"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yj0e5"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0.5, 0.5, 0.5, 1)
+sky_energy_multiplier = 0.0
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0.5, 0.5, 0.5, 1)
+
+[sub_resource type="Sky" id="Sky_c61lt"]
+sky_material = SubResource("ProceduralSkyMaterial_yj0e5")
+
+[sub_resource type="Environment" id="Environment_p3iqh"]
+background_mode = 2
+sky = SubResource("Sky_c61lt")
+fog_enabled = true
+fog_light_color = Color(0.682353, 0.682353, 0.682353, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_xa6tv"]
 size = Vector3(100, 0.5, 100)
@@ -12,6 +28,16 @@ size = Vector3(100, 0.5, 100)
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_1w3vy")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_p3iqh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.563526, -0.826098, -3.61099e-08, 0, -4.37114e-08, 1, -0.826098, 0.563526, 2.46325e-08, 0, 0, 0)
+light_color = Color(0, 0, 0, 1)
+light_energy = 0.0
+shadow_enabled = true
+directional_shadow_max_distance = 101.0
 
 [node name="player" parent="." instance=ExtResource("1_ljbio")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28402, 0)
@@ -27,4 +53,4 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_2s4qj")
 
 [node name="boss_1" parent="." instance=ExtResource("2_iid7c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31092, -7.16744)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31092, -15.7243)

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsnalbd7u0d68"]
+
+[ext_resource type="PackedScene" uid="uid://bgi4n76rxj178" path="res://shild_import.tscn" id="1_2fpaf"]
+[ext_resource type="Script" path="res://shild.gd" id="1_lk3q2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_744lb"]
+size = Vector3(1, 1.595, 0.14)
+
+[node name="shild" type="RigidBody3D"]
+gravity_scale = 0.0
+script = ExtResource("1_lk3q2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.065, -0.54)
+shape = SubResource("BoxShape3D_744lb")
+
+[node name="mesh" parent="." instance=ExtResource("1_2fpaf")]

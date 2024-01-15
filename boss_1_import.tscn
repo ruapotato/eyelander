@@ -1,0 +1,90 @@
+[gd_scene load_steps=13 format=3 uid="uid://b063afgfgcf3c"]
+
+[ext_resource type="PackedScene" uid="uid://dxaglluylr1sg" path="res://import/boss_1.glb" id="1_ignb7"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cuxhs"]
+animation = &"attach_1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j4pnh"]
+animation = &"effect_1"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_msmoa"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_vj136"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_cleeu"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_51xmy"]
+animation = &"idel"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xwiav"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0fv21"]
+animation = &"idel"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_3dqbk"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_51xmy")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_xwiav")
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_0fv21")
+blend_point_2/pos = 0.0
+min_space = 0.0
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_qpgrh"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_bgq3b"]
+graph_offset = Vector2(-623.324, 97.3479)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_j4pnh")
+nodes/Animation/position = Vector2(-320, 340)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_cuxhs")
+"nodes/Animation 2/position" = Vector2(-160, 460)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_vj136")
+nodes/TimeScale/position = Vector2(-220, 160)
+"nodes/TimeScale 2/node" = SubResource("AnimationNodeTimeScale_msmoa")
+"nodes/TimeScale 2/position" = Vector2(60, 440)
+nodes/effect_1/node = SubResource("AnimationNodeOneShot_cleeu")
+nodes/effect_1/position = Vector2(0, 180)
+nodes/moving/node = SubResource("AnimationNodeBlendSpace1D_3dqbk")
+nodes/moving/position = Vector2(-480, 140)
+nodes/output/position = Vector2(420, 180)
+nodes/slam/node = SubResource("AnimationNodeOneShot_qpgrh")
+nodes/slam/position = Vector2(247.444, 337.213)
+node_connections = [&"output", 0, &"slam", &"TimeScale", 0, &"moving", &"effect_1", 0, &"TimeScale", &"effect_1", 1, &"Animation", &"TimeScale 2", 0, &"Animation 2", &"slam", 0, &"effect_1", &"slam", 1, &"TimeScale 2"]
+
+[node name="boss_2" instance=ExtResource("1_ignb7")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/position = Vector3(1.11893, 9.36143, -9.13724)
+bones/0/rotation = Quaternion(0.736164, -0.0295269, 0.0319947, 0.675401)
+bones/1/rotation = Quaternion(-0.359502, -0.0596413, -0.696759, 0.617842)
+bones/2/rotation = Quaternion(0.546145, 0.0851763, -0.377494, 0.742947)
+bones/3/rotation = Quaternion(-0.357999, 0.0861197, 0.637962, 0.676332)
+bones/4/rotation = Quaternion(0.546125, -0.0851709, 0.377486, 0.742966)
+bones/7/rotation = Quaternion(0.194838, -0.130096, 0.0755277, 0.969231)
+bones/8/rotation = Quaternion(0.198067, 0.123456, -0.0985119, 0.96738)
+bones/13/rotation = Quaternion(0.307298, -0.142853, 0.111057, 0.934252)
+bones/14/rotation = Quaternion(0.127254, 0.393976, 0.666849, 0.619598)
+bones/15/rotation = Quaternion(0.307295, 0.142856, -0.111057, 0.934253)
+bones/16/rotation = Quaternion(-0.114528, -0.30074, -0.722783, 0.611575)
+bones/17/rotation = Quaternion(0.373032, -0.0384652, -0.189083, 0.907533)
+bones/18/rotation = Quaternion(-0.103509, 0.304661, 0.699844, 0.637719)
+bones/19/rotation = Quaternion(0.373028, 0.0384664, 0.18908, 0.907535)
+bones/21/rotation = Quaternion(0.251194, -0.0544243, -0.456078, 0.852017)
+bones/22/rotation = Quaternion(-0.0977401, 0.11326, 0.602002, 0.784355)
+bones/23/rotation = Quaternion(0.209699, -0.00782237, 0.507035, 0.835991)
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeBlendTree_bgq3b")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/TimeScale/scale = 3.0
+"parameters/TimeScale 2/scale" = 2.0
+parameters/effect_1/active = false
+parameters/effect_1/internal_active = false
+parameters/effect_1/request = 0
+parameters/moving/blend_position = -0.0015015
+parameters/slam/active = false
+parameters/slam/internal_active = false
+parameters/slam/request = 0

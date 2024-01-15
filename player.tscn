@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://hj5galx0bqtw"]
+[gd_scene load_steps=6 format=3 uid="uid://hj5galx0bqtw"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_oeri7"]
+[ext_resource type="PackedScene" uid="uid://dovic5nx1uejg" path="res://sword.tscn" id="2_n5who"]
+[ext_resource type="PackedScene" uid="uid://dsnalbd7u0d68" path="res://shild.tscn" id="3_f2err"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_m0rko"]
 
@@ -22,6 +24,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.699406, 0)
 spring_length = -0.1
 
 [node name="Camera3D" type="Camera3D" parent="piv/SpringArm3D"]
+current = true
 
 [node name="AudioListener3D" type="AudioListener3D" parent="piv"]
-current = true
+
+[node name="sword" parent="." instance=ExtResource("2_n5who")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.438805, 0)
+gravity_scale = 0.0
+
+[node name="shild" parent="." instance=ExtResource("3_f2err")]
