@@ -12,6 +12,9 @@ var MAX_SPEED = 2
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var action = "walking"
 var near = 7.5
+var slam_started = false
+var slam_time = 1.6
+var slam_count_down = 0
 
 
 var walking_on = "dirt"
@@ -20,6 +23,9 @@ func _ready():
 	pass
 	#set_lock_rotation_enabled(true)
 
+
+func slam():
+	print("SLAM")
 
 
 func walk_sound():
@@ -37,22 +43,27 @@ func _process(delta):
 		velocity.y -= gravity * delta
 	walk_sound_every = velocity.length() * delta * 50
 	#print(walk_sound_every)
-	walk_sounds_timer += delta
-	if walk_sounds_timer >= walk_sound_every:
-		walk_sound()
-		walk_sounds_timer = 0
-	
+
 	var dist_to_player = global_position.distance_to(player.global_position)
-	print(dist_to_player)
+	#print(dist_to_player)
 	if dist_to_player < near:
 		action = "slaming"
 	else:
 		action = "walking"
 	
+	if slam_started:
+		slam_count_down -= delta
+		if slam_count_down <= 0:
+			slam_started = false
+			slam()
+	
 	if action == "slaming":
 		if not animation_tree.get("parameters/slam/active"):
+			slam_count_down = slam_time
+			slam_started = true
 			animation_tree.set("parameters/slam/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-	print(animation_tree.get("parameters/slam/active"))
+
+	
 	if action == "walking":
 		var input_dir = Vector3(0,-1,0)
 		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -65,7 +76,10 @@ func _process(delta):
 		#print(armature)
 		#armature.look_at(player.global_position, Vector3(0,1,0))
 		look_at(player.global_position, Vector3(0,1,0))
-
+		walk_sounds_timer += delta
+		if walk_sounds_timer >= walk_sound_every:
+			walk_sound()
+			walk_sounds_timer = 0
 	animation_tree.set("parameters/moving/blend_position", velocity.length() * MAX_SPEED)
 	move_and_slide()
 	#armature.rotation.y = atan2(-player.global_position.x, -player.global_position.z)

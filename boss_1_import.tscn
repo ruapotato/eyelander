@@ -51,7 +51,7 @@ nodes/moving/position = Vector2(-480, 140)
 nodes/output/position = Vector2(420, 180)
 nodes/slam/node = SubResource("AnimationNodeOneShot_qpgrh")
 nodes/slam/position = Vector2(247.444, 337.213)
-node_connections = [&"output", 0, &"slam", &"TimeScale", 0, &"moving", &"effect_1", 0, &"TimeScale", &"effect_1", 1, &"Animation", &"TimeScale 2", 0, &"Animation 2", &"slam", 0, &"effect_1", &"slam", 1, &"TimeScale 2"]
+node_connections = [&"output", 0, &"slam", &"TimeScale", 0, &"moving", &"TimeScale 2", 0, &"Animation 2", &"effect_1", 0, &"TimeScale", &"effect_1", 1, &"Animation", &"slam", 0, &"effect_1", &"slam", 1, &"TimeScale 2"]
 
 [node name="boss_2" instance=ExtResource("1_ignb7")]
 
