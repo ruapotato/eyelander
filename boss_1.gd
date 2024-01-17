@@ -15,6 +15,11 @@ var near = 7.5
 var slam_started = false
 var slam_time = 1.6
 var slam_count_down = 0
+var knockback_strength = 25
+var slam_damage = 50
+var start_life = 1000
+var life = start_life
+var damage_todo = 0
 
 
 var walking_on = "dirt"
@@ -26,7 +31,32 @@ func _ready():
 
 func slam():
 	print("SLAM")
-
+	var space_state = get_world_3d().direct_space_state
+	var ray_query = PhysicsRayQueryParameters3D.new()
+	ray_query.from = global_position
+	ray_query.to = player.global_position
+	ray_query.exclude = [get_rid()]
+	#ray_query.collide_with_bodies = true
+	#ray_query.collide_with_areas = true
+	var hit = space_state.intersect_ray(ray_query)
+	#print(hit)
+	if not hit.is_empty():
+		var knockback_direction = global_position.direction_to(player.global_position)
+		var knockback_force
+		#player.set_deferred("velocity", player.velocity + knockback_force)
+		if hit.collider.name == "shild":
+			print("shild hit")
+			knockback_force = knockback_direction  * (knockback_strength * .5)
+			knockback_force.y = 2
+			player.knockback_force = knockback_force
+			player.damage_todo = 5
+		elif hit.collider.name == "player":
+			print("player hit")
+			knockback_force = knockback_direction * knockback_strength
+			knockback_force.y = 2
+			player.knockback_force = knockback_force
+			player.damage_todo = slam_damage
+	#		print(body)
 
 func walk_sound():
 	if walking_on == "dirt":

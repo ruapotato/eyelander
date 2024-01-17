@@ -53,4 +53,4 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_2s4qj")
 
 [node name="boss_1" parent="." instance=ExtResource("2_iid7c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31092, -15.7243)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31092, -40.161)
