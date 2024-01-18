@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://r3nb3djoacxm"]
+[gd_scene load_steps=18 format=3 uid="uid://r3nb3djoacxm"]
 
 [ext_resource type="AudioStream" uid="uid://bdcf48rpsd10k" path="res://import/jute-dh-steps/stepdirt_5.wav" id="1_6mnuc"]
 [ext_resource type="Script" path="res://boss_1.gd" id="1_rs5qt"]
@@ -11,6 +11,9 @@
 [ext_resource type="AudioStream" uid="uid://blebvyohfm0hh" path="res://import/jute-dh-steps/stepdirt_7.wav" id="8_4embh"]
 [ext_resource type="AudioStream" uid="uid://dkgnp5ge3tnn8" path="res://import/jute-dh-steps/stepdirt_8.wav" id="9_28vn0"]
 [ext_resource type="PackedScene" uid="uid://b063afgfgcf3c" path="res://boss_1_import.tscn" id="11_6042p"]
+[ext_resource type="AudioStream" uid="uid://ds6l7nqmji1te" path="res://sounds/slam2.wav" id="11_amwsn"]
+[ext_resource type="AudioStream" uid="uid://blxqceakc4v5f" path="res://sounds/sound4.wav" id="12_8ag7w"]
+[ext_resource type="PackedScene" uid="uid://btecjvp4bcjg0" path="res://slam_effect.tscn" id="12_m3uje"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qmbaw"]
 
@@ -31,10 +34,6 @@ shape = SubResource("BoxShape3D_qmbaw")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11173, -3.09164)
 shape = SubResource("SphereShape3D_07qtv")
 
-[node name="butt" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35146, 1.5793)
-shape = SubResource("SphereShape3D_awn8r")
-
 [node name="sounds" type="Node3D" parent="."]
 
 [node name="walking_dirt" type="Node3D" parent="sounds"]
@@ -42,60 +41,145 @@ transform = Transform3D(2.07591, 0, 0, 0, 1.69565, 0, 0, 0, 2.17674, 0, 0.291742
 
 [node name="1" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("2_tgton")
+doppler_tracking = 2
 script = ExtResource("3_t7c3m")
 
 [node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0348836, -0.0037058)
 light_color = Color(0, 0.552941, 1, 1)
 light_energy = 15.03
+light_size = 1.0
+shadow_enabled = true
+omni_range = 4096.0
+omni_shadow_mode = 0
 
 [node name="2" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("3_vpcd2")
+doppler_tracking = 2
 
 [node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/2"]
 light_color = Color(0, 0.552941, 1, 1)
 light_energy = 0.0
+light_size = 1.0
+shadow_enabled = true
+omni_range = 4096.0
+omni_shadow_mode = 0
 
 [node name="3" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("4_knmrh")
+doppler_tracking = 2
 
 [node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/3"]
 light_color = Color(0, 0.552941, 1, 1)
 light_energy = 0.0
+light_size = 1.0
+shadow_enabled = true
+omni_range = 4096.0
+omni_shadow_mode = 0
 
 [node name="4" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("5_cu7dq")
+doppler_tracking = 2
 
 [node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/4"]
 light_color = Color(0, 0.552941, 1, 1)
 light_energy = 0.0
+light_size = 1.0
+shadow_enabled = true
+omni_range = 4096.0
+omni_shadow_mode = 0
 
 [node name="5" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("1_6mnuc")
+doppler_tracking = 2
 
 [node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/5"]
 light_color = Color(0, 0.552941, 1, 1)
 light_energy = 0.0
+light_size = 1.0
+shadow_enabled = true
+omni_range = 4096.0
+omni_shadow_mode = 0
 
 [node name="6" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("7_g8v14")
+doppler_tracking = 2
 
 [node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/6"]
 light_color = Color(0, 0.552941, 1, 1)
 light_energy = 0.0
+light_size = 1.0
+shadow_enabled = true
+omni_range = 4096.0
+omni_shadow_mode = 0
 
 [node name="7" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("8_4embh")
+doppler_tracking = 2
 
 [node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/7"]
 light_color = Color(0, 0.552941, 1, 1)
 light_energy = 0.0
+light_size = 1.0
+shadow_enabled = true
+omni_range = 4096.0
+omni_shadow_mode = 0
 
 [node name="8" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("9_28vn0")
+doppler_tracking = 2
 
 [node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/8"]
 light_color = Color(0, 0.552941, 1, 1)
 light_energy = 0.0
+light_size = 1.0
+shadow_enabled = true
+omni_range = 4096.0
+omni_shadow_mode = 0
+
+[node name="effects" type="Node3D" parent="sounds"]
+
+[node name="slam" type="AudioStreamPlayer3D" parent="sounds/effects"]
+stream = ExtResource("11_amwsn")
+doppler_tracking = 2
+script = ExtResource("3_t7c3m")
+
+[node name="sound_light" type="OmniLight3D" parent="sounds/effects/slam"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0348836, -2.58987)
+light_color = Color(1, 0, 0, 1)
+light_energy = 15.03
+light_size = 1.0
+shadow_enabled = true
+distance_fade_enabled = true
+distance_fade_begin = 3101.66
+distance_fade_shadow = 3525.39
+distance_fade_length = 3319.9
+omni_range = 4096.0
+omni_shadow_mode = 0
+
+[node name="roar" type="AudioStreamPlayer3D" parent="sounds/effects"]
+stream = ExtResource("12_8ag7w")
+doppler_tracking = 2
+script = ExtResource("3_t7c3m")
+
+[node name="sound_light" type="OmniLight3D" parent="sounds/effects/roar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0348836, -2.58987)
+light_color = Color(1, 0, 0, 1)
+light_energy = 15.03
+light_size = 1.0
+shadow_enabled = true
+omni_range = 4096.0
+omni_shadow_mode = 0
 
 [node name="mesh" parent="." instance=ExtResource("11_6042p")]
+
+[node name="slam_effect" parent="." instance=ExtResource("12_m3uje")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.73008)
+
+[node name="target" type="Node3D" parent="."]
+
+[node name="butt" type="RigidBody3D" parent="."]
+
+[node name="butt_shape" type="CollisionShape3D" parent="butt"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35146, 1.5793)
+shape = SubResource("SphereShape3D_awn8r")

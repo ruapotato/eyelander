@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://btecjvp4bcjg0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2cjgp"]
+albedo_color = Color(0, 0, 0, 1)
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 100.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l6wrp"]
+gravity = Vector3(0, -20, 0)
+initial_velocity_min = 7.0
+initial_velocity_max = 14.0
+scale_min = 0.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_tewoa"]
+
+[node name="slam_effect" type="Node3D"]
+
+[node name="slam_particles" type="GPUParticles3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_2cjgp")
+emitting = false
+amount = 80
+one_shot = true
+preprocess = 0.2
+explosiveness = 1.0
+randomness = 0.52
+process_material = SubResource("ParticleProcessMaterial_l6wrp")
+draw_pass_1 = SubResource("SphereMesh_tewoa")

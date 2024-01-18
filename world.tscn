@@ -18,7 +18,7 @@ sky_material = SubResource("ProceduralSkyMaterial_yj0e5")
 background_mode = 2
 sky = SubResource("Sky_c61lt")
 fog_enabled = true
-fog_light_color = Color(0.682353, 0.682353, 0.682353, 1)
+fog_light_color = Color(0, 0, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_xa6tv"]
 size = Vector3(100, 0.5, 100)
@@ -53,4 +53,4 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_2s4qj")
 
 [node name="boss_1" parent="." instance=ExtResource("2_iid7c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31092, -40.161)
+transform = Transform3D(-0.997665, 0, -0.0682939, 0, 1, 0, 0.0682939, 0, -0.997665, 0, 1.31092, -11.9303)

@@ -1,9 +1,14 @@
 extends RigidBody3D
 
+@onready var swing_sound = $swing
+
 var init_pos
 var init_rot
+var knockback_strength = 10
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	contact_monitor = true
+	max_contacts_reported = 1000000
 	init_pos = position
 	init_rot = rotation
 	axis_lock_angular_x = true
@@ -16,16 +21,27 @@ func _ready():
 	add_collision_exception_with(get_parent().find_child("shild"))
 
 func _integrate_forces(state):
-	if rotation != init_rot:
-		if get_contact_count() == 0:
+	pass
+	#if rotation != init_rot:
+	#	if get_contact_count() == 0:
 			#rotation = lerp(rotation, init_rot, .15)
-			pass
-	if position != init_pos:
-		if get_contact_count() == 0:
-			pass
+	#		pass
+	#if position != init_pos:
+	#	if get_contact_count() == 0:
+	#		pass
 			#position = lerp(position, init_pos, .15)
 			#apply_impulse()
 			#position = init_pos
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	for body in get_colliding_bodies():
+		if body.name == "butt":
+			body.get_parent().damage_todo += delta
+			
+			var knockback_direction = global_position.direction_to(body.global_position)
+			var knockback_force
+			#player.set_deferred("velocity", player.velocity + knockback_force)
+			print("boss hit")
+			knockback_force = knockback_direction * knockback_strength
+			knockback_force.y = 2
+			body.get_parent().knockback = knockback_force

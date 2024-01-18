@@ -1,9 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://b063afgfgcf3c"]
+[gd_scene load_steps=15 format=3 uid="uid://b063afgfgcf3c"]
 
 [ext_resource type="PackedScene" uid="uid://dxaglluylr1sg" path="res://import/boss_1.glb" id="1_ignb7"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cuxhs"]
 animation = &"attach_1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ciyyp"]
+animation = &"fly"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j4pnh"]
 animation = &"effect_1"
@@ -13,6 +16,8 @@ animation = &"effect_1"
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_vj136"]
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_cleeu"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_5eu6g"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_51xmy"]
 animation = &"idel"
@@ -35,45 +40,49 @@ min_space = 0.0
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_qpgrh"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_bgq3b"]
-graph_offset = Vector2(-623.324, 97.3479)
+graph_offset = Vector2(-406.944, 86.8705)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_j4pnh")
 nodes/Animation/position = Vector2(-320, 340)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_cuxhs")
 "nodes/Animation 2/position" = Vector2(-160, 460)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_ciyyp")
+"nodes/Animation 3/position" = Vector2(301.238, 521.092)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_vj136")
 nodes/TimeScale/position = Vector2(-220, 160)
 "nodes/TimeScale 2/node" = SubResource("AnimationNodeTimeScale_msmoa")
 "nodes/TimeScale 2/position" = Vector2(60, 440)
 nodes/effect_1/node = SubResource("AnimationNodeOneShot_cleeu")
 nodes/effect_1/position = Vector2(0, 180)
+nodes/fly/node = SubResource("AnimationNodeOneShot_5eu6g")
+nodes/fly/position = Vector2(540, 180)
 nodes/moving/node = SubResource("AnimationNodeBlendSpace1D_3dqbk")
 nodes/moving/position = Vector2(-480, 140)
-nodes/output/position = Vector2(420, 180)
+nodes/output/position = Vector2(740, 180)
 nodes/slam/node = SubResource("AnimationNodeOneShot_qpgrh")
-nodes/slam/position = Vector2(247.444, 337.213)
-node_connections = [&"output", 0, &"slam", &"TimeScale", 0, &"moving", &"TimeScale 2", 0, &"Animation 2", &"effect_1", 0, &"TimeScale", &"effect_1", 1, &"Animation", &"slam", 0, &"effect_1", &"slam", 1, &"TimeScale 2"]
+nodes/slam/position = Vector2(280, 180)
+node_connections = [&"output", 0, &"fly", &"TimeScale", 0, &"moving", &"TimeScale 2", 0, &"Animation 2", &"effect_1", 0, &"TimeScale", &"effect_1", 1, &"Animation", &"slam", 0, &"effect_1", &"slam", 1, &"TimeScale 2", &"fly", 0, &"slam", &"fly", 1, &"Animation 3"]
 
 [node name="boss_2" instance=ExtResource("1_ignb7")]
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/position = Vector3(1.11893, 9.7172, -9.13724)
+bones/0/position = Vector3(1.11893, 9.43821, -9.13724)
 bones/0/rotation = Quaternion(0.736164, -0.0295269, 0.0319947, 0.675401)
 bones/1/rotation = Quaternion(-0.359502, -0.0596413, -0.696759, 0.617842)
-bones/2/rotation = Quaternion(0.582754, 0.0935938, -0.391112, 0.706165)
+bones/2/rotation = Quaternion(0.554171, 0.0870117, -0.380523, 0.735204)
 bones/3/rotation = Quaternion(-0.357999, 0.0861197, 0.637962, 0.676332)
-bones/4/rotation = Quaternion(0.582752, -0.0935923, 0.391111, 0.706168)
+bones/4/rotation = Quaternion(0.554164, -0.0870092, 0.38052, 0.735212)
 bones/7/rotation = Quaternion(0.194838, -0.130096, 0.0755277, 0.969231)
 bones/8/rotation = Quaternion(0.198067, 0.123456, -0.0985119, 0.96738)
-bones/13/rotation = Quaternion(0.353341, -0.153876, 0.0896296, 0.918389)
+bones/13/rotation = Quaternion(0.31731, -0.145267, 0.106461, 0.931063)
 bones/14/rotation = Quaternion(0.127254, 0.393976, 0.666849, 0.619598)
-bones/15/rotation = Quaternion(0.353338, 0.153879, -0.08963, 0.91839)
+bones/15/rotation = Quaternion(0.317316, 0.145272, -0.106457, 0.93106)
 bones/16/rotation = Quaternion(-0.114528, -0.30074, -0.722783, 0.611575)
-bones/17/rotation = Quaternion(0.414368, -0.0366086, -0.214923, 0.88361)
+bones/17/rotation = Quaternion(0.382044, -0.0380742, -0.194706, 0.902597)
 bones/18/rotation = Quaternion(-0.103509, 0.304661, 0.699844, 0.637719)
-bones/19/rotation = Quaternion(0.414364, 0.0366098, 0.214921, 0.883612)
-bones/21/rotation = Quaternion(0.293204, -0.0562744, -0.4784, 0.825832)
+bones/19/rotation = Quaternion(0.382033, 0.0380757, 0.194699, 0.902604)
+bones/21/rotation = Quaternion(0.260328, -0.0548373, -0.461011, 0.846576)
 bones/22/rotation = Quaternion(-0.0977401, 0.11326, 0.602002, 0.784355)
-bones/23/rotation = Quaternion(0.249594, -0.00221071, 0.531809, 0.809245)
+bones/23/rotation = Quaternion(0.218359, -0.00661353, 0.512507, 0.830429)
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 tree_root = SubResource("AnimationNodeBlendTree_bgq3b")
@@ -84,6 +93,9 @@ parameters/TimeScale/scale = 3.0
 parameters/effect_1/active = false
 parameters/effect_1/internal_active = false
 parameters/effect_1/request = 0
+parameters/fly/active = false
+parameters/fly/internal_active = false
+parameters/fly/request = 0
 parameters/moving/blend_position = -0.0015015
 parameters/slam/active = false
 parameters/slam/internal_active = false

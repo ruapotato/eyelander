@@ -29,7 +29,7 @@ var swipe_angles = {1: [180, 0], 2: [0,180],}
 var shilding = false
 var shild_hold_angle = 65
 var shilding_angle = 0
-var knockback_force = Vector3(0,0,0)
+var knockback = Vector3(0,0,0)
 var dazzed = 0
 var new_speed = Vector3(0,0,0)
 # Called when the node enters the scene tree for the first time.
@@ -51,12 +51,22 @@ func _unhandled_input(event):
 	if Input.is_action_just_pressed("swipe"):
 		swipping = true
 		swipe_counter = swipe_speed
-	
+		if not shilding:
+			if not sword.find_child("swing").playing:
+				sword.find_child("swing").play()
+	if Input.is_action_just_released("swipe"):
+		if sword.find_child("swing").playing:
+			sword.find_child("swing").stop()
 	
 	if Input.is_action_just_pressed("shild"):
 		shilding = true
+		if sword.find_child("swing").playing:
+			sword.find_child("swing").stop()
+			swipping = false
 	if Input.is_action_just_released("shild"):
 		shilding = false
+		if Input.is_action_pressed("swipe"):
+			sword.find_child("swing").play()
 	
 	#Update sowrd
 	#var swipping = false
@@ -66,13 +76,13 @@ func _unhandled_input(event):
 
 func _physics_process(delta):
 	new_speed = velocity
-	if knockback_force != Vector3(0,0,0):
-		dazzed = knockback_force.length() / 100
-		new_speed = knockback_force
+	if knockback != Vector3(0,0,0):
+		dazzed = knockback.length() / 100
+		new_speed = knockback
 		new_speed.y = abs(new_speed.y)
 		print(new_speed)
-		#new_speed = knockback_force
-		knockback_force = Vector3(0,0,0)
+		#new_speed = knockback
+		knockback = Vector3(0,0,0)
 	if dazzed > 0:
 		dazzed -= delta
 		#print(dazzed)

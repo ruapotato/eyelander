@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dovic5nx1uejg"]
+[gd_scene load_steps=6 format=3 uid="uid://dovic5nx1uejg"]
 
 [ext_resource type="Script" path="res://sword.gd" id="1_dx8f6"]
 [ext_resource type="PackedScene" uid="uid://bjdumkpli2d1t" path="res://sword_import.tscn" id="1_uj4pq"]
+[ext_resource type="AudioStream" uid="uid://cf1t4d2fdascp" path="res://sounds/sound6.wav" id="3_5oglf"]
+[ext_resource type="Script" path="res://Light_sounds.gd" id="4_tg2y8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_isrs7"]
 size = Vector3(0.18, 0.05, 1.835)
@@ -14,3 +16,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.69)
 shape = SubResource("BoxShape3D_isrs7")
 
 [node name="sword" parent="." instance=ExtResource("1_uj4pq")]
+
+[node name="swing" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.156918, -0.747707)
+stream = ExtResource("3_5oglf")
+doppler_tracking = 2
+script = ExtResource("4_tg2y8")
+
+[node name="sound_light" type="OmniLight3D" parent="swing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0348836, -0.0037058)
+light_color = Color(1, 1, 0, 1)
+light_energy = 15.03
+light_size = 1.0
+shadow_enabled = true
+omni_range = 4096.0
+omni_shadow_mode = 0
