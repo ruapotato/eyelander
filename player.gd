@@ -80,7 +80,7 @@ func _physics_process(delta):
 		dazzed = knockback.length() / 100
 		new_speed = knockback
 		new_speed.y = abs(new_speed.y)
-		print(new_speed)
+		#print(new_speed)
 		#new_speed = knockback
 		knockback = Vector3(0,0,0)
 	if dazzed > 0:
@@ -155,7 +155,8 @@ func _physics_process(delta):
 func _process(delta):
 	if boss_1_life != boss_1.life:
 		boss_1_life =  boss_1.life
-		gui.find_child("BOSS_1_LIFE").value = (boss_1.start_life/boss_1.life) * 100
+		gui.find_child("BOSS_1_LIFE").value = (boss_1.life/boss_1.start_life) * 100
+		print("set boss life")
 	
 	if life < 100:
 		life += delta * life_gen

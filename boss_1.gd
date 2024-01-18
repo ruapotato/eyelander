@@ -85,10 +85,10 @@ func walk_sound():
 func _physics_process(delta):
 	new_speed = velocity
 	if knockback != Vector3(0,0,0):
-		dazzed = knockback.length() / 100
+		dazzed = knockback.length() / 50
 		new_speed = knockback
 		new_speed.y = abs(new_speed.y)
-		print(new_speed)
+		#print(new_speed)
 		#new_speed = knockback
 		knockback = Vector3(0,0,0)
 	if dazzed > 0:
@@ -110,13 +110,8 @@ func _physics_process(delta):
 		if action == "walking" and not animation_tree.get("parameters/slam/active"):
 			var input_dir = Vector3(0,-1,0)
 			var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-			if direction:
-				new_speed.x = lerp(new_speed.x, direction.x * SPEED, .2)
-				new_speed.z = lerp(new_speed.z, direction.z * SPEED, .2)
-			else:
-				new_speed.x = lerp(new_speed.x, 0.0, .2)
-				new_speed.z = lerp(new_speed.z, 0.0, .2)
-
+			new_speed.x = lerp(new_speed.x, direction.x * SPEED, .2)
+			new_speed.z = lerp(new_speed.z, direction.z * SPEED, .2)
 			$target.look_at(player.global_position, Vector3(0,1,0))
 			global_rotation.y = lerp_angle(global_rotation.y, $target.global_rotation.y, .01)
 			
@@ -124,11 +119,15 @@ func _physics_process(delta):
 			if walk_sounds_timer >= walk_sound_every:
 				walk_sound()
 				walk_sounds_timer = 0
-	animation_tree.set("parameters/moving/blend_position", velocity.length() * MAX_SPEED)
-	move_and_slide()
+		if action != "walking":
+			new_speed.x = lerp(new_speed.x, 0.0, .2)
+			new_speed.z = lerp(new_speed.z, 0.0, .2)
+	
+	
 	
 		#print(sword.rotation.y)
 	velocity = new_speed
+	move_and_slide()
 
 
 
@@ -139,7 +138,7 @@ func _process(delta):
 	if damage_todo != 0:
 		life -= damage_todo
 		damage_todo = 0
-		print(life)
+		#print(life)
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -165,7 +164,7 @@ func _process(delta):
 			roar1_sound.play()
 			slam_started = true
 			animation_tree.set("parameters/slam/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-
+	animation_tree.set("parameters/moving/blend_position", velocity.length() * MAX_SPEED)
 		
 	#armature.rotation.y = atan2(-player.global_position.x, -player.global_position.z)
 	#armature.rotation.y = lerp_angle(armature.rotation.y, atan2(-player.global_position.x, -player.global_position.z), .2)

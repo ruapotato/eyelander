@@ -5,6 +5,7 @@ extends RigidBody3D
 var init_pos
 var init_rot
 var knockback_strength = 10
+var damage = 100
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	contact_monitor = true
@@ -36,12 +37,12 @@ func _integrate_forces(state):
 func _process(delta):
 	for body in get_colliding_bodies():
 		if body.name == "butt":
-			body.get_parent().damage_todo += delta
+			body.get_parent().damage_todo += delta * damage
 			
 			var knockback_direction = global_position.direction_to(body.global_position)
 			var knockback_force
 			#player.set_deferred("velocity", player.velocity + knockback_force)
 			print("boss hit")
 			knockback_force = knockback_direction * knockback_strength
-			knockback_force.y = 2
+			knockback_force.y = 5
 			body.get_parent().knockback = knockback_force
