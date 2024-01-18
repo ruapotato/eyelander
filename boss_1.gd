@@ -5,6 +5,7 @@ extends CharacterBody3D
 @onready var effect_sounds = $sounds/effects
 @onready var slam_sound = $sounds/effects/slam
 @onready var roar1_sound = $sounds/effects/roar
+@onready var hurt_sound = $sounds/effects/hurt
 @onready var player = get_parent().find_child("player")
 @onready var armature = find_child("mesh").find_child("Armature")
 @onready var animation_tree = find_child("mesh").find_child("AnimationTree")
@@ -136,6 +137,7 @@ func _physics_process(delta):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if damage_todo != 0:
+		hurt_sound.play()
 		life -= damage_todo
 		damage_todo = 0
 		#print(life)
