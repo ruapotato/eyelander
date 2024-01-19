@@ -60,29 +60,29 @@ nodes/moving/position = Vector2(-480, 140)
 nodes/output/position = Vector2(740, 180)
 nodes/slam/node = SubResource("AnimationNodeOneShot_qpgrh")
 nodes/slam/position = Vector2(280, 180)
-node_connections = [&"output", 0, &"fly", &"TimeScale", 0, &"moving", &"TimeScale 2", 0, &"Animation 2", &"effect_1", 0, &"TimeScale", &"effect_1", 1, &"Animation", &"slam", 0, &"effect_1", &"slam", 1, &"TimeScale 2", &"fly", 0, &"slam", &"fly", 1, &"Animation 3"]
+node_connections = [&"output", 0, &"fly", &"TimeScale", 0, &"moving", &"TimeScale 2", 0, &"Animation 2", &"effect_1", 0, &"TimeScale", &"effect_1", 1, &"Animation", &"fly", 0, &"slam", &"fly", 1, &"Animation 3", &"slam", 0, &"effect_1", &"slam", 1, &"TimeScale 2"]
 
 [node name="boss_2" instance=ExtResource("1_ignb7")]
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/position = Vector3(1.11893, 9.62268, -9.13724)
+bones/0/position = Vector3(1.11893, 9.32092, -9.13724)
 bones/0/rotation = Quaternion(0.736164, -0.0295269, 0.0319947, 0.675401)
 bones/1/rotation = Quaternion(-0.359502, -0.0596413, -0.696759, 0.617842)
-bones/2/rotation = Quaternion(0.573193, 0.0913837, -0.387605, 0.716143)
+bones/2/rotation = Quaternion(0.541853, 0.084197, -0.375865, 0.747016)
 bones/3/rotation = Quaternion(-0.357999, 0.0861197, 0.637962, 0.676332)
-bones/4/rotation = Quaternion(0.57319, -0.0913822, 0.387604, 0.716146)
+bones/4/rotation = Quaternion(0.541852, -0.084196, 0.375864, 0.747017)
 bones/7/rotation = Quaternion(0.194838, -0.130096, 0.0755277, 0.969231)
 bones/8/rotation = Quaternion(0.198067, 0.123456, -0.0985119, 0.96738)
-bones/13/rotation = Quaternion(0.341212, -0.150992, 0.0953474, 0.922868)
+bones/13/rotation = Quaternion(0.301996, -0.14157, 0.113477, 0.935884)
 bones/14/rotation = Quaternion(0.127254, 0.393976, 0.666849, 0.619598)
-bones/15/rotation = Quaternion(0.341209, 0.150995, -0.0953478, 0.922868)
+bones/15/rotation = Quaternion(0.301993, 0.141573, -0.113477, 0.935885)
 bones/16/rotation = Quaternion(-0.114528, -0.30074, -0.722783, 0.611575)
-bones/17/rotation = Quaternion(0.403507, -0.0371124, -0.208121, 0.890219)
+bones/17/rotation = Quaternion(0.368253, -0.0386695, -0.186104, 0.910088)
 bones/18/rotation = Quaternion(-0.103509, 0.304661, 0.699844, 0.637719)
-bones/19/rotation = Quaternion(0.403503, 0.0371136, 0.208119, 0.890222)
-bones/21/rotation = Quaternion(0.282129, -0.0557991, -0.472608, 0.833025)
+bones/19/rotation = Quaternion(0.368249, 0.0386707, 0.186101, 0.91009)
+bones/21/rotation = Quaternion(0.246362, -0.0542033, -0.453449, 0.85484)
 bones/22/rotation = Quaternion(-0.0977401, 0.11326, 0.602002, 0.784355)
-bones/23/rotation = Quaternion(0.239068, -0.00370202, 0.525381, 0.816583)
+bones/23/rotation = Quaternion(0.205115, -0.00846011, 0.504118, 0.838881)
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 tree_root = SubResource("AnimationNodeBlendTree_bgq3b")

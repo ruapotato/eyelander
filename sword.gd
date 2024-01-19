@@ -1,6 +1,7 @@
 extends RigidBody3D
 
 @onready var swing_sound = $swing
+@onready var hit_sound = $hit
 
 var init_pos
 var init_rot
@@ -46,3 +47,5 @@ func _process(delta):
 			knockback_force = knockback_direction * knockback_strength
 			knockback_force.y = 5
 			body.get_parent().knockback = knockback_force
+		else:
+			hit_sound.play()
