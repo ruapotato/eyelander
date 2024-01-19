@@ -11,7 +11,7 @@ extends CharacterBody3D
 @onready var animation_tree = find_child("mesh").find_child("AnimationTree")
 @onready var slam_effect = $slam_effect
 @onready var butt = $butt
-var walk_sound_every = 1000
+var walk_sound_every = 10000
 var walk_sounds_timer = 0
 var SPEED = 2
 var MAX_SPEED = 2
@@ -64,6 +64,7 @@ func slam():
 				knockback_force.y = 2
 				player.knockback = knockback_force
 				player.damage_todo = 5
+				hit.collider.find_child("hit").play()
 			elif hit.collider.name == "player":
 				print("player hit")
 				knockback_force = knockback_direction * knockback_strength
@@ -120,6 +121,7 @@ func _physics_process(delta):
 			if walk_sounds_timer >= walk_sound_every:
 				walk_sound()
 				walk_sounds_timer = 0
+				print("wlak sound")
 		if action != "walking":
 			new_speed.x = lerp(new_speed.x, 0.0, .2)
 			new_speed.z = lerp(new_speed.z, 0.0, .2)
@@ -144,7 +146,7 @@ func _process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-	walk_sound_every = velocity.length() * delta * 50
+	walk_sound_every = velocity.length() * delta * 20
 	#print(walk_sound_every)
 
 	var dist_to_player = global_position.distance_to(player.global_position)

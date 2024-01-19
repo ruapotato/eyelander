@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://hj5galx0bqtw"]
+[gd_scene load_steps=9 format=3 uid="uid://hj5galx0bqtw"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_oeri7"]
 [ext_resource type="PackedScene" uid="uid://dovic5nx1uejg" path="res://sword.tscn" id="2_n5who"]
 [ext_resource type="PackedScene" uid="uid://dsnalbd7u0d68" path="res://shild.tscn" id="3_f2err"]
 [ext_resource type="PackedScene" uid="uid://c0f1cbrr54p8a" path="res://gui.tscn" id="4_dg2ap"]
+[ext_resource type="AudioStream" uid="uid://di003tlqiifkq" path="res://sounds/hurt2.wav" id="5_brbjp"]
+[ext_resource type="Script" path="res://Light_sounds.gd" id="6_47ugm"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_m0rko"]
 radius = 0.4
@@ -39,3 +41,19 @@ gravity_scale = 0.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.238144, 0)
 
 [node name="GUI" parent="." instance=ExtResource("4_dg2ap")]
+
+[node name="hurt" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.156918, -0.747707)
+stream = ExtResource("5_brbjp")
+max_db = 6.0
+doppler_tracking = 2
+script = ExtResource("6_47ugm")
+
+[node name="sound_light" type="OmniLight3D" parent="hurt"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0348836, -0.0037058)
+light_color = Color(0, 0, 1, 1)
+light_energy = 15.03
+light_size = 1.0
+shadow_enabled = true
+omni_range = 4096.0
+omni_shadow_mode = 0

@@ -7,6 +7,7 @@ extends CharacterBody3D
 @onready var shild = $shild
 @onready var camera = $piv/SpringArm3D/Camera3D
 @onready var gui = $GUI
+@onready var hurt_sund = $hurt
 @onready var boss_1 = get_parent().find_child("boss_1")
 var mouse_sensitivity = .0035
 var speed = 5
@@ -165,6 +166,8 @@ func _process(delta):
 		life = 100
 	
 	if damage_todo != 0:
+		if damage_todo > 15:
+			hurt_sund.play()
 		life -= damage_todo
 		gui.find_child("LIFE").value = life
 		damage_todo = 0
