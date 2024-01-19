@@ -5,7 +5,7 @@ extends RigidBody3D
 var init_pos
 var init_rot
 var knockback_strength = 10
-var damage = 100
+var damage = 1000
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	contact_monitor = true
