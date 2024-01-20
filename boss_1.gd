@@ -11,7 +11,7 @@ extends CharacterBody3D
 @onready var animation_tree = find_child("mesh").find_child("AnimationTree")
 @onready var slam_effect = $slam_effect
 @onready var butt = $butt
-var walk_sound_every = 10000
+var walk_sound_every = 0
 var walk_sounds_timer = 0
 var SPEED = 2
 var MAX_SPEED = 2
@@ -143,10 +143,11 @@ func _process(delta):
 		life -= damage_todo
 		damage_todo = 0
 		#print(life)
-	# Add the gravity.
+	# Add the gravity.git status
+	
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-	walk_sound_every = velocity.length() * delta * 20
+	walk_sound_every = 1/(velocity.length()*2)
 	#print(walk_sound_every)
 
 	var dist_to_player = global_position.distance_to(player.global_position)

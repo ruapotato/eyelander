@@ -8,9 +8,14 @@ extends CharacterBody3D
 @onready var camera = $piv/SpringArm3D/Camera3D
 @onready var gui = $GUI
 @onready var hurt_sund = $hurt
+@onready var dirt_sounds = $sounds/walking_dirt
 @onready var boss_1 = get_parent().find_child("boss_1")
+var walk_sound_every = 0
+var walk_sounds_timer = 0
+var walking_on = "dirt"
+
 var mouse_sensitivity = .0035
-var speed = 5
+#var speed = 5
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var JUMP_VELOCITY = 4.5
 var SPEED = 5.0
@@ -33,6 +38,7 @@ var shilding_angle = 0
 var knockback = Vector3(0,0,0)
 var dazzed = 0
 var new_speed = Vector3(0,0,0)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -75,7 +81,17 @@ func _unhandled_input(event):
 	#var swipe_start_angle = 30
 	#var swipe_end_angle = 120
 
+func walk_sound():
+	if walking_on == "dirt":
+		#var sound_to_use = dirt_sounds.get_children().pick_random()
+		var sound_to_use = dirt_sounds.get_children()[0]
+		#$"sounds/walking_dirt/1/sound_light".light_energy
+		#$"sounds/walking_dirt/1".
+		sound_to_use.play()
+
+
 func _physics_process(delta):
+	walk_sound_every = 1/(velocity.length()/3)
 	new_speed = velocity
 	if knockback != Vector3(0,0,0):
 		dazzed = knockback.length() / 100
@@ -100,11 +116,21 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	if dazzed == 0:
+		walk_sounds_timer += delta
+		if walk_sounds_timer >= walk_sound_every:
+			walk_sound()
+			walk_sounds_timer = 0
+			print("wlak sound")
 		var input_dir = Input.get_vector("left", "right", "forward", "backward")
 		var direction = (piv.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		var speed = SPEED
+		if shilding:
+			speed = SPEED / 2
+		elif Input.is_action_pressed("sprint"):
+			speed = SPEED * 2
 		if direction:
-			new_speed.x = lerp(new_speed.x, direction.x * SPEED, .2)
-			new_speed.z = lerp(new_speed.z, direction.z * SPEED, .2)
+			new_speed.x = lerp(new_speed.x, direction.x * speed, .2)
+			new_speed.z = lerp(new_speed.z, direction.z * speed, .2)
 		else:
 			new_speed.x = lerp(new_speed.x, 0.0, .2)
 			new_speed.z = lerp(new_speed.z, 0.0, .2)

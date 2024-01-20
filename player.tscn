@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://hj5galx0bqtw"]
+[gd_scene load_steps=20 format=3 uid="uid://hj5galx0bqtw"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_oeri7"]
 [ext_resource type="PackedScene" uid="uid://dovic5nx1uejg" path="res://sword.tscn" id="2_n5who"]
@@ -6,6 +6,17 @@
 [ext_resource type="PackedScene" uid="uid://c0f1cbrr54p8a" path="res://gui.tscn" id="4_dg2ap"]
 [ext_resource type="AudioStream" uid="uid://di003tlqiifkq" path="res://sounds/hurt2.wav" id="5_brbjp"]
 [ext_resource type="Script" path="res://Light_sounds.gd" id="6_47ugm"]
+[ext_resource type="AudioStream" uid="uid://chy3uwn0hlqjc" path="res://import/jute-dh-steps/stepdirt_1.wav" id="7_e1p6s"]
+[ext_resource type="AudioStream" uid="uid://lky2s6lpvtn5" path="res://import/jute-dh-steps/stepdirt_2.wav" id="8_ma7fy"]
+[ext_resource type="AudioStream" uid="uid://cpibwf5bya5nt" path="res://import/jute-dh-steps/stepdirt_3.wav" id="9_dqeyl"]
+[ext_resource type="AudioStream" uid="uid://pwb0oc78mb3w" path="res://import/jute-dh-steps/stepdirt_4.wav" id="10_1rxt7"]
+[ext_resource type="AudioStream" uid="uid://bdcf48rpsd10k" path="res://import/jute-dh-steps/stepdirt_5.wav" id="11_0skx8"]
+[ext_resource type="AudioStream" uid="uid://ckagbohbcdk4w" path="res://import/jute-dh-steps/stepdirt_6.wav" id="12_tnttn"]
+[ext_resource type="AudioStream" uid="uid://blebvyohfm0hh" path="res://import/jute-dh-steps/stepdirt_7.wav" id="13_a1ryk"]
+[ext_resource type="AudioStream" uid="uid://dkgnp5ge3tnn8" path="res://import/jute-dh-steps/stepdirt_8.wav" id="14_64vdx"]
+[ext_resource type="AudioStream" uid="uid://ds6l7nqmji1te" path="res://sounds/slam2.wav" id="15_fpfsr"]
+[ext_resource type="AudioStream" uid="uid://blxqceakc4v5f" path="res://sounds/sound4.wav" id="16_bp0si"]
+[ext_resource type="AudioStream" uid="uid://bskrofaaw5ljm" path="res://sounds/hurt1.wav" id="17_7o54j"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_m0rko"]
 radius = 0.4
@@ -55,5 +66,160 @@ light_color = Color(0, 0, 1, 1)
 light_energy = 15.03
 light_size = 1.0
 shadow_enabled = true
+omni_range = 4096.0
+omni_shadow_mode = 0
+
+[node name="sounds" type="Node3D" parent="."]
+
+[node name="walking_dirt" type="Node3D" parent="sounds"]
+transform = Transform3D(2.07591, 0, 0, 0, 1.69565, 0, 0, 0, 2.17674, 0, 0.291742, -0.950664)
+
+[node name="1" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
+stream = ExtResource("7_e1p6s")
+doppler_tracking = 2
+script = ExtResource("6_47ugm")
+
+[node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0348836, -0.0037058)
+light_color = Color(0, 0.552941, 1, 1)
+light_energy = 15.03
+light_size = 1.0
+shadow_enabled = true
+omni_range = 4096.0
+omni_shadow_mode = 0
+
+[node name="2" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
+stream = ExtResource("8_ma7fy")
+doppler_tracking = 2
+
+[node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/2"]
+light_color = Color(0, 0.552941, 1, 1)
+light_energy = 0.0
+light_size = 1.0
+shadow_enabled = true
+omni_range = 4096.0
+omni_shadow_mode = 0
+
+[node name="3" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
+stream = ExtResource("9_dqeyl")
+doppler_tracking = 2
+
+[node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/3"]
+light_color = Color(0, 0.552941, 1, 1)
+light_energy = 0.0
+light_size = 1.0
+shadow_enabled = true
+omni_range = 4096.0
+omni_shadow_mode = 0
+
+[node name="4" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
+stream = ExtResource("10_1rxt7")
+doppler_tracking = 2
+
+[node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/4"]
+light_color = Color(0, 0.552941, 1, 1)
+light_energy = 0.0
+light_size = 1.0
+shadow_enabled = true
+omni_range = 4096.0
+omni_shadow_mode = 0
+
+[node name="5" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
+stream = ExtResource("11_0skx8")
+doppler_tracking = 2
+
+[node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/5"]
+light_color = Color(0, 0.552941, 1, 1)
+light_energy = 0.0
+light_size = 1.0
+shadow_enabled = true
+omni_range = 4096.0
+omni_shadow_mode = 0
+
+[node name="6" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
+stream = ExtResource("12_tnttn")
+doppler_tracking = 2
+
+[node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/6"]
+light_color = Color(0, 0.552941, 1, 1)
+light_energy = 0.0
+light_size = 1.0
+shadow_enabled = true
+omni_range = 4096.0
+omni_shadow_mode = 0
+
+[node name="7" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
+stream = ExtResource("13_a1ryk")
+doppler_tracking = 2
+
+[node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/7"]
+light_color = Color(0, 0.552941, 1, 1)
+light_energy = 0.0
+light_size = 1.0
+shadow_enabled = true
+omni_range = 4096.0
+omni_shadow_mode = 0
+
+[node name="8" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
+stream = ExtResource("14_64vdx")
+doppler_tracking = 2
+
+[node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/8"]
+light_color = Color(0, 0.552941, 1, 1)
+light_energy = 0.0
+light_size = 1.0
+shadow_enabled = true
+omni_range = 4096.0
+omni_shadow_mode = 0
+
+[node name="effects" type="Node3D" parent="sounds"]
+
+[node name="slam" type="AudioStreamPlayer3D" parent="sounds/effects"]
+stream = ExtResource("15_fpfsr")
+doppler_tracking = 2
+script = ExtResource("6_47ugm")
+
+[node name="sound_light" type="OmniLight3D" parent="sounds/effects/slam"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0348836, -2.58987)
+light_color = Color(1, 0, 0, 1)
+light_energy = 15.03
+light_size = 1.0
+shadow_enabled = true
+distance_fade_enabled = true
+distance_fade_begin = 3101.66
+distance_fade_shadow = 3525.39
+distance_fade_length = 3319.9
+omni_range = 4096.0
+omni_shadow_mode = 0
+
+[node name="roar" type="AudioStreamPlayer3D" parent="sounds/effects"]
+stream = ExtResource("16_bp0si")
+doppler_tracking = 2
+script = ExtResource("6_47ugm")
+
+[node name="sound_light" type="OmniLight3D" parent="sounds/effects/roar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0348836, -2.58987)
+light_color = Color(1, 0, 0, 1)
+light_energy = 15.03
+light_size = 1.0
+shadow_enabled = true
+omni_range = 4096.0
+omni_shadow_mode = 0
+
+[node name="hurt" type="AudioStreamPlayer3D" parent="sounds/effects"]
+stream = ExtResource("17_7o54j")
+doppler_tracking = 2
+script = ExtResource("6_47ugm")
+
+[node name="sound_light" type="OmniLight3D" parent="sounds/effects/hurt"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.58474, 3.41344)
+light_color = Color(1, 1, 0, 1)
+light_energy = 15.03
+light_size = 1.0
+shadow_enabled = true
+distance_fade_enabled = true
+distance_fade_begin = 3101.66
+distance_fade_shadow = 3525.39
+distance_fade_length = 3319.9
 omni_range = 4096.0
 omni_shadow_mode = 0
