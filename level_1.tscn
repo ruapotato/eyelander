@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b40u0bwvnhur2"]
+[gd_scene load_steps=6 format=3 uid="uid://b40u0bwvnhur2"]
 
 [ext_resource type="PackedScene" uid="uid://bel1io4kkvrvy" path="res://level_1_import.tscn" id="1_kyr5w"]
 [ext_resource type="Material" uid="uid://6csfmb05pmdq" path="res://native/lava.tres" id="2_os8ui"]
@@ -9,6 +9,9 @@ data = PackedVector3Array(0, 0.0787, 0, -73.6337, -1.0271, 73.6337, -100.299, 0.
 [sub_resource type="PlaneMesh" id="PlaneMesh_six0t"]
 material = ExtResource("2_os8ui")
 size = Vector2(1000, 1000)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_7v07b"]
+data = PackedVector3Array(500, 0, 500, -500, 0, 500, 500, 0, -500, -500, 0, 500, -500, 0, -500, 500, 0, -500)
 
 [node name="Level_1" type="StaticBody3D"]
 
@@ -23,3 +26,7 @@ shape = SubResource("ConcavePolygonShape3D_ph7jx")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="lava"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -25.1425, 0)
 mesh = SubResource("PlaneMesh_six0t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="lava"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -25.1425, 0)
+shape = SubResource("ConcavePolygonShape3D_7v07b")

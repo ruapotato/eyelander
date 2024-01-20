@@ -24,8 +24,8 @@ var slam_time = 1.6
 var slam_count_down = 0
 var knockback_strength = 25
 var slam_damage = 50
-#var start_life = 1000
-var start_life = 10
+var start_life = 1000
+#var start_life = 10
 var life = start_life
 var damage_todo = 0
 var knockback = Vector3(0,0,0)
@@ -41,7 +41,7 @@ func _ready():
 	#set_lock_rotation_enabled(true)
 
 func slam():
-	print("SLAM")
+	#print("SLAM")
 	slam_sound.play()
 	#Effect
 	slam_effect.find_child("slam_particles").emitting = true
@@ -62,14 +62,14 @@ func slam():
 			var knockback_force
 			#player.set_deferred("velocity", player.velocity + knockback_force)
 			if hit.collider.name == "shild":
-				print("shild hit")
+				#print("shild hit")
 				knockback_force = knockback_direction  * (knockback_strength * .5)
 				knockback_force.y = 2
 				player.knockback = knockback_force
 				player.damage_todo = 5
 				hit.collider.find_child("hit").play()
 			elif hit.collider.name == "player":
-				print("player hit")
+				#print("player hit")
 				knockback_force = knockback_direction * knockback_strength
 				knockback_force.y = 2
 				player.knockback = knockback_force
@@ -124,7 +124,7 @@ func _physics_process(delta):
 			if walk_sounds_timer >= walk_sound_every:
 				walk_sound()
 				walk_sounds_timer = 0
-				print("wlak sound")
+				#print("wlak sound")
 		if action != "walking":
 			new_speed.x = lerp(new_speed.x, 0.0, .2)
 			new_speed.z = lerp(new_speed.z, 0.0, .2)

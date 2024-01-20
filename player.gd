@@ -124,7 +124,7 @@ func _physics_process(delta):
 		if walk_sounds_timer >= walk_sound_every:
 			walk_sound()
 			walk_sounds_timer = 0
-			print("wlak sound")
+			#print("wlak sound")
 		var input_dir = Input.get_vector("left", "right", "forward", "backward")
 		var direction = (piv.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		var speed = SPEED
@@ -187,7 +187,7 @@ func _process(delta):
 	if boss_1_life != boss_1.life:
 		boss_1_life =  boss_1.life
 		gui.find_child("BOSS_1_LIFE").value = (boss_1.life/boss_1.start_life) * 100
-		print("set boss life")
+		#print("set boss life")
 	
 	if life < 100:
 		life += delta * life_gen

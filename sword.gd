@@ -43,7 +43,7 @@ func _process(delta):
 			var knockback_direction = global_position.direction_to(body.global_position)
 			var knockback_force
 			#player.set_deferred("velocity", player.velocity + knockback_force)
-			print("boss hit")
+			#print("boss hit")
 			knockback_force = knockback_direction * knockback_strength
 			knockback_force.y = 5
 			body.get_parent().knockback = knockback_force
