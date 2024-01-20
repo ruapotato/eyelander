@@ -6,7 +6,7 @@ extends RigidBody3D
 var init_pos
 var init_rot
 var knockback_strength = 10
-var damage = 1000
+var damage = 3000
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	contact_monitor = true
@@ -37,6 +37,7 @@ func _integrate_forces(state):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	for body in get_colliding_bodies():
+		print(body)
 		if body.name == "butt":
 			body.get_parent().damage_todo += delta * damage
 			

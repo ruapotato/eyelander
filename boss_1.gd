@@ -9,6 +9,7 @@ extends CharacterBody3D
 @onready var player = get_parent().find_child("player")
 @onready var armature = find_child("mesh").find_child("Armature")
 @onready var animation_tree = find_child("mesh").find_child("AnimationTree")
+@onready var butt_bone = find_child("mesh").find_child("butt_bone")
 @onready var slam_effect = $slam_effect
 @onready var butt = $butt
 @onready var spawn_next = preload("res://end_screen.tscn")
@@ -24,7 +25,7 @@ var slam_time = 1.6
 var slam_count_down = 0
 var knockback_strength = 25
 var slam_damage = 50
-var start_life = 1000
+var start_life = 500
 #var start_life = 10
 var life = start_life
 var damage_todo = 0
@@ -32,6 +33,10 @@ var knockback = Vector3(0,0,0)
 var dazzed = 0
 var new_speed = Vector3(0,0,0)
 var dead = false
+var hover_level = 5.0
+
+var stage = 1
+var start_stage_2 = start_life/2
 
 
 var walking_on = "dirt"
@@ -88,6 +93,8 @@ func walk_sound():
 
 
 func _physics_process(delta):
+	butt.global_position = butt_bone.global_position
+	butt.global_rotation = butt_bone.global_rotation
 	new_speed = velocity
 	if knockback != Vector3(0,0,0):
 		dazzed = knockback.length() / 50
@@ -104,7 +111,16 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		new_speed.y -= gravity * delta
-
+	
+	
+	if action == "flying":
+		$target.look_at(player.global_position, Vector3(0,1,0))
+		global_rotation.y = lerp_angle(global_rotation.y, $target.global_rotation.y, .02)
+		if global_position.y < hover_level:
+			global_position.y = lerp(global_position.y, hover_level, .05)
+			new_speed.y = 0
+		if not animation_tree.get("parameters/fly/active"):
+			animation_tree.set("parameters/fly/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	# Handle Jump.
 	#if Input.is_action_just_pressed("jump") and is_on_floor():
 	#	new_speed.y += JUMP_VELOCITY
@@ -132,6 +148,10 @@ func _physics_process(delta):
 	
 	
 		#print(sword.rotation.y)
+	if dazzed:
+		$target.look_at(player.global_position, Vector3(0,1,0))
+		global_rotation.y = lerp_angle(global_rotation.y, $target.global_rotation.y, .2)
+	
 	velocity = new_speed
 	move_and_slide()
 
@@ -152,21 +172,26 @@ func _process(delta):
 			var next_spawn = spawn_next.instantiate()
 			get_parent().add_child(next_spawn)
 			dead = true
-			
+	if life < start_stage_2:
+		stage = 2
 		#print(life)
 	# Add the gravity.git status
-	
-	if not is_on_floor():
+
+	if not is_on_floor() and action != "flying":
 		velocity.y -= gravity * delta
 	walk_sound_every = 1/(velocity.length()*2)
 	#print(walk_sound_every)
 
 	var dist_to_player = global_position.distance_to(player.global_position)
 	#print(dist_to_player)
-	if dist_to_player < near:
-		action = "slaming"
-	else:
-		action = "walking"
+	if stage == 1:
+		if dist_to_player < near:
+			action = "slaming"
+		else:
+			action = "walking"
+	
+	if stage == 2:
+		action = "flying"
 	
 	if slam_started:
 		slam_count_down -= delta
