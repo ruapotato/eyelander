@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://djl75nao1pxlp"]
+[gd_scene load_steps=8 format=3 uid="uid://djl75nao1pxlp"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_1w3vy"]
 [ext_resource type="PackedScene" uid="uid://hj5galx0bqtw" path="res://player.tscn" id="1_ljbio"]
 [ext_resource type="PackedScene" uid="uid://r3nb3djoacxm" path="res://boss_1.tscn" id="2_iid7c"]
+[ext_resource type="PackedScene" uid="uid://b40u0bwvnhur2" path="res://level_1.tscn" id="4_p0yyn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yj0e5"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -20,12 +21,6 @@ sky = SubResource("Sky_c61lt")
 fog_enabled = true
 fog_light_color = Color(0, 0, 0, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_xa6tv"]
-size = Vector3(100, 0.5, 100)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_2s4qj"]
-size = Vector3(100, 0.5, 100)
-
 [node name="World" type="Node3D"]
 script = ExtResource("1_1w3vy")
 
@@ -42,15 +37,7 @@ directional_shadow_max_distance = 101.0
 [node name="player" parent="." instance=ExtResource("1_ljbio")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28402, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.285429, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-mesh = SubResource("BoxMesh_xa6tv")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("BoxShape3D_2s4qj")
-
 [node name="boss_1" parent="." instance=ExtResource("2_iid7c")]
 transform = Transform3D(-0.997665, 0, -0.0682939, 0, 1, 0, 0.0682939, 0, -0.997665, 0, 1.31092, -11.9303)
+
+[node name="Level_1" parent="." instance=ExtResource("4_p0yyn")]
