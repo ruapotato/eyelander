@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_8rasr"]
 
-[sub_resource type="Gradient" id="Gradient_vqp1a"]
+[sub_resource type="Gradient" id="Gradient_uh7cu"]
 colors = PackedColorArray(0, 0, 0, 1, 0.355314, 0.355314, 0.355314, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_jncou"]
-gradient = SubResource("Gradient_vqp1a")
+gradient = SubResource("Gradient_uh7cu")
 fill_from = Vector2(0.96789, 0.247706)
 fill_to = Vector2(0, 0.380734)
 
@@ -14,8 +14,8 @@ fill_to = Vector2(0, 0.380734)
 script = ExtResource("1_8rasr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(572, 320.5)
-scale = Vector2(18.0312, 10.1719)
+position = Vector2(578.5, 325.5)
+scale = Vector2(18.2344, 10.3281)
 texture = SubResource("GradientTexture2D_jncou")
 
 [node name="Label" type="Label" parent="."]

@@ -11,6 +11,7 @@ extends CharacterBody3D
 @onready var animation_tree = find_child("mesh").find_child("AnimationTree")
 @onready var slam_effect = $slam_effect
 @onready var butt = $butt
+@onready var spawn_next = preload("res://end_screen.tscn")
 var walk_sound_every = 0
 var walk_sounds_timer = 0
 var SPEED = 2
@@ -23,12 +24,14 @@ var slam_time = 1.6
 var slam_count_down = 0
 var knockback_strength = 25
 var slam_damage = 50
-var start_life = 1000
+#var start_life = 1000
+var start_life = 10
 var life = start_life
 var damage_todo = 0
 var knockback = Vector3(0,0,0)
 var dazzed = 0
 var new_speed = Vector3(0,0,0)
+var dead = false
 
 
 var walking_on = "dirt"
@@ -138,10 +141,18 @@ func _physics_process(delta):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if dead:
+		return
 	if damage_todo != 0:
 		hurt_sound.play()
 		life -= damage_todo
 		damage_todo = 0
+	if life <= 0:
+			print("Boss dead")
+			var next_spawn = spawn_next.instantiate()
+			get_parent().add_child(next_spawn)
+			dead = true
+			
 		#print(life)
 	# Add the gravity.git status
 	

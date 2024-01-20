@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://k1leagvphpkq"]
+
+[ext_resource type="Script" path="res://game_over.gd" id="1_d1cpu"]
+
+[node name="game_over" type="Node2D"]
+script = ExtResource("1_d1cpu")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 63.0
+offset_top = 122.0
+offset_right = 400.0
+offset_bottom = 174.0
+scale = Vector2(3.05797, 5.03269)
+text = "You died. :'("
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="menu" type="Button" parent="."]
+offset_left = 449.0
+offset_top = 413.0
+offset_right = 550.0
+offset_bottom = 444.0
+scale = Vector2(2.78511, 2.72674)
+text = "Menu Menu"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="menu" to="." method="_on_menu_pressed"]

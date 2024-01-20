@@ -10,9 +10,11 @@ extends CharacterBody3D
 @onready var hurt_sund = $hurt
 @onready var dirt_sounds = $sounds/walking_dirt
 @onready var boss_1 = get_parent().find_child("boss_1")
+@onready var game_over_screen = preload("res://game_over.tscn")
 var walk_sound_every = 0
 var walk_sounds_timer = 0
 var walking_on = "dirt"
+var dead = false
 
 var mouse_sensitivity = .0035
 #var speed = 5
@@ -91,6 +93,8 @@ func walk_sound():
 
 
 func _physics_process(delta):
+	if dead:
+		return
 	walk_sound_every = 1/(velocity.length()/3)
 	new_speed = velocity
 	if knockback != Vector3(0,0,0):
@@ -199,5 +203,8 @@ func _process(delta):
 		damage_todo = 0
 		if life <= 0:
 			print("You are dead")
-			get_tree().reload_current_scene()
+			var RIP = game_over_screen.instantiate()
+			get_parent().add_child(RIP)
+			dead = true
+			#get_tree().reload_current_scene()
 		#print(life)
