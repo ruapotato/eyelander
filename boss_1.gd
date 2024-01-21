@@ -13,6 +13,8 @@ extends CharacterBody3D
 @onready var slam_effect = $slam_effect
 @onready var butt = $butt
 @onready var spawn_next = preload("res://end_screen.tscn")
+@onready var spike = preload("res://spike.tscn")
+
 var walk_sound_every = 0
 var walk_sounds_timer = 0
 var SPEED = 2
@@ -27,7 +29,7 @@ var knockback_strength = 25
 var slam_damage = 50
 var start_life = 500
 #var start_life = 10
-var life = start_life
+var life = start_life/2
 var damage_todo = 0
 var knockback = Vector3(0,0,0)
 var dazzed = 0
@@ -37,6 +39,8 @@ var hover_level = 5.0
 
 var stage = 1
 var start_stage_2 = start_life/2
+var fire_rate = 2
+var fire_counter = fire_rate
 
 
 var walking_on = "dirt"
@@ -90,7 +94,18 @@ func walk_sound():
 		sound_to_use.play()
 
 
-
+func fire_spike():
+	var new_spike = spike.instantiate()
+	new_spike.add_collision_exception_with(self)
+	new_spike.contact_monitor = true
+	#new_spike.linear_velocity = Vector3(1,0,0)
+	var local_target = Vector3(0,0,- 1)
+	var global_direction = -$target.global_transform.basis.z * 10
+	new_spike.linear_velocity = global_direction
+	new_spike.set_deferred("global_position", $target.global_position + Vector3(0,-1,0))
+	new_spike.set_deferred("global_rotation", $target.global_rotation)
+	#new_spike.global_position = $target.global_position
+	get_parent().add_child(new_spike)
 
 func _physics_process(delta):
 	butt.global_position = butt_bone.global_position
@@ -114,6 +129,12 @@ func _physics_process(delta):
 	
 	
 	if action == "flying":
+		if fire_counter > 0:
+			fire_counter -= delta
+		else:
+			print("FIRE")
+			fire_spike()
+			fire_counter = fire_rate
 		$target.look_at(player.global_position, Vector3(0,1,0))
 		global_rotation.y = lerp_angle(global_rotation.y, $target.global_rotation.y, .02)
 		if global_position.y < hover_level:

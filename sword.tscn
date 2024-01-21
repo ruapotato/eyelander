@@ -26,7 +26,7 @@ script = ExtResource("4_tg2y8")
 
 [node name="sound_light" type="OmniLight3D" parent="swing"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0348836, -0.0037058)
-light_color = Color(1, 1, 0, 1)
+light_color = Color(0.815686, 0.815686, 0, 1)
 light_energy = 15.03
 light_size = 1.0
 shadow_enabled = true
@@ -43,7 +43,7 @@ script = ExtResource("4_tg2y8")
 
 [node name="sound_light" type="OmniLight3D" parent="hit"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0348836, -0.0037058)
-light_color = Color(0, 0, 1, 1)
+light_color = Color(0.529412, 0.682353, 1, 1)
 light_energy = 15.03
 light_size = 1.0
 shadow_enabled = true
