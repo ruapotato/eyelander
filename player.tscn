@@ -46,7 +46,6 @@ current = true
 
 [node name="sword" parent="." instance=ExtResource("2_n5who")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.438805, 0)
-gravity_scale = 0.0
 
 [node name="shild" parent="." instance=ExtResource("3_f2err")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.238144, 0)

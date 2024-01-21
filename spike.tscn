@@ -18,11 +18,8 @@ height = 0.5
 radius = 0.25
 height = 0.5
 
-[node name="spike" type="RigidBody3D"]
+[node name="spike" type="Area3D"]
 transform = Transform3D(-1.3027e-15, 4.37114e-08, -1, 1, 2.98023e-08, 0, 2.98023e-08, -1, -4.37114e-08, 0, 0, 0)
-gravity_scale = 0.0
-max_contacts_reported = 999
-contact_monitor = true
 script = ExtResource("1_0ev1o")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -67,4 +64,5 @@ shadow_enabled = true
 omni_range = 4096.0
 omni_shadow_mode = 0
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

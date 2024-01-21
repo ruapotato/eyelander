@@ -32,7 +32,7 @@ var boss_1_life = 0
 #var swipe_start_angle = 180
 #var swipe_end_angle = 30
 var swipe_stage = 1
-var swipe_angles = {1: [180, 0], 2: [0,180],}
+var swipe_angles = {1: [180, 0], 2: [0,180], 3: [180, 45], 4: [45, 45]}
 
 var shilding = false
 var shild_hold_angle = 65
@@ -64,6 +64,7 @@ func _unhandled_input(event):
 			if not sword.find_child("swing").playing:
 				sword.find_child("swing").play()
 	if Input.is_action_just_released("swipe"):
+		swipe_stage = 1
 		if sword.find_child("swing").playing:
 			sword.find_child("swing").stop()
 	
@@ -174,7 +175,8 @@ func _physics_process(delta):
 			swipe_stage += 1
 			#print(swipe_stage)
 			if swipe_stage > len(swipe_angles):
-				swipe_stage = 1
+				#swipe_stage = 1
+				swipe_stage = len(swipe_angles)
 			swipping = true
 			swipe_counter = swipe_speed
 		#print(sword.rotation.y)

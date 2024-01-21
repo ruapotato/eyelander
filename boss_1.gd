@@ -41,7 +41,8 @@ var stage = 1
 var start_stage_2 = start_life/2
 var fire_rate = 2
 var fire_counter = fire_rate
-
+var target = Vector3(0,0,0)
+var spike_count = 0
 
 var walking_on = "dirt"
 # Called when the node enters the scene tree for the first time.
@@ -54,20 +55,20 @@ func slam():
 	slam_sound.play()
 	#Effect
 	slam_effect.find_child("slam_particles").emitting = true
-	var dist_to_player = global_position.distance_to(player.global_position)
+	var dist_to_player = global_position.distance_to(get_target())
 	if dist_to_player < near:
 		var space_state = get_world_3d().direct_space_state
 		var ray_query = PhysicsRayQueryParameters3D.new()
 		
 		ray_query.from = global_position
-		ray_query.to = player.global_position
+		ray_query.to = get_target()
 		ray_query.exclude = [get_rid()]
 		#ray_query.collide_with_bodies = true
 		#ray_query.collide_with_areas = true
 		var hit = space_state.intersect_ray(ray_query)
 		#print(hit)
 		if not hit.is_empty():
-			var knockback_direction = global_position.direction_to(player.global_position)
+			var knockback_direction = global_position.direction_to(get_target())
 			var knockback_force
 			#player.set_deferred("velocity", player.velocity + knockback_force)
 			if hit.collider.name == "shild":
@@ -95,17 +96,23 @@ func walk_sound():
 
 
 func fire_spike():
+	spike_count += 1
 	var new_spike = spike.instantiate()
-	new_spike.add_collision_exception_with(self)
-	new_spike.contact_monitor = true
+	#new_spike.add_collision_exception_with(self)
+	#new_spike.contact_monitor = true
 	#new_spike.linear_velocity = Vector3(1,0,0)
-	var local_target = Vector3(0,0,- 1)
-	var global_direction = -$target.global_transform.basis.z * 10
-	new_spike.linear_velocity = global_direction
-	new_spike.set_deferred("global_position", $target.global_position + Vector3(0,-1,0))
-	new_spike.set_deferred("global_rotation", $target.global_rotation)
+	#var local_target = Vector3(0,0,- 1)
+	new_spike.target = get_target()
+	#var global_direction = -$target.global_transform.basis.z * 10
+	#new_spike.linear_velocity = global_direction
+	new_spike.set_deferred("global_position", $target.global_position)
+	#new_spike.set_deferred("global_rotation", $target.global_rotation)
+	new_spike.name = "spike_" + str(spike_count)
 	#new_spike.global_position = $target.global_position
 	get_parent().add_child(new_spike)
+
+func get_target():
+	return(player.global_position + Vector3(0,.2,0))
 
 func _physics_process(delta):
 	butt.global_position = butt_bone.global_position
@@ -132,10 +139,10 @@ func _physics_process(delta):
 		if fire_counter > 0:
 			fire_counter -= delta
 		else:
-			print("FIRE")
+			#print("FIRE")
 			fire_spike()
 			fire_counter = fire_rate
-		$target.look_at(player.global_position, Vector3(0,1,0))
+		$target.look_at(get_target(), Vector3(0,1,0))
 		global_rotation.y = lerp_angle(global_rotation.y, $target.global_rotation.y, .02)
 		if global_position.y < hover_level:
 			global_position.y = lerp(global_position.y, hover_level, .05)
@@ -154,7 +161,7 @@ func _physics_process(delta):
 			var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 			new_speed.x = lerp(new_speed.x, direction.x * SPEED, .2)
 			new_speed.z = lerp(new_speed.z, direction.z * SPEED, .2)
-			$target.look_at(player.global_position, Vector3(0,1,0))
+			$target.look_at(get_target(), Vector3(0,1,0))
 			global_rotation.y = lerp_angle(global_rotation.y, $target.global_rotation.y, .01)
 			
 			walk_sounds_timer += delta
@@ -170,7 +177,7 @@ func _physics_process(delta):
 	
 		#print(sword.rotation.y)
 	if dazzed:
-		$target.look_at(player.global_position, Vector3(0,1,0))
+		$target.look_at(get_target(), Vector3(0,1,0))
 		global_rotation.y = lerp_angle(global_rotation.y, $target.global_rotation.y, .2)
 	
 	velocity = new_speed
@@ -203,7 +210,7 @@ func _process(delta):
 	walk_sound_every = 1/(velocity.length()*2)
 	#print(walk_sound_every)
 
-	var dist_to_player = global_position.distance_to(player.global_position)
+	var dist_to_player = global_position.distance_to(get_target())
 	#print(dist_to_player)
 	if stage == 1:
 		if dist_to_player < near:
