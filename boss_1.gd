@@ -29,7 +29,7 @@ var knockback_strength = 25
 var slam_damage = 50
 var start_life = 500
 #var start_life = 10
-var life = start_life/2
+var life = start_life
 var damage_todo = 0
 var knockback = Vector3(0,0,0)
 var dazzed = 0
@@ -200,8 +200,10 @@ func _process(delta):
 			var next_spawn = spawn_next.instantiate()
 			get_parent().add_child(next_spawn)
 			dead = true
-	if life < start_stage_2:
-		stage = 2
+	#if life < start_stage_2:
+	#	stage = 2
+	
+	stage = (int(life/10) % 2) + 1
 		#print(life)
 	# Add the gravity.git status
 
@@ -218,7 +220,7 @@ func _process(delta):
 		else:
 			action = "walking"
 	
-	if stage == 2:
+	if stage == 2 and not slam_started:
 		action = "flying"
 	
 	if slam_started:
