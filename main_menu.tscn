@@ -14,37 +14,48 @@ fill_to = Vector2(0, 0.380734)
 script = ExtResource("1_8rasr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(578.5, 325.5)
-scale = Vector2(18.2344, 10.3281)
+position = Vector2(968.5, 550)
+scale = Vector2(30.4219, 17.3437)
 texture = SubResource("GradientTexture2D_jncou")
 
 [node name="Label" type="Label" parent="."]
-offset_left = 157.0
-offset_top = 204.0
-offset_right = 732.0
-offset_bottom = 256.0
-scale = Vector2(1.55531, 1.62538)
+offset_left = 250.0
+offset_top = 69.0
+offset_right = 825.0
+offset_bottom = 121.0
+scale = Vector2(2.55306, 2.9206)
 text = "In EXCHANGE for your eyes, sounds become light...
 (headphones recommended)"
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="."]
-offset_left = 479.0
-offset_top = 308.0
-offset_right = 616.0
-offset_bottom = 355.0
-scale = Vector2(1.79178, 1.65355)
+offset_left = 718.0
+offset_top = 372.0
+offset_right = 855.0
+offset_bottom = 419.0
+scale = Vector2(3.78877, 3.39787)
 text = "Play"
 
 [node name="Label2" type="Label" parent="."]
-offset_left = 428.0
-offset_top = 452.0
-offset_right = 1003.0
-offset_bottom = 530.0
-scale = Vector2(0.616937, 0.896631)
+offset_left = 631.0
+offset_top = 819.0
+offset_right = 1206.0
+offset_bottom = 897.0
+scale = Vector2(1.27902, 1.36552)
 text = "This game is AGPL by David Hamner. 
 https://bitbucket.org/hackersgame/my_two_sense
 Built for https://itch.io/jam/boss-rush-jam-2024"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="."]
+modulate = Color(1, 0, 0, 1)
+offset_left = 206.0
+offset_top = 543.0
+offset_right = 545.0
+offset_bottom = 595.0
+scale = Vector2(4.47254, 4.64787)
+text = "WARNING
+This game contains flashing lights"
 horizontal_alignment = 1
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

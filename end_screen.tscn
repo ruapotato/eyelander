@@ -6,10 +6,10 @@
 script = ExtResource("1_eqfnk")
 
 [node name="Label" type="Label" parent="."]
-offset_left = 63.0
-offset_top = 122.0
-offset_right = 400.0
-offset_bottom = 174.0
+offset_left = 460.0
+offset_top = 59.0
+offset_right = 797.0
+offset_bottom = 111.0
 scale = Vector2(3.05797, 5.03269)
 text = "You win!!!
 Well done and thanks for playing!"
@@ -17,10 +17,10 @@ horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="menu" type="Button" parent="."]
-offset_left = 449.0
-offset_top = 413.0
-offset_right = 550.0
-offset_bottom = 444.0
+offset_left = 829.0
+offset_top = 948.0
+offset_right = 930.0
+offset_bottom = 979.0
 scale = Vector2(2.78511, 2.72674)
 text = "Menu Menu"
 metadata/_edit_use_anchors_ = true

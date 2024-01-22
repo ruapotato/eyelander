@@ -14,13 +14,15 @@ corner_radius_bottom_left = 75
 [node name="LIFE" type="ProgressBar" parent="."]
 offset_right = 276.0
 offset_bottom = 31.0
+scale = Vector2(2.85243, 2.42897)
 theme_override_styles/fill = SubResource("StyleBoxFlat_jsrts")
 value = 100.0
 
 [node name="BOSS_1_LIFE" type="ProgressBar" parent="."]
-offset_left = 875.0
-offset_top = -1.0
-offset_right = 1151.0
-offset_bottom = 30.0
+offset_left = 1165.0
+offset_top = -1.99998
+offset_right = 1441.0
+offset_bottom = 29.0
+scale = Vector2(2.75164, 2.49976)
 theme_override_styles/fill = SubResource("StyleBoxFlat_yfbxp")
 value = 100.0

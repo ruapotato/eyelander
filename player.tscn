@@ -80,7 +80,7 @@ script = ExtResource("6_47ugm")
 
 [node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0348836, -0.0037058)
-light_color = Color(0.517647, 0.741176, 1, 1)
+light_color = Color(0.254902, 0.615686, 1, 1)
 light_energy = 15.03
 light_size = 1.0
 shadow_enabled = true
@@ -92,7 +92,7 @@ stream = ExtResource("8_ma7fy")
 doppler_tracking = 2
 
 [node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/2"]
-light_color = Color(0.517647, 0.741176, 1, 1)
+light_color = Color(0.254902, 0.615686, 1, 1)
 light_energy = 0.0
 light_size = 1.0
 shadow_enabled = true
@@ -104,7 +104,7 @@ stream = ExtResource("9_dqeyl")
 doppler_tracking = 2
 
 [node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/3"]
-light_color = Color(0.517647, 0.741176, 1, 1)
+light_color = Color(0.254902, 0.615686, 1, 1)
 light_energy = 0.0
 light_size = 1.0
 shadow_enabled = true
@@ -116,7 +116,7 @@ stream = ExtResource("10_1rxt7")
 doppler_tracking = 2
 
 [node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/4"]
-light_color = Color(0.517647, 0.741176, 1, 1)
+light_color = Color(0.254902, 0.615686, 1, 1)
 light_energy = 0.0
 light_size = 1.0
 shadow_enabled = true
@@ -128,7 +128,7 @@ stream = ExtResource("11_0skx8")
 doppler_tracking = 2
 
 [node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/5"]
-light_color = Color(0.517647, 0.741176, 1, 1)
+light_color = Color(0.254902, 0.615686, 1, 1)
 light_energy = 0.0
 light_size = 1.0
 shadow_enabled = true
@@ -140,7 +140,7 @@ stream = ExtResource("12_tnttn")
 doppler_tracking = 2
 
 [node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/6"]
-light_color = Color(0.517647, 0.741176, 1, 1)
+light_color = Color(0.254902, 0.615686, 1, 1)
 light_energy = 0.0
 light_size = 1.0
 shadow_enabled = true
@@ -152,7 +152,7 @@ stream = ExtResource("13_a1ryk")
 doppler_tracking = 2
 
 [node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/7"]
-light_color = Color(0.517647, 0.741176, 1, 1)
+light_color = Color(0.254902, 0.615686, 1, 1)
 light_energy = 0.0
 light_size = 1.0
 shadow_enabled = true
@@ -164,7 +164,7 @@ stream = ExtResource("14_64vdx")
 doppler_tracking = 2
 
 [node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/8"]
-light_color = Color(0.517647, 0.741176, 1, 1)
+light_color = Color(0.254902, 0.615686, 1, 1)
 light_energy = 0.0
 light_size = 1.0
 shadow_enabled = true
