@@ -42,7 +42,7 @@ func get_target():
 	return(get_parent().get_parent().find_child("boss_1").global_position + Vector3(0,.5,0))
 
 func _on_body_entered(body):
-	print( body.name)
+	#print( body.name)
 	if "spike" in body.name:
 		if body.bad:
 			#add_collision_exception_with(body)

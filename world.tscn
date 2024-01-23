@@ -35,9 +35,9 @@ shadow_enabled = true
 directional_shadow_max_distance = 101.0
 
 [node name="player" parent="." instance=ExtResource("1_ljbio")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28402, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28402, 9.81731)
 
 [node name="boss_1" parent="." instance=ExtResource("2_iid7c")]
-transform = Transform3D(-0.997665, 0, -0.0682939, 0, 1, 0, 0.0682939, 0, -0.997665, 0, 1.31092, -11.9303)
+transform = Transform3D(-0.997665, 0, -0.0682939, 0, 1, 0, 0.0682939, 0, -0.997665, 0, 1.31092, -12.9303)
 
 [node name="Level_1" parent="." instance=ExtResource("4_p0yyn")]

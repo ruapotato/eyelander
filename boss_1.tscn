@@ -36,9 +36,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11173, -3.09164)
 shape = SubResource("SphereShape3D_07qtv")
 
 [node name="sounds" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.65833, 3.72553)
 
 [node name="walking_dirt" type="Node3D" parent="sounds"]
-transform = Transform3D(2.07591, 0, 0, 0, 1.69565, 0, 0, 0, 2.17674, 0, 0.291742, -0.950664)
+transform = Transform3D(2.07591, 0, 0, 0, 1.69565, 0, 0, 0, 2.17674, 0, -2.31325, -4.45003)
 
 [node name="1" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("2_tgton")
@@ -139,6 +140,7 @@ omni_range = 4096.0
 omni_shadow_mode = 0
 
 [node name="effects" type="Node3D" parent="sounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.08716)
 
 [node name="slam" type="AudioStreamPlayer3D" parent="sounds/effects"]
 stream = ExtResource("11_amwsn")
@@ -146,7 +148,7 @@ doppler_tracking = 2
 script = ExtResource("3_t7c3m")
 
 [node name="sound_light" type="OmniLight3D" parent="sounds/effects/slam"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0348836, -2.58987)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0348835, 0.00852299)
 light_color = Color(0.999976, 0.193418, 0.153574, 1)
 light_energy = 15.03
 light_size = 1.0
@@ -164,7 +166,7 @@ doppler_tracking = 2
 script = ExtResource("3_t7c3m")
 
 [node name="sound_light" type="OmniLight3D" parent="sounds/effects/roar"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0348836, -2.58987)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0348835, -0.0348248)
 light_color = Color(0.999976, 0.193418, 0.153574, 1)
 light_energy = 15.03
 light_size = 1.0
@@ -178,7 +180,7 @@ doppler_tracking = 2
 script = ExtResource("3_t7c3m")
 
 [node name="sound_light" type="OmniLight3D" parent="sounds/effects/hurt"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.58474, 3.41344)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.174876, 10.9823)
 light_color = Color(0.999976, 0.193418, 0.153574, 1)
 light_energy = 15.03
 light_size = 1.0

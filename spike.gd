@@ -28,11 +28,11 @@ func _on_body_entered(body):
 	if body.name == "shild":
 		queue_free()
 	if body.name == "player" and bad:
-		print("hurt player")
+		#print("hurt player")
 		body.damage_todo += damage
 	if body.name == "boss_1":
 		if not bad:
-			print("hurt boss")
+			#print("hurt boss")
 			body.damage_todo += damage
 			queue_free()
 

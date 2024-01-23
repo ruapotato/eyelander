@@ -10,7 +10,9 @@ extends CharacterBody3D
 @onready var armature = find_child("mesh").find_child("Armature")
 @onready var animation_tree = find_child("mesh").find_child("AnimationTree")
 @onready var butt_bone = find_child("mesh").find_child("butt_bone")
-@onready var slam_effect = $slam_effect
+@onready var head_bone = find_child("mesh").find_child("head_bone")
+#@onready var slam_effect = $slam_effect
+@onready var slam_effect = preload("res://slam_effect.tscn")
 @onready var butt = $butt
 @onready var spawn_next = preload("res://end_screen.tscn")
 @onready var spike = preload("res://spike.tscn")
@@ -43,6 +45,9 @@ var fire_rate = 2
 var fire_counter = fire_rate
 var target = Vector3(0,0,0)
 var spike_count = 0
+var rage_time = 6.5
+var rage_counter = 0
+var can_rage = true
 
 var walking_on = "dirt"
 # Called when the node enters the scene tree for the first time.
@@ -54,13 +59,20 @@ func slam():
 	#print("SLAM")
 	slam_sound.play()
 	#Effect
-	slam_effect.find_child("slam_particles").emitting = true
-	var dist_to_player = global_position.distance_to(get_target())
+	var new_slam_effect = slam_effect.instantiate()
+	var slam_pos = head_bone.global_position
+	slam_pos.y = 0
+	new_slam_effect.set_deferred("global_position", slam_pos)
+	#slam_effect.global_position = 
+	#slam_effect.find_child("slam_particles").time = 0
+	new_slam_effect.find_child("slam_particles").emitting = true
+	get_parent().add_child(new_slam_effect)
+	var dist_to_player = slam_pos.distance_to(get_target())
 	if dist_to_player < near:
 		var space_state = get_world_3d().direct_space_state
 		var ray_query = PhysicsRayQueryParameters3D.new()
 		
-		ray_query.from = global_position
+		ray_query.from = slam_pos
 		ray_query.to = get_target()
 		ray_query.exclude = [get_rid()]
 		#ray_query.collide_with_bodies = true
@@ -192,6 +204,11 @@ func _process(delta):
 	if dead:
 		return
 	if damage_todo != 0:
+		# If hurt while raging, rage more
+		if rage_counter != 0:
+			rage_counter = rage_time
+			damage_todo = 0
+		can_rage = true
 		hurt_sound.play()
 		life -= damage_todo
 		damage_todo = 0
@@ -202,8 +219,10 @@ func _process(delta):
 			dead = true
 	#if life < start_stage_2:
 	#	stage = 2
-	
-	stage = (int(life/10) % 2) + 1
+	sounds.global_position = butt_bone.global_position
+	#stage = (int(life/10) % 2) + 1
+	stage = int(life/10)%3 + 1
+	#print(stage)
 		#print(life)
 	# Add the gravity.git status
 
@@ -214,6 +233,23 @@ func _process(delta):
 
 	var dist_to_player = global_position.distance_to(get_target())
 	#print(dist_to_player)
+
+	
+	if stage == 3 and not slam_started:
+		if can_rage:
+			#print("start")
+			action = "rage"
+			rage_counter = rage_time
+			can_rage = false
+			animation_tree.set("parameters/rage/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		elif rage_counter > 0:
+			rage_counter -= delta
+		elif rage_counter < 0:
+			rage_counter = 0
+		else:
+			stage = 1
+			#print("Force starge 1")
+	
 	if stage == 1:
 		if dist_to_player < near:
 			action = "slaming"
@@ -223,10 +259,16 @@ func _process(delta):
 	if stage == 2 and not slam_started:
 		action = "flying"
 	
+	
 	if slam_started:
 		slam_count_down -= delta
 		if slam_count_down <= 0:
 			slam_started = false
+			slam()
+	
+	if rage_counter > 0:
+		if int(rage_counter * 10) % 4 == 0:
+			#print("Range")
 			slam()
 	
 	if action == "slaming":
