@@ -6,4 +6,4 @@
 [node name="shild_import" instance=ExtResource("1_isexf")]
 
 [node name="shild2" parent="." index="0"]
-material_override = ExtResource("2_kfdh8")
+surface_material_override/0 = ExtResource("2_kfdh8")

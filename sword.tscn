@@ -9,24 +9,25 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_da6nh"]
 size = Vector3(0.18, 0.205, 1.835)
 
-[node name="sword2" type="Area3D"]
+[node name="sword3" type="Area3D"]
 script = ExtResource("1_dx8f6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.69)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.38723e-08, 0, 1.6331)
 shape = SubResource("BoxShape3D_da6nh")
 
 [node name="sword" parent="." instance=ExtResource("1_uj4pq")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7.38723e-08, 0, -0.0568957)
 
 [node name="swing" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.156918, -0.747707)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.156918, 1.25229)
 stream = ExtResource("3_5oglf")
 doppler_tracking = 2
 script = ExtResource("4_tg2y8")
 
 [node name="sound_light" type="OmniLight3D" parent="swing"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0348836, -0.0037058)
-light_color = Color(0.815686, 0.815686, 0, 1)
+light_color = Color(0.992157, 0.992157, 0.862745, 1)
 light_energy = 15.03
 light_size = 1.0
 shadow_enabled = true
@@ -34,7 +35,7 @@ omni_range = 4096.0
 omni_shadow_mode = 0
 
 [node name="hit" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.156918, -0.747707)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.156918, 1.25229)
 stream = ExtResource("5_k42r8")
 volume_db = 10.0
 max_db = 6.0

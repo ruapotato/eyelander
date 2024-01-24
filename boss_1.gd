@@ -63,6 +63,10 @@ func slam():
 	var slam_pos = head_bone.global_position
 	slam_pos.y = 0
 	new_slam_effect.set_deferred("global_position", slam_pos)
+	
+	if animation_tree.get("parameters/fly/active"):
+		animation_tree.set("parameters/fly/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+	# Handle Jump.
 	#slam_effect.global_position = 
 	#slam_effect.find_child("slam_particles").time = 0
 	new_slam_effect.find_child("slam_particles").emitting = true
@@ -221,7 +225,7 @@ func _process(delta):
 	#	stage = 2
 	sounds.global_position = butt_bone.global_position
 	#stage = (int(life/10) % 2) + 1
-	stage = int(life/10)%3 + 1
+	stage = int(life-2)%3 + 1
 	#print(stage)
 		#print(life)
 	# Add the gravity.git status

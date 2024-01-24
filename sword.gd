@@ -67,7 +67,8 @@ func _on_body_entered(body):
 		knockback_force.y = 5
 		body.get_parent().knockback = knockback_force
 	else:
-		hit_sound.play()
+		if body.name != "shild":
+			hit_sound.play()
 
 
 func _on_area_entered(area):

@@ -19,10 +19,28 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_jsrts")
 value = 100.0
 
 [node name="BOSS_1_LIFE" type="ProgressBar" parent="."]
-offset_left = 1165.0
-offset_top = -1.99998
-offset_right = 1441.0
-offset_bottom = 29.0
+offset_left = 1161.0
+offset_top = -1.0
+offset_right = 1437.0
+offset_bottom = 30.0
 scale = Vector2(2.75164, 2.49976)
 theme_override_styles/fill = SubResource("StyleBoxFlat_yfbxp")
 value = 100.0
+
+[node name="Label" type="Label" parent="."]
+offset_top = 1040.0
+offset_right = 604.0
+offset_bottom = 1066.0
+scale = Vector2(1.51365, 1.54352)
+text = "Shild: Mouse Right     Sword: Mouse Left     Run: Shift     Jump: Space     Move: ASD
+"
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 901.0
+offset_top = 1019.0
+offset_right = 1500.0
+offset_bottom = 1045.0
+scale = Vector2(1.51365, 1.54352)
+text = "W"
+vertical_alignment = 1

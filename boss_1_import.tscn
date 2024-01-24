@@ -74,7 +74,7 @@ nodes/rage/node = SubResource("AnimationNodeOneShot_fwydi")
 nodes/rage/position = Vector2(780, 180)
 nodes/slam/node = SubResource("AnimationNodeOneShot_qpgrh")
 nodes/slam/position = Vector2(280, 180)
-node_connections = [&"output", 0, &"rage", &"TimeScale", 0, &"moving", &"TimeScale 2", 0, &"Animation 2", &"effect_1", 0, &"TimeScale", &"effect_1", 1, &"Animation", &"fly", 0, &"slam", &"fly", 1, &"Animation 3", &"slam", 0, &"effect_1", &"slam", 1, &"TimeScale 2", &"rage", 0, &"fly", &"rage", 1, &"TimeScale 3", &"TimeScale 3", 0, &"Animation 4"]
+node_connections = [&"output", 0, &"rage", &"TimeScale", 0, &"moving", &"TimeScale 2", 0, &"Animation 2", &"TimeScale 3", 0, &"Animation 4", &"effect_1", 0, &"TimeScale", &"effect_1", 1, &"Animation", &"fly", 0, &"slam", &"fly", 1, &"Animation 3", &"rage", 0, &"fly", &"rage", 1, &"TimeScale 3", &"slam", 0, &"effect_1", &"slam", 1, &"TimeScale 2"]
 
 [node name="boss_2" instance=ExtResource("1_ignb7")]
 
@@ -114,12 +114,12 @@ surface_material_override/2 = ExtResource("2_5mrau")
 surface_material_override/3 = ExtResource("2_5mrau")
 
 [node name="butt_bone" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.996212, -0.0866917, 0.00722166, -0.000254777, -0.0859221, -0.996305, 0.0869919, 0.992523, -0.0856187, 1.11893, 14.0047, -9.13724)
+transform = Transform3D(0.996212, -0.0866918, 0.00722172, -0.000254781, -0.0859227, -0.996305, 0.086992, 0.992523, -0.0856193, 1.11893, 14.0047, -9.13724)
 bone_name = "body"
 bone_idx = 0
 
 [node name="head_bone" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="2"]
-transform = Transform3D(0.99971, -0.0241335, 0.00195787, 0.00122075, -0.0305178, -0.999536, 0.0241824, 0.999243, -0.0304799, 0.424792, 13.9797, 1.52237)
+transform = Transform3D(0.99971, -0.0241336, 0.00195792, 0.00122079, -0.0305184, -0.999536, 0.0241825, 0.999243, -0.0304805, 0.424789, 13.9796, 1.52237)
 bone_name = "head"
 bone_idx = 6
 

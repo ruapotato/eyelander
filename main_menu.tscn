@@ -1,14 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://3o4a8uaid6mb"]
+[gd_scene load_steps=5 format=3 uid="uid://3o4a8uaid6mb"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_8rasr"]
 
-[sub_resource type="Gradient" id="Gradient_uh7cu"]
-colors = PackedColorArray(0, 0, 0, 1, 0.355314, 0.355314, 0.355314, 1)
+[sub_resource type="Gradient" id="Gradient_ki2s5"]
+offsets = PackedFloat32Array(0, 0.148387, 0.432258, 0.845161, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.870588, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_jncou"]
-gradient = SubResource("Gradient_uh7cu")
-fill_from = Vector2(0.96789, 0.247706)
-fill_to = Vector2(0, 0.380734)
+gradient = SubResource("Gradient_ki2s5")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Theme" id="Theme_3einr"]
+Button/colors/font_hover_color = Color(0.764706, 0, 0.0862745, 1)
+Button/colors/icon_normal_color = Color(0, 0, 1, 1)
 
 [node name="main_menu" type="Node2D"]
 script = ExtResource("1_8rasr")
@@ -19,28 +24,29 @@ scale = Vector2(30.4219, 17.3437)
 texture = SubResource("GradientTexture2D_jncou")
 
 [node name="Label" type="Label" parent="."]
-offset_left = 250.0
-offset_top = 69.0
-offset_right = 825.0
-offset_bottom = 121.0
-scale = Vector2(2.55306, 2.9206)
-text = "In EXCHANGE for your eyes, sounds become light...
-(headphones recommended)"
+offset_left = 218.0
+offset_top = 87.0
+offset_right = 366.0
+offset_bottom = 114.0
+scale = Vector2(10.4796, 12.0181)
+text = "My Two Sense"
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="."]
-offset_left = 718.0
-offset_top = 372.0
-offset_right = 855.0
-offset_bottom = 419.0
+offset_left = 710.0
+offset_top = 474.0
+offset_right = 847.0
+offset_bottom = 524.0
 scale = Vector2(3.78877, 3.39787)
+theme = SubResource("Theme_3einr")
+theme_override_font_sizes/font_size = 30
 text = "Play"
 
 [node name="Label2" type="Label" parent="."]
-offset_left = 631.0
-offset_top = 819.0
-offset_right = 1206.0
-offset_bottom = 897.0
+offset_left = 606.0
+offset_top = 974.0
+offset_right = 1181.0
+offset_bottom = 1052.0
 scale = Vector2(1.27902, 1.36552)
 text = "This game is AGPL by David Hamner. 
 https://bitbucket.org/hackersgame/my_two_sense
@@ -49,11 +55,11 @@ horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="."]
 modulate = Color(1, 0, 0, 1)
-offset_left = 206.0
-offset_top = 543.0
-offset_right = 545.0
-offset_bottom = 595.0
-scale = Vector2(4.47254, 4.64787)
+offset_left = 339.0
+offset_top = 743.0
+offset_right = 678.0
+offset_bottom = 795.0
+scale = Vector2(3.76696, 3.40636)
 text = "WARNING
 This game contains flashing lights"
 horizontal_alignment = 1

@@ -12,4 +12,6 @@ func _process(delta):
 
 
 func _on_menu_pressed():
+	for body in get_parent().get_children():
+		body.queue_free()
 	get_tree().reload_current_scene()

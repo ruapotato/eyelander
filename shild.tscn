@@ -7,14 +7,14 @@
 [ext_resource type="AudioStream" uid="uid://b6t6s702fb5mp" path="res://sounds/sound8.wav" id="5_umm4n"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_744lb"]
-size = Vector3(1, 1.595, 0.14)
+size = Vector3(1, 1.595, 0.345)
 
 [node name="shild" type="RigidBody3D"]
 gravity_scale = 0.0
 script = ExtResource("1_lk3q2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.065, -0.54)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.065, -0.603113)
 shape = SubResource("BoxShape3D_744lb")
 
 [node name="mesh" parent="." instance=ExtResource("1_2fpaf")]

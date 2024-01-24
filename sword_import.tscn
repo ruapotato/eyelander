@@ -1,5 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bjdumkpli2d1t"]
+[gd_scene load_steps=3 format=3 uid="uid://bjdumkpli2d1t"]
 
 [ext_resource type="PackedScene" uid="uid://bx0gckik0tqxd" path="res://import/sword.glb" id="1_f2e6f"]
+[ext_resource type="Material" uid="uid://ctth5up8r82wk" path="res://native/shild.tres" id="2_kiio5"]
 
 [node name="sword2" instance=ExtResource("1_f2e6f")]
+
+[node name="Sword" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_kiio5")
+surface_material_override/1 = ExtResource("2_kiio5")

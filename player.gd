@@ -19,11 +19,11 @@ var dead = false
 var mouse_sensitivity = .0035
 #var speed = 5
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-var JUMP_VELOCITY = 4.5
+var JUMP_VELOCITY = 7
 var SPEED = 5.0
-var sword_hold_angle = 315
+
 var swipping = false
-var swipe_speed = .35
+var swipe_speed = .2
 var swipe_counter = 0
 var damage_todo = 0
 var life = 100
@@ -32,10 +32,15 @@ var boss_1_life = 0
 #var swipe_start_angle = 180
 #var swipe_end_angle = 30
 var swipe_stage = 1
-var swipe_angles = {1: [180, 0], 2: [0,180], 3: [180, 45], 4: [45, 45]}
+
+var sword_hold_angle = 123
+var sword_far_left_angle = 250
+var swipe_angles = {1: [sword_hold_angle, sword_far_left_angle],
+					2: [sword_far_left_angle,sword_hold_angle]}
+#					3: [sword_hold_angle, sword_far_left_angle]}
 
 var shilding = false
-var shild_hold_angle = 65
+var shild_hold_angle = 90
 var shilding_angle = 0
 var knockback = Vector3(0,0,0)
 var dazzed = 0
@@ -149,13 +154,18 @@ func _physics_process(delta):
 		# Set camera 
 		#shild.rotation_degrees.x = spring_arm.rotation_degrees.x
 		# Set sword pos
-		sword.rotation_degrees.y = piv.rotation_degrees.y - 200
+		sword.rotation_degrees.y = piv.rotation_degrees.y - 100
 	if not shilding:
 		shild.rotation_degrees.y = shild_hold_angle + piv.rotation_degrees.y
 	
-	if swipping and not shilding:
-		var swipe_start_angle = swipe_angles[swipe_stage][0]
-		var swipe_end_angle =   swipe_angles[swipe_stage][1]
+	
+	var swipe_done = swipe_stage > len(swipe_angles)
+	if swipe_done and sword.find_child("swing").playing:
+		sword.find_child("swing").stop()
+	
+	if (swipping and not swipe_done) and not shilding:
+		var swipe_end_angle = swipe_angles[swipe_stage][0]
+		var swipe_start_angle =   swipe_angles[swipe_stage][1]
 		#print(swipe_counter)
 		swipe_counter -= delta
 		if swipe_counter <= 0:
@@ -166,17 +176,19 @@ func _physics_process(delta):
 			var total_angles = swipe_end_angle - swipe_start_angle
 			var angle = (total_angles * angle_amount) + swipe_start_angle
 			#print(angle)
-			sword.rotation_degrees.y = angle + piv.rotation_degrees.y + sword_hold_angle
-	if not swipping and not shilding:
+			sword.rotation_degrees.y = angle + piv.rotation_degrees.y
+			#print(sword.rotation_degrees.y)
+	if (not swipping or swipe_done) and not shilding:
 		#sword.rotation.y = lerp_angle(sword.rotation.y, atan2(-direction.x, -direction.z), .2)
-		if not Input.is_action_pressed("swipe"):
-			sword.rotation.y = piv.rotation.y + deg_to_rad(sword_hold_angle) 
-		else:
+		#if not Input.is_action_pressed("swipe"):
+		sword.rotation_degrees.y = sword_hold_angle + piv.rotation_degrees.y 
+		if Input.is_action_pressed("swipe"):
 			swipe_stage += 1
 			#print(swipe_stage)
-			if swipe_stage > len(swipe_angles):
+			#if swipe_stage > len(swipe_angles):
 				#swipe_stage = 1
-				swipe_stage = len(swipe_angles)
+				#swipping = false
+				#swipe_stage = len(swipe_angles)
 			swipping = true
 			swipe_counter = swipe_speed
 		#print(sword.rotation.y)

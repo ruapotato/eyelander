@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwf8it2ykecp2"]
+
+[ext_resource type="Script" path="res://startup_screen.gd" id="1_mpcew"]
+
+[sub_resource type="Gradient" id="Gradient_uh7cu"]
+offsets = PackedFloat32Array(0, 0.148387, 0.432258, 0.845161, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.870588, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xdlw1"]
+gradient = SubResource("Gradient_uh7cu")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 1)
+
+[node name="startup_screen" type="Node2D"]
+script = ExtResource("1_mpcew")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(968.5, 550)
+scale = Vector2(30.4219, 17.3437)
+texture = SubResource("GradientTexture2D_xdlw1")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -113.0
+offset_top = 413.0
+offset_right = 462.0
+offset_bottom = 465.0
+scale = Vector2(3.82867, 4.72667)
+text = "In EXCHANGE for your eyes, sounds become light...
+(headphones recommended)"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+offset_left = -105.0
+offset_top = 907.0
+offset_right = 470.0
+offset_bottom = 959.0
+scale = Vector2(3.82867, 4.72667)
+text = "Press any key to continue"
+horizontal_alignment = 1

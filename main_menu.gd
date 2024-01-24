@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var game = preload("res://world.tscn")
+@onready var game = preload("res://startup_screen.tscn")
 var new_game = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,4 +19,4 @@ func _on_button_pressed():
 		new_game.queue_free()
 	new_game = game.instantiate()
 	self.hide()
-	add_child(new_game)
+	get_parent().add_child(new_game)
