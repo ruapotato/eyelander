@@ -19,6 +19,7 @@ extends CharacterBody3D
 @onready var spawn_next = preload("res://end_screen.tscn")
 @onready var spike = preload("res://spike.tscn")
 
+var life_gen = 2
 var walk_sound_every = 0
 var walk_sounds_timer = 0
 var SPEED = 2
@@ -230,11 +231,17 @@ func _process(delta):
 			var next_spawn = spawn_next.instantiate()
 			get_parent().add_child(next_spawn)
 			dead = true
+	if life < start_life:
+		if rage_counter == 0:
+			life += delta * life_gen
 	#if life < start_stage_2:
 	#	stage = 2
 	sounds.global_position = butt_bone.global_position
 	#stage = (int(life/10) % 2) + 1
-	stage = int(life-2)%3 + 1
+	stage = (int(life/8) + 1)%3 + 1
+	if stage == 3:
+		if int(life) % 2 != 0:
+			stage = 1
 	#print(stage)
 		#print(life)
 	# Add the gravity.git status
