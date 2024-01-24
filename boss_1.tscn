@@ -51,9 +51,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0348836, -0.0037058)
 light_color = Color(0.147351, 0.577576, 0.999995, 1)
 light_energy = 15.03
 light_size = 1.0
-shadow_enabled = true
 omni_range = 4096.0
-omni_shadow_mode = 0
 
 [node name="2" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("3_vpcd2")
@@ -63,9 +61,7 @@ doppler_tracking = 2
 light_color = Color(0.147351, 0.577576, 0.999995, 1)
 light_energy = 0.0
 light_size = 1.0
-shadow_enabled = true
 omni_range = 4096.0
-omni_shadow_mode = 0
 
 [node name="3" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("4_knmrh")
@@ -75,9 +71,7 @@ doppler_tracking = 2
 light_color = Color(0.147351, 0.577576, 0.999995, 1)
 light_energy = 0.0
 light_size = 1.0
-shadow_enabled = true
 omni_range = 4096.0
-omni_shadow_mode = 0
 
 [node name="4" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("5_cu7dq")
@@ -87,9 +81,7 @@ doppler_tracking = 2
 light_color = Color(0.147351, 0.577576, 0.999995, 1)
 light_energy = 0.0
 light_size = 1.0
-shadow_enabled = true
 omni_range = 4096.0
-omni_shadow_mode = 0
 
 [node name="5" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("1_6mnuc")
@@ -99,9 +91,7 @@ doppler_tracking = 2
 light_color = Color(0.147351, 0.577576, 0.999995, 1)
 light_energy = 0.0
 light_size = 1.0
-shadow_enabled = true
 omni_range = 4096.0
-omni_shadow_mode = 0
 
 [node name="6" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("7_g8v14")
@@ -111,9 +101,7 @@ doppler_tracking = 2
 light_color = Color(0.147351, 0.577576, 0.999995, 1)
 light_energy = 0.0
 light_size = 1.0
-shadow_enabled = true
 omni_range = 4096.0
-omni_shadow_mode = 0
 
 [node name="7" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("8_4embh")
@@ -123,9 +111,7 @@ doppler_tracking = 2
 light_color = Color(0.147351, 0.577576, 0.999995, 1)
 light_energy = 0.0
 light_size = 1.0
-shadow_enabled = true
 omni_range = 4096.0
-omni_shadow_mode = 0
 
 [node name="8" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("9_28vn0")
@@ -135,9 +121,7 @@ doppler_tracking = 2
 light_color = Color(0.147351, 0.577576, 0.999995, 1)
 light_energy = 0.0
 light_size = 1.0
-shadow_enabled = true
 omni_range = 4096.0
-omni_shadow_mode = 0
 
 [node name="effects" type="Node3D" parent="sounds"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.08716)
@@ -152,13 +136,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0348835, 0.00852299)
 light_color = Color(0.999976, 0.193418, 0.153574, 1)
 light_energy = 15.03
 light_size = 1.0
-shadow_enabled = true
 distance_fade_enabled = true
 distance_fade_begin = 3101.66
 distance_fade_shadow = 3525.39
 distance_fade_length = 3319.9
 omni_range = 4096.0
-omni_shadow_mode = 0
 
 [node name="roar" type="AudioStreamPlayer3D" parent="sounds/effects"]
 stream = ExtResource("12_8ag7w")
@@ -170,9 +152,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0348835, -0.0348248)
 light_color = Color(0.999976, 0.193418, 0.153574, 1)
 light_energy = 15.03
 light_size = 1.0
-shadow_enabled = true
 omni_range = 4096.0
-omni_shadow_mode = 0
 
 [node name="hurt" type="AudioStreamPlayer3D" parent="sounds/effects"]
 stream = ExtResource("13_fsu3j")
@@ -184,13 +164,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.174876, 10.9823)
 light_color = Color(0.999976, 0.193418, 0.153574, 1)
 light_energy = 15.03
 light_size = 1.0
-shadow_enabled = true
 distance_fade_enabled = true
 distance_fade_begin = 3101.66
 distance_fade_shadow = 3525.39
 distance_fade_length = 3319.9
 omni_range = 4096.0
-omni_shadow_mode = 0
 
 [node name="mesh" parent="." instance=ExtResource("11_6042p")]
 

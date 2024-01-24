@@ -5,6 +5,7 @@ extends AudioStreamPlayer3D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	light.omni_attenuation = 3
+	light.shadow_enabled = false
 	pass # Replace with function body.
 
 

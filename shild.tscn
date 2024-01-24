@@ -29,9 +29,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0348836, -0.0037058)
 light_color = Color(0.964706, 0.964706, 0.901961, 1)
 light_energy = 15.03
 light_size = 1.0
-shadow_enabled = true
 omni_range = 4096.0
-omni_shadow_mode = 0
 
 [node name="hit" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.156918, -0.747707)
@@ -46,6 +44,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0348836, -0.0037058)
 light_color = Color(0, 0, 1, 1)
 light_energy = 15.03
 light_size = 1.0
-shadow_enabled = true
 omni_range = 4096.0
-omni_shadow_mode = 0
