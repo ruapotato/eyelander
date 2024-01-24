@@ -72,4 +72,4 @@ sprint={
 
 [physics]
 
-3d/default_gravity=16.0
+3d/default_gravity=25.0

@@ -32,15 +32,26 @@ offset_top = 1040.0
 offset_right = 604.0
 offset_bottom = 1066.0
 scale = Vector2(1.51365, 1.54352)
-text = "Shild: Mouse Right     Sword: Mouse Left     Run: Shift     Jump: Space     Move: ASD
+text = "Shield: Mouse Right     Sword: Mouse Left     Run: Shift     Jump: Space     Move: ASD
 "
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
-offset_left = 901.0
+offset_left = 915.0
 offset_top = 1019.0
-offset_right = 1500.0
+offset_right = 1514.0
 offset_bottom = 1045.0
 scale = Vector2(1.51365, 1.54352)
 text = "W"
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 1552.0
+offset_top = 1029.0
+offset_right = 2181.0
+offset_bottom = 1055.0
+scale = Vector2(1.51365, 1.54352)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "Combo: Mid Air Sword * speed
+"
 vertical_alignment = 1

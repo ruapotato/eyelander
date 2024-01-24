@@ -11,9 +11,11 @@ extends CharacterBody3D
 @onready var animation_tree = find_child("mesh").find_child("AnimationTree")
 @onready var butt_bone = find_child("mesh").find_child("butt_bone")
 @onready var head_bone = find_child("mesh").find_child("head_bone")
+@onready var brain_bone = find_child("mesh").find_child("brain_bone")
 #@onready var slam_effect = $slam_effect
 @onready var slam_effect = preload("res://slam_effect.tscn")
 @onready var butt = $butt
+@onready var head = $head
 @onready var spawn_next = preload("res://end_screen.tscn")
 @onready var spike = preload("res://spike.tscn")
 
@@ -130,7 +132,14 @@ func fire_spike():
 func get_target():
 	return(player.global_position + Vector3(0,.2,0))
 
+func get_head_pos():
+	return(brain_bone.global_position - Vector3(0,2,0))
+
+
 func _physics_process(delta):
+	head.global_position = get_head_pos() 
+	head.global_rotation = brain_bone.global_rotation
+	
 	butt.global_position = butt_bone.global_position
 	butt.global_rotation = butt_bone.global_rotation
 	new_speed = velocity

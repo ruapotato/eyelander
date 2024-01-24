@@ -7,6 +7,8 @@ var init_pos
 var init_rot
 var knockback_strength = 10
 var damage = 50.0
+var jump_damage = 10
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#contact_monitor = true
@@ -41,6 +43,12 @@ func _process(delta):
 func get_target():
 	return(get_parent().get_parent().find_child("boss_1").global_position + Vector3(0,.5,0))
 
+func get_damage():
+	if not get_parent().is_on_floor():
+		return(get_parent().velocity.length() * jump_damage)
+	else:
+		return(damage)
+
 func _on_body_entered(body):
 	#print( body.name)
 	if "spike" in body.name:
@@ -57,7 +65,7 @@ func _on_body_entered(body):
 			print("Spike hit!!!")
 			body.bad = false
 	if body.name == "butt":
-		body.get_parent().damage_todo += damage
+		body.get_parent().damage_todo += get_damage()
 		
 		var knockback_direction = global_position.direction_to(body.global_position)
 		var knockback_force

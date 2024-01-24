@@ -32,7 +32,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.758611, -5.27335)
 shape = SubResource("BoxShape3D_qmbaw")
 
 [node name="head" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11173, -3.09164)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.654, -0.943959)
 shape = SubResource("SphereShape3D_07qtv")
 
 [node name="sounds" type="Node3D" parent="."]
