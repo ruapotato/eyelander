@@ -3,6 +3,7 @@ extends Area3D
 @onready var dirt_sounds = $walking_dirt
 @onready var hurt_sund = $hurt
 @onready var not_dead = true
+@onready var animation_tree = find_child("mesh").find_child("AnimationTree")
 var is_head = false
 #var head_seg
 var seg_index
@@ -21,9 +22,11 @@ var heading = Vector3(.3,0,0)
 var knockback_strength = 50
 var slam_damage = 50
 var damage_todo = 0
+var head_convert_counter = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print(find_child("mesh").get_children())
 	pass#heading = global_position.move_toward(get_target(), (speed) * .1)
 
 func get_parent_seg():
@@ -56,14 +59,24 @@ func _process(delta):
 			print("Segment down!")
 			not_dead = false
 			#queue_free()
-			
+	
 	if not not_dead:
+		global_position.y = lerp(global_position.y, -1.0, .2)
 		return
 	head_bob += delta 
 	if not setup and seg_index:
 		setup = true
 		head_bob -= seg_index * .1
 	head_hight = ((head_bob - int(head_bob)) ) * 2
+	
+	if is_head and head_convert_counter > 0:
+		head_convert_counter -= delta
+		print("HEADING " + str(head_convert_counter))
+		animation_tree.set("parameters/BlendSpace1D/blend_position", head_convert_counter)
+		return
+		
+	
+	
 	var speed_effector = head_hight * 2
 	if speed_effector < .1:
 		if not sound_started:

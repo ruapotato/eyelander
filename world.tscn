@@ -38,4 +38,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28402, 9.81731)
 [node name="Level_1" parent="." instance=ExtResource("4_p0yyn")]
 
 [node name="boss" parent="." instance=ExtResource("4_djhoh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bf70bu477nbhd"]
+[gd_scene load_steps=16 format=3 uid="uid://bf70bu477nbhd"]
 
 [ext_resource type="Material" uid="uid://dnc00ghr63hgl" path="res://native/skin.tres" id="1_e60il"]
 [ext_resource type="Script" path="res://seg_bit.gd" id="1_vywxl"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://blebvyohfm0hh" path="res://import/jute-dh-steps/stepdirt_7.wav" id="10_jljum"]
 [ext_resource type="AudioStream" uid="uid://dkgnp5ge3tnn8" path="res://import/jute-dh-steps/stepdirt_8.wav" id="11_3uobj"]
 [ext_resource type="AudioStream" uid="uid://bskrofaaw5ljm" path="res://sounds/hurt1.wav" id="12_e4k0j"]
+[ext_resource type="PackedScene" uid="uid://ddkfjvgm65ewu" path="res://boss_2_seg_bit_import.tscn" id="13_hurpx"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_m07xa"]
 radius = 0.7
@@ -137,6 +138,8 @@ distance_fade_begin = 3101.66
 distance_fade_shadow = 3525.39
 distance_fade_length = 3319.9
 omni_range = 4096.0
+
+[node name="mesh" parent="." instance=ExtResource("13_hurpx")]
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
