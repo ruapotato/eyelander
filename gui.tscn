@@ -18,7 +18,7 @@ scale = Vector2(2.85243, 2.42897)
 theme_override_styles/fill = SubResource("StyleBoxFlat_jsrts")
 value = 100.0
 
-[node name="BOSS_1_LIFE" type="ProgressBar" parent="."]
+[node name="BOSS_LIFE" type="ProgressBar" parent="."]
 offset_left = 1161.0
 offset_top = -1.0
 offset_right = 1437.0

@@ -6,6 +6,7 @@ extends CharacterBody3D
 @onready var slam_sound = $sounds/effects/slam
 @onready var roar1_sound = $sounds/effects/roar
 @onready var hurt_sound = $sounds/effects/hurt
+@onready var hurt2_sound = $sounds/effects/hurt2
 @onready var player = get_parent().find_child("player")
 @onready var armature = find_child("mesh").find_child("Armature")
 @onready var animation_tree = find_child("mesh").find_child("AnimationTree")
@@ -32,8 +33,8 @@ var slam_time = 1.6
 var slam_count_down = 0
 var knockback_strength = 25
 var slam_damage = 50
-var start_life = 500
-#var start_life = 10
+#var start_life = 500
+var start_life = 10
 var life = start_life
 var damage_todo = 0
 var knockback = Vector3(0,0,0)
@@ -139,6 +140,8 @@ func get_head_pos():
 
 
 func _physics_process(delta):
+	if dead:
+		return
 	head.global_position = get_head_pos() 
 	head.global_rotation = brain_bone.global_rotation
 	
@@ -217,6 +220,8 @@ func _physics_process(delta):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if dead:
+		rotation.z = lerp(rotation.z, 3.0, .01)
+		position.y = lerp(position.y, -2.0, .001)
 		return
 	if damage_todo != 0:
 		# If hurt while raging, rage more
@@ -224,13 +229,26 @@ func _process(delta):
 			rage_counter = rage_time
 			damage_todo = 0
 		can_rage = true
-		hurt_sound.play()
 		life -= damage_todo
+		if life > 0:
+			hurt_sound.play()
 		damage_todo = 0
-	if life <= 0:
-			print("Boss dead")
-			var next_spawn = spawn_next.instantiate()
-			get_parent().add_child(next_spawn)
+	if life <= 0 and not dead:
+			#print("Boss dead")
+			#Remove bits we don't need anymore
+			butt.queue_free()
+			$pinchers.queue_free()
+			$head.queue_free()
+			
+			#open next level
+			get_parent().find_child("1_level_plug").queue_free()
+			get_parent().find_child("1_level_light").play()
+			
+			#Setup player data
+			player.level = 2
+			player.boss = player.boss_2
+			
+			hurt2_sound.play()
 			dead = true
 	if life < start_life:
 		if rage_counter == 0:

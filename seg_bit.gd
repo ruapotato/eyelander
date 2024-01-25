@@ -24,6 +24,7 @@ var knockback_strength = 40
 var slam_damage = 50
 var damage_todo = 0
 var head_convert_counter = 1
+var ground = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -93,10 +94,10 @@ func _process(delta):
 		#var target = get_target()
 		#look_at(heading)
 		#print(head_hight)
-		global_position.y = lerp(global_position.y, head_hight, 2 * delta)
+		global_position.y = lerp(global_position.y, head_hight + ground, 2 * delta)
 		
 		#retarget player
-		if global_position.distance_to(Vector3(0,0,0)) > level_edge:
+		if global_position.distance_to(Vector3(0,ground,0)) > level_edge:
 			look_at(get_target())
 			heading = global_position.move_toward(get_target(), (speed) * delta) - global_position
 			#print("retarget player")
@@ -116,7 +117,7 @@ func _process(delta):
 			is_head = true
 			return
 		look_at(pseg.global_position)
-		global_position.y = lerp(global_position.y, head_hight, 2 * delta)
+		global_position.y = lerp(global_position.y, head_hight + ground, 2 * delta)
 		if global_position.distance_to(pseg.global_position) > $CollisionShape3D.shape.radius * 2:
 			#global_position = lerp(global_position, pseg.global_position, speed * delta * 2)
 			global_position = global_position.move_toward(pseg.global_position, (speed * 2) * delta)

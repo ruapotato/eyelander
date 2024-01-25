@@ -9,7 +9,8 @@ extends CharacterBody3D
 @onready var gui = $GUI
 @onready var hurt_sund = $hurt
 @onready var dirt_sounds = $sounds/walking_dirt
-@onready var boss = get_parent().find_child("boss")
+@onready var boss = get_parent().find_child("boss_1")
+@onready var boss_2 = get_parent().find_child("boss_2")
 @onready var game_over_screen = preload("res://game_over.tscn")
 var walk_sound_every = 0
 var walk_sounds_timer = 0
@@ -22,6 +23,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var JUMP_VELOCITY = 15
 var SPEED = 5.0
 
+var level = 1
 var swipping = false
 var swipe_speed = .2
 var swipe_counter = 0
@@ -167,6 +169,7 @@ func _physics_process(delta):
 		sword.find_child("swing").stop()
 	if (swipping and not swipe_done) and not shilding:
 		if is_on_floor():
+			sword.rotation.x = lerp(sword.rotation.x, spring_arm.rotation.x * -1, .3)
 			var swipe_end_angle = swipe_angles[swipe_stage][0]
 			var swipe_start_angle =   swipe_angles[swipe_stage][1]
 			#print(swipe_counter)
@@ -191,9 +194,7 @@ func _physics_process(delta):
 			sword.rotation.z = lerp(sword.rotation.z , 1.5, .3)
 			
 			if  is_equal_approx(sword.rotation.z, 1.5):
-				
 				sword.rotation.x = lerp(sword.rotation.x ,spring_arm.rotation.x * -1, .2)
-	print(spring_arm.rotation.x)
 	if (not swipping or swipe_done) and not shilding:
 		#sword.rotation.y = lerp_angle(sword.rotation.y, atan2(-direction.x, -direction.z), .2)
 		#if not Input.is_action_pressed("swipe"):
@@ -216,10 +217,12 @@ func _physics_process(delta):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if boss_life != boss.life:
-		boss_life =  boss.life
-		if gui.find_child("boss_LIFE"):
-			gui.find_child("boss_LIFE").value = (boss.life/boss.start_life) * 100
-		#print("set boss life")
+		boss_life = boss.life
+		if gui.find_child("BOSS_LIFE"):
+			gui.find_child("BOSS_LIFE").value = (boss.life/boss.start_life) * 100
+			print(gui.find_child("BOSS_LIFE").value)
+		print(gui.find_child("BOSS_LIFE"))
+		
 	
 	if life < 100:
 		life += delta * life_gen
