@@ -89,21 +89,22 @@ func slam():
 		if not hit.is_empty():
 			var knockback_direction = global_position.direction_to(get_target())
 			var knockback_force
-			#player.set_deferred("velocity", player.velocity + knockback_force)
-			if hit.collider.name == "shild":
-				#print("shild hit")
-				knockback_force = knockback_direction  * (knockback_strength * .5)
-				knockback_force.y = 2
-				player.knockback = knockback_force
-				player.damage_todo = 5
-				hit.collider.find_child("hit").play()
-			elif hit.collider.name == "player":
-				#print("player hit")
-				knockback_force = knockback_direction * knockback_strength
-				knockback_force.y = 2
-				player.knockback = knockback_force
-				player.damage_todo = slam_damage
-		#		print(body)
+			if player.dazzed == 0:
+				#player.set_deferred("velocity", player.velocity + knockback_force)
+				if hit.collider.name == "shild":
+					#print("shild hit")
+					knockback_force = knockback_direction  * (knockback_strength * .5)
+					knockback_force.y = 2
+					player.knockback = knockback_force
+					player.damage_todo = 5
+					hit.collider.find_child("hit").play()
+				elif hit.collider.name == "player":
+					#print("player hit")
+					knockback_force = knockback_direction * knockback_strength
+					knockback_force.y = 2
+					player.knockback = knockback_force
+					player.damage_todo = slam_damage
+			#		print(body)
 
 func walk_sound():
 	if walking_on == "dirt":

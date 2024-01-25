@@ -4,6 +4,7 @@ extends Area3D
 @onready var hurt_sund = $hurt
 @onready var not_dead = true
 @onready var animation_tree = find_child("mesh").find_child("AnimationTree")
+@onready var bite_sound = $bite_sound
 var is_head = false
 #var head_seg
 var seg_index
@@ -19,7 +20,7 @@ var sound_started = false
 var level_edge = 35
 var player_pass = false
 var heading = Vector3(.3,0,0)
-var knockback_strength = 50
+var knockback_strength = 40
 var slam_damage = 50
 var damage_todo = 0
 var head_convert_counter = 1
@@ -71,7 +72,7 @@ func _process(delta):
 	
 	if is_head and head_convert_counter > 0:
 		head_convert_counter -= delta
-		print("HEADING " + str(head_convert_counter))
+		#print("HEADING " + str(head_convert_counter))
 		animation_tree.set("parameters/BlendSpace1D/blend_position", head_convert_counter)
 		return
 		
@@ -93,11 +94,12 @@ func _process(delta):
 		#look_at(heading)
 		#print(head_hight)
 		global_position.y = lerp(global_position.y, head_hight, 2 * delta)
-
+		
+		#retarget player
 		if global_position.distance_to(Vector3(0,0,0)) > level_edge:
 			look_at(get_target())
 			heading = global_position.move_toward(get_target(), (speed) * delta) - global_position
-			print("retarget player")
+			#print("retarget player")
 
 		global_position += (heading * speed_effector)
 		#if not player_pass:
@@ -138,11 +140,15 @@ func _on_body_entered(body):
 			knockback_force = knockback_direction  * (knockback_strength * .5)
 			knockback_force.y = 2
 			if player.dazzed == 0:
+				animation_tree.set("parameters/bite/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+				bite_sound.play()
 				player.knockback = knockback_force
 				player.damage_todo = 5
 				body.find_child("hit").play()
 		elif body.name == "player":
 			print("player hit")
+			animation_tree.set("parameters/bite/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+			bite_sound.play()
 			knockback_force = knockback_direction * knockback_strength
 			knockback_force.y = 2
 			if player.dazzed == 0:

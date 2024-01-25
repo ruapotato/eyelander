@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bf70bu477nbhd"]
+[gd_scene load_steps=17 format=3 uid="uid://bf70bu477nbhd"]
 
 [ext_resource type="Material" uid="uid://dnc00ghr63hgl" path="res://native/skin.tres" id="1_e60il"]
 [ext_resource type="Script" path="res://seg_bit.gd" id="1_vywxl"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://dkgnp5ge3tnn8" path="res://import/jute-dh-steps/stepdirt_8.wav" id="11_3uobj"]
 [ext_resource type="AudioStream" uid="uid://bskrofaaw5ljm" path="res://sounds/hurt1.wav" id="12_e4k0j"]
 [ext_resource type="PackedScene" uid="uid://ddkfjvgm65ewu" path="res://boss_2_seg_bit_import.tscn" id="13_hurpx"]
+[ext_resource type="AudioStream" uid="uid://cgpfthmov8luc" path="res://sounds/sound13.wav" id="14_556dp"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_m07xa"]
 radius = 0.7
@@ -129,8 +130,8 @@ doppler_tracking = 2
 script = ExtResource("4_rn1c7")
 
 [node name="sound_light" type="OmniLight3D" parent="hurt"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.58474, 3.41344)
-light_color = Color(1, 1, 0, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.58474, -0.58656)
+light_color = Color(1, 0, 0, 1)
 light_energy = 15.03
 light_size = 1.0
 distance_fade_enabled = true
@@ -140,6 +141,23 @@ distance_fade_length = 3319.9
 omni_range = 4096.0
 
 [node name="mesh" parent="." instance=ExtResource("13_hurpx")]
+
+[node name="bite_sound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.10774)
+stream = ExtResource("14_556dp")
+doppler_tracking = 2
+script = ExtResource("4_rn1c7")
+
+[node name="sound_light" type="OmniLight3D" parent="bite_sound"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0714318, -0.0831938, -0.0635533)
+light_color = Color(1, 0, 0, 1)
+light_energy = 15.03
+light_size = 1.0
+distance_fade_enabled = true
+distance_fade_begin = 3101.66
+distance_fade_shadow = 3525.39
+distance_fade_length = 3319.9
+omni_range = 4096.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

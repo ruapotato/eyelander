@@ -1,6 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ddkfjvgm65ewu"]
+[gd_scene load_steps=9 format=3 uid="uid://ddkfjvgm65ewu"]
 
 [ext_resource type="PackedScene" uid="uid://10ncm7br64wc" path="res://import/boss_2_seg_bit.glb" id="1_rifq2"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_twvp7"]
+animation = &"bite"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wtb8d"]
 animation = &"defualt"
@@ -15,11 +18,22 @@ blend_point_1/node = SubResource("AnimationNodeAnimation_e5do3")
 blend_point_1/pos = 0.0
 min_space = 0.0
 
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_evyuf"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_goirg"]
+
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_uikyd"]
-graph_offset = Vector2(-413.288, 156.735)
+graph_offset = Vector2(-435.9, 194.9)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_twvp7")
+nodes/Animation/position = Vector2(-200, 220)
 nodes/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_td1ci")
 nodes/BlendSpace1D/position = Vector2(20, 120)
-node_connections = [&"output", 0, &"BlendSpace1D"]
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_evyuf")
+nodes/TimeScale/position = Vector2(20, 280)
+nodes/bite/node = SubResource("AnimationNodeOneShot_goirg")
+nodes/bite/position = Vector2(260, 120)
+nodes/output/position = Vector2(460, 120)
+node_connections = [&"output", 0, &"bite", &"bite", 0, &"BlendSpace1D", &"bite", 1, &"TimeScale", &"TimeScale", 0, &"Animation"]
 
 [node name="boss_2_seg_bit" instance=ExtResource("1_rifq2")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
@@ -29,3 +43,7 @@ tree_root = SubResource("AnimationNodeBlendTree_uikyd")
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/BlendSpace1D/blend_position = 1.14865
+parameters/TimeScale/scale = 8.0
+parameters/bite/active = false
+parameters/bite/internal_active = false
+parameters/bite/request = 0

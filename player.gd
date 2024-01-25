@@ -184,9 +184,16 @@ func _physics_process(delta):
 				#print(sword.rotation_degrees.y)
 		if swipping and not shilding and not is_on_floor():
 			#if new_speed.y < 0:
+			#sword.look_at(camera.global_position, Vector3(1,0,0))
 			sword.rotation_degrees.y = lerp(sword.rotation_degrees.y, sword_center_angle + piv.rotation_degrees.y, .2)
 			#sword.rotate_object_local(Vector3(0,0,1), .5)
-			sword.rotation.z = lerp(sword.rotation.z , 1.5, .2)
+			
+			sword.rotation.z = lerp(sword.rotation.z , 1.5, .3)
+			
+			if  is_equal_approx(sword.rotation.z, 1.5):
+				
+				sword.rotation.x = lerp(sword.rotation.x ,spring_arm.rotation.x * -1, .2)
+	print(spring_arm.rotation.x)
 	if (not swipping or swipe_done) and not shilding:
 		#sword.rotation.y = lerp_angle(sword.rotation.y, atan2(-direction.x, -direction.z), .2)
 		#if not Input.is_action_pressed("swipe"):
