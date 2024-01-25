@@ -1,0 +1,125 @@
+[gd_scene load_steps=14 format=3 uid="uid://bf70bu477nbhd"]
+
+[ext_resource type="Material" uid="uid://dnc00ghr63hgl" path="res://native/skin.tres" id="1_e60il"]
+[ext_resource type="Script" path="res://seg_bit.gd" id="1_vywxl"]
+[ext_resource type="AudioStream" uid="uid://chy3uwn0hlqjc" path="res://import/jute-dh-steps/stepdirt_1.wav" id="3_i33aa"]
+[ext_resource type="Script" path="res://Light_sounds.gd" id="4_rn1c7"]
+[ext_resource type="AudioStream" uid="uid://lky2s6lpvtn5" path="res://import/jute-dh-steps/stepdirt_2.wav" id="5_c3tc5"]
+[ext_resource type="AudioStream" uid="uid://cpibwf5bya5nt" path="res://import/jute-dh-steps/stepdirt_3.wav" id="6_h25x1"]
+[ext_resource type="AudioStream" uid="uid://pwb0oc78mb3w" path="res://import/jute-dh-steps/stepdirt_4.wav" id="7_5oa5x"]
+[ext_resource type="AudioStream" uid="uid://bdcf48rpsd10k" path="res://import/jute-dh-steps/stepdirt_5.wav" id="8_p7khf"]
+[ext_resource type="AudioStream" uid="uid://ckagbohbcdk4w" path="res://import/jute-dh-steps/stepdirt_6.wav" id="9_yghrg"]
+[ext_resource type="AudioStream" uid="uid://blebvyohfm0hh" path="res://import/jute-dh-steps/stepdirt_7.wav" id="10_jljum"]
+[ext_resource type="AudioStream" uid="uid://dkgnp5ge3tnn8" path="res://import/jute-dh-steps/stepdirt_8.wav" id="11_3uobj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_m07xa"]
+radius = 0.7
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6yttc"]
+top_radius = 0.1
+
+[node name="seg_bit" type="Area3D"]
+script = ExtResource("1_vywxl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_m07xa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 0, 0, 0)
+material_override = ExtResource("1_e60il")
+mesh = SubResource("CylinderMesh_6yttc")
+
+[node name="walking_dirt" type="Node3D" parent="."]
+transform = Transform3D(2.07591, 0, 0, 0, 1.69565, 0, 0, 0, 2.17674, 0, -0.909337, -0.134472)
+
+[node name="1" type="AudioStreamPlayer3D" parent="walking_dirt"]
+stream = ExtResource("3_i33aa")
+doppler_tracking = 2
+script = ExtResource("4_rn1c7")
+
+[node name="sound_light" type="OmniLight3D" parent="walking_dirt/1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0348836, -0.0037058)
+light_color = Color(0.254902, 0.615686, 1, 1)
+light_energy = 16.0
+light_size = 1.0
+omni_range = 4096.0
+
+[node name="2" type="AudioStreamPlayer3D" parent="walking_dirt"]
+stream = ExtResource("5_c3tc5")
+doppler_tracking = 2
+script = ExtResource("4_rn1c7")
+
+[node name="sound_light" type="OmniLight3D" parent="walking_dirt/2"]
+light_color = Color(0.254902, 0.615686, 1, 1)
+light_energy = 0.0
+light_size = 1.0
+omni_range = 4096.0
+
+[node name="3" type="AudioStreamPlayer3D" parent="walking_dirt"]
+stream = ExtResource("6_h25x1")
+doppler_tracking = 2
+script = ExtResource("4_rn1c7")
+
+[node name="sound_light" type="OmniLight3D" parent="walking_dirt/3"]
+light_color = Color(0.254902, 0.615686, 1, 1)
+light_energy = 0.0
+light_size = 1.0
+omni_range = 4096.0
+
+[node name="4" type="AudioStreamPlayer3D" parent="walking_dirt"]
+stream = ExtResource("7_5oa5x")
+doppler_tracking = 2
+script = ExtResource("4_rn1c7")
+
+[node name="sound_light" type="OmniLight3D" parent="walking_dirt/4"]
+light_color = Color(0.254902, 0.615686, 1, 1)
+light_energy = 0.0
+light_size = 1.0
+omni_range = 4096.0
+
+[node name="5" type="AudioStreamPlayer3D" parent="walking_dirt"]
+stream = ExtResource("8_p7khf")
+doppler_tracking = 2
+script = ExtResource("4_rn1c7")
+
+[node name="sound_light" type="OmniLight3D" parent="walking_dirt/5"]
+light_color = Color(0.254902, 0.615686, 1, 1)
+light_energy = 0.0
+light_size = 1.0
+omni_range = 4096.0
+
+[node name="6" type="AudioStreamPlayer3D" parent="walking_dirt"]
+stream = ExtResource("9_yghrg")
+doppler_tracking = 2
+script = ExtResource("4_rn1c7")
+
+[node name="sound_light" type="OmniLight3D" parent="walking_dirt/6"]
+light_color = Color(0.254902, 0.615686, 1, 1)
+light_energy = 0.0
+light_size = 1.0
+omni_range = 4096.0
+
+[node name="7" type="AudioStreamPlayer3D" parent="walking_dirt"]
+stream = ExtResource("10_jljum")
+doppler_tracking = 2
+script = ExtResource("4_rn1c7")
+
+[node name="sound_light" type="OmniLight3D" parent="walking_dirt/7"]
+light_color = Color(0.254902, 0.615686, 1, 1)
+light_energy = 0.0
+light_size = 1.0
+omni_range = 4096.0
+
+[node name="8" type="AudioStreamPlayer3D" parent="walking_dirt"]
+stream = ExtResource("11_3uobj")
+doppler_tracking = 2
+script = ExtResource("4_rn1c7")
+
+[node name="sound_light" type="OmniLight3D" parent="walking_dirt/8"]
+light_color = Color(0.254902, 0.615686, 1, 1)
+light_energy = 0.0
+light_size = 1.0
+omni_range = 4096.0
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

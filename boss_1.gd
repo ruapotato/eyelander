@@ -107,8 +107,8 @@ func slam():
 
 func walk_sound():
 	if walking_on == "dirt":
-		#var sound_to_use = dirt_sounds.get_children().pick_random()
-		var sound_to_use = dirt_sounds.get_children()[0]
+		var sound_to_use = dirt_sounds.get_children().pick_random()
+		#var sound_to_use = dirt_sounds.get_children()[0]
 		#$"sounds/walking_dirt/1/sound_light".light_energy
 		#$"sounds/walking_dirt/1".
 		sound_to_use.play()

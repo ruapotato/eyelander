@@ -9,7 +9,7 @@ extends CharacterBody3D
 @onready var gui = $GUI
 @onready var hurt_sund = $hurt
 @onready var dirt_sounds = $sounds/walking_dirt
-@onready var boss_1 = get_parent().find_child("boss_1")
+@onready var boss = get_parent().find_child("boss")
 @onready var game_over_screen = preload("res://game_over.tscn")
 var walk_sound_every = 0
 var walk_sounds_timer = 0
@@ -28,7 +28,7 @@ var swipe_counter = 0
 var damage_todo = 0
 var life = 100
 var life_gen = .5
-var boss_1_life = 0
+var boss_life = 0
 #var swipe_start_angle = 180
 #var swipe_end_angle = 30
 var swipe_stage = 1
@@ -92,8 +92,8 @@ func _unhandled_input(event):
 
 func walk_sound():
 	if walking_on == "dirt":
-		#var sound_to_use = dirt_sounds.get_children().pick_random()
-		var sound_to_use = dirt_sounds.get_children()[0]
+		var sound_to_use = dirt_sounds.get_children().pick_random()
+		#var sound_to_use = dirt_sounds.get_children()[0]
 		#$"sounds/walking_dirt/1/sound_light".light_energy
 		#$"sounds/walking_dirt/1".
 		sound_to_use.play()
@@ -128,10 +128,11 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	if dazzed == 0:
-		walk_sounds_timer += delta
-		if walk_sounds_timer >= walk_sound_every:
-			walk_sound()
-			walk_sounds_timer = 0
+		if is_on_floor():
+			walk_sounds_timer += delta
+			if walk_sounds_timer >= walk_sound_every:
+				walk_sound()
+				walk_sounds_timer = 0
 			#print("wlak sound")
 		var input_dir = Input.get_vector("left", "right", "forward", "backward")
 		var direction = (piv.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -207,9 +208,10 @@ func _physics_process(delta):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if boss_1_life != boss_1.life:
-		boss_1_life =  boss_1.life
-		gui.find_child("BOSS_1_LIFE").value = (boss_1.life/boss_1.start_life) * 100
+	if boss_life != boss.life:
+		boss_life =  boss.life
+		if gui.find_child("boss_LIFE"):
+			gui.find_child("boss_LIFE").value = (boss.life/boss.start_life) * 100
 		#print("set boss life")
 	
 	if life < 100:

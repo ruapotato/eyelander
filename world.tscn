@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://world.gd" id="1_1w3vy"]
 [ext_resource type="PackedScene" uid="uid://hj5galx0bqtw" path="res://player.tscn" id="1_ljbio"]
-[ext_resource type="PackedScene" uid="uid://r3nb3djoacxm" path="res://boss_1.tscn" id="2_iid7c"]
+[ext_resource type="PackedScene" uid="uid://cn17hvepftift" path="res://boss_2.tscn" id="4_djhoh"]
 [ext_resource type="PackedScene" uid="uid://b40u0bwvnhur2" path="res://level_1.tscn" id="4_p0yyn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yj0e5"]
@@ -35,7 +35,7 @@ environment = SubResource("Environment_p3iqh")
 [node name="player" parent="." instance=ExtResource("1_ljbio")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28402, 9.81731)
 
-[node name="boss_1" parent="." instance=ExtResource("2_iid7c")]
-transform = Transform3D(-0.997665, 0, -0.0682939, 0, 1, 0, 0.0682939, 0, -0.997665, 0, 1.31092, -12.9303)
-
 [node name="Level_1" parent="." instance=ExtResource("4_p0yyn")]
+
+[node name="boss" parent="." instance=ExtResource("4_djhoh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)

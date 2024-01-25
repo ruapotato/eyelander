@@ -39,7 +39,7 @@ shape = SubResource("SphereShape3D_07qtv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.65833, 3.72553)
 
 [node name="walking_dirt" type="Node3D" parent="sounds"]
-transform = Transform3D(2.07591, 0, 0, 0, 1.69565, 0, 0, 0, 2.17674, 0, -2.31325, -4.45003)
+transform = Transform3D(2.07591, 0, 0, 0, 1.69565, 0, 0, 0, 2.17674, 0, -0.909337, -0.134472)
 
 [node name="1" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("2_tgton")
@@ -48,17 +48,18 @@ script = ExtResource("3_t7c3m")
 
 [node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0348836, -0.0037058)
-light_color = Color(0.147351, 0.577576, 0.999995, 1)
-light_energy = 15.03
+light_color = Color(0.254902, 0.615686, 1, 1)
+light_energy = 16.0
 light_size = 1.0
 omni_range = 4096.0
 
 [node name="2" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("3_vpcd2")
 doppler_tracking = 2
+script = ExtResource("3_t7c3m")
 
 [node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/2"]
-light_color = Color(0.147351, 0.577576, 0.999995, 1)
+light_color = Color(0.254902, 0.615686, 1, 1)
 light_energy = 0.0
 light_size = 1.0
 omni_range = 4096.0
@@ -66,9 +67,10 @@ omni_range = 4096.0
 [node name="3" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("4_knmrh")
 doppler_tracking = 2
+script = ExtResource("3_t7c3m")
 
 [node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/3"]
-light_color = Color(0.147351, 0.577576, 0.999995, 1)
+light_color = Color(0.254902, 0.615686, 1, 1)
 light_energy = 0.0
 light_size = 1.0
 omni_range = 4096.0
@@ -76,9 +78,10 @@ omni_range = 4096.0
 [node name="4" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("5_cu7dq")
 doppler_tracking = 2
+script = ExtResource("3_t7c3m")
 
 [node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/4"]
-light_color = Color(0.147351, 0.577576, 0.999995, 1)
+light_color = Color(0.254902, 0.615686, 1, 1)
 light_energy = 0.0
 light_size = 1.0
 omni_range = 4096.0
@@ -86,9 +89,10 @@ omni_range = 4096.0
 [node name="5" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("1_6mnuc")
 doppler_tracking = 2
+script = ExtResource("3_t7c3m")
 
 [node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/5"]
-light_color = Color(0.147351, 0.577576, 0.999995, 1)
+light_color = Color(0.254902, 0.615686, 1, 1)
 light_energy = 0.0
 light_size = 1.0
 omni_range = 4096.0
@@ -96,9 +100,10 @@ omni_range = 4096.0
 [node name="6" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("7_g8v14")
 doppler_tracking = 2
+script = ExtResource("3_t7c3m")
 
 [node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/6"]
-light_color = Color(0.147351, 0.577576, 0.999995, 1)
+light_color = Color(0.254902, 0.615686, 1, 1)
 light_energy = 0.0
 light_size = 1.0
 omni_range = 4096.0
@@ -106,9 +111,10 @@ omni_range = 4096.0
 [node name="7" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("8_4embh")
 doppler_tracking = 2
+script = ExtResource("3_t7c3m")
 
 [node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/7"]
-light_color = Color(0.147351, 0.577576, 0.999995, 1)
+light_color = Color(0.254902, 0.615686, 1, 1)
 light_energy = 0.0
 light_size = 1.0
 omni_range = 4096.0
@@ -116,9 +122,10 @@ omni_range = 4096.0
 [node name="8" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
 stream = ExtResource("9_28vn0")
 doppler_tracking = 2
+script = ExtResource("3_t7c3m")
 
 [node name="sound_light" type="OmniLight3D" parent="sounds/walking_dirt/8"]
-light_color = Color(0.147351, 0.577576, 0.999995, 1)
+light_color = Color(0.254902, 0.615686, 1, 1)
 light_energy = 0.0
 light_size = 1.0
 omni_range = 4096.0
