@@ -1,6 +1,8 @@
 extends Area3D
 @onready var player = get_parent().get_parent().find_child("player")
 @onready var dirt_sounds = $walking_dirt
+@onready var hurt_sund = $hurt
+@onready var not_dead = true
 var is_head = false
 #var head_seg
 var seg_index
@@ -15,9 +17,10 @@ var setup = false
 var sound_started = false
 var level_edge = 35
 var player_pass = false
-var heading = Vector3(1,0,0)
+var heading = Vector3(.3,0,0)
 var knockback_strength = 50
 var slam_damage = 50
+var damage_todo = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,7 +29,9 @@ func _ready():
 func get_parent_seg():
 	for body in get_parent().get_children():
 		if body.name == parent_seg:
-			return(body)
+			if body.not_dead:
+				return(body)
+	return(false)
 
 func walk_sound():
 
@@ -41,6 +46,19 @@ func get_target():
 	return(player.global_position + Vector3(0,.2,0))
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if damage_todo != 0:
+		print("Stuff hurt Yo")
+		if damage_todo > 15:
+			hurt_sund.play()
+		life -= damage_todo
+		damage_todo = 0
+		if life <= 0:
+			print("Segment down!")
+			not_dead = false
+			#queue_free()
+			
+	if not not_dead:
+		return
 	head_bob += delta 
 	if not setup and seg_index:
 		setup = true
@@ -79,6 +97,9 @@ func _process(delta):
 
 	if not is_head:
 		var pseg = get_parent_seg()
+		if not pseg:
+			is_head = true
+			return
 		look_at(pseg.global_position)
 		global_position.y = lerp(global_position.y, head_hight, 2 * delta)
 		if global_position.distance_to(pseg.global_position) > $CollisionShape3D.shape.radius * 2:

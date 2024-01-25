@@ -7,7 +7,7 @@ extends Node3D
 @onready var life = start_life
 @onready var player = get_parent().find_child("player")
 
-var max_segment = 5
+var max_segment = 10
 #var segments = [[100,100,100,100,100],
 #[100,100,100,100,100]]
 var segments = []

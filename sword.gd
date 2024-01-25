@@ -64,6 +64,9 @@ func _on_body_entered(body):
 			body.ttl = 4
 			print("Spike hit!!!")
 			body.bad = false
+	if "segy" in body.name:
+		body.damage_todo += get_damage()
+	
 	if body.name == "butt":
 		body.get_parent().damage_todo += get_damage()
 		
