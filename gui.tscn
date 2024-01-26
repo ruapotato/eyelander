@@ -52,6 +52,6 @@ offset_right = 2181.0
 offset_bottom = 1055.0
 scale = Vector2(1.51365, 1.54352)
 theme_override_colors/font_color = Color(1, 0, 0, 1)
-text = "Combo: Mid Air Sword * speed
+text = "Combo: Mid Air Sword X speed
 "
 vertical_alignment = 1

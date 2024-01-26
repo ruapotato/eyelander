@@ -3,8 +3,8 @@ extends Node3D
 @onready var seg_bit = preload("res://seg_bit.tscn")
 
 @onready var segment_life = 150
-#@onready var max_segment = 30
-@onready var max_segment = 3
+@onready var max_segment = 30
+#@onready var max_segment = 3
 @onready var damage_todo = 0
 @onready var start_life = max_segment * segment_life
 @onready var life = start_life

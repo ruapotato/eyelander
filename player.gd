@@ -68,11 +68,16 @@ func _unhandled_input(event):
 	if Input.is_action_just_pressed("swipe"):
 		swipping = true
 		swipe_counter = swipe_speed
+		swipe_stage += 1
+		if swipe_stage > len(swipe_angles):
+			swipe_stage = 1
+
+		
 		if not shilding:
 			if not sword.find_child("swing").playing:
 				sword.find_child("swing").play()
 	if Input.is_action_just_released("swipe"):
-		swipe_stage = 1
+		#swipe_stage = 1
 		if sword.find_child("swing").playing:
 			sword.find_child("swing").stop()
 	
@@ -125,7 +130,7 @@ func _physics_process(delta):
 	# Handle Jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		new_speed.y += JUMP_VELOCITY
-		swipe_stage = 1
+		#swipe_stage = 1
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -188,6 +193,8 @@ func _physics_process(delta):
 		if swipping and not shilding and not is_on_floor():
 			#if new_speed.y < 0:
 			#sword.look_at(camera.global_position, Vector3(1,0,0))
+			if not sword.find_child("swing2").playing:
+				sword.find_child("swing2").play()
 			sword.rotation_degrees.y = lerp(sword.rotation_degrees.y, sword_center_angle + piv.rotation_degrees.y, .2)
 			#sword.rotate_object_local(Vector3(0,0,1), .5)
 			
@@ -200,15 +207,8 @@ func _physics_process(delta):
 		#if not Input.is_action_pressed("swipe"):
 		sword.rotation_degrees.y = sword_hold_angle + piv.rotation_degrees.y 
 		sword.rotation.z = 0
-		if Input.is_action_pressed("swipe"):
-			swipe_stage += 1
-			#print(swipe_stage)
-			#if swipe_stage > len(swipe_angles):
-				#swipe_stage = 1
-				#swipping = false
-				#swipe_stage = len(swipe_angles)
-			swipping = true
-			swipe_counter = swipe_speed
+		sword.rotation.x = 0
+		
 		#print(sword.rotation.y)
 	velocity = new_speed
 	move_and_slide()
