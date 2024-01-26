@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://tq1y6yktw5kb"]
+
+[ext_resource type="Script" path="res://scythe.gd" id="1_f03ok"]
+[ext_resource type="AudioStream" uid="uid://bc8dlwhofk3ih" path="res://sounds/swing2.wav" id="2_p8asx"]
+[ext_resource type="Script" path="res://Light_sounds.gd" id="3_4ea4v"]
+[ext_resource type="AudioStream" uid="uid://b6t6s702fb5mp" path="res://sounds/sound8.wav" id="4_ursi1"]
+[ext_resource type="AudioStream" uid="uid://dqr4xa2u14hji" path="res://sounds/sound5.wav" id="5_qrtpb"]
+[ext_resource type="PackedScene" uid="uid://dehgjrioi57dd" path="res://scythe_import.tscn" id="6_7nev3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_da6nh"]
+size = Vector3(0.18, 0.205, 1.835)
+
+[node name="scythe" type="Area3D"]
+script = ExtResource("1_f03ok")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.38723e-08, 0, 1.6331)
+shape = SubResource("BoxShape3D_da6nh")
+
+[node name="swing" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.156918, 1.25229)
+stream = ExtResource("2_p8asx")
+doppler_tracking = 2
+script = ExtResource("3_4ea4v")
+
+[node name="sound_light" type="OmniLight3D" parent="swing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0348835, -0.0348248)
+light_color = Color(0.999976, 0.193418, 0.153574, 1)
+light_energy = 15.03
+light_size = 1.0
+omni_range = 4096.0
+
+[node name="hit" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.156918, 1.25229)
+stream = ExtResource("4_ursi1")
+volume_db = 10.0
+max_db = 6.0
+doppler_tracking = 2
+script = ExtResource("3_4ea4v")
+
+[node name="sound_light" type="OmniLight3D" parent="hit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0348836, -0.0037058)
+light_color = Color(0.529412, 0.682353, 1, 1)
+light_energy = 15.03
+light_size = 1.0
+omni_range = 4096.0
+
+[node name="swing2" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0103275, 0.184535, 1.25862)
+stream = ExtResource("5_qrtpb")
+doppler_tracking = 2
+script = ExtResource("3_4ea4v")
+
+[node name="sound_light" type="OmniLight3D" parent="swing2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0348836, -0.0277324)
+light_color = Color(1, 1, 0, 1)
+light_energy = 15.03
+light_size = 1.0
+distance_fade_enabled = true
+distance_fade_begin = 3101.66
+distance_fade_shadow = 3525.39
+distance_fade_length = 3319.9
+omni_range = 4096.0
+
+[node name="mesh" parent="." instance=ExtResource("6_7nev3")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered" flags=18]
+[connection signal="body_entered" from="." to="." method="_on_body_entered" flags=18]

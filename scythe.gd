@@ -67,30 +67,28 @@ func _on_body_entered(body):
 	if "segy" in body.name:
 		body.damage_todo += get_damage()
 	
-	if "boss_3" in body.name:
-		body.damage_todo += get_damage()
-		var knockback_direction = global_position.direction_to(body.global_position)
-		var knockback_force
-		#player.set_deferred("velocity", player.velocity + knockback_force)
-		#print("boss hit")
-		knockback_force = knockback_direction * knockback_strength * 3
-		knockback_force.y = 5
-		body.knockback = knockback_force
-	
-	
-	if body.name == "butt":
-		body.get_parent().damage_todo += get_damage()
-		
-		var knockback_direction = global_position.direction_to(body.global_position)
-		var knockback_force
-		#player.set_deferred("velocity", player.velocity + knockback_force)
-		#print("boss hit")
-		knockback_force = knockback_direction * knockback_strength
-		knockback_force.y = 5
-		body.get_parent().knockback = knockback_force
-	else:
-		if body.name != "shild":
-			hit_sound.play()
+	if body.name == "player":
+		if body.dazzed == 0 and body.damage_todo == 0:
+			body.damage_todo += get_damage()
+			
+			var knockback_direction = global_position.direction_to(body.global_position)
+			var knockback_force
+			#player.set_deferred("velocity", player.velocity + knockback_force)
+			#print("boss hit")
+			knockback_force = knockback_direction * knockback_strength
+			knockback_force.y = 5
+			body.knockback = knockback_force
+	if body.name == "shild":
+		if body.get_parent().dazzed == 0 and body.get_parent().damage_todo == 0:
+			body.get_parent().damage_todo += 5
+			
+			var knockback_direction = global_position.direction_to(body.global_position)
+			var knockback_force
+			#player.set_deferred("velocity", player.velocity + knockback_force)
+			#print("boss hit")
+			knockback_force = knockback_direction * (knockback_strength/2)
+			knockback_force.y = 5
+			body.get_parent().knockback = knockback_force
 
 
 func _on_area_entered(area):

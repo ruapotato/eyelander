@@ -11,6 +11,7 @@ extends CharacterBody3D
 @onready var dirt_sounds = $sounds/walking_dirt
 @onready var boss = get_parent().find_child("boss_1")
 @onready var boss_2 = get_parent().find_child("boss_2")
+@onready var boss_3 = get_parent().find_child("boss_3")
 @onready var game_over_screen = preload("res://game_over.tscn")
 var walk_sound_every = 0
 var walk_sounds_timer = 0
@@ -200,8 +201,8 @@ func _physics_process(delta):
 			
 			sword.rotation.z = lerp(sword.rotation.z , 1.5, .3)
 			
-			if  is_equal_approx(sword.rotation.z, 1.5):
-				sword.rotation.x = lerp(sword.rotation.x ,spring_arm.rotation.x * -1, .2)
+			#if  is_equal_approx(sword.rotation.z, 1.5):
+			sword.rotation.x = lerp(sword.rotation.x ,spring_arm.rotation.x * -1, .2)
 	if (not swipping or swipe_done) and not shilding:
 		#sword.rotation.y = lerp_angle(sword.rotation.y, atan2(-direction.x, -direction.z), .2)
 		#if not Input.is_action_pressed("swipe"):
@@ -220,8 +221,8 @@ func _process(delta):
 		boss_life = boss.life
 		if gui.find_child("BOSS_LIFE"):
 			gui.find_child("BOSS_LIFE").value = (boss.life/boss.start_life) * 100
-			print(gui.find_child("BOSS_LIFE").value)
-		print(gui.find_child("BOSS_LIFE"))
+			#print(gui.find_child("BOSS_LIFE").value)
+		#print(gui.find_child("BOSS_LIFE"))
 		
 	
 	if life < 100:

@@ -1,14 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://btecjvp4bcjg0"]
+[gd_scene load_steps=5 format=3 uid="uid://btecjvp4bcjg0"]
 
 [ext_resource type="Material" uid="uid://ctth5up8r82wk" path="res://native/shild.tres" id="1_vu27l"]
 
+[sub_resource type="CurveTexture" id="CurveTexture_jlrff"]
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l6wrp"]
-gravity = Vector3(0, -20, 0)
-initial_velocity_min = 7.0
-initial_velocity_max = 14.0
+gravity = Vector3(-2.01, -0.225, 0)
+initial_velocity_min = 0.3
+initial_velocity_max = 0.3
+linear_accel_curve = SubResource("CurveTexture_jlrff")
+radial_accel_min = 4.5
+radial_accel_max = 5.0
 scale_min = 0.5
+scale_max = 2.0
+turbulence_enabled = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_tewoa"]
+material = ExtResource("1_vu27l")
+radius = 0.3
+height = 0.6
 
 [node name="slam_effect" type="Node3D"]
 

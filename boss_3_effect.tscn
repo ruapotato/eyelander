@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://clmw75w5lpiw5"]
+
+[ext_resource type="Material" uid="uid://dnc00ghr63hgl" path="res://native/skin.tres" id="1_flwon"]
+
+[sub_resource type="CurveTexture" id="CurveTexture_jlrff"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l6wrp"]
+gravity = Vector3(-2.01, -0.225, 0)
+initial_velocity_min = 0.3
+initial_velocity_max = 0.3
+linear_accel_curve = SubResource("CurveTexture_jlrff")
+radial_accel_min = 4.5
+radial_accel_max = 5.0
+scale_min = 0.5
+scale_max = 2.0
+turbulence_enabled = true
+
+[sub_resource type="TorusMesh" id="TorusMesh_y6qti"]
+
+[node name="boss_3_effect" type="Node3D"]
+
+[node name="boss_3_particles" type="GPUParticles3D" parent="."]
+material_override = ExtResource("1_flwon")
+amount = 15
+randomness = 0.52
+process_material = SubResource("ParticleProcessMaterial_l6wrp")
+draw_pass_1 = SubResource("TorusMesh_y6qti")

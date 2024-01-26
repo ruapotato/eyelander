@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3b3k2r6e20yf"]
+
+[ext_resource type="PackedScene" uid="uid://q32yq2pv7b1e" path="res://import/boss_3.glb" id="1_d787j"]
+[ext_resource type="Material" uid="uid://dnc00ghr63hgl" path="res://native/skin.tres" id="2_ompdv"]
+
+[node name="boss_3" instance=ExtResource("1_d787j")]
+
+[node name="Sphere_001" parent="." index="0"]
+material_override = ExtResource("2_ompdv")

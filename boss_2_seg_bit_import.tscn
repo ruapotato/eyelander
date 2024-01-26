@@ -33,7 +33,7 @@ nodes/TimeScale/position = Vector2(20, 280)
 nodes/bite/node = SubResource("AnimationNodeOneShot_goirg")
 nodes/bite/position = Vector2(260, 120)
 nodes/output/position = Vector2(460, 120)
-node_connections = [&"output", 0, &"bite", &"bite", 0, &"BlendSpace1D", &"bite", 1, &"TimeScale", &"TimeScale", 0, &"Animation"]
+node_connections = [&"output", 0, &"bite", &"TimeScale", 0, &"Animation", &"bite", 0, &"BlendSpace1D", &"bite", 1, &"TimeScale"]
 
 [node name="boss_2_seg_bit" instance=ExtResource("1_rifq2")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)

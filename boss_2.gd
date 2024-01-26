@@ -92,5 +92,7 @@ func _process(delta):
 		get_parent().find_child("2_level_plug").queue_free()
 		get_parent().find_child("2_level_light").play()
 		
+		player.level = 3
+		player.boss = player.boss_3
 		
 		dead = true
