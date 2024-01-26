@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://r3nb3djoacxm"]
+[gd_scene load_steps=21 format=3 uid="uid://r3nb3djoacxm"]
 
 [ext_resource type="AudioStream" uid="uid://bdcf48rpsd10k" path="res://import/jute-dh-steps/stepdirt_5.wav" id="1_6mnuc"]
 [ext_resource type="Script" path="res://boss_1.gd" id="1_rs5qt"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://btecjvp4bcjg0" path="res://slam_effect.tscn" id="12_m3uje"]
 [ext_resource type="AudioStream" uid="uid://bskrofaaw5ljm" path="res://sounds/hurt1.wav" id="13_fsu3j"]
 [ext_resource type="AudioStream" uid="uid://cs17wt67v7o5t" path="res://sounds/sound7.wav" id="14_s13tj"]
+[ext_resource type="AudioStream" uid="uid://b6ohb25mgdmh" path="res://sounds/sound10.wav" id="15_tjc5o"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qmbaw"]
 
@@ -186,6 +187,22 @@ script = ExtResource("3_t7c3m")
 [node name="sound_light" type="OmniLight3D" parent="sounds/effects/hurt2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.174876, 10.9823)
 light_color = Color(0.999976, 0.193418, 0.153574, 1)
+light_energy = 15.03
+light_size = 1.0
+distance_fade_enabled = true
+distance_fade_begin = 3101.66
+distance_fade_shadow = 3525.39
+distance_fade_length = 3319.9
+omni_range = 4096.0
+
+[node name="fly" type="AudioStreamPlayer3D" parent="sounds/effects"]
+stream = ExtResource("15_tjc5o")
+doppler_tracking = 2
+script = ExtResource("3_t7c3m")
+
+[node name="sound_light" type="OmniLight3D" parent="sounds/effects/fly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0348835, 0.00852299)
+light_color = Color(0, 0.596078, 0.854902, 1)
 light_energy = 15.03
 light_size = 1.0
 distance_fade_enabled = true

@@ -7,6 +7,7 @@ extends CharacterBody3D
 @onready var roar1_sound = $sounds/effects/roar
 @onready var hurt_sound = $sounds/effects/hurt
 @onready var hurt2_sound = $sounds/effects/hurt2
+@onready var fly_sound = $sounds/effects/fly
 @onready var player = get_parent().find_child("player")
 @onready var armature = find_child("mesh").find_child("Armature")
 @onready var animation_tree = find_child("mesh").find_child("AnimationTree")
@@ -179,6 +180,12 @@ func _physics_process(delta):
 			new_speed.y = 0
 		if not animation_tree.get("parameters/fly/active"):
 			animation_tree.set("parameters/fly/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		if not fly_sound.playing:
+				fly_sound.play()
+	
+	if action != "flying":
+		if fly_sound.playing:
+				fly_sound.stop()
 	# Handle Jump.
 	#if Input.is_action_just_pressed("jump") and is_on_floor():
 	#	new_speed.y += JUMP_VELOCITY
