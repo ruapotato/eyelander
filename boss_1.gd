@@ -20,6 +20,7 @@ extends CharacterBody3D
 @onready var head = $head
 @onready var spawn_next = preload("res://end_screen.tscn")
 @onready var spike = preload("res://spike.tscn")
+var made_trade
 
 var life_gen = 2
 var walk_sound_every = 0
@@ -56,7 +57,19 @@ var can_rage = true
 
 var walking_on = "dirt"
 # Called when the node enters the scene tree for the first time.
+
+func did_i_trade():
+	var root_i_hope = get_parent()
+	while root_i_hope.name != "World":
+		root_i_hope = root_i_hope.get_parent()
+	return(root_i_hope.made_trade)
+
 func _ready():
+	made_trade = did_i_trade()
+	start_life = start_life * get_parent().hardness
+	life = start_life
+	if not made_trade:
+		find_child("mesh").visible = false
 	pass
 	#set_lock_rotation_enabled(true)
 

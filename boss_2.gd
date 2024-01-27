@@ -10,7 +10,19 @@ extends Node3D
 @onready var life = start_life
 @onready var player = get_parent().find_child("player")
 #@onready var spawn_next = preload("res://end_screen.tscn")
+var made_trade
 
+func did_i_trade():
+	var root_i_hope = get_parent()
+	while root_i_hope.name != "World":
+		root_i_hope = root_i_hope.get_parent()
+	return(root_i_hope.made_trade)
+
+func _ready():
+	made_trade = did_i_trade()
+	max_segment = int(max_segment * get_parent().hardness) + 1
+	start_life = max_segment * segment_life
+	life = start_life
 
 
 #var segments = [[100,100,100,100,100],
@@ -57,6 +69,8 @@ func setup():
 						new_seg_bit.life = segment_life
 						new_seg_bit.set_deferred("global_position", global_position + Vector3(seg_index,global_position.y,seg_index))
 						new_seg_bit.ground = global_position.y
+						if not made_trade:
+							new_seg_bit.visible = false
 						if seg_index == 0:
 							new_seg_bit.is_head = true
 						else:

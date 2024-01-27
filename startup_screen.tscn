@@ -20,20 +20,86 @@ scale = Vector2(30.4219, 17.3437)
 texture = SubResource("GradientTexture2D_xdlw1")
 
 [node name="Label" type="Label" parent="."]
-offset_left = -113.0
-offset_top = 413.0
-offset_right = 462.0
-offset_bottom = 465.0
-scale = Vector2(3.82867, 4.72667)
-text = "In EXCHANGE for your eyes, sounds become light...
-(headphones recommended)"
+offset_left = -95.0
+offset_top = 68.0
+offset_right = 480.0
+offset_bottom = 172.0
+scale = Vector2(3.86864, 3.50049)
+text = "If you trade your sight
+You might see ghosts at night
+for a glow can be found
+as they move and make sound"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
-offset_left = -105.0
-offset_top = 907.0
-offset_right = 470.0
-offset_bottom = 959.0
-scale = Vector2(3.82867, 4.72667)
-text = "Press any key to continue"
+offset_left = 463.0
+offset_top = 953.0
+offset_right = 1038.0
+offset_bottom = 1005.0
+scale = Vector2(1.98377, 3.25615)
+text = "(headphones recommended)"
 horizontal_alignment = 1
+
+[node name="exchange" type="Button" parent="."]
+offset_left = 384.0
+offset_top = 508.0
+offset_right = 477.0
+offset_bottom = 539.0
+scale = Vector2(5.45676, 4.36493)
+text = "Trade"
+
+[node name="no_way" type="Button" parent="."]
+offset_left = 1105.0
+offset_top = 508.0
+offset_right = 1198.0
+offset_bottom = 539.0
+scale = Vector2(5.45676, 4.36493)
+text = "No WAY"
+
+[node name="hardness" type="HSlider" parent="."]
+offset_left = 621.0
+offset_top = 833.0
+offset_right = 1016.0
+offset_bottom = 862.0
+scale = Vector2(2.00377, 1.52599)
+min_value = 1.0
+max_value = 200.0
+value = 100.0
+rounded = true
+tick_count = 11
+ticks_on_borders = true
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 895.0
+offset_top = 737.0
+offset_right = 965.0
+offset_bottom = 763.0
+scale = Vector2(3.32977, 1.97397)
+text = "Difficulty"
+
+[node name="Label4" type="Label" parent="."]
+offset_left = 547.0
+offset_top = 798.0
+offset_right = 637.0
+offset_bottom = 824.0
+scale = Vector2(2.27353, 1.38862)
+text = "Just Testing"
+
+[node name="Label5" type="Label" parent="."]
+offset_left = 947.0
+offset_top = 798.0
+offset_right = 1037.0
+offset_bottom = 824.0
+scale = Vector2(2.27353, 1.38862)
+text = "Normal"
+
+[node name="Label6" type="Label" parent="."]
+offset_left = 1331.0
+offset_top = 798.0
+offset_right = 1421.0
+offset_bottom = 824.0
+scale = Vector2(2.27353, 1.38862)
+text = "Nuts-o"
+
+[connection signal="button_down" from="exchange" to="." method="_on_exchange_button_down"]
+[connection signal="button_down" from="no_way" to="." method="_on_no_way_button_down"]

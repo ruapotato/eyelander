@@ -33,7 +33,7 @@ var SPEED = 5.0
 var damage_todo = 0
 var start_life = 300
 var life = start_life
-var life_gen = .5
+var life_gen = 2
 var boss_life = 0
 #var swipe_start_angle = 180
 #var swipe_end_angle = 30
@@ -54,9 +54,23 @@ var dazzed = 0
 var new_speed = Vector3(0,0,0)
 var init_done = false
 
-# Called when the node enters the scene tree for the first time.
+var made_trade
+
+func did_i_trade():
+	var root_i_hope = get_parent()
+	while root_i_hope.name != "World":
+		root_i_hope = root_i_hope.get_parent()
+	return(root_i_hope.made_trade)
+
 func _ready():
-	pass
+	made_trade = did_i_trade()
+	start_life = start_life * get_parent().hardness
+	life = start_life
+	
+	if not made_trade:
+		find_child("mesh").visible = false
+		$boss_3_effect.visible = false
+		$scythe.visible = false
 
 
 func get_target():

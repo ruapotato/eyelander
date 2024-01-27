@@ -16,6 +16,7 @@ var reduced_data = PackedByteArray()
 
 var sound_light_data = []
 var repeat = true
+var made_trade
 #const IMAGE_HEIGHT_FACTOR: float = float(IMAGE_HEIGHT) / 256.0 # Converts sample raw height to pixel
 #const IMAGE_CENTER_Y = int(round(IMAGE_HEIGHT / 2.0))
 
@@ -23,11 +24,18 @@ var repeat = true
 var img_x = 0
 
 
+func did_i_trade():
+	var root_i_hope = get_parent()
+	while root_i_hope.name != "World":
+		root_i_hope = root_i_hope.get_parent()
+	return(root_i_hope.made_trade)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	made_trade = did_i_trade()
 	light.omni_attenuation = 3
 	light.shadow_enabled = false
-	
+	light.light_energy = 0
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	this_stream = stream.get_data
 	data = stream.data
@@ -103,7 +111,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#print(get_playback_position())
-	if playing:
+	if playing and made_trade:
 		var pos = get_playback_position()
 		var length = stream.get_length()
 		#print(pos)

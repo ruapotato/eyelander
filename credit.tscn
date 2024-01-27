@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://w43j2moo5wgm"]
+
+[node name="Credit" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 143.0
+offset_top = 108.0
+offset_right = 566.0
+offset_bottom = 290.0
+scale = Vector2(3.8698, 4.94523)
+text = "My Two Sense - Boss Rush Jam 2024
+Everything is AGPL with a few excptions see ref.txt
+https://bitbucket.org/hackersgame/my_two_sense
+
+David Hamner - Code/3d models/sound effects
+Molly Hamner - Narrative Designer/Tester
+Zelda Hamner - Break manager"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,5 +1,6 @@
 extends Node3D
 @onready var music = $music
+@onready var env = $WorldEnvironment
 
 # Big thanks to https://github.com/fbcosentino/godot-audiostreampreview/blob/main/addons/audio_preview/voice_preview_generator.gd
 # From https://godotengine.org/asset-library/asset/2257
@@ -19,6 +20,8 @@ var reduced_data = PackedByteArray()
 
 var sound_light_data = []
 var repeat = true
+var hardness = 1
+var made_trade = true
 #const IMAGE_HEIGHT_FACTOR: float = float(IMAGE_HEIGHT) / 256.0 # Converts sample raw height to pixel
 #const IMAGE_CENTER_Y = int(round(IMAGE_HEIGHT / 2.0))
 
@@ -103,23 +106,29 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if not music:
-		return
-	#print(get_playback_position())
-	if music.playing:
-		var pos = music.get_playback_position()
-		var length = stream.get_length()
-		#print(pos)
-		#print(length)
-		#print(len(reduced_data))
-		var index = (pos/length) * len(sound_light_data)
-		var min_max = sound_light_data[int(index)]
-		var DB = min_max[1] - min_max[0]
-		#print(DB)
+	if not made_trade:
+		if $WorldEnvironment:
+			$WorldEnvironment.environment.fog_enabled = false
+		if $sun:
+			$sun.light_energy = 1
+	if made_trade:
+		if not music:
+			return
+		#print(get_playback_position())
+		if music.playing:
+			var pos = music.get_playback_position()
+			var length = stream.get_length()
+			#print(pos)
+			#print(length)
+			#print(len(reduced_data))
+			var index = (pos/length) * len(sound_light_data)
+			var min_max = sound_light_data[int(index)]
+			var DB = min_max[1] - min_max[0]
+			#print(DB)
 
-		var light_power = DB / 300.0
-		$WorldEnvironment.environment.fog_light_energy  = lerp($WorldEnvironment.environment.fog_light_energy,light_power,.1)
+			var light_power = DB / 300.0
+			$WorldEnvironment.environment.fog_light_energy  = lerp($WorldEnvironment.environment.fog_light_energy,light_power,.1)
 
-	elif repeat:
-		music.play()
-	#	$WorldEnvironment.environment.fog_light_energy  = 0
+		elif repeat:
+			music.play()
+		#	$WorldEnvironment.environment.fog_light_energy  = 0
