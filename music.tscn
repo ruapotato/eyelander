@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ba4gkumtnqglk"]
+
+[ext_resource type="AudioStream" uid="uid://1h6xg4gq3pev" path="res://import/CC BY Kirk Osamayo/Kirk Osamayo - Unsettling Ambience.mp3" id="1_o5ap0"]
+
+[node name="music" type="AudioStreamPlayer"]
+stream = ExtResource("1_o5ap0")
+volume_db = -13.117
+autoplay = true

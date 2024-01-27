@@ -1,1 +1,5 @@
 import/jute-dh-steps from by Jute GPL 3.0/GPL2.0 https://opengameart.org/content/foot-walking-step-sounds-on-stone-water-snow-wood-and-dirt
+import/CC BY Kirk Osamayo/ CC by: https://freemusicarchive.org/music/kirk-osamayo/
+
+# Big thanks to https://github.com/fbcosentino/godot-audiostreampreview/blob/main/addons/audio_preview/voice_preview_generator.gd
+# From https://godotengine.org/asset-library/asset/2257 parts of your code help me fix a nasty bug in light_sounds

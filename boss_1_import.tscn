@@ -114,17 +114,17 @@ surface_material_override/2 = ExtResource("2_5mrau")
 surface_material_override/3 = ExtResource("2_5mrau")
 
 [node name="butt_bone" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.996212, -0.0866917, 0.00722166, -0.000254777, -0.0859221, -0.996305, 0.0869919, 0.992523, -0.0856187, 1.11893, 14.0162, -9.13724)
+transform = Transform3D(0.996212, -0.0866918, 0.00722172, -0.000254781, -0.0859227, -0.996305, 0.086992, 0.992523, -0.0856193, 1.11893, 14.0162, -9.13724)
 bone_name = "body"
 bone_idx = 0
 
 [node name="head_bone" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="2"]
-transform = Transform3D(0.99971, -0.0241335, 0.00195787, 0.00122075, -0.0305178, -0.999536, 0.0241824, 0.999243, -0.0304799, 0.424792, 13.9911, 1.52237)
+transform = Transform3D(0.99971, -0.0241336, 0.00195792, 0.00122079, -0.0305184, -0.999536, 0.0241825, 0.999243, -0.0304805, 0.424789, 13.9911, 1.52237)
 bone_name = "head"
 bone_idx = 6
 
 [node name="brain_bone" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="3"]
-transform = Transform3D(1, 0.00116056, -4.76447e-07, -5.33072e-07, 8.91031e-07, -1, -0.00116008, 0.999999, 3.85942e-07, 0.220517, 14.0163, 9.28861)
+transform = Transform3D(1, 0.00116039, -4.03018e-07, -4.60033e-07, 4.75746e-07, -1, -0.00115989, 0.999999, -3.12906e-08, 0.220512, 14.0162, 9.28861)
 bone_name = "body_5"
 bone_idx = 11
 
