@@ -25,9 +25,9 @@ offset_top = 68.0
 offset_right = 480.0
 offset_bottom = 172.0
 scale = Vector2(3.86864, 3.50049)
-text = "If you trade your sight
-You might see ghosts at night
-for a glow can be found
+text = "If you trade your sight,
+you might see ghosts at night
+For a glow can be found,
 as they move and make sound"
 horizontal_alignment = 1
 
