@@ -7,7 +7,7 @@ var init_pos
 var init_rot
 var knockback_strength = 10
 var damage = 50.0
-var jump_damage = 10
+var jump_damage = 7
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -47,7 +47,7 @@ func get_damage():
 	if not get_parent().is_on_floor():
 		return(get_parent().velocity.length() * jump_damage)
 	else:
-		return(damage)
+		return(randi_range(damage, damage * 2))
 
 func _on_body_entered(body):
 	#print( body.name)

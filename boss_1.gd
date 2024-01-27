@@ -33,7 +33,7 @@ var slam_started = false
 var slam_time = 1.6
 var slam_count_down = 0
 var knockback_strength = 25
-var slam_damage = 50
+var slam_damage = 33
 var start_life = 500
 #var start_life = 20
 var life = start_life
@@ -178,8 +178,13 @@ func _physics_process(delta):
 		if global_position.y < hover_level:
 			global_position.y = lerp(global_position.y, hover_level, .05)
 			new_speed.y = 0
+		if slam_count_down < 0:
+			slam_count_down = 0
+		if animation_tree.get("parameters/rage/active"):
+			animation_tree.set("parameters/rage/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
 		if not animation_tree.get("parameters/fly/active"):
 			animation_tree.set("parameters/fly/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+			
 		if not fly_sound.playing:
 				fly_sound.play()
 	
@@ -234,7 +239,7 @@ func _process(delta):
 		# If hurt while raging, rage more
 		if rage_counter != 0:
 			rage_counter = rage_time
-			damage_todo = 0
+			#damage_todo = 0
 		can_rage = true
 		life -= damage_todo
 		if life > 0:
@@ -279,8 +284,8 @@ func _process(delta):
 
 	var dist_to_player = global_position.distance_to(get_target())
 	#print(dist_to_player)
-
 	
+
 	if stage == 3 and not slam_started:
 		if can_rage:
 			#print("start")

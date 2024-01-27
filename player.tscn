@@ -45,7 +45,7 @@ current = true
 [node name="AudioListener3D" type="AudioListener3D" parent="piv"]
 
 [node name="sword" parent="." instance=ExtResource("2_n5who")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.438805, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.479999, 0)
 
 [node name="shild" parent="." instance=ExtResource("3_f2err")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.238144, 0)

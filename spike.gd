@@ -2,7 +2,7 @@ extends Area3D
 
 @onready var boss = get_parent().find_child("boss_1")
 @onready var player = get_parent().find_child("player")
-var damage = 50
+var damage = 33
 var ttl = 4
 var bad = true
 var target = Vector3(0,0,0)

@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://btecjvp4bcjg0" path="res://slam_effect.tscn" id="12_m3uje"]
 [ext_resource type="AudioStream" uid="uid://bskrofaaw5ljm" path="res://sounds/hurt1.wav" id="13_fsu3j"]
 [ext_resource type="AudioStream" uid="uid://cs17wt67v7o5t" path="res://sounds/sound7.wav" id="14_s13tj"]
-[ext_resource type="AudioStream" uid="uid://b6ohb25mgdmh" path="res://sounds/sound10.wav" id="15_tjc5o"]
+[ext_resource type="AudioStream" uid="uid://dyslten2k4o17" path="res://sounds/sound10_2.wav" id="15_lc8l1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qmbaw"]
 
@@ -196,7 +196,7 @@ distance_fade_length = 3319.9
 omni_range = 4096.0
 
 [node name="fly" type="AudioStreamPlayer3D" parent="sounds/effects"]
-stream = ExtResource("15_tjc5o")
+stream = ExtResource("15_lc8l1")
 doppler_tracking = 2
 script = ExtResource("3_t7c3m")
 
