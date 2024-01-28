@@ -47,23 +47,20 @@ func get_damage():
 	if not get_parent().is_on_floor():
 		return(get_parent().velocity.length() * jump_damage)
 	else:
-		return(randi_range(damage, damage * 2))
+		if swing_sound.playing:
+			return(randi_range(damage, damage * 2))
+		else:
+			return(0)
 
 func _on_body_entered(body):
 	#print( body.name)
 	if "spike" in body.name:
 		if body.bad:
-			#add_collision_exception_with(body)
-			body.target = get_target()
-			#body.look_at(get_parent().get_parent().find_child("boss_1").global_position)
-			#var local_target = Vector3(0,0,- 1)
-			#var global_direction = -body.global_transform.basis.z * 10
-			#body.linear_velocity = global_direction
-			#body.set_deferred("linear_velocity", body.linear_velocity * -1)
-			#body.set_deferred("linear_velocity", global_direction)
-			body.ttl = 4
-			print("Spike hit!!!")
-			body.bad = false
+			if swing_sound.playing:
+				body.target = get_target()
+				body.ttl = 4
+				print("Spike hit!!!")
+				body.bad = false
 	if "segy" in body.name:
 		body.damage_todo += get_damage()
 	
@@ -79,15 +76,17 @@ func _on_body_entered(body):
 	
 	
 	if body.name == "butt":
-		body.get_parent().damage_todo += get_damage()
-		
-		var knockback_direction = global_position.direction_to(body.global_position)
-		var knockback_force
-		#player.set_deferred("velocity", player.velocity + knockback_force)
-		#print("boss hit")
-		knockback_force = knockback_direction * knockback_strength
-		knockback_force.y = 5
-		body.get_parent().knockback = knockback_force
+		var hit_damage = get_damage()
+		if hit_damage > 0:
+			body.get_parent().damage_todo += hit_damage
+			
+			var knockback_direction = global_position.direction_to(body.global_position)
+			var knockback_force
+			#player.set_deferred("velocity", player.velocity + knockback_force)
+			#print("boss hit")
+			knockback_force = knockback_direction * knockback_strength
+			knockback_force.y = 5
+			body.get_parent().knockback = knockback_force
 	else:
 		if body.name != "shild":
 			hit_sound.play()
