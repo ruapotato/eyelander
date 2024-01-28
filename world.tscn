@@ -84,7 +84,7 @@ distance_fade_length = 3319.9
 omni_range = 4096.0
 
 [node name="boss_3" parent="." instance=ExtResource("10_jmdrx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -89.3717, -13.7787)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -91.6876, -13.7787)
 
 [node name="music" parent="." instance=ExtResource("11_v52dv")]
 stream = ExtResource("7_p6r64")

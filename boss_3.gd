@@ -63,6 +63,7 @@ func did_i_trade():
 	return(root_i_hope.made_trade)
 
 func _ready():
+	scythe.visible = false
 	made_trade = did_i_trade()
 	start_life = start_life * get_parent().hardness
 	life = start_life
@@ -82,6 +83,7 @@ func process_action():
 	var dist_to_player = global_position.distance_to(get_target())
 	
 	if dist_to_player < near:
+		scythe.visible = true
 		action = "swipping"
 	else:
 		action = "walking"
@@ -130,7 +132,8 @@ func _physics_process(delta):
 		dazzed = 0
 	# Add the gravity.
 	if not is_on_floor():
-		new_speed.y -= gravity * delta * .2
+		if global_position.distance_to(Vector3(0,global_position.y,0)) < 30:
+			new_speed.y -= gravity * delta * .2
 
 	# Handle Jump.
 	#if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -190,8 +193,11 @@ func _physics_process(delta):
 			#new_speed.z += move_toward(velocity.z, 0, SPEED)
 	
 	var swipe_done = swipe_stage > len(swipe_angles)
-	if swipe_done and scythe.find_child("swing").playing:
-		scythe.find_child("swing").stop()
+	if swipe_done:
+		scythe.visible = false
+		if  scythe.find_child("swing").playing:
+			scythe.find_child("swing").stop()
+	
 	if (swipping and not swipe_done) and not shilding:
 		if is_on_floor():
 			scythe.rotation.x = lerp(scythe.rotation.x, rotation.x * -1, .3)
