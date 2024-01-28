@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://bel1io4kkvrvy"]
 
 [ext_resource type="PackedScene" uid="uid://m8bwlkdq0a8f" path="res://import/level_1.glb" id="1_sbg6n"]
-[ext_resource type="Material" uid="uid://cyy35s0r7dk4k" path="res://native/level_1.tres" id="2_s0hue"]
+[ext_resource type="Material" uid="uid://d4pixdu3r332" path="res://native/floor.tres" id="2_sg0s4"]
 
 [node name="level_1" instance=ExtResource("1_sbg6n")]
 
 [node name="level_12" parent="." index="0"]
-material_override = ExtResource("2_s0hue")
+material_override = ExtResource("2_sg0s4")

@@ -325,6 +325,7 @@ func _process(delta):
 	
 	
 	if slam_started:
+		roar1_sound.global_position = brain_bone.global_position
 		slam_count_down -= delta
 		if slam_count_down <= 0:
 			slam_started = false

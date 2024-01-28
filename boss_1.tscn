@@ -136,6 +136,7 @@ omni_range = 4096.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.08716)
 
 [node name="slam" type="AudioStreamPlayer3D" parent="sounds/effects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.59398, 2.00177)
 stream = ExtResource("11_amwsn")
 doppler_tracking = 2
 script = ExtResource("3_t7c3m")
