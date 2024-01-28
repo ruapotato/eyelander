@@ -1,6 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://cn17hvepftift"]
+[gd_scene load_steps=4 format=3 uid="uid://cn17hvepftift"]
 
 [ext_resource type="Script" path="res://boss_2.gd" id="1_5dxve"]
+[ext_resource type="AudioStream" uid="uid://cspifguembwli" path="res://sounds/boss_2_spawn.wav" id="2_7ha3d"]
+[ext_resource type="Script" path="res://Light_sounds.gd" id="3_5a8uf"]
 
 [node name="boss_2" type="Node3D"]
 script = ExtResource("1_5dxve")
+
+[node name="spawn" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_7ha3d")
+doppler_tracking = 2
+script = ExtResource("3_5a8uf")
+
+[node name="sound_light" type="OmniLight3D" parent="spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.82512, 0.0974817)
+light_color = Color(0.999976, 0.193418, 0.153574, 1)
+light_energy = 15.03
+light_size = 1.0
+distance_fade_enabled = true
+distance_fade_begin = 3101.66
+distance_fade_shadow = 3525.39
+distance_fade_length = 3319.9
+omni_range = 4096.0

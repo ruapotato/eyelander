@@ -9,6 +9,8 @@ extends Node3D
 @onready var start_life = max_segment * segment_life
 @onready var life = start_life
 @onready var player = get_parent().find_child("player")
+var spawn_level = -44
+var spawn_count_down = 3
 #@onready var spawn_next = preload("res://end_screen.tscn")
 var made_trade
 
@@ -32,9 +34,6 @@ var dead = false
 var init_done = false
 
 
-func get_target():
-	return(player.global_position + Vector3(0,.2,0))
-
 func get_segments_bits(index):
 	var found = []
 	for body in get_children():
@@ -42,10 +41,15 @@ func get_segments_bits(index):
 			found.append(body)
 	return(found)
 
-func setup():
+func setup(delta):
 	if not init_done and player.level == 2:
-		#print(player.global_position.y)
-		if player.global_position.y < -39:
+		if player.global_position.y < spawn_level:
+			if spawn_count_down > 0:
+				if not $spawn.playing:
+					$spawn.play()
+				spawn_count_down -= delta
+				return
+			
 			print("Spawn Boss 2")
 			init_done = true
 			segments.append([])
@@ -86,7 +90,7 @@ func get_life():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	setup()
+	setup(delta)
 	var active_bits = 0
 	for body in get_children():
 		if "segy" in body.name:

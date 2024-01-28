@@ -5,6 +5,7 @@ extends Area3D
 @onready var not_dead = true
 @onready var animation_tree = find_child("mesh").find_child("AnimationTree")
 @onready var bite_sound = $bite_sound
+@onready var spawn_sound = get_parent().find_child("spawn")
 var is_head = false
 #var head_seg
 var seg_index
@@ -90,27 +91,20 @@ func _process(delta):
 		head_hight = 1 - (head_hight - 1)
 		head_hight = head_hight * 4
 	if is_head:
-		#print(heading)
-		#var target = get_target()
-		#look_at(heading)
-		#print(head_hight)
 		global_position.y = lerp(global_position.y, head_hight + ground, 2 * delta)
-		
+
 		#retarget player
 		if global_position.distance_to(Vector3(0,ground,0)) > level_edge:
 			look_at(get_target())
 			heading = global_position.move_toward(get_target(), (speed) * delta) - global_position
-			#print("retarget player")
 
 		global_position += (heading * speed_effector)
-		#if not player_pass:
-			#global_position.x += 1
-		#	global_position += heading
-		#	if global_position.distance_to(Vector3(0,0,0)) > level_edge:
-		#		player_pass = true
-		#		look_at(get_target())
-		#		heading = global_position.move_toward(get_target(), (speed * speed_effector) * delta) - global_position
-
+		
+		#update start sound if needed
+		if spawn_sound.playing:
+			spawn_sound.global_position = global_position
+			spawn_sound.global_position.y = ground + 1
+	
 	if not is_head:
 		var pseg = get_parent_seg()
 		if not pseg:

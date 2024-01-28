@@ -35,7 +35,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28402, 9.81731)
 [node name="Level_1" parent="." instance=ExtResource("4_p0yyn")]
 
 [node name="boss_2" parent="." instance=ExtResource("4_djhoh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -45.322, 23.6063)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -45.322, 34.3387)
 
 [node name="boss_1" parent="." instance=ExtResource("5_tcqem")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -20.398)
