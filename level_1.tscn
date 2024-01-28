@@ -26,25 +26,6 @@ shape = SubResource("ConcavePolygonShape3D_ox1fk")
 
 [node name="level_1" parent="." instance=ExtResource("1_kyr5w")]
 
-[node name="lava" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -265.306, 0)
-script = ExtResource("2_6meox")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="lava"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -75.8567, 0)
-shape = SubResource("ConcavePolygonShape3D_ybo2g")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="lava"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -23.0655, 0)
-mesh = SubResource("PlaneMesh_six0t")
-
-[node name="lava_bottom" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -263.149, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="lava_bottom"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -28.4582, 0)
-shape = SubResource("ConcavePolygonShape3D_7v07b")
-
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.665454, 0, 0, 0, 0.665454, 0, 0, 0, 0.665454, 0, -89.7046, 0)
 shape = SubResource("ConcavePolygonShape3D_ox1fk")
@@ -58,3 +39,24 @@ shape = SubResource("ConcavePolygonShape3D_ox1fk")
 
 [node name="level_3" parent="." instance=ExtResource("1_kyr5w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -183.133, 0)
+
+[node name="lava" type="Node3D" parent="."]
+
+[node name="l_top" type="Area3D" parent="lava"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -265.306, 0)
+script = ExtResource("2_6meox")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="lava/l_top"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -75.8567, 0)
+shape = SubResource("ConcavePolygonShape3D_ybo2g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="lava/l_top"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -23.0655, 0)
+mesh = SubResource("PlaneMesh_six0t")
+
+[node name="l_bot" type="StaticBody3D" parent="lava"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -263.149, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="lava/l_bot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -28.4582, 0)
+shape = SubResource("ConcavePolygonShape3D_7v07b")

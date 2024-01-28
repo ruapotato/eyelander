@@ -1,7 +1,7 @@
 extends Node3D
 @onready var music = $music
 @onready var env = $WorldEnvironment
-
+@onready var player = $player
 # Big thanks to https://github.com/fbcosentino/godot-audiostreampreview/blob/main/addons/audio_preview/voice_preview_generator.gd
 # From https://godotengine.org/asset-library/asset/2257
 
@@ -22,6 +22,7 @@ var sound_light_data = []
 var repeat = true
 var hardness = 1
 var made_trade = true
+var lava_level = 0
 #const IMAGE_HEIGHT_FACTOR: float = float(IMAGE_HEIGHT) / 256.0 # Converts sample raw height to pixel
 #const IMAGE_CENTER_Y = int(round(IMAGE_HEIGHT / 2.0))
 
@@ -106,6 +107,21 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if not player or not player.level:
+		queue_free()
+		return
+	#update lava level
+
+	if player.level != lava_level:
+		lava_level = player.level
+		if lava_level == 1:
+			find_child("lava").global_position.y = 130
+		if lava_level == 2:
+			find_child("lava").global_position.y = 70
+		if lava_level == 3:
+			find_child("lava").global_position.y = 0
+		
+	#Update lighting
 	if not made_trade:
 		if $WorldEnvironment:
 			$WorldEnvironment.environment.fog_enabled = false

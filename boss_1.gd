@@ -3,7 +3,7 @@ extends CharacterBody3D
 @onready var sounds = $sounds
 @onready var dirt_sounds = $sounds/walking_dirt
 @onready var effect_sounds = $sounds/effects
-@onready var slam_sound = $sounds/effects/slam
+#@onready var slam_sound = $sounds/effects/slam
 @onready var roar1_sound = $sounds/effects/roar
 @onready var hurt_sound = $sounds/effects/hurt
 @onready var hurt2_sound = $sounds/effects/hurt2
@@ -54,6 +54,7 @@ var spike_count = 0
 var rage_time = 6.5
 var rage_counter = 0
 var can_rage = true
+var slam_down = false
 
 var walking_on = "dirt"
 # Called when the node enters the scene tree for the first time.
@@ -74,13 +75,14 @@ func _ready():
 	#set_lock_rotation_enabled(true)
 
 func slam():
-	#print("SLAM")
-	slam_sound.play()
+	print("SLAM")
+	#slam_sound.play()
 	#Effect
 	var new_slam_effect = slam_effect.instantiate()
 	var slam_pos = head_bone.global_position
 	slam_pos.y = 0
 	new_slam_effect.set_deferred("global_position", slam_pos)
+	new_slam_effect.find_child("slam_sound").autoplay = true
 	
 	if animation_tree.get("parameters/fly/active"):
 		animation_tree.set("parameters/fly/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
@@ -334,7 +336,11 @@ func _process(delta):
 	if rage_counter > 0:
 		if int(rage_counter * 10) % 4 == 0:
 			#print("Range")
-			slam()
+			if not slam_down:
+				slam()
+			slam_down = true
+		else:
+			slam_down = false
 	
 	if action == "slaming":
 		if not animation_tree.get("parameters/slam/active"):

@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://btecjvp4bcjg0"]
+[gd_scene load_steps=6 format=3 uid="uid://btecjvp4bcjg0"]
 
 [ext_resource type="Material" uid="uid://ctth5up8r82wk" path="res://native/shild.tres" id="1_vu27l"]
+[ext_resource type="AudioStream" uid="uid://ds6l7nqmji1te" path="res://sounds/slam2.wav" id="2_0qsyx"]
+[ext_resource type="Script" path="res://Light_sounds.gd" id="3_opx81"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l6wrp"]
 gravity = Vector3(0, -20, 0)
@@ -23,3 +25,20 @@ explosiveness = 1.0
 randomness = 0.52
 process_material = SubResource("ParticleProcessMaterial_l6wrp")
 draw_pass_1 = SubResource("SphereMesh_tewoa")
+
+[node name="slam_sound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.197596, 0.0178065)
+stream = ExtResource("2_0qsyx")
+doppler_tracking = 2
+script = ExtResource("3_opx81")
+
+[node name="sound_light" type="OmniLight3D" parent="slam_sound"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.427482, 0.00852299)
+light_color = Color(0.999976, 0.193418, 0.153574, 1)
+light_energy = 15.03
+light_size = 3.5
+distance_fade_enabled = true
+distance_fade_begin = 3101.66
+distance_fade_shadow = 3525.39
+distance_fade_length = 3319.9
+omni_range = 4096.0

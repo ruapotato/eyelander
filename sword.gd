@@ -53,6 +53,9 @@ func get_damage():
 			return(0)
 
 func _on_body_entered(body):
+	var hit_damage = get_damage()
+	if hit_damage == 0:
+		return
 	#print( body.name)
 	if "spike" in body.name:
 		if body.bad:
@@ -76,7 +79,7 @@ func _on_body_entered(body):
 	
 	
 	if body.name == "butt":
-		var hit_damage = get_damage()
+		
 		if hit_damage > 0:
 			body.get_parent().damage_todo += hit_damage
 			
