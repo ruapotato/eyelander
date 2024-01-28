@@ -13,6 +13,9 @@ func _ready():
 func _process(delta):
 	pass
 
+func _unhandled_input(event):
+	if Input.is_action_just_pressed("quit"):
+		get_tree().quit()
 
 func _on_button_pressed():
 	if new_game != null:
@@ -20,3 +23,11 @@ func _on_button_pressed():
 	new_game = game.instantiate()
 	self.hide()
 	get_parent().add_child(new_game)
+
+
+func _on_quit_pressed():
+	get_tree().quit()
+
+
+func _on_info_pressed():
+	$Credit.visible = true

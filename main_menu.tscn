@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://3o4a8uaid6mb"]
+[gd_scene load_steps=6 format=3 uid="uid://3o4a8uaid6mb"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_8rasr"]
+[ext_resource type="PackedScene" uid="uid://w43j2moo5wgm" path="res://credit.tscn" id="2_58kwt"]
 
 [sub_resource type="Gradient" id="Gradient_ki2s5"]
 offsets = PackedFloat32Array(0, 0.148387, 0.432258, 0.845161, 1)
@@ -84,4 +85,8 @@ theme = SubResource("Theme_3einr")
 theme_override_font_sizes/font_size = 30
 text = "info"
 
+[node name="Credit" parent="." instance=ExtResource("2_58kwt")]
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="info" to="." method="_on_info_pressed"]

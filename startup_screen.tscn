@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://startup_screen.gd" id="1_mpcew"]
 
-[sub_resource type="Gradient" id="Gradient_uh7cu"]
+[sub_resource type="Gradient" id="Gradient_eh7ew"]
 offsets = PackedFloat32Array(0, 0.148387, 0.432258, 0.845161, 1)
 colors = PackedColorArray(1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.870588, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_xdlw1"]
-gradient = SubResource("Gradient_uh7cu")
+gradient = SubResource("Gradient_eh7ew")
 fill_from = Vector2(1, 0)
 fill_to = Vector2(0, 1)
 
