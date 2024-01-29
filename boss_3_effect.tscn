@@ -28,6 +28,7 @@ turbulence_enabled = true
 
 [node name="boss_3_particles" type="GPUParticles3D" parent="."]
 material_override = ExtResource("1_flwon")
+emitting = false
 amount = 15
 randomness = 0.52
 process_material = SubResource("ParticleProcessMaterial_l6wrp")

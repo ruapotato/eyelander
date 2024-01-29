@@ -49,10 +49,13 @@ var shilding_angle = 0
 var knockback = Vector3(0,0,0)
 var dazzed = 0
 var new_speed = Vector3(0,0,0)
+var og_camera_angle
+var shake = 0
+var walk_shake = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	og_camera_angle = camera.rotation_degrees
 
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("quit"):
@@ -140,6 +143,8 @@ func _physics_process(delta):
 			walk_sounds_timer += delta
 			if walk_sounds_timer >= walk_sound_every:
 				walk_sound()
+				walk_shake = abs((velocity.length()/10) - 1.5)/2
+				#print(walk_shake)
 				walk_sounds_timer = 0
 			#print("wlak sound")
 		var input_dir = Input.get_vector("left", "right", "forward", "backward")
@@ -225,6 +230,26 @@ func _process(delta):
 		#print(gui.find_child("BOSS_LIFE"))
 		
 	
+	if walk_shake > 0:
+		var walk_angle = Vector3(20,0,0)
+		camera.rotation_degrees = lerp(camera.rotation_degrees, walk_angle, delta * (velocity.length()/5))
+		walk_shake -= delta
+	elif walk_shake < 0:
+		walk_shake = 0
+	else:
+		camera.rotation_degrees = lerp(camera.rotation_degrees, og_camera_angle, .01)
+	
+	
+	
+	if shake > 0:
+		var randome_angle = Vector3(randf_range(-180,180),randf_range(-180,180),randf_range(-180,180))
+		camera.rotation_degrees = lerp(camera.rotation_degrees, randome_angle, .03 * shake)
+		shake -= delta
+	elif shake < 0:
+		shake = 0
+	else:
+		camera.rotation_degrees = lerp(camera.rotation_degrees, og_camera_angle, .03)
+	
 	if life < 100:
 		life += delta * life_gen
 		gui.find_child("LIFE").value = life
@@ -234,6 +259,7 @@ func _process(delta):
 	if damage_todo != 0:
 		if damage_todo > 15:
 			hurt_sund.play()
+			shake = 1
 		life -= damage_todo
 		gui.find_child("LIFE").value = life
 		damage_todo = 0

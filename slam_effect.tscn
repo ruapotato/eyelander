@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://btecjvp4bcjg0"]
 
-[ext_resource type="Material" uid="uid://ctth5up8r82wk" path="res://native/shild.tres" id="1_vu27l"]
+[ext_resource type="Material" uid="uid://dwepibs5lxq32" path="res://native/slam_bits.tres" id="1_hefqa"]
 [ext_resource type="AudioStream" uid="uid://ds6l7nqmji1te" path="res://sounds/slam2.wav" id="2_0qsyx"]
 [ext_resource type="Script" path="res://Light_sounds.gd" id="3_opx81"]
 
@@ -11,16 +11,19 @@ initial_velocity_max = 14.0
 scale_min = 0.5
 
 [sub_resource type="SphereMesh" id="SphereMesh_tewoa"]
+radius = 5.0
+height = 10.0
 
 [node name="slam_effect" type="Node3D"]
 
 [node name="slam_particles" type="GPUParticles3D" parent="."]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
-material_override = ExtResource("1_vu27l")
+material_override = ExtResource("1_hefqa")
 emitting = false
-amount = 80
+amount = 5
 one_shot = true
 preprocess = 0.2
+speed_scale = 2.0
 explosiveness = 1.0
 randomness = 0.52
 process_material = SubResource("ParticleProcessMaterial_l6wrp")

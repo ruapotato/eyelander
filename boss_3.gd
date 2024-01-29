@@ -12,6 +12,7 @@ extends CharacterBody3D
 @onready var win_screen = preload("res://end_screen.tscn")
 @onready var game_over_screen = preload("res://game_over.tscn")
 @onready var player = get_parent().find_child("player")
+@onready var smoke_effect = find_child("boss_3_particles")
 var near = 3
 
 
@@ -248,6 +249,7 @@ func _process(delta):
 		if player.level == 3:
 			if player.global_position.y < -70:
 				init_done = true
+				smoke_effect.emitting = true
 				print("Boss 3 ready")
 		return
 	target.look_at(player.global_position, Vector3(0,1,0))

@@ -126,7 +126,7 @@ func _process(delta):
 		if $WorldEnvironment:
 			$WorldEnvironment.environment.fog_enabled = false
 		if $sun:
-			$sun.light_energy = 1
+			$sun.light_energy = .3
 	if made_trade:
 		if not music:
 			return

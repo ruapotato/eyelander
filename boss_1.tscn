@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://r3nb3djoacxm"]
+[gd_scene load_steps=19 format=3 uid="uid://r3nb3djoacxm"]
 
 [ext_resource type="AudioStream" uid="uid://bdcf48rpsd10k" path="res://import/jute-dh-steps/stepdirt_5.wav" id="1_6mnuc"]
 [ext_resource type="Script" path="res://boss_1.gd" id="1_rs5qt"]
@@ -12,7 +12,6 @@
 [ext_resource type="AudioStream" uid="uid://dkgnp5ge3tnn8" path="res://import/jute-dh-steps/stepdirt_8.wav" id="9_28vn0"]
 [ext_resource type="PackedScene" uid="uid://b063afgfgcf3c" path="res://boss_1_import.tscn" id="11_6042p"]
 [ext_resource type="AudioStream" uid="uid://blxqceakc4v5f" path="res://sounds/sound4.wav" id="12_8ag7w"]
-[ext_resource type="PackedScene" uid="uid://btecjvp4bcjg0" path="res://slam_effect.tscn" id="12_m3uje"]
 [ext_resource type="AudioStream" uid="uid://bskrofaaw5ljm" path="res://sounds/hurt1.wav" id="13_fsu3j"]
 [ext_resource type="AudioStream" uid="uid://cs17wt67v7o5t" path="res://sounds/sound7.wav" id="14_s13tj"]
 [ext_resource type="AudioStream" uid="uid://dyslten2k4o17" path="res://sounds/sound10_2.wav" id="15_lc8l1"]
@@ -168,7 +167,7 @@ doppler_tracking = 2
 script = ExtResource("3_t7c3m")
 
 [node name="sound_light" type="OmniLight3D" parent="sounds/effects/hurt2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.174876, 10.9823)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.20231, 9.99234)
 light_color = Color(0.999976, 0.193418, 0.153574, 1)
 light_energy = 15.03
 light_size = 1.0
@@ -195,9 +194,6 @@ distance_fade_length = 3319.9
 omni_range = 4096.0
 
 [node name="mesh" parent="." instance=ExtResource("11_6042p")]
-
-[node name="slam_effect" parent="." instance=ExtResource("12_m3uje")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.73008)
 
 [node name="target" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.40391)
