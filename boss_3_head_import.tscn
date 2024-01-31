@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cg1koiydi1pyv"]
+
+[ext_resource type="PackedScene" uid="uid://csd68j11w51t2" path="res://import/boss_3_head.glb" id="1_pf74o"]
+[ext_resource type="Material" uid="uid://dnc00ghr63hgl" path="res://native/skin.tres" id="2_vf5a7"]
+
+[node name="boss_3_head" instance=ExtResource("1_pf74o")]
+
+[node name="Suzanne" parent="." index="0"]
+material_override = ExtResource("2_vf5a7")

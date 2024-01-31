@@ -2,15 +2,10 @@
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_8rasr"]
 [ext_resource type="PackedScene" uid="uid://w43j2moo5wgm" path="res://credit.tscn" id="2_58kwt"]
+[ext_resource type="Texture2D" uid="uid://dimtfefr5uw2n" path="res://import/cover_2.png" id="2_ed2mp"]
 
-[sub_resource type="Gradient" id="Gradient_ki2s5"]
-offsets = PackedFloat32Array(0, 0.148387, 0.432258, 0.845161, 1)
-colors = PackedColorArray(1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.870588, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_jncou"]
-gradient = SubResource("Gradient_ki2s5")
-fill_from = Vector2(1, 0)
-fill_to = Vector2(0, 1)
+[sub_resource type="LabelSettings" id="LabelSettings_827c2"]
+font_size = 150
 
 [sub_resource type="Theme" id="Theme_3einr"]
 Button/colors/font_hover_color = Color(0.764706, 0, 0.0862745, 1)
@@ -20,17 +15,17 @@ Button/colors/icon_normal_color = Color(0, 0, 1, 1)
 script = ExtResource("1_8rasr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(966, 551)
-scale = Vector2(30.4219, 17.3437)
-texture = SubResource("GradientTexture2D_jncou")
+position = Vector2(960, 540)
+texture = ExtResource("2_ed2mp")
 
 [node name="Label" type="Label" parent="."]
 offset_left = 227.0
 offset_top = 84.0
 offset_right = 375.0
 offset_bottom = 111.0
-scale = Vector2(10.4796, 12.0181)
+scale = Vector2(1.45923, 1.25021)
 text = "My Two Sense"
+label_settings = SubResource("LabelSettings_827c2")
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="."]

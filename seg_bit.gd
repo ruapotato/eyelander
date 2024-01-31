@@ -1,5 +1,5 @@
 extends Area3D
-@onready var player = get_parent().get_parent().find_child("player")
+#@onready var player = get_parent().get_parent().find_child("player")
 @onready var dirt_sounds = $walking_dirt
 @onready var hurt_sund = $hurt
 @onready var not_dead = true
@@ -26,6 +26,7 @@ var slam_damage = 50
 var damage_todo = 0
 var head_convert_counter = 1
 var ground = 0
+var player
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -29,7 +29,8 @@ var swipping = false
 var swipe_speed = .2
 var swipe_counter = 0
 var damage_todo = 0
-var life = 100
+var start_life = 100
+var life = start_life
 var life_gen = .5
 var boss_life = 0
 #var swipe_start_angle = 180
@@ -52,16 +53,21 @@ var new_speed = Vector3(0,0,0)
 var og_camera_angle
 var shake = 0
 var walk_shake = 0
+var has_won = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	og_camera_angle = camera.rotation_degrees
+	start_life = start_life / get_parent().hardness
+	life_gen = life_gen / get_parent().hardness
+	life = start_life
+	
 
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and not dead and not has_won:
 		spring_arm.rotate_x(event.relative.y * -mouse_sensitivity)
 		#rotate_x(event.relative.y * -mouse_sensitivity)
 		spring_arm.rotation.x = clamp(spring_arm.rotation.x, -PI/2, PI/2)
@@ -250,20 +256,21 @@ func _process(delta):
 	else:
 		camera.rotation_degrees = lerp(camera.rotation_degrees, og_camera_angle, .03)
 	
-	if life < 100:
+	if life < start_life:
 		life += delta * life_gen
-		gui.find_child("LIFE").value = life
-	elif life > 100:
-		life = 100
+		gui.find_child("LIFE").value = (life/start_life) * 100
+	elif life > start_life:
+		life = start_life
 	
 	if damage_todo != 0:
-		if damage_todo > 15:
-			hurt_sund.play()
-			shake = 1
-		life -= damage_todo
+		if not has_won:
+			if damage_todo > 15:
+				hurt_sund.play()
+				shake = 1
+			life -= damage_todo
 		gui.find_child("LIFE").value = life
 		damage_todo = 0
-		if life <= 0:
+		if life <= 0 and not dead:
 			print("You are dead")
 			var RIP = game_over_screen.instantiate()
 			get_parent().add_child(RIP)

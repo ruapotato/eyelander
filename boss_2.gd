@@ -2,15 +2,15 @@ extends Node3D
 
 @onready var seg_bit = preload("res://seg_bit.tscn")
 
-@onready var segment_life = 150
-@onready var max_segment = 30
+@onready var segment_life = 66
+@onready var max_segment = 8
 #@onready var max_segment = 3
 @onready var damage_todo = 0
 @onready var start_life = max_segment * segment_life
 @onready var life = start_life
 @onready var player = get_parent().find_child("player")
 var spawn_level = -44
-var spawn_count_down = 3
+var spawn_count_down = 4.8
 #@onready var spawn_next = preload("res://end_screen.tscn")
 var made_trade
 
@@ -73,6 +73,7 @@ func setup(delta):
 						new_seg_bit.life = segment_life
 						new_seg_bit.set_deferred("global_position", global_position + Vector3(seg_index,global_position.y,seg_index))
 						new_seg_bit.ground = global_position.y
+						new_seg_bit.player = player
 						if not made_trade:
 							new_seg_bit.visible = false
 						if seg_index == 0:

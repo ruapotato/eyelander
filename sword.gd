@@ -53,6 +53,8 @@ func get_damage():
 			return(0)
 
 func _on_body_entered(body):
+	if get_parent().dead:
+		return
 	var hit_damage = get_damage()
 	if hit_damage == 0:
 		return
@@ -62,20 +64,21 @@ func _on_body_entered(body):
 			if swing_sound.playing:
 				body.target = get_target()
 				body.ttl = 4
-				print("Spike hit!!!")
+				#print("Spike hit!!!")
 				body.bad = false
 	if "segy" in body.name:
 		body.damage_todo += get_damage()
 	
-	if "boss_3" in body.name:
-		body.damage_todo += get_damage()
-		var knockback_direction = global_position.direction_to(body.global_position)
-		var knockback_force
-		#player.set_deferred("velocity", player.velocity + knockback_force)
-		#print("boss hit")
-		knockback_force = knockback_direction * knockback_strength * 3
-		knockback_force.y = 5
-		body.knockback = knockback_force
+	if body.name == "boss_3":
+		if body.dazzed == 0:
+			body.damage_todo += get_damage()
+			var knockback_direction = global_position.direction_to(body.global_position)
+			var knockback_force
+			#player.set_deferred("velocity", player.velocity + knockback_force)
+			#print("boss hit")
+			knockback_force = knockback_direction * knockback_strength * 3
+			knockback_force.y = 5
+			body.knockback = knockback_force
 	
 	
 	if body.name == "butt":

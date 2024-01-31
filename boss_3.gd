@@ -6,13 +6,15 @@ extends CharacterBody3D
 
 @onready var hurt_sound = $sounds/effects/hurt
 @onready var dirt_sounds = $sounds/walking_dirt
-
+@onready var head = $boss_3_head
 @onready var target = $target
 
+@onready var spike = preload("res://spike2.tscn")
 @onready var win_screen = preload("res://end_screen.tscn")
 @onready var game_over_screen = preload("res://game_over.tscn")
 @onready var player = get_parent().find_child("player")
 @onready var smoke_effect = find_child("boss_3_particles")
+@onready var segment_life = 150
 var near = 3
 
 
@@ -33,8 +35,8 @@ var SPEED = 5.0
 
 var damage_todo = 0
 var start_life = 300
-var life = start_life
-var life_gen = 2
+var life = 0
+var life_gen = 4
 var boss_life = 0
 #var swipe_start_angle = 180
 #var swipe_end_angle = 30
@@ -57,6 +59,14 @@ var init_done = false
 
 var made_trade
 
+var stage = 1
+var stage_counter = 0
+var change_every = 8 # seconds to stay in a stage
+var shoot_every = 2
+var shoot_timer = shoot_every
+
+
+
 func did_i_trade():
 	var root_i_hope = get_parent()
 	while root_i_hope.name != "World":
@@ -64,33 +74,64 @@ func did_i_trade():
 	return(root_i_hope.made_trade)
 
 func _ready():
-	scythe.visible = false
+	scythe.visible = true
 	made_trade = did_i_trade()
 	start_life = start_life * get_parent().hardness
-	life = start_life
+	#life = start_life
 	
 	if not made_trade:
 		find_child("mesh").visible = false
 		$boss_3_effect.visible = false
-		$scythe.visible = false
+		#$scythe.visible = false
 
 
 func get_target():
 	return(player.global_position + Vector3(0,.2,0))
 
 
-func process_action():
+func process_action(delta):
 	
 	var dist_to_player = global_position.distance_to(get_target())
 	
-	if dist_to_player < near:
-		scythe.visible = true
-		action = "swipping"
-	else:
-		action = "walking"
+	
+	if head.mounted:
+		if stage == 1:
+			if dist_to_player < near:
+				#scythe.visible = true
+				action = "swipping"
+			else:
+				action = "walking"
+				#scythe.visible = false
+		if stage != 1:
+			if dist_to_player < near * 3:
+				action = "tp"
+			else:
+				action = "shoot_bits"
+	if not head.mounted:
+		action = "rage"
+		#print("rage!!!")
 	
 	
-	if action == "swipping":
+	if action == "tp":
+		var new_pos = Vector3(randf_range(-30,30),global_position.y,randf_range(-30,30))
+		global_position = new_pos
+	
+	
+	if action == "shoot_bits":
+		if shoot_timer > 0:
+			shoot_timer -= delta
+		else:
+			# Shoot bit
+			#print("add spike")
+			#head.shoot = true
+			var new_spike = spike.instantiate()
+			new_spike.set_deferred("global_position", global_position + Vector3(0,1,0))
+			#new_spike.ground = global_position.y
+			new_spike.player = player
+			get_parent().add_child(new_spike)
+			shoot_timer = shoot_every
+	
+	if action == "swipping" or action == "rage":
 		if swipe_counter <= 0:
 			swipping = true
 			swipe_counter = swipe_speed
@@ -117,6 +158,7 @@ func _physics_process(delta):
 		return
 	if dead:
 		return
+
 	walk_sound_every = 1/(velocity.length()/3)
 	new_speed = velocity
 	if knockback != Vector3(0,0,0):
@@ -145,7 +187,9 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	
 	if dazzed == 0:
-		global_rotation.y = lerp_angle(global_rotation.y, target.global_rotation.y, .1)
+		if not action == "rage":
+			global_rotation.y = lerp_angle(global_rotation.y, target.global_rotation.y, .1)
+
 		if action == "walking":
 			# move away from a jumping player
 			var input_dir
@@ -170,32 +214,9 @@ func _physics_process(delta):
 	
 	
 	
-	if dazzed == 0:
-		if is_on_floor():
-			walk_sounds_timer += delta
-			if walk_sounds_timer >= walk_sound_every:
-				walk_sound()
-				walk_sounds_timer = 0
-			#print("wlak sound")
-		var input_dir = Input.get_vector("left", "right", "forward", "backward")
-		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-		var speed = SPEED
-		if shilding:
-			speed = SPEED / 2
-		elif Input.is_action_pressed("sprint"):
-			speed = SPEED * 2
-		if direction:
-			new_speed.x = lerp(new_speed.x, direction.x * speed, .2)
-			new_speed.z = lerp(new_speed.z, direction.z * speed, .2)
-		else:
-			new_speed.x = lerp(new_speed.x, 0.0, .2)
-			new_speed.z = lerp(new_speed.z, 0.0, .2)
-			#new_speed.x += move_toward(velocity.x, 0, SPEED)
-			#new_speed.z += move_toward(velocity.z, 0, SPEED)
-	
 	var swipe_done = swipe_stage > len(swipe_angles)
 	if swipe_done:
-		scythe.visible = false
+		#scythe.visible = false
 		if  scythe.find_child("swing").playing:
 			scythe.find_child("swing").stop()
 	
@@ -203,8 +224,15 @@ func _physics_process(delta):
 		if is_on_floor():
 			scythe.rotation.x = lerp(scythe.rotation.x, rotation.x * -1, .3)
 			#print(scythe.rotation.x)
-			var swipe_end_angle = swipe_angles[swipe_stage][0]
-			var swipe_start_angle =   swipe_angles[swipe_stage][1]
+			var swipe_end_angle
+			var swipe_start_angle
+			if action != "rage":
+				swipe_end_angle = swipe_angles[swipe_stage][0]
+				swipe_start_angle =   swipe_angles[swipe_stage][1]
+			else:
+				swipe_end_angle = 0
+				swipe_start_angle = 360
+			
 			#print(swipe_counter)
 			swipe_counter -= delta
 			if swipe_counter <= 0:
@@ -245,32 +273,43 @@ func _physics_process(delta):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+
 	if not init_done:
 		if player.level == 3:
 			if player.global_position.y < -70:
 				init_done = true
+				life = start_life
 				smoke_effect.emitting = true
 				print("Boss 3 ready")
 		return
+	
+	stage_counter += delta
+	stage = (int(stage_counter/change_every) % 2) + 1
+	#print(stage)
+	
 	target.look_at(player.global_position, Vector3(0,1,0))
 	target.rotate_object_local(Vector3(0,1,0),3)
 	#target.look_at(player.global_position, Vector3(0,1,0))
 	#target.look_at(get_target(), Vector3(0,-1,0))
 	#look_at(player.global_position)
-	process_action()
+	process_action(delta)
 	
-	if life < 100:
+	if life < start_life:
 		life += delta * life_gen
-	elif life > 100:
-		life = 100
-	
+	elif life > start_life:
+		life = start_life
+
 	if damage_todo != 0:
-		if damage_todo > 15:
+		if damage_todo > 30:
 			hurt_sound.play()
+			head.pop_off_counter = head.pop_off_for
+			head.mounted = false
+			
 		life -= damage_todo
 		damage_todo = 0
 		if life <= 0 and not dead:
 			print("boss 3 dead")
+			player.has_won = true
 			#var RIP = game_over_screen.instantiate()
 			#get_parent().add_child(RIP)
 			var next_spawn = win_screen.instantiate()

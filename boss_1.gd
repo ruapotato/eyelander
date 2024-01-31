@@ -36,7 +36,6 @@ var slam_count_down = 0
 var knockback_strength = 25
 var slam_damage = 33
 var start_life = 500
-#var start_life = 20
 var life = start_life
 var damage_todo = 0
 var knockback = Vector3(0,0,0)
@@ -75,7 +74,7 @@ func _ready():
 	#set_lock_rotation_enabled(true)
 
 func slam():
-	print("SLAM")
+	#print("SLAM")
 	#slam_sound.play()
 	#Effect
 	var new_slam_effect = slam_effect.instantiate()
@@ -157,6 +156,8 @@ func get_head_pos():
 
 func _physics_process(delta):
 	if dead:
+		return
+	if player.dead:
 		return
 	head.global_position = get_head_pos() 
 	head.global_rotation = brain_bone.global_rotation
@@ -246,6 +247,8 @@ func _physics_process(delta):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if player.dead:
+		return
 	if dead:
 		rotation.z = lerp(rotation.z, 3.0, .01)
 		position.y = lerp(position.y, -2.0, .001)

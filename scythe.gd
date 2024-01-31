@@ -52,9 +52,9 @@ func get_damage():
 func _on_body_entered(body):
 	#print( body.name)
 	if "spike" in body.name:
-		if body.bad:
+		if not body.bad:
 			#add_collision_exception_with(body)
-			body.target = get_target()
+			body.target = body.player
 			#body.look_at(get_parent().get_parent().find_child("boss_1").global_position)
 			#var local_target = Vector3(0,0,- 1)
 			#var global_direction = -body.global_transform.basis.z * 10
@@ -62,8 +62,8 @@ func _on_body_entered(body):
 			#body.set_deferred("linear_velocity", body.linear_velocity * -1)
 			#body.set_deferred("linear_velocity", global_direction)
 			body.ttl = 4
-			print("Spike hit!!!")
-			body.bad = false
+			#print("Spike hit!!!")
+			body.bad = true
 	if "segy" in body.name:
 		body.damage_todo += get_damage()
 	

@@ -75,7 +75,7 @@ func _ready():
 	
 	
 	# From now on we work only with reduced_data 
-	image_max_width
+	#image_max_width
 	var image_compression = ceil(reduced_data_size / float(image_max_width))
 
 	var final_sample_i = (reduced_data_size - image_compression)
