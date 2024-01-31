@@ -82,7 +82,8 @@ func _ready():
 	if not made_trade:
 		find_child("mesh").visible = false
 		$boss_3_effect.visible = false
-		#$scythe.visible = false
+		head.visible = false
+		$scythe.visible = false
 
 
 func get_target():
