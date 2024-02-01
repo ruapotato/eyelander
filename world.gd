@@ -178,6 +178,8 @@ func _process(delta):
 			var min_max = sound_light_data[int(index)]
 			var DB = min_max[1] - min_max[0]
 			#print(DB)
+			if inverce_light_power == 0:
+				inverce_light_power = .0001
 			var light_power = DB / inverce_light_power
 			$WorldEnvironment.environment.fog_light_energy  = lerp($WorldEnvironment.environment.fog_light_energy,light_power,.9)
 
