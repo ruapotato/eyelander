@@ -2,27 +2,34 @@ extends Node3D
 @onready var music = $music
 @onready var env = $WorldEnvironment
 @onready var player = $player
+
 # Big thanks to https://github.com/fbcosentino/godot-audiostreampreview/blob/main/addons/audio_preview/voice_preview_generator.gd
 # From https://godotengine.org/asset-library/asset/2257
 
 var data
-var stream
-var this_stream
-var data_size
-var is_16bit
-var is_stereo
-var sample_i = 0
+#var stream
+#var this_stream
+#var data_size
+#var is_16bit
+#var is_stereo
+
 var final_sample_i = 0
 var image_max_width = 2000
 const MAX_FREQUENCY: float = 3000.0 # Maximum frequency captured
 const SAMPLING_RATE = 2.0*MAX_FREQUENCY
-var reduced_data = PackedByteArray()
 
-var sound_light_data = []
+var sound_light_data
+
+var norm_sound_light_data = []
+var hard_sound_light_data = []
 var repeat = true
 var hardness = 1
 var made_trade = true
 var lava_level = 0
+var inverce_light_power = 300.0
+var normal_music = preload("res://import/CC BY Mystery Mammal/Mystery Mammal - Boss Battle.wav")
+var hard_end_music = preload("res://import/CC BY BoxCat Games/BoxCat Games - Battle (End).wav")
+var last_boss = null
 #const IMAGE_HEIGHT_FACTOR: float = float(IMAGE_HEIGHT) / 256.0 # Converts sample raw height to pixel
 #const IMAGE_CENTER_Y = int(round(IMAGE_HEIGHT / 2.0))
 
@@ -30,16 +37,16 @@ var lava_level = 0
 var img_x = 0
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	this_stream = music.stream.get_data
-	data = music.stream.data
-	stream = music.stream
-	
-	data_size = data.size()
-	is_16bit = (stream.format == AudioStreamWAV.FORMAT_16_BITS)
-	is_stereo = stream.stereo
+
+func _get_light_data(stream):
+	var new_sound_light_data = []
+	var this_stream = stream.get_data
+	var data = stream.data
+	var reduced_data = PackedByteArray()
+	var data_size = data.size()
+	var sample_i = 0
+	var is_16bit = (stream.format == AudioStreamWAV.FORMAT_16_BITS)
+	var is_stereo = stream.stereo
 	
 	
 	# For display reasons, lower frequencies than the sampling rate might suffice. 
@@ -99,7 +106,17 @@ func _ready():
 			
 			sample_i += 1
 		
-		sound_light_data.append([min_val,max_val])
+		new_sound_light_data.append([min_val,max_val])
+	return(new_sound_light_data)
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	norm_sound_light_data = _get_light_data(normal_music)
+	#print(len(norm_sound_light_data))
+	hard_sound_light_data = _get_light_data(hard_end_music)
+	#print(len(hard_sound_light_data))
+	sound_light_data = norm_sound_light_data
 
 	
 	
@@ -120,7 +137,27 @@ func _process(delta):
 			find_child("lava").global_position.y = 70
 		if lava_level == 3:
 			find_child("lava").global_position.y = 0
-		
+	
+	var boss_life = (player.boss.life/player.boss.start_life)*100
+	#Swich to normal music
+	if last_boss != player.boss:
+		last_boss = player.boss
+		if music.stream == hard_end_music:
+			print("Set normal music")
+			music.stream = normal_music
+			sound_light_data = norm_sound_light_data
+	
+	#Swich to hard
+	if boss_life <= 50 and player.boss.life > 0:
+		if music.stream == normal_music:
+			print("Set hard music")
+			music.stream = hard_end_music
+			sound_light_data = hard_sound_light_data
+		inverce_light_power = boss_life * 30
+		$music.volume_db = clamp((50/player.boss.life) -1,0,4)
+	else:
+		inverce_light_power = 900.0
+		$music.volume_db = 0
 	#Update lighting
 	if not made_trade:
 		if $WorldEnvironment:
@@ -133,7 +170,7 @@ func _process(delta):
 		#print(get_playback_position())
 		if music.playing:
 			var pos = music.get_playback_position()
-			var length = stream.get_length()
+			var length = music.stream.get_length()
 			#print(pos)
 			#print(length)
 			#print(len(reduced_data))
@@ -141,9 +178,8 @@ func _process(delta):
 			var min_max = sound_light_data[int(index)]
 			var DB = min_max[1] - min_max[0]
 			#print(DB)
-
-			var light_power = DB / 300.0
-			$WorldEnvironment.environment.fog_light_energy  = lerp($WorldEnvironment.environment.fog_light_energy,light_power,.1)
+			var light_power = DB / inverce_light_power
+			$WorldEnvironment.environment.fog_light_energy  = lerp($WorldEnvironment.environment.fog_light_energy,light_power,.9)
 
 		elif repeat:
 			music.play()

@@ -303,8 +303,10 @@ func _process(delta):
 	if damage_todo != 0:
 		if damage_todo > 30:
 			hurt_sound.play()
-			head.pop_off_counter = head.pop_off_for
-			head.mounted = false
+			# Hard mode, pop head
+			if life/start_life < .5:
+				head.pop_off_counter = head.pop_off_for
+				head.mounted = false
 			
 		life -= damage_todo
 		damage_todo = 0

@@ -45,6 +45,7 @@ var dead = false
 var hover_level = 5.0
 
 var stage = 1
+var stage_counter = 0
 var start_stage_2 = start_life/2
 var fire_rate = 2
 var fire_counter = fire_rate
@@ -52,7 +53,7 @@ var target = Vector3(0,0,0)
 var spike_count = 0
 var rage_time = 6.5
 var rage_counter = 0
-var can_rage = true
+var can_rage = false
 var slam_down = false
 
 var walking_on = "dirt"
@@ -189,6 +190,7 @@ func _physics_process(delta):
 			#print("FIRE")
 			fire_spike()
 			fire_counter = fire_rate
+			stage_counter += 1
 		$target.look_at(get_target(), Vector3(0,1,0))
 		global_rotation.y = lerp_angle(global_rotation.y, $target.global_rotation.y, .02)
 		if global_position.y < hover_level:
@@ -254,11 +256,14 @@ func _process(delta):
 		position.y = lerp(position.y, -2.0, .001)
 		return
 	if damage_todo != 0:
+		#stage_counter += 1
 		# If hurt while raging, rage more
 		if rage_counter != 0:
 			rage_counter = rage_time
 			#damage_todo = 0
-		can_rage = true
+		if life < start_life/2:
+			stage_counter = 1
+			can_rage = true
 		life -= damage_todo
 		if life > 0:
 			hurt_sound.play()
@@ -287,10 +292,11 @@ func _process(delta):
 	#	stage = 2
 	sounds.global_position = butt_bone.global_position
 	#stage = (int(life/10) % 2) + 1
-	stage = (int(life/8) + 1)%3 + 1
-	if stage == 3:
-		if int(life) % 2 != 0:
-			stage = 1
+	#stage = (int(life/8) + 1)%3 + 1
+	stage = (stage_counter %3) + 1
+	#if stage == 3:
+	#	if int(life) % 2 != 0:
+	#		stage = 1
 	#print(stage)
 		#print(life)
 	# Add the gravity.git status
@@ -316,7 +322,7 @@ func _process(delta):
 		elif rage_counter < 0:
 			rage_counter = 0
 		else:
-			stage = 1
+			stage = 2
 			#print("Force starge 1")
 	
 	if stage == 1:
@@ -328,6 +334,10 @@ func _process(delta):
 	if stage == 2 and not slam_started:
 		action = "flying"
 	
+	# Hard settings
+	if life/start_life < .5:
+		SPEED = 5
+		MAX_SPEED = 5
 	
 	if slam_started:
 		roar1_sound.global_position = brain_bone.global_position
@@ -335,6 +345,7 @@ func _process(delta):
 		if slam_count_down <= 0:
 			slam_started = false
 			slam()
+			stage_counter += 1
 	
 	if rage_counter > 0:
 		if int(rage_counter * 10) % 4 == 0:

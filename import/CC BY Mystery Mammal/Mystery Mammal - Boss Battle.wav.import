@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c17bx6jkxigyk"
+path="res://.godot/imported/Mystery Mammal - Boss Battle.wav-9d0cb8d8d4b5378ddfc12fc07ed70d5b.sample"
+
+[deps]
+
+source_file="res://import/CC BY Mystery Mammal/Mystery Mammal - Boss Battle.wav"
+dest_files=["res://.godot/imported/Mystery Mammal - Boss Battle.wav-9d0cb8d8d4b5378ddfc12fc07ed70d5b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

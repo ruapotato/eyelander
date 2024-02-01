@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bsxwsn73lstml"
+path="res://.godot/imported/BoxCat Games - Battle (End).wav-99acb39e4a6630e07f8c2419d1a322d4.sample"
+
+[deps]
+
+source_file="res://import/CC BY BoxCat Games/BoxCat Games - Battle (End).wav"
+dest_files=["res://.godot/imported/BoxCat Games - Battle (End).wav-99acb39e4a6630e07f8c2419d1a322d4.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
