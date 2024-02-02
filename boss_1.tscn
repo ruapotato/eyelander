@@ -22,7 +22,7 @@
 radius = 1.5
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_awn8r"]
-radius = 2.3
+radius = 3.235
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 script = ExtResource("1_rs5qt")
