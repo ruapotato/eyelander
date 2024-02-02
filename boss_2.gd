@@ -6,13 +6,14 @@ extends Node3D
 @onready var max_segment = 8
 #@onready var max_segment = 3
 @onready var damage_todo = 0
-@onready var start_life = max_segment * segment_life
-@onready var life = start_life
+@onready var start_life
+@onready var life
 @onready var player = get_parent().find_child("player")
 var spawn_level = -44
 var spawn_count_down = 4.8
 #@onready var spawn_next = preload("res://end_screen.tscn")
 var made_trade
+
 
 func did_i_trade():
 	var root_i_hope = get_parent()
@@ -86,7 +87,8 @@ func get_life():
 	var life_total = 0 
 	for body in get_children():
 		if "segy" in body.name:
-			life_total += body.life
+			if body.life > 0:
+				life_total += body.life
 	return(life_total)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -97,7 +99,7 @@ func _process(delta):
 		if "segy" in body.name:
 			if body.not_dead:
 				active_bits += 1
-	
+	#print(str(life) + " of " + str(start_life))
 	if init_done:
 		life = get_life()
 	else:

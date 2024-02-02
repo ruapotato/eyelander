@@ -138,7 +138,7 @@ func _process(delta):
 		if lava_level == 3:
 			find_child("lava").global_position.y = 0
 	
-	var boss_life = (player.boss.life/player.boss.start_life)*100
+	var boss_life = (float(player.boss.life)/float(player.boss.start_life))*100
 	#Swich to normal music
 	if last_boss != player.boss:
 		last_boss = player.boss

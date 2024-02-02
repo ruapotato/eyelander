@@ -228,12 +228,11 @@ func _physics_process(delta):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
 	if boss_life != boss.life:
 		boss_life = boss.life
 		if gui.find_child("BOSS_LIFE"):
-			gui.find_child("BOSS_LIFE").value = (boss.life/boss.start_life) * 100
-			#print(gui.find_child("BOSS_LIFE").value)
-		#print(gui.find_child("BOSS_LIFE"))
+			gui.find_child("BOSS_LIFE").value = (float(boss.life)/float(boss.start_life)) * 100
 		
 	
 	if walk_shake > 0:

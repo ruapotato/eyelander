@@ -10,7 +10,7 @@ var is_head = false
 #var head_seg
 var seg_index
 var index
-var life = 100
+var life
 var parent_seg = null
 var circle_range = 3
 var speed = 8
