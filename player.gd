@@ -17,6 +17,7 @@ var walk_sound_every = 0
 var walk_sounds_timer = 0
 var walking_on = "dirt"
 var dead = false
+var wind = Vector3(0,0,0)
 
 var mouse_sensitivity = .0035
 #var speed = 5
@@ -121,6 +122,8 @@ func _physics_process(delta):
 		return
 	walk_sound_every = 1/(velocity.length()/3)
 	new_speed = velocity
+	if wind != Vector3(0,0,0):
+		new_speed += wind
 	if knockback != Vector3(0,0,0):
 		dazzed = knockback.length() / 100
 		new_speed = knockback
@@ -245,6 +248,10 @@ func _process(delta):
 		camera.rotation_degrees = lerp(camera.rotation_degrees, og_camera_angle, .01)
 	
 	
+	if wind.length() > 0:
+		var randome_angle = Vector3(randf_range(-180,180),randf_range(-180,180),randf_range(-180,180))
+		camera.rotation_degrees = lerp(camera.rotation_degrees, randome_angle, .003 * wind.length())
+		wind = lerp(wind, Vector3(0,0,0),.3)
 	
 	if shake > 0:
 		var randome_angle = Vector3(randf_range(-180,180),randf_range(-180,180),randf_range(-180,180))

@@ -159,12 +159,12 @@ func _process(delta):
 		inverce_light_power = 900.0
 		$music.volume_db = 0
 	#Update lighting
-	if not made_trade:
+	if not made_trade or true:
 		if $WorldEnvironment:
 			$WorldEnvironment.environment.fog_enabled = false
 		if $sun:
 			$sun.light_energy = .3
-	if made_trade:
+	if made_trade and false:
 		if not music:
 			return
 		#print(get_playback_position())

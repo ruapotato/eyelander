@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://8yqhpib55rp1"]
+
+[ext_resource type="Script" path="res://tornado.gd" id="1_vbx2r"]
+[ext_resource type="AudioStream" uid="uid://b6t6s702fb5mp" path="res://sounds/sound8.wav" id="2_mqnmu"]
+[ext_resource type="Script" path="res://Light_sounds.gd" id="3_0vsnd"]
+[ext_resource type="AudioStream" uid="uid://b4a4gbw1ns6d2" path="res://sounds/sound9.wav" id="4_tatxh"]
+[ext_resource type="PackedScene" uid="uid://ddkt7k5rqabnj" path="res://tornado_effect.tscn" id="5_q13fc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vcmll"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+albedo_color = Color(0.627451, 0.627451, 0.627451, 0.372549)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_c3u3f"]
+material = SubResource("StandardMaterial3D_vcmll")
+top_radius = 0.0
+bottom_radius = 12.507
+height = 10.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fjsrh"]
+radius = 0.1
+height = 0.9
+
+[node name="tornado" type="Area3D"]
+transform = Transform3D(-1.3027e-15, 4.37114e-08, -1, 1, 2.98023e-08, 0, 2.98023e-08, -1, -4.37114e-08, 0, 0, 0)
+script = ExtResource("1_vbx2r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(6.55672e-08, 1.47194e-06, 1.5, -2.26494e-07, -4.38363, 5.03673e-07, 1.5, -6.61909e-07, -6.55671e-08, 0.00338119, 21.9545, 9.59714e-07)
+mesh = SubResource("CylinderMesh_c3u3f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-1, -1.47027e-07, 1.50996e-07, -1.47027e-07, 1, 1.74846e-07, -1.50996e-07, 1.74846e-07, -1, 0.00907895, 0.934738, 4.08087e-08)
+shape = SubResource("CapsuleShape3D_fjsrh")
+
+[node name="hit" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 1.05879e-22, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+stream = ExtResource("2_mqnmu")
+volume_db = 10.0
+max_db = 6.0
+doppler_tracking = 2
+script = ExtResource("3_0vsnd")
+
+[node name="sound_light" type="OmniLight3D" parent="hit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0348836, -0.0037058)
+light_color = Color(0.418238, 0.601976, 1, 1)
+light_energy = 15.03
+light_size = 1.0
+omni_range = 4096.0
+
+[node name="fly" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 1.05879e-22, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+stream = ExtResource("4_tatxh")
+volume_db = 10.0
+max_db = 6.0
+autoplay = true
+doppler_tracking = 2
+script = ExtResource("3_0vsnd")
+
+[node name="sound_light" type="OmniLight3D" parent="fly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0348836, -0.0037058)
+light_color = Color(1, 0, 0, 1)
+light_energy = 15.03
+light_size = 1.0
+omni_range = 4096.0
+
+[node name="boss_3_effect" parent="." instance=ExtResource("5_q13fc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0153111, 4.56305e-10, 2.15698e-23)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

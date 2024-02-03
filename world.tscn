@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://djl75nao1pxlp"]
+[gd_scene load_steps=15 format=3 uid="uid://djl75nao1pxlp"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_1w3vy"]
 [ext_resource type="PackedScene" uid="uid://hj5galx0bqtw" path="res://player.tscn" id="1_ljbio"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://5vc7pjj0nsgx" path="res://boss_3.tscn" id="10_jmdrx"]
 [ext_resource type="PackedScene" uid="uid://ba4gkumtnqglk" path="res://music.tscn" id="11_v52dv"]
 [ext_resource type="AudioStream" uid="uid://c17bx6jkxigyk" path="res://import/CC BY Mystery Mammal/Mystery Mammal - Boss Battle.wav" id="12_eeiv8"]
+[ext_resource type="PackedScene" uid="uid://ctien203wfhd" path="res://boss_4.tscn" id="13_m8com"]
 
 [sub_resource type="Environment" id="Environment_p3iqh"]
 background_mode = 2
@@ -95,3 +96,6 @@ volume_db = 0.0
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 8.68208, 0)
 light_color = Color(1, 1, 0.827451, 1)
 light_energy = 0.0
+
+[node name="boss_4" parent="." instance=ExtResource("13_m8com")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.5561, 0)
