@@ -6,8 +6,8 @@ extends Node3D
 @onready var max_segment = 8
 #@onready var max_segment = 3
 @onready var damage_todo = 0
-@onready var start_life
-@onready var life
+@onready var start_life : float
+@onready var life : float
 @onready var player = get_parent().find_child("player")
 var spawn_level = -44
 var spawn_count_down = 4.8
