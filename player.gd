@@ -57,6 +57,8 @@ var shake = 0
 var walk_shake = 0
 var has_won = false
 var effects_effector
+var use_controler = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	og_camera_angle = camera.rotation_degrees
@@ -315,10 +317,10 @@ func _process(delta):
 			var RIP = game_over_screen.instantiate()
 			get_parent().add_child(RIP)
 			dead = true
-
-	#Controler 2nd part
-	print(Input.get_joy_axis(0,2))
-	piv.rotate_y(Input.get_joy_axis(0,2) * -mouse_sensitivity * delta * 1000)
 	
-	spring_arm.rotation.x =  lerp(spring_arm.rotation.x , (PI/2) * -Input.get_joy_axis(0,3), mouse_sensitivity * delta * 1000)
+	if use_controler:
+		#Controler 2nd part
+		print(Input.get_joy_axis(0,2))
+		piv.rotate_y(Input.get_joy_axis(0,2) * -mouse_sensitivity * delta * 1000)
+		spring_arm.rotation.x =  lerp(spring_arm.rotation.x , (PI/2) * -Input.get_joy_axis(0,3), mouse_sensitivity * delta * 1000)
 
