@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0f1cbrr54p8a"]
+[gd_scene load_steps=4 format=3 uid="uid://c0f1cbrr54p8a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jsrts"]
 bg_color = Color(1, 0, 0, 1)
@@ -8,6 +8,9 @@ corner_detail = 10
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yfbxp"]
 bg_color = Color(0.337255, 0, 0.0235294, 1)
 corner_radius_bottom_left = 75
+
+[sub_resource type="LabelSettings" id="LabelSettings_xd5pi"]
+font_color = Color(1, 0, 0, 1)
 
 [node name="GUI" type="Node2D"]
 
@@ -49,6 +52,19 @@ offset_bottom = 1066.0
 scale = Vector2(1.51365, 1.54352)
 text = "Shield: Mouse Right     Sword: Mouse Left     Run: Shift     Jump: Space     Move: ASD
 "
+vertical_alignment = 1
+
+[node name="dragon_pissed" type="Label" parent="."]
+visible = false
+offset_left = 799.0
+offset_top = -2.0
+offset_right = 1034.0
+offset_bottom = 50.0
+scale = Vector2(1.51365, 1.54352)
+text = "Warning, the Dragon is Pissed!
+Tornado Watch!"
+label_settings = SubResource("LabelSettings_xd5pi")
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="."]

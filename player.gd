@@ -235,7 +235,13 @@ func _process(delta):
 	if boss_life != boss.life:
 		boss_life = boss.life
 		if gui.find_child("BOSS_LIFE"):
-			gui.find_child("BOSS_LIFE").value = (float(boss.life)/float(boss.start_life)) * 100
+			var new_life = (float(boss.life)/float(boss.start_life)) * 100
+			gui.find_child("BOSS_LIFE").value = new_life
+			if new_life < 50 and new_life != 0:
+				gui.find_child("dragon_pissed").visible = true
+			else:
+				gui.find_child("dragon_pissed").visible = false
+				
 		if level == 1:
 			gui.find_child("BOSS_LABLE").text = "Spider Boss"
 		if level == 2:

@@ -39,10 +39,10 @@ theme_override_font_sizes/font_size = 30
 text = "Play"
 
 [node name="Label2" type="Label" parent="."]
-offset_left = 606.0
-offset_top = 974.0
-offset_right = 1181.0
-offset_bottom = 1052.0
+offset_left = 609.0
+offset_top = 940.0
+offset_right = 1184.0
+offset_bottom = 1018.0
 scale = Vector2(1.27902, 1.36552)
 text = "This game is AGPL by David Hamner. 
 https://bitbucket.org/hackersgame/my_two_sense
@@ -52,9 +52,9 @@ horizontal_alignment = 1
 [node name="Label3" type="Label" parent="."]
 modulate = Color(1, 0, 0, 1)
 offset_left = 344.0
-offset_top = 793.0
+offset_top = 746.0
 offset_right = 683.0
-offset_bottom = 845.0
+offset_bottom = 798.0
 scale = Vector2(3.76696, 3.40636)
 text = "WARNING
 This game contains flashing lights"
@@ -68,7 +68,7 @@ offset_bottom = 661.0
 scale = Vector2(1.90032, 1.72781)
 theme = SubResource("Theme_3einr")
 theme_override_font_sizes/font_size = 30
-text = "quit"
+text = "Quit"
 
 [node name="info" type="Button" parent="."]
 offset_left = 992.0
@@ -78,7 +78,7 @@ offset_bottom = 662.0
 scale = Vector2(1.91612, 1.71842)
 theme = SubResource("Theme_3einr")
 theme_override_font_sizes/font_size = 30
-text = "info"
+text = "Help"
 
 [node name="Credit" parent="." instance=ExtResource("2_58kwt")]
 
