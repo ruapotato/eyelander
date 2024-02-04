@@ -1,14 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://3b0l1p05ak1d"]
+[gd_scene load_steps=3 format=3 uid="uid://3b0l1p05ak1d"]
 
 [ext_resource type="Script" path="res://end_screen.gd" id="1_eqfnk"]
+[ext_resource type="Texture2D" uid="uid://dimtfefr5uw2n" path="res://import/cover_2.png" id="2_7qs6w"]
 
 [node name="end_screen" type="Node2D"]
 script = ExtResource("1_eqfnk")
 
-[node name="Label" type="Label" parent="."]
-offset_left = 460.0
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("2_7qs6w")
+
+[node name="end_lable" type="Label" parent="."]
+offset_left = 854.0
 offset_top = 59.0
-offset_right = 797.0
+offset_right = 1191.0
 offset_bottom = 111.0
 scale = Vector2(3.05797, 5.03269)
 text = "You win!!!
@@ -17,11 +22,11 @@ horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="menu" type="Button" parent="."]
-offset_left = 829.0
-offset_top = 948.0
-offset_right = 930.0
-offset_bottom = 979.0
-scale = Vector2(2.78511, 2.72674)
+offset_left = 347.0
+offset_top = 752.0
+offset_right = 448.0
+offset_bottom = 783.0
+scale = Vector2(4.61367, 5.11139)
 text = "Menu Menu"
 metadata/_edit_use_anchors_ = true
 

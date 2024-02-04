@@ -128,7 +128,6 @@ func _process(delta):
 		queue_free()
 		return
 	#update lava level
-
 	if player.level != lava_level:
 		lava_level = player.level
 		if lava_level == 1:

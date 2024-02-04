@@ -1,26 +1,31 @@
-[gd_scene load_steps=2 format=3 uid="uid://k1leagvphpkq"]
+[gd_scene load_steps=3 format=3 uid="uid://k1leagvphpkq"]
 
 [ext_resource type="Script" path="res://game_over.gd" id="1_d1cpu"]
+[ext_resource type="Texture2D" uid="uid://dimtfefr5uw2n" path="res://import/cover_2.png" id="2_t663q"]
 
 [node name="game_over" type="Node2D"]
 script = ExtResource("1_d1cpu")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("2_t663q")
+
 [node name="Label" type="Label" parent="."]
-offset_left = 487.0
-offset_top = 86.9999
-offset_right = 824.0
-offset_bottom = 139.0
+offset_left = -196.0
+offset_top = 108.0
+offset_right = 141.0
+offset_bottom = 160.0
 scale = Vector2(3.05797, 5.03269)
 text = "You died. :'("
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="menu" type="Button" parent="."]
-offset_left = 872.0
-offset_top = 917.0
-offset_right = 973.0
-offset_bottom = 948.0
-scale = Vector2(2.78511, 2.72674)
+offset_left = 1073.0
+offset_top = 512.0
+offset_right = 1174.0
+offset_bottom = 543.0
+scale = Vector2(6.20713, 5.19071)
 text = "Menu Menu"
 metadata/_edit_use_anchors_ = true
 
