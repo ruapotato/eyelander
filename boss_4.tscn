@@ -19,7 +19,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_k2hgv"]
 radius = 3.0
 
-[node name="boss_4" type="CharacterBody3D"]
+[node name="boss_5" type="CharacterBody3D"]
 script = ExtResource("1_aticb")
 
 [node name="mesh" parent="." instance=ExtResource("1_yhh60")]
