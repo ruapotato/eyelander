@@ -19,11 +19,6 @@ position = Vector2(968.5, 550)
 scale = Vector2(30.4219, 17.3437)
 texture = SubResource("GradientTexture2D_fptk1")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(1041, 410)
-scale = Vector2(15.2188, 2.40625)
-texture = SubResource("GradientTexture2D_fptk1")
-
 [node name="Button" type="Button" parent="."]
 offset_left = 920.0
 offset_top = 922.0
