@@ -18,6 +18,13 @@ scale = Vector2(2.85243, 2.42897)
 theme_override_styles/fill = SubResource("StyleBoxFlat_jsrts")
 value = 100.0
 
+[node name="LIFE_LABLE" type="Label" parent="LIFE"]
+offset_left = 6.31041
+offset_top = 2.47018
+offset_right = 96.3104
+offset_bottom = 28.4702
+text = "Player Life"
+
 [node name="BOSS_LIFE" type="ProgressBar" parent="."]
 offset_left = 1161.0
 offset_top = -1.0
@@ -26,6 +33,14 @@ offset_bottom = 30.0
 scale = Vector2(2.75164, 2.49976)
 theme_override_styles/fill = SubResource("StyleBoxFlat_yfbxp")
 value = 100.0
+
+[node name="BOSS_LABLE" type="Label" parent="BOSS_LIFE"]
+layout_mode = 0
+offset_left = 180.62
+offset_top = 2.40023
+offset_right = 270.62
+offset_bottom = 28.4002
+text = "Spider Boss"
 
 [node name="Label" type="Label" parent="."]
 offset_top = 1040.0

@@ -236,7 +236,12 @@ func _process(delta):
 		boss_life = boss.life
 		if gui.find_child("BOSS_LIFE"):
 			gui.find_child("BOSS_LIFE").value = (float(boss.life)/float(boss.start_life)) * 100
-		
+		if level == 1:
+			gui.find_child("BOSS_LABLE").text = "Spider Boss"
+		if level == 2:
+			gui.find_child("BOSS_LABLE").text = "Worm Boss"
+		if level == 3:
+			gui.find_child("BOSS_LABLE").text = "Reaper Boss"
 	
 	if walk_shake > 0:
 		var walk_angle = Vector3(20,0,0)
