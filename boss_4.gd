@@ -356,7 +356,7 @@ func _process(delta):
 	#	stage = 2
 
 	if stage == 1:
-		var boss_life = player.boss.life/player.boss.start_life
+		var boss_life = float(player.boss.life)/float(player.boss.start_life)
 		if  boss_life > .5 or boss_life < .0001:
 			action = "circle"
 		else:

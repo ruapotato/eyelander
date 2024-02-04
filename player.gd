@@ -81,13 +81,22 @@ func _ready():
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
+	
+	#Controler controls
+	#if event is InputEventJoypadMotion:
+		#if event.axis == 2:
+		#	piv.rotate_y(event.axis_value * -mouse_sensitivity * 10)
 
+			#print(event.device)
+			#spring_arm.rotate_x(event.axis_value * -mouse_sensitivity * 100)
+			#spring_arm.rotation.x = clamp(spring_arm.rotation.x, -PI/2, PI/2)
+
+		#piv.rotate_y(event.relative.x * -mouse_sensitivity)
+	
+	#Mouse controls
 	if event is InputEventMouseMotion and not dead and not has_won:
 		spring_arm.rotate_x(event.relative.y * -mouse_sensitivity)
-		#rotate_x(event.relative.y * -mouse_sensitivity)
 		spring_arm.rotation.x = clamp(spring_arm.rotation.x, -PI/2, PI/2)
-		#rotation.x = clamp(rotation.x, -PI/2, PI/2)
-		
 		piv.rotate_y(event.relative.x * -mouse_sensitivity)
 		
 	if Input.is_action_just_pressed("swipe"):
@@ -306,5 +315,10 @@ func _process(delta):
 			var RIP = game_over_screen.instantiate()
 			get_parent().add_child(RIP)
 			dead = true
-			#get_tree().reload_current_scene()
-		#print(life)
+
+	#Controler 2nd part
+	print(Input.get_joy_axis(0,2))
+	piv.rotate_y(Input.get_joy_axis(0,2) * -mouse_sensitivity * delta * 1000)
+	
+	spring_arm.rotation.x =  lerp(spring_arm.rotation.x , (PI/2) * -Input.get_joy_axis(0,3), mouse_sensitivity * delta * 1000)
+
