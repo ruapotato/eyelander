@@ -21,6 +21,9 @@ func _on_button_pressed():
 	if new_game != null:
 		new_game.queue_free()
 	new_game = game.instantiate()
+	
+	new_game.mouse_sensitivity_effector = $SettingsScreen.find_child("MouseSensitivity").value
+	new_game.effects_effector = $SettingsScreen.find_child("Effects").value
 	self.hide()
 	get_parent().add_child(new_game)
 
@@ -31,3 +34,7 @@ func _on_quit_pressed():
 
 func _on_info_pressed():
 	$Credit.visible = true
+
+
+func _on_settings_pressed():
+	$SettingsScreen.visible = true

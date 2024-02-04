@@ -44,13 +44,13 @@ node_connections = [&"output", 0, &"w_attack", &"TimeScale", 0, &"walk_fly", &"T
 [node name="boss_4" instance=ExtResource("1_5xrxs")]
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/position = Vector3(0, -0.106844, -0.089416)
-bones/2/rotation = Quaternion(0.699585, -0.162373, 0.118567, 0.68568)
-bones/3/rotation = Quaternion(-0.255477, 0, 0, 0.966815)
-bones/4/rotation = Quaternion(-0.276613, 0, 0, 0.960981)
-bones/8/rotation = Quaternion(0.699585, 0.162373, -0.118567, 0.68568)
-bones/9/position = Vector3(2.0181e-09, -0.106844, -0.089416)
-bones/9/rotation = Quaternion(0.000164341, 0.323251, 0.946301, 0.00493257)
+bones/0/position = Vector3(0, -0.0433003, -0.0362372)
+bones/2/rotation = Quaternion(0.0517702, -0.00645956, 0.168642, 0.984296)
+bones/3/rotation = Quaternion(-0.356635, 0, 0, 0.934244)
+bones/4/rotation = Quaternion(-0.220003, 0, 0, 0.975499)
+bones/8/rotation = Quaternion(0.0517702, 0.00645959, -0.168642, 0.984296)
+bones/9/position = Vector3(3.11823e-08, -0.0433003, -0.0362372)
+bones/9/rotation = Quaternion(6.68055e-05, 0.258812, 0.965926, 0.00200174)
 bones/10/rotation = Quaternion(-0.534849, -2.24168e-14, 2.08278e-07, 0.844947)
 bones/12/rotation = Quaternion(-0.778808, -0.254115, -0.0493273, 0.571358)
 bones/12/scale = Vector3(0.99999, 0.999998, 1)
@@ -61,7 +61,7 @@ bones/14/scale = Vector3(0.99999, 0.999998, 1)
 surface_material_override/0 = ExtResource("2_ujf0j")
 
 [node name="body_bone" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 5.96046e-08, 0, -5.96046e-08, 1, 0, -0.106844, -0.089416)
+transform = Transform3D(1, 0, 0, 0, 1, 5.96046e-08, 0, -5.96046e-08, 1, 0, -0.0433003, -0.0362372)
 bone_name = "body"
 bone_idx = 0
 

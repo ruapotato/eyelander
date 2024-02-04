@@ -13,6 +13,7 @@ extends CharacterBody3D
 @onready var boss_2 = get_parent().find_child("boss_2")
 @onready var boss_3 = get_parent().find_child("boss_3")
 @onready var game_over_screen = preload("res://game_over.tscn")
+@onready var root = get_parent().get_parent()
 var walk_sound_every = 0
 var walk_sounds_timer = 0
 var walking_on = "dirt"
@@ -55,7 +56,7 @@ var og_camera_angle
 var shake = 0
 var walk_shake = 0
 var has_won = false
-
+var effects_effector
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	og_camera_angle = camera.rotation_degrees
@@ -63,6 +64,19 @@ func _ready():
 	life_gen = life_gen / get_parent().hardness
 	life = start_life
 	
+	
+	#Setup mouse settins
+	if root.mouse_sensitivity_effector > 0:
+		for i in range(0, int(root.mouse_sensitivity_effector)):
+			mouse_sensitivity *= 1.2
+	elif  root.mouse_sensitivity_effector < 0:
+		for i in range(0, int(abs(root.mouse_sensitivity_effector))):
+			mouse_sensitivity *= .8
+	
+	#Setup effects
+	effects_effector = root.effects_effector
+	print(effects_effector)
+
 
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("quit"):

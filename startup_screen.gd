@@ -2,12 +2,20 @@ extends Node2D
 
 @onready var game = preload("res://world.tscn")
 @onready var hardness_menu = $hardness
+@onready var setting_screen = get_parent().find_child("SettingsScreen")
+@onready var mouse_sensitivity_effector
+@onready var effects_effector
+
+
 var new_game = null
 var game_started = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	show()
+	#print(mouse_sensitivity_effector)
+
+	#mouse_sensitivity_effector =  
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

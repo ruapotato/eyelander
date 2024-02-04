@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://btecjvp4bcjg0"]
+[gd_scene load_steps=7 format=3 uid="uid://btecjvp4bcjg0"]
 
 [ext_resource type="Material" uid="uid://dwepibs5lxq32" path="res://native/slam_bits.tres" id="1_hefqa"]
+[ext_resource type="Script" path="res://effects.gd" id="1_v4877"]
 [ext_resource type="AudioStream" uid="uid://ds6l7nqmji1te" path="res://sounds/slam2.wav" id="2_0qsyx"]
 [ext_resource type="Script" path="res://Light_sounds.gd" id="3_opx81"]
 
@@ -15,6 +16,7 @@ radius = 5.0
 height = 10.0
 
 [node name="slam_effect" type="Node3D"]
+script = ExtResource("1_v4877")
 
 [node name="slam_particles" type="GPUParticles3D" parent="."]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
