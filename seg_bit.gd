@@ -55,9 +55,11 @@ func get_target():
 func _process(delta):
 	if damage_todo != 0:
 		print("Stuff hurt Yo")
-		if damage_todo > 15:
-			hurt_sund.play()
-		life -= damage_todo
+		# Don't do damage when converting
+		if head_convert_counter <= 0 or not is_head:
+			if damage_todo > 15:
+				hurt_sund.play()
+			life -= damage_todo
 		damage_todo = 0
 		if life <= 0:
 			print("Segment down!")

@@ -11,10 +11,10 @@
 [ext_resource type="AudioStream" uid="uid://ckagbohbcdk4w" path="res://import/jute-dh-steps/stepdirt_6.wav" id="9_yqjaq"]
 [ext_resource type="AudioStream" uid="uid://blebvyohfm0hh" path="res://import/jute-dh-steps/stepdirt_7.wav" id="10_n5d4v"]
 [ext_resource type="AudioStream" uid="uid://dkgnp5ge3tnn8" path="res://import/jute-dh-steps/stepdirt_8.wav" id="11_21rng"]
-[ext_resource type="AudioStream" uid="uid://blxqceakc4v5f" path="res://sounds/sound4.wav" id="12_vckyb"]
+[ext_resource type="AudioStream" uid="uid://d22i7vpw117gi" path="res://sounds/sound16.wav" id="12_xltup"]
 [ext_resource type="AudioStream" uid="uid://bskrofaaw5ljm" path="res://sounds/hurt1.wav" id="13_k0e8l"]
 [ext_resource type="AudioStream" uid="uid://cs17wt67v7o5t" path="res://sounds/sound7.wav" id="14_hkjoa"]
-[ext_resource type="AudioStream" uid="uid://dyslten2k4o17" path="res://sounds/sound10_2.wav" id="15_y6ucj"]
+[ext_resource type="AudioStream" uid="uid://ose7g4dy8aip" path="res://sounds/flap.wav" id="15_idhrj"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_k2hgv"]
 radius = 3.0
@@ -127,7 +127,7 @@ omni_range = 4096.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.08716)
 
 [node name="roar" type="AudioStreamPlayer3D" parent="sounds/effects"]
-stream = ExtResource("12_vckyb")
+stream = ExtResource("12_xltup")
 doppler_tracking = 2
 script = ExtResource("4_w3msw")
 
@@ -171,7 +171,8 @@ distance_fade_length = 3319.9
 omni_range = 4096.0
 
 [node name="fly" type="AudioStreamPlayer3D" parent="sounds/effects"]
-stream = ExtResource("15_y6ucj")
+stream = ExtResource("15_idhrj")
+max_db = 6.0
 doppler_tracking = 2
 script = ExtResource("4_w3msw")
 
@@ -190,4 +191,4 @@ omni_range = 4096.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.40391)
 
 [node name="t_target" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -45.9532)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -64.0348)

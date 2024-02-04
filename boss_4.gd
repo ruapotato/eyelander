@@ -205,6 +205,9 @@ func _physics_process(delta):
 		if not animation_tree.get("parameters/fly/active"):
 			if animation_tree.get("parameters/w_attack/active"):
 				animation_tree.set("parameters/fly/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		if not fly_sound.playing:
+			print("flap 1")
+			fly_sound.play()
 	if action != "circle":
 		look_at(get_target())
 		if dist_to_player > 20:
@@ -215,6 +218,7 @@ func _physics_process(delta):
 			fire_counter -= delta
 		else:
 			animation_tree.set("parameters/w_attack/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+			roar1_sound.play()
 			w_attack_offset_counter = w_attack_offset
 			fire_counter = fire_rate
 			stage_counter += 1
@@ -238,9 +242,10 @@ func _physics_process(delta):
 				animation_tree.set("parameters/fly/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 			
 		if not fly_sound.playing:
-				fly_sound.play()
+			print("flap")
+			fly_sound.play()
 	
-	if action != "flying":
+	if action != "flying" and action != "circle":
 		if fly_sound.playing:
 				fly_sound.stop()
 	# Handle Jump.

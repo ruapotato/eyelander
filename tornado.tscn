@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://tornado.gd" id="1_vbx2r"]
 [ext_resource type="AudioStream" uid="uid://b6t6s702fb5mp" path="res://sounds/sound8.wav" id="2_mqnmu"]
 [ext_resource type="Script" path="res://Light_sounds.gd" id="3_0vsnd"]
-[ext_resource type="AudioStream" uid="uid://b4a4gbw1ns6d2" path="res://sounds/sound9.wav" id="4_tatxh"]
+[ext_resource type="AudioStream" uid="uid://dkl478mrufn5m" path="res://sounds/sound15.wav" id="4_nlq2b"]
 [ext_resource type="PackedScene" uid="uid://ddkt7k5rqabnj" path="res://tornado_effect.tscn" id="5_q13fc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vcmll"]
@@ -51,7 +51,7 @@ omni_range = 4096.0
 
 [node name="fly" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 1.05879e-22, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-stream = ExtResource("4_tatxh")
+stream = ExtResource("4_nlq2b")
 volume_db = 10.0
 max_db = 6.0
 autoplay = true
