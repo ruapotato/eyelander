@@ -50,7 +50,7 @@ offset_right = 731.0
 offset_bottom = 647.0
 scale = Vector2(3.88099, 2.72751)
 text = "Effects
-(Trun down if you computer is slow)"
+(Turn down if your computer is slow)"
 horizontal_alignment = 1
 
 [node name="CheckBox" type="CheckBox" parent="."]
