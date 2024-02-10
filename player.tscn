@@ -17,9 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://ds6l7nqmji1te" path="res://sounds/slam2.wav" id="15_fpfsr"]
 [ext_resource type="AudioStream" uid="uid://blxqceakc4v5f" path="res://sounds/sound4.wav" id="16_bp0si"]
 [ext_resource type="AudioStream" uid="uid://bskrofaaw5ljm" path="res://sounds/hurt1.wav" id="17_7o54j"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_m0rko"]
-radius = 0.4
+[ext_resource type="PackedScene" uid="uid://dq8l3picifoh" path="res://player_import.tscn" id="18_vlox2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bxwvh"]
 radius = 0.4
@@ -27,16 +25,14 @@ radius = 0.4
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_oeri7")
 
-[node name="mesh" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_m0rko")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_bxwvh")
 
 [node name="piv" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.699406, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69941, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="piv"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0993335, 0)
 spring_length = -0.1
 
 [node name="Camera3D" type="Camera3D" parent="piv/SpringArm3D"]
@@ -205,3 +201,5 @@ distance_fade_begin = 3101.66
 distance_fade_shadow = 3525.39
 distance_fade_length = 3319.9
 omni_range = 4096.0
+
+[node name="mesh" parent="." instance=ExtResource("18_vlox2")]

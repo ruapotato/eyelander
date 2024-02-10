@@ -19,6 +19,8 @@ var walk_sounds_timer = 0
 var walking_on = "dirt"
 var dead = false
 var wind = Vector3(0,0,0)
+var max_zoom = 4.75
+var min_zoom = -.25
 
 var mouse_sensitivity = .0035
 #var speed = 5
@@ -83,6 +85,17 @@ func _ready():
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
+	
+	
+	if Input.is_action_just_pressed("zoom_out"):
+		print(find_child("SpringArm3D").spring_length)
+		if max_zoom >= find_child("SpringArm3D").spring_length + .25:
+			find_child("SpringArm3D").spring_length += .25
+	
+	if Input.is_action_just_pressed("zoom_in"):
+		print(find_child("SpringArm3D").spring_length)
+		if min_zoom <= find_child("SpringArm3D").spring_length - .25:
+			find_child("SpringArm3D").spring_length -= .25
 	
 	#Controler controls
 	#if event is InputEventJoypadMotion:

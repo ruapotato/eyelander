@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dq8l3picifoh"]
+
+[ext_resource type="PackedScene" uid="uid://cwqomfsbuixc8" path="res://import/player.glb" id="1_j06kt"]
+[ext_resource type="Material" uid="uid://6csfmb05pmdq" path="res://native/lava.tres" id="2_yatk7"]
+
+[node name="player" instance=ExtResource("1_j06kt")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/1/rotation = Quaternion(0.679041, 0.0399269, -0.732693, -0.0216747)
+bones/2/rotation = Quaternion(-0.0453645, -0.01871, 0.169918, 0.984236)
+bones/3/rotation = Quaternion(0.0404636, 0.0951688, -0.73902, 0.665698)
+bones/4/rotation = Quaternion(0.693482, -0.0162529, 0.720291, -0.000556867)
+bones/6/rotation = Quaternion(0.0304714, -0.0686445, 0.723916, 0.685787)
+bones/10/rotation = Quaternion(0.0575534, -0.588819, -0.0197782, 0.80597)
+bones/13/rotation = Quaternion(0.04295, 0.586063, 0.049217, 0.807628)
+bones/20/rotation = Quaternion(-0.473088, 0.525536, 0.525536, -0.473088)
+
+[node name="Briska" parent="Armature/Skeleton3D" index="0"]
+surface_material_override/1 = ExtResource("2_yatk7")
