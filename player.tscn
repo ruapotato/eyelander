@@ -214,4 +214,4 @@ transform = Transform3D(0.838671, 0.544639, 0, -0.544639, 0.838671, 0, 0, 0, 1, 
 transform = Transform3D(-0.979074, -0.203505, 0, 0.203505, -0.979074, 0, 0, 0, 1, 0, 0.275191, -0.5)
 
 [node name="swipe_3" parent="mesh/swipes" instance=ExtResource("19_dql1x")]
-transform = Transform3D(0.0195114, -0.99981, 0, 0.99981, 0.0195114, 0, 0, 0, 1, 0, 0, -0.5)
+transform = Transform3D(0.0195114, -0.99981, 0, 0.99981, 0.0195114, 0, 0, 0, 1, 0.203015, 0, -0.5)

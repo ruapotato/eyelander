@@ -40,7 +40,7 @@ var SPEED = 5.0
 
 var level = 1
 var swipping = false
-var swipe_speed = .2
+var swipe_speed = .3
 var swipe_counter = 0
 var damage_todo = 0
 var start_life = 100
@@ -298,6 +298,11 @@ func _process(delta):
 	else:
 		camera.rotation_degrees = lerp(camera.rotation_degrees, og_camera_angle, .01)
 	
+	if swipping:
+		swipe_counter -= delta
+		if swipe_counter <= 0:
+			swipe_counter = 0
+			swipping = false
 	
 	if wind.length() > 0:
 		var randome_angle = Vector3(randf_range(-180,180),randf_range(-180,180),randf_range(-180,180))
@@ -350,22 +355,28 @@ func _process(delta):
 	var is_active = animation_tree.get(acton_name + "/active")
 	if Input.is_action_pressed("swipe"):
 		if not is_active:
-
-
+			#animation_tree.set(acton_name + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
 			acton_name = "parameters/swipe_" + str(swipe_stage)
 			animation_tree.set(acton_name + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+			#animation_tree.set("parameters/swipe_3/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+			print("Play " + str(swipe_stage))
+			swipe_counter = swipe_speed
 			#if not sword.find_child("swing").playing:
 			sword.find_child("swing").play()
 			if swipe_stage == 1:
 				swipe_1_effect.playing = true
+				#print("play1")
 			if swipe_stage == 2:
 				swipe_2_effect.playing = true
+				#print("play2")
 			if swipe_stage == 3:
 				swipe_3_effect.playing = true
+				#print("play3")
 			swipe_counter = swipe_speed
 			swipping = true
 			swipe_stage += 1
 			if swipe_stage > total_swipe_stages:
+				#print("reset")
 				swipe_stage = 1
 	else:
 		if not is_active:

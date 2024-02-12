@@ -7,5 +7,5 @@ func _process(delta):
 		visible = false
 	if playing:
 		$AnimationPlayer.play("swipping")
-		print(name)
+		#print(name)
 		visible = true
