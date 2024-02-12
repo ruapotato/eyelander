@@ -29,7 +29,7 @@ func start_game(made_trade):
 			new_game.queue_free()
 		new_game = game.instantiate()
 		new_game.hardness = hardness_menu.value/100
-		new_game.made_trade = made_trade
+		new_game.made_trade = true
 		self.hide()
 		add_child(new_game)
 		game_started = true

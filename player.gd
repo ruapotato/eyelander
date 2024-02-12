@@ -200,6 +200,9 @@ func _physics_process(delta):
 		var speed = SPEED
 		if shilding:
 			speed = SPEED / 2
+			var current_blend = animation_tree.get("parameters/shild/blend_amount")
+			var new_blend = lerp(current_blend,1.0, delta * 9)
+			animation_tree.set("parameters/shild/blend_amount", new_blend)
 		elif Input.is_action_pressed("sprint"):
 			speed = SPEED * 2
 		if direction and not Input.is_action_pressed("swipe"):
@@ -210,7 +213,10 @@ func _physics_process(delta):
 			new_speed.z = lerp(new_speed.z, 0.0, delta * 5)
 			#new_speed.x += move_toward(velocity.x, 0, SPEED)
 			#new_speed.z += move_toward(velocity.z, 0, SPEED)
-
+		if not shilding:
+			var current_blend = animation_tree.get("parameters/shild/blend_amount")
+			var new_blend = lerp(current_blend,0.0, delta * 9)
+			animation_tree.set("parameters/shild/blend_amount", new_blend)
 	"""
 	if shilding:
 		# Set shilding pos
@@ -343,6 +349,9 @@ func _process(delta):
 	collisionshape.rotation.y = mesh.rotation.y
 	
 	#set animations
+	if shilding:
+		animation_tree.set("parameters/shild_timescale/scale", velocity.length())
+	
 	animation_tree.set("parameters/stand_run/blend_position", velocity.length()/SPEED)
 	if velocity.length()/SPEED > 1:
 		animation_tree.set("parameters/run_timescale/scale", velocity.length()/SPEED)

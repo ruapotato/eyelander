@@ -36,10 +36,10 @@ shape = SubResource("CapsuleShape3D_bxwvh")
 transform = Transform3D(0.838671, 0.544639, 0, -0.544639, 0.838671, 0, 0, 0, 1, 0, 0, -0.5)
 
 [node name="swipe_2" parent="CollisionShape3D/swipes" instance=ExtResource("19_dql1x")]
-transform = Transform3D(-0.979074, -0.203505, 0, 0.203505, -0.979074, 0, 0, 0, 1, 0, 0.275191, -0.5)
+transform = Transform3D(-0.947674, -0.31924, 0, 0.31924, -0.947674, 0, 0, 0, 1, 0, 0.554372, -0.5)
 
 [node name="swipe_3" parent="CollisionShape3D/swipes" instance=ExtResource("19_dql1x")]
-transform = Transform3D(0.0195114, -0.99981, 0, 0.99981, 0.0195114, 0, 0, 0, 1, 0.203015, 0, -0.5)
+transform = Transform3D(0.0195114, -0.99981, 0, 0.99981, 0.0195114, 0, 0, 0, 1, 0.258513, 0.256048, -0.783183)
 
 [node name="piv" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69941, 0)

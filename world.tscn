@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://djl75nao1pxlp"]
+[gd_scene load_steps=18 format=3 uid="uid://djl75nao1pxlp"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_1w3vy"]
 [ext_resource type="PackedScene" uid="uid://hj5galx0bqtw" path="res://player.tscn" id="1_ljbio"]
+[ext_resource type="Texture2D" uid="uid://c5qho4tsgog8n" path="res://import/CC_BY_4_Jockum Skoglund (hipshot).png" id="2_ypap7"]
 [ext_resource type="PackedScene" uid="uid://cn17hvepftift" path="res://boss_2.tscn" id="4_djhoh"]
 [ext_resource type="PackedScene" uid="uid://b40u0bwvnhur2" path="res://level_1.tscn" id="4_p0yyn"]
 [ext_resource type="PackedScene" uid="uid://r3nb3djoacxm" path="res://boss_1.tscn" id="5_tcqem"]
@@ -14,22 +15,32 @@
 [ext_resource type="AudioStream" uid="uid://c17bx6jkxigyk" path="res://import/CC BY Mystery Mammal/Mystery Mammal - Boss Battle.wav" id="12_eeiv8"]
 [ext_resource type="PackedScene" uid="uid://ctien203wfhd" path="res://boss_4.tscn" id="13_m8com"]
 
-[sub_resource type="Environment" id="Environment_p3iqh"]
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_wk74a"]
+panorama = ExtResource("2_ypap7")
+
+[sub_resource type="Sky" id="Sky_vhrdr"]
+sky_material = SubResource("PanoramaSkyMaterial_wk74a")
+
+[sub_resource type="Environment" id="Environment_ux4ke"]
 background_mode = 2
-fog_enabled = true
-fog_light_color = Color(0.380392, 0, 0.00392157, 1)
-fog_light_energy = 0.0
-fog_density = 0.08
-volumetric_fog_density = 0.3852
-volumetric_fog_albedo = Color(0, 0, 0, 1)
-volumetric_fog_emission_energy = 0.0
-volumetric_fog_length = 107.12
+background_color = Color(0.54902, 0.54902, 0.54902, 1)
+background_canvas_max_layer = 1
+sky = SubResource("Sky_vhrdr")
+ambient_light_color = Color(0, 0.203922, 0, 1)
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
+volumetric_fog_albedo = Color(0.556863, 0.556863, 0.556863, 1)
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_1w3vy")
 
+[node name="sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 6.02107, 0)
+light_color = Color(0, 0, 0.984314, 1)
+light_energy = 0.0
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_p3iqh")
+environment = SubResource("Environment_ux4ke")
 
 [node name="player" parent="." instance=ExtResource("1_ljbio")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28402, 9.81731)
@@ -91,11 +102,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -91.6876, -13.7787)
 [node name="music" parent="." instance=ExtResource("11_v52dv")]
 stream = ExtResource("12_eeiv8")
 volume_db = 0.0
-
-[node name="sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 8.68208, 0)
-light_color = Color(1, 1, 0.827451, 1)
-light_energy = 0.0
 
 [node name="boss_4" parent="." instance=ExtResource("13_m8com")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.5561, 0)

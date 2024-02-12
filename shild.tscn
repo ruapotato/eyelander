@@ -7,14 +7,14 @@
 [ext_resource type="AudioStream" uid="uid://b6t6s702fb5mp" path="res://sounds/sound8.wav" id="5_umm4n"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_744lb"]
-size = Vector3(1, 1.595, 0.345)
+size = Vector3(1.295, 0.19, 0.655)
 
 [node name="shild" type="RigidBody3D"]
 gravity_scale = 0.0
 script = ExtResource("1_lk3q2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.065, -0.0542255)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.233178, 0.065, -0.0143387)
 shape = SubResource("BoxShape3D_744lb")
 
 [node name="mesh" parent="." instance=ExtResource("1_2fpaf")]
@@ -33,7 +33,7 @@ light_size = 1.0
 omni_range = 4096.0
 
 [node name="hit" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.156918, -0.747707)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.156918, -0.0567352)
 stream = ExtResource("5_umm4n")
 volume_db = 10.0
 max_db = 6.0

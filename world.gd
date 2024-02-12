@@ -24,7 +24,7 @@ var norm_sound_light_data = []
 var hard_sound_light_data = []
 var repeat = true
 var hardness = 1
-var made_trade = true
+var made_trade
 var lava_level = 0
 var inverce_light_power = 300.0
 var normal_music = preload("res://import/CC BY Mystery Mammal/Mystery Mammal - Boss Battle.wav")
@@ -119,9 +119,6 @@ func _ready():
 	sound_light_data = norm_sound_light_data
 
 	
-	
-	
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if not player or not player.level:
@@ -158,12 +155,12 @@ func _process(delta):
 		inverce_light_power = 900.0
 		$music.volume_db = 0
 	#Update lighting
-	if not made_trade:
-		if $WorldEnvironment:
-			$WorldEnvironment.environment.fog_enabled = false
-		if $sun:
-			$sun.light_energy = .3
-	if made_trade:
+	#if not made_trade:
+	#	if $WorldEnvironment:
+	#		$WorldEnvironment.environment.fog_enabled = false
+	#	if $sun:
+	#		$sun.light_energy = .3
+	if false:
 		if not music:
 			return
 		#print(get_playback_position())
