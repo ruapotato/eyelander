@@ -2,6 +2,8 @@ extends Area3D
 
 @onready var swing_sound = $swing
 @onready var hit_sound = $hit
+@onready var r_hand_bone
+@onready var player = get_parent()
 
 var init_pos
 var init_rot
@@ -38,7 +40,11 @@ func _integrate_forces(state):
 			#position = init_pos
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if player.right_hand_bone:
+		global_position = player.right_hand_bone.global_position
+		global_rotation = player.right_hand_bone.global_rotation
+		#print(player.right_hand_bone)
+
 		
 func get_target():
 	return(get_parent().get_parent().find_child("boss_1").global_position + Vector3(0,.5,0))

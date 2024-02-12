@@ -9,11 +9,20 @@ extends CharacterBody3D
 @onready var gui = $GUI
 @onready var hurt_sund = $hurt
 @onready var dirt_sounds = $sounds/walking_dirt
+@onready var collisionshape = $CollisionShape3D
 @onready var boss = get_parent().find_child("boss_1")
 @onready var boss_2 = get_parent().find_child("boss_2")
 @onready var boss_3 = get_parent().find_child("boss_3")
 @onready var game_over_screen = preload("res://game_over.tscn")
 @onready var root = get_parent().get_parent()
+@onready var animation_tree = get_node("mesh/AnimationTree")
+@onready var right_hand_bone = get_node("mesh/Armature/Skeleton3D/right_hand")
+@onready var swipe_1_effect = $mesh/swipes/swipe_1
+@onready var swipe_2_effect = $mesh/swipes/swipe_2
+@onready var swipe_3_effect = $mesh/swipes/swipe_3
+
+var total_swipe_stages = 3
+var swipe_stage = 1
 var walk_sound_every = 0
 var walk_sounds_timer = 0
 var walking_on = "dirt"
@@ -39,7 +48,7 @@ var life_gen = .5
 var boss_life = 0
 #var swipe_start_angle = 180
 #var swipe_end_angle = 30
-var swipe_stage = 1
+
 
 var sword_hold_angle = 123
 var sword_center_angle = 180
@@ -60,7 +69,7 @@ var walk_shake = 0
 var has_won = false
 var effects_effector
 var use_controler = false
-
+var acton_name
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	og_camera_angle = camera.rotation_degrees
@@ -68,7 +77,7 @@ func _ready():
 	life_gen = life_gen / get_parent().hardness
 	life = start_life
 	
-	
+	acton_name = "parameters/swipe_" + str(swipe_stage)
 	#Setup mouse settins
 	if root.mouse_sensitivity_effector > 0:
 		for i in range(0, int(root.mouse_sensitivity_effector)):
@@ -79,7 +88,7 @@ func _ready():
 	
 	#Setup effects
 	effects_effector = root.effects_effector
-	print(effects_effector)
+	#print(effects_effector)
 
 
 func _unhandled_input(event):
@@ -88,12 +97,12 @@ func _unhandled_input(event):
 	
 	
 	if Input.is_action_just_pressed("zoom_out"):
-		print(find_child("SpringArm3D").spring_length)
+		#print(find_child("SpringArm3D").spring_length)
 		if max_zoom >= find_child("SpringArm3D").spring_length + .25:
 			find_child("SpringArm3D").spring_length += .25
 	
 	if Input.is_action_just_pressed("zoom_in"):
-		print(find_child("SpringArm3D").spring_length)
+		#print(find_child("SpringArm3D").spring_length)
 		if min_zoom <= find_child("SpringArm3D").spring_length - .25:
 			find_child("SpringArm3D").spring_length -= .25
 	
@@ -114,17 +123,8 @@ func _unhandled_input(event):
 		spring_arm.rotation.x = clamp(spring_arm.rotation.x, -PI/2, PI/2)
 		piv.rotate_y(event.relative.x * -mouse_sensitivity)
 		
-	if Input.is_action_just_pressed("swipe"):
-		swipping = true
-		swipe_counter = swipe_speed
-		swipe_stage += 1
-		if swipe_stage > len(swipe_angles):
-			swipe_stage = 1
-
 		
-		if not shilding:
-			if not sword.find_child("swing").playing:
-				sword.find_child("swing").play()
+
 	if Input.is_action_just_released("swipe"):
 		#swipe_stage = 1
 		if sword.find_child("swing").playing:
@@ -201,16 +201,16 @@ func _physics_process(delta):
 			speed = SPEED / 2
 		elif Input.is_action_pressed("sprint"):
 			speed = SPEED * 2
-		if direction:
-			new_speed.x = lerp(new_speed.x, direction.x * speed, .2)
-			new_speed.z = lerp(new_speed.z, direction.z * speed, .2)
+		if direction and not Input.is_action_pressed("swipe"):
+			new_speed.x = lerp(new_speed.x, direction.x * speed, delta * 8)
+			new_speed.z = lerp(new_speed.z, direction.z * speed, delta * 8)
 		else:
-			new_speed.x = lerp(new_speed.x, 0.0, .2)
-			new_speed.z = lerp(new_speed.z, 0.0, .2)
+			new_speed.x = lerp(new_speed.x, 0.0, delta * 5)
+			new_speed.z = lerp(new_speed.z, 0.0, delta * 5)
 			#new_speed.x += move_toward(velocity.x, 0, SPEED)
 			#new_speed.z += move_toward(velocity.z, 0, SPEED)
 
-	
+	"""
 	if shilding:
 		# Set shilding pos
 		shild.rotation_degrees.y = lerp(shild.rotation_degrees.y, shilding_angle + piv.rotation_degrees.y, .2)
@@ -220,8 +220,8 @@ func _physics_process(delta):
 		sword.rotation_degrees.y = piv.rotation_degrees.y - 100
 	if not shilding:
 		shild.rotation_degrees.y = shild_hold_angle + piv.rotation_degrees.y
-	
-	
+	"""
+	"""
 	var swipe_done = swipe_stage > len(swipe_angles)
 	if swipe_done and sword.find_child("swing").playing:
 		sword.find_child("swing").stop()
@@ -263,6 +263,7 @@ func _physics_process(delta):
 		sword.rotation.x = 0
 		
 		#print(sword.rotation.y)
+	"""
 	velocity = new_speed
 	move_and_slide()
 		
@@ -331,9 +332,48 @@ func _process(delta):
 			get_parent().add_child(RIP)
 			dead = true
 	
+	#Rotate player
+	mesh.rotation.y = lerp_angle(mesh.rotation.y, atan2(-velocity.x, -velocity.z), delta * 5)
+	collisionshape.rotation.y = mesh.rotation.y
+	
+	#set animations
+	animation_tree.set("parameters/stand_run/blend_position", velocity.length()/SPEED)
+	if velocity.length()/SPEED > 1:
+		animation_tree.set("parameters/run_timescale/scale", velocity.length()/SPEED)
+		print(velocity.length()/SPEED)
+	else:
+		animation_tree.set("parameters/run_timescale/scale", 1)
+	
+	
+	#Controls
+	var is_active = animation_tree.get(acton_name + "/active")
+	if Input.is_action_pressed("swipe"):
+		if not is_active:
+
+
+			acton_name = "parameters/swipe_" + str(swipe_stage)
+			animation_tree.set(acton_name + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+			#if not sword.find_child("swing").playing:
+			sword.find_child("swing").play()
+			if swipe_stage == 1:
+				swipe_1_effect.playing = true
+			if swipe_stage == 2:
+				swipe_2_effect.playing = true
+			if swipe_stage == 3:
+				swipe_3_effect.playing = true
+			swipe_counter = swipe_speed
+			swipping = true
+			swipe_stage += 1
+			if swipe_stage > total_swipe_stages:
+				swipe_stage = 1
+	else:
+		if not is_active:
+			swipe_stage = 1
+	
+	
 	if use_controler:
 		#Controler 2nd part
-		print(Input.get_joy_axis(0,2))
+		#print(Input.get_joy_axis(0,2))
 		piv.rotate_y(Input.get_joy_axis(0,2) * -mouse_sensitivity * delta * 1000)
 		spring_arm.rotation.x =  lerp(spring_arm.rotation.x , (PI/2) * -Input.get_joy_axis(0,3), mouse_sensitivity * delta * 1000)
 

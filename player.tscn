@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://hj5galx0bqtw"]
+[gd_scene load_steps=21 format=3 uid="uid://hj5galx0bqtw"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_oeri7"]
 [ext_resource type="PackedScene" uid="uid://dovic5nx1uejg" path="res://sword.tscn" id="2_n5who"]
@@ -18,14 +18,16 @@
 [ext_resource type="AudioStream" uid="uid://blxqceakc4v5f" path="res://sounds/sound4.wav" id="16_bp0si"]
 [ext_resource type="AudioStream" uid="uid://bskrofaaw5ljm" path="res://sounds/hurt1.wav" id="17_7o54j"]
 [ext_resource type="PackedScene" uid="uid://dq8l3picifoh" path="res://player_import.tscn" id="18_vlox2"]
+[ext_resource type="PackedScene" uid="uid://ddlttjqiym5d7" path="res://swipe_effect.tscn" id="19_dql1x"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bxwvh"]
-radius = 0.4
+radius = 0.3
 
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_oeri7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7964, 0)
 shape = SubResource("CapsuleShape3D_bxwvh")
 
 [node name="piv" type="Node3D" parent="."]
@@ -33,7 +35,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69941, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="piv"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0993335, 0)
-spring_length = -0.1
 
 [node name="Camera3D" type="Camera3D" parent="piv/SpringArm3D"]
 current = true
@@ -203,3 +204,15 @@ distance_fade_length = 3319.9
 omni_range = 4096.0
 
 [node name="mesh" parent="." instance=ExtResource("18_vlox2")]
+
+[node name="swipes" type="Node3D" parent="mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="swipe_1" parent="mesh/swipes" instance=ExtResource("19_dql1x")]
+transform = Transform3D(0.838671, 0.544639, 0, -0.544639, 0.838671, 0, 0, 0, 1, 0, 0, -0.5)
+
+[node name="swipe_2" parent="mesh/swipes" instance=ExtResource("19_dql1x")]
+transform = Transform3D(-0.979074, -0.203505, 0, 0.203505, -0.979074, 0, 0, 0, 1, 0, 0.275191, -0.5)
+
+[node name="swipe_3" parent="mesh/swipes" instance=ExtResource("19_dql1x")]
+transform = Transform3D(0.0195114, -0.99981, 0, 0.99981, 0.0195114, 0, 0, 0, 1, 0, 0, -0.5)

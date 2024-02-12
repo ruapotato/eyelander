@@ -1,19 +1,131 @@
-[gd_scene load_steps=3 format=3 uid="uid://dq8l3picifoh"]
+[gd_scene load_steps=18 format=3 uid="uid://dq8l3picifoh"]
 
 [ext_resource type="PackedScene" uid="uid://cwqomfsbuixc8" path="res://import/player.glb" id="1_j06kt"]
 [ext_resource type="Material" uid="uid://6csfmb05pmdq" path="res://native/lava.tres" id="2_yatk7"]
 
-[node name="player" instance=ExtResource("1_j06kt")]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d7giy"]
+animation = &"swipe_2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7lpbt"]
+animation = &"swipe_3"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v1vh2"]
+animation = &"swipe_1"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_5yng5"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_38lua"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_gibyi"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_vd5ob"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nb1d8"]
+animation = &"default"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0ae5l"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u7m2h"]
+animation = &"idel"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_s1sd5"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_nb1d8")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_0ae5l")
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_u7m2h")
+blend_point_2/pos = 0.0
+min_space = 0.0
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_r5g3f"]
+fadein_time = 0.07
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_bbjb6"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_22f10"]
+fadeout_time = 0.07
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_a6a74"]
+graph_offset = Vector2(-123.311, 132.455)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_v1vh2")
+nodes/Animation/position = Vector2(340, 500)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_d7giy")
+"nodes/Animation 2/position" = Vector2(480, 500)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_7lpbt")
+"nodes/Animation 3/position" = Vector2(640, 500)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_gibyi")
+nodes/TimeScale/position = Vector2(340, 380)
+"nodes/TimeScale 2/node" = SubResource("AnimationNodeTimeScale_5yng5")
+"nodes/TimeScale 2/position" = Vector2(480, 380)
+"nodes/TimeScale 3/node" = SubResource("AnimationNodeTimeScale_38lua")
+"nodes/TimeScale 3/position" = Vector2(660, 380)
+nodes/output/position = Vector2(940, 180)
+nodes/run_timescale/node = SubResource("AnimationNodeTimeScale_vd5ob")
+nodes/run_timescale/position = Vector2(60, 140)
+nodes/stand_run/node = SubResource("AnimationNodeBlendSpace1D_s1sd5")
+nodes/stand_run/position = Vector2(-320, 120)
+nodes/swipe_1/node = SubResource("AnimationNodeOneShot_r5g3f")
+nodes/swipe_1/position = Vector2(340, 180)
+nodes/swipe_2/node = SubResource("AnimationNodeOneShot_bbjb6")
+nodes/swipe_2/position = Vector2(480, 180)
+nodes/swipe_3/node = SubResource("AnimationNodeOneShot_22f10")
+nodes/swipe_3/position = Vector2(660, 180)
+node_connections = [&"output", 0, &"swipe_3", &"TimeScale", 0, &"Animation", &"TimeScale 2", 0, &"Animation 2", &"TimeScale 3", 0, &"Animation 3", &"run_timescale", 0, &"stand_run", &"swipe_1", 0, &"run_timescale", &"swipe_1", 1, &"TimeScale", &"swipe_2", 0, &"swipe_1", &"swipe_2", 1, &"TimeScale 2", &"swipe_3", 0, &"swipe_2", &"swipe_3", 1, &"TimeScale 3"]
+
+[node name="player2" instance=ExtResource("1_j06kt")]
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/1/rotation = Quaternion(0.679041, 0.0399269, -0.732693, -0.0216747)
-bones/2/rotation = Quaternion(-0.0453645, -0.01871, 0.169918, 0.984236)
-bones/3/rotation = Quaternion(0.0404636, 0.0951688, -0.73902, 0.665698)
-bones/4/rotation = Quaternion(0.693482, -0.0162529, 0.720291, -0.000556867)
-bones/6/rotation = Quaternion(0.0304714, -0.0686445, 0.723916, 0.685787)
-bones/10/rotation = Quaternion(0.0575534, -0.588819, -0.0197782, 0.80597)
-bones/13/rotation = Quaternion(0.04295, 0.586063, 0.049217, 0.807628)
-bones/20/rotation = Quaternion(-0.473088, 0.525536, 0.525536, -0.473088)
+bones/0/position = Vector3(-0.0513273, -0.0958367, -0.047281)
+bones/0/rotation = Quaternion(0.018487, 0.00153879, 0.00701086, 0.999803)
+bones/1/rotation = Quaternion(0.71175, 0.0842734, -0.69551, -0.0507618)
+bones/2/rotation = Quaternion(-0.0624427, -0.0185835, 0.249789, 0.966106)
+bones/3/rotation = Quaternion(0.199575, -0.0575752, -0.746856, 0.631713)
+bones/4/rotation = Quaternion(0.660355, -0.028415, 0.746437, -0.077178)
+bones/5/rotation = Quaternion(-0.0567988, 0.019969, -0.226555, 0.972136)
+bones/6/rotation = Quaternion(0.101098, 0.0291273, 0.748013, 0.655292)
+bones/8/position = Vector3(-0.332665, -0.0559132, 0.028407)
+bones/8/rotation = Quaternion(0.693098, -0.172651, -0.69202, 0.104475)
+bones/9/rotation = Quaternion(0.0317642, 0.000816931, -0.154287, 0.987515)
+bones/10/rotation = Quaternion(0.0575533, -0.588819, -0.0197782, 0.80597)
+bones/11/position = Vector3(0.319741, -0.0866214, 0.0345762)
+bones/11/rotation = Quaternion(0.697326, 0.123696, 0.694744, 0.125566)
+bones/12/rotation = Quaternion(0.0601445, 0.00424713, 0.0564096, 0.996585)
+bones/14/rotation = Quaternion(-0.0138425, -0.00869882, -0.0426955, 0.998954)
+bones/15/rotation = Quaternion(0.02393, -0.0238881, -0.258016, 0.965549)
+bones/16/rotation = Quaternion(-0.629776, -0.101217, -0.0596769, 0.767839)
+bones/17/rotation = Quaternion(0.0194532, 0.0295569, 0.212006, 0.976627)
+bones/18/rotation = Quaternion(-0.613203, 0.120253, 0.115494, 0.772129)
+bones/19/position = Vector3(-0.186629, -0.618241, -0.432871)
+bones/20/position = Vector3(-0.068887, -1.573, 0.052553)
+bones/20/rotation = Quaternion(-0.552477, 0.595667, 0.441327, -0.381027)
+bones/21/position = Vector3(0.186629, -0.618241, -0.432871)
+bones/22/position = Vector3(0.122766, -1.59024, 0.0526885)
+bones/22/rotation = Quaternion(0.552477, 0.595667, 0.441327, 0.381027)
 
 [node name="Briska" parent="Armature/Skeleton3D" index="0"]
 surface_material_override/1 = ExtResource("2_yatk7")
+
+[node name="right_hand" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
+transform = Transform3D(0.000707304, 0.0231, 0.999732, 0.0354613, -0.999104, 0.0230603, 0.99937, 0.0354355, -0.00152553, 0.373505, -0.114176, 0.0193231)
+bone_name = "hand.r"
+bone_idx = 13
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeBlendTree_a6a74")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/TimeScale/scale = 3.3
+"parameters/TimeScale 2/scale" = 3.3
+"parameters/TimeScale 3/scale" = 3.3
+parameters/run_timescale/scale = 1.0
+parameters/stand_run/blend_position = 0.0
+parameters/swipe_1/active = false
+parameters/swipe_1/internal_active = false
+parameters/swipe_1/request = 0
+parameters/swipe_2/active = false
+parameters/swipe_2/internal_active = false
+parameters/swipe_2/request = 0
+parameters/swipe_3/active = false
+parameters/swipe_3/internal_active = false
+parameters/swipe_3/request = 0
