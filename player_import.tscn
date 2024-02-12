@@ -76,26 +76,26 @@ node_connections = [&"output", 0, &"swipe_3", &"TimeScale", 0, &"Animation", &"T
 [node name="player2" instance=ExtResource("1_j06kt")]
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/position = Vector3(-0.0513406, -0.10583, -0.0471588)
+bones/0/position = Vector3(-0.0513585, -0.119357, -0.0469933)
 bones/0/rotation = Quaternion(0.018487, 0.00153879, 0.00701086, 0.999803)
-bones/1/rotation = Quaternion(0.71091, 0.0928137, -0.6942, -0.0638644)
-bones/2/rotation = Quaternion(-0.0685404, -0.0184479, 0.274182, 0.959055)
-bones/3/rotation = Quaternion(0.201511, -0.058552, -0.753114, 0.623526)
-bones/4/rotation = Quaternion(0.659485, -0.0359294, 0.74514, -0.0924891)
-bones/5/rotation = Quaternion(-0.0635499, 0.0198234, -0.253484, 0.965046)
-bones/6/rotation = Quaternion(0.102445, 0.0284045, 0.755403, 0.646579)
-bones/8/position = Vector3(-0.332465, -0.0521817, 0.0272893)
-bones/8/rotation = Quaternion(0.690786, -0.188554, -0.688996, 0.112011)
-bones/9/rotation = Quaternion(-0.0206963, -0.0109432, -0.12989, 0.991252)
+bones/1/rotation = Quaternion(0.70972, 0.103426, -0.692256, -0.0798892)
+bones/2/rotation = Quaternion(-0.075974, -0.0182639, 0.303919, 0.949488)
+bones/3/rotation = Quaternion(0.203999, -0.0598793, -0.760648, 0.613362)
+bones/4/rotation = Quaternion(0.658186, -0.0449878, 0.743276, -0.110944)
+bones/5/rotation = Quaternion(-0.0716258, 0.0196261, -0.285696, 0.955438)
+bones/6/rotation = Quaternion(0.104048, 0.0275401, 0.764175, 0.635965)
+bones/8/position = Vector3(-0.332298, -0.0490432, 0.0263493)
+bones/8/rotation = Quaternion(0.688594, -0.202333, -0.686184, 0.118533)
+bones/9/rotation = Quaternion(-0.029059, -0.0148145, -0.154377, 0.987473)
 bones/10/rotation = Quaternion(0.226757, -0.649015, -0.694394, 0.212553)
-bones/11/position = Vector3(0.319485, -0.0903595, 0.0356618)
-bones/11/rotation = Quaternion(0.695227, 0.128068, 0.692792, 0.142468)
-bones/12/rotation = Quaternion(0.0490095, 0.00854425, 0.0833609, 0.995277)
+bones/11/position = Vector3(0.319298, -0.0935003, 0.0365912)
+bones/11/rotation = Quaternion(0.69325, 0.134613, 0.690531, 0.15637)
+bones/12/rotation = Quaternion(0.0575989, 0.011823, 0.10798, 0.992413)
 bones/14/rotation = Quaternion(-0.0138425, -0.00869882, -0.0426955, 0.998954)
-bones/15/rotation = Quaternion(0.0261062, -0.0260322, -0.264362, 0.963719)
-bones/16/rotation = Quaternion(-0.625191, -0.0902529, -0.0452985, 0.773911)
-bones/17/rotation = Quaternion(0.0172434, 0.0343561, 0.222273, 0.974226)
-bones/18/rotation = Quaternion(-0.587252, 0.118077, 0.135952, 0.789119)
+bones/15/rotation = Quaternion(0.0290493, -0.028932, -0.272929, 0.96116)
+bones/16/rotation = Quaternion(-0.618607, -0.0753655, -0.02582, 0.781651)
+bones/17/rotation = Quaternion(0.0142492, 0.0408433, 0.236117, 0.970761)
+bones/18/rotation = Quaternion(-0.55091, 0.114878, 0.163286, 0.810333)
 bones/19/position = Vector3(-0.186629, -0.618241, -0.432871)
 bones/20/position = Vector3(-0.068887, -1.573, 0.052553)
 bones/20/rotation = Quaternion(-0.552477, 0.595667, 0.441327, -0.381027)
@@ -107,12 +107,12 @@ bones/22/rotation = Quaternion(0.552477, 0.595667, 0.441327, 0.381027)
 surface_material_override/1 = ExtResource("2_yatk7")
 
 [node name="right_hand" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.0122, 0.201406, 0.979431, 0.0179409, -0.979303, 0.201603, 0.999764, 0.0200314, 0.00833418, 0.348557, -0.262031, 0.0245241)
+transform = Transform3D(-0.0145927, 0.208513, 0.97791, -0.00237113, -0.978019, 0.208501, 0.99989, 0.000723792, 0.0147662, 0.347635, -0.275268, 0.0282454)
 bone_name = "hand.r"
 bone_idx = 13
 
 [node name="left_hand" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="2"]
-transform = Transform3D(0.0749017, -0.995046, -0.0653447, 0.493297, 0.0939223, -0.864775, 0.86663, 0.0325388, 0.497888, -0.454111, -0.232243, -0.000475623)
+transform = Transform3D(0.0773549, -0.995332, -0.0576958, 0.475789, 0.0877079, -0.875175, 0.876151, 0.0402481, 0.480352, -0.455692, -0.237904, -0.000666335)
 bone_name = "hand.l"
 bone_idx = 10
 
