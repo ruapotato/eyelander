@@ -17,6 +17,7 @@ extends CharacterBody3D
 @onready var root = get_parent().get_parent()
 @onready var animation_tree = get_node("mesh/AnimationTree")
 @onready var right_hand_bone = get_node("mesh/Armature/Skeleton3D/right_hand")
+@onready var left_hand_bone = get_node("mesh/Armature/Skeleton3D/left_hand")
 @onready var swipe_1_effect = $mesh/swipes/swipe_1
 @onready var swipe_2_effect = $mesh/swipes/swipe_2
 @onready var swipe_3_effect = $mesh/swipes/swipe_3

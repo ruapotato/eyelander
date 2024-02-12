@@ -206,7 +206,6 @@ omni_range = 4096.0
 [node name="mesh" parent="." instance=ExtResource("18_vlox2")]
 
 [node name="swipes" type="Node3D" parent="mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="swipe_1" parent="mesh/swipes" instance=ExtResource("19_dql1x")]
 transform = Transform3D(0.838671, 0.544639, 0, -0.544639, 0.838671, 0, 0, 0, 1, 0, 0, -0.5)

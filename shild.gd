@@ -1,5 +1,5 @@
 extends RigidBody3D
-
+@onready var player = get_parent()
 var init_pos
 var init_rot
 # Called when the node enters the scene tree for the first time.
@@ -18,4 +18,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if player.left_hand_bone:
+		global_position = player.left_hand_bone.global_position
+		global_rotation = player.left_hand_bone.global_rotation
