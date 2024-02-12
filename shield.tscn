@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsnalbd7u0d68"]
+
+[ext_resource type="Script" path="res://shield.gd" id="1_dejry"]
+[ext_resource type="AudioStream" uid="uid://cf1t4d2fdascp" path="res://sounds/sound6.wav" id="3_8743w"]
+[ext_resource type="PackedScene" uid="uid://bgi4n76rxj178" path="res://shield_import.tscn" id="4_7n762"]
+[ext_resource type="AudioStream" uid="uid://b6t6s702fb5mp" path="res://sounds/sound8.wav" id="5_i7drk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_744lb"]
+size = Vector3(1.295, 0.19, 0.655)
+
+[node name="shild" type="RigidBody3D"]
+gravity_scale = 0.0
+script = ExtResource("1_dejry")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.233178, 0.065, -0.0143387)
+shape = SubResource("BoxShape3D_744lb")
+
+[node name="hit_sound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_8743w")
+doppler_tracking = 2
+
+[node name="hit" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.156918, -0.0567352)
+stream = ExtResource("5_i7drk")
+volume_db = 10.0
+max_db = 6.0
+doppler_tracking = 2
+
+[node name="mesh" parent="." instance=ExtResource("4_7n762")]

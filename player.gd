@@ -4,7 +4,7 @@ extends CharacterBody3D
 @onready var piv = $piv
 @onready var mesh = $mesh
 @onready var sword = $sword
-@onready var shild = $shild
+@onready var shield = $shield
 @onready var camera = $piv/SpringArm3D/Camera3D
 @onready var gui = $GUI
 @onready var hurt_sund = $hurt
@@ -35,7 +35,7 @@ var min_zoom = -.25
 var mouse_sensitivity = .0035
 #var speed = 5
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-var JUMP_VELOCITY = 15
+var JUMP_VELOCITY = 8
 var SPEED = 5.0
 
 var level = 1
@@ -58,9 +58,9 @@ var swipe_angles = {1: [sword_hold_angle, sword_far_left_angle],
 					2: [sword_far_left_angle,sword_hold_angle]}
 #					3: [sword_hold_angle, sword_far_left_angle]}
 
-var shilding = false
-var shild_hold_angle = 90
-var shilding_angle = 0
+var shielding = false
+var shield_hold_angle = 90
+var shielding_angle = 0
 var knockback = Vector3(0,0,0)
 var dazzed = 0
 var new_speed = Vector3(0,0,0)
@@ -71,6 +71,11 @@ var has_won = false
 var effects_effector
 var use_controler = false
 var acton_name
+var mid_jump_swipe = false
+var jump_swipe_added = false
+var jump_swipe_dir = Vector3(0,.4,-1)
+var jump_swipe_speed = 15
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	og_camera_angle = camera.rotation_degrees
@@ -131,13 +136,13 @@ func _unhandled_input(event):
 		if sword.find_child("swing").playing:
 			sword.find_child("swing").stop()
 	
-	if Input.is_action_just_pressed("shild"):
-		shilding = true
+	if Input.is_action_just_pressed("shield"):
+		shielding = true
 		if sword.find_child("swing").playing:
 			sword.find_child("swing").stop()
 			swipping = false
-	if Input.is_action_just_released("shild"):
-		shilding = false
+	if Input.is_action_just_released("shield"):
+		shielding = false
 		if Input.is_action_pressed("swipe"):
 			sword.find_child("swing").play()
 	
@@ -183,7 +188,19 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		new_speed.y += JUMP_VELOCITY
 		#swipe_stage = 1
-
+	
+	# Jump swipe
+	if mid_jump_swipe:
+		if not animation_tree.get("parameters/jump_swipe/active"):
+			mid_jump_swipe = false
+			swipe_stage = 1
+		if not jump_swipe_added:
+			jump_swipe_added = true
+			var jump_direction = (mesh.transform.basis * jump_swipe_dir).normalized() 
+			#var direction = (piv.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+			new_speed += jump_direction * jump_swipe_speed
+		
+	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	if dazzed == 0:
@@ -198,11 +215,11 @@ func _physics_process(delta):
 		var input_dir = Input.get_vector("left", "right", "forward", "backward")
 		var direction = (piv.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		var speed = SPEED
-		if shilding:
+		if shielding and not mid_jump_swipe:
 			speed = SPEED / 2
-			var current_blend = animation_tree.get("parameters/shild/blend_amount")
+			var current_blend = animation_tree.get("parameters/shield/blend_amount")
 			var new_blend = lerp(current_blend,1.0, delta * 9)
-			animation_tree.set("parameters/shild/blend_amount", new_blend)
+			animation_tree.set("parameters/shield/blend_amount", new_blend)
 		elif Input.is_action_pressed("sprint"):
 			speed = SPEED * 2
 		if direction and not Input.is_action_pressed("swipe"):
@@ -213,26 +230,26 @@ func _physics_process(delta):
 			new_speed.z = lerp(new_speed.z, 0.0, delta * 5)
 			#new_speed.x += move_toward(velocity.x, 0, SPEED)
 			#new_speed.z += move_toward(velocity.z, 0, SPEED)
-		if not shilding:
-			var current_blend = animation_tree.get("parameters/shild/blend_amount")
+		if not shielding or mid_jump_swipe:
+			var current_blend = animation_tree.get("parameters/shield/blend_amount")
 			var new_blend = lerp(current_blend,0.0, delta * 9)
-			animation_tree.set("parameters/shild/blend_amount", new_blend)
-	"""
-	if shilding:
-		# Set shilding pos
-		shild.rotation_degrees.y = lerp(shild.rotation_degrees.y, shilding_angle + piv.rotation_degrees.y, .2)
+			animation_tree.set("parameters/shield/blend_amount", new_blend)
+	"""jump_swipe_dir
+	if shielding:
+		# Set shielding pos
+		shield.rotation_degrees.y = lerp(shield.rotation_degrees.y, shielding_angle + piv.rotation_degrees.y, .2)
 		# Set camera 
-		#shild.rotation_degrees.x = spring_arm.rotation_degrees.x
+		#shield.rotation_degrees.x = spring_arm.rotation_degrees.x
 		# Set sword pos
 		sword.rotation_degrees.y = piv.rotation_degrees.y - 100
-	if not shilding:
-		shild.rotation_degrees.y = shild_hold_angle + piv.rotation_degrees.y
+	if not shielding:
+		shield.rotation_degrees.y = shield_hold_angle + piv.rotation_degrees.y
 	"""
 	"""
 	var swipe_done = swipe_stage > len(swipe_angles)
 	if swipe_done and sword.find_child("swing").playing:
 		sword.find_child("swing").stop()
-	if (swipping and not swipe_done) and not shilding:
+	if (swipping and not swipe_done) and not shielding:
 		if is_on_floor():
 			sword.rotation.x = lerp(sword.rotation.x, spring_arm.rotation.x * -1, .3)
 			var swipe_end_angle = swipe_angles[swipe_stage][0]
@@ -250,7 +267,7 @@ func _physics_process(delta):
 				sword.rotation_degrees.y = angle + piv.rotation_degrees.y
 				sword.rotation.z = 0
 				#print(sword.rotation_degrees.y)
-		if swipping and not shilding and not is_on_floor():
+		if swipping and not shielding and not is_on_floor():
 			#if new_speed.y < 0:
 			#sword.look_at(camera.global_position, Vector3(1,0,0))
 			if not sword.find_child("swing2").playing:
@@ -262,7 +279,7 @@ func _physics_process(delta):
 			
 			#if  is_equal_approx(sword.rotation.z, 1.5):
 			sword.rotation.x = lerp(sword.rotation.x ,spring_arm.rotation.x * -1, .2)
-	if (not swipping or swipe_done) and not shilding:
+	if (not swipping or swipe_done) and not shielding:
 		#sword.rotation.y = lerp_angle(sword.rotation.y, atan2(-direction.x, -direction.z), .2)
 		#if not Input.is_action_pressed("swipe"):
 		sword.rotation_degrees.y = sword_hold_angle + piv.rotation_degrees.y 
@@ -345,12 +362,13 @@ func _process(delta):
 			dead = true
 	
 	#Rotate player
-	mesh.rotation.y = lerp_angle(mesh.rotation.y, atan2(-velocity.x, -velocity.z), delta * 5)
-	collisionshape.rotation.y = mesh.rotation.y
+	if not shielding:
+		mesh.rotation.y = lerp_angle(mesh.rotation.y, atan2(-velocity.x, -velocity.z), delta * 9)
+		collisionshape.rotation.y = mesh.rotation.y
 	
 	#set animations
-	if shilding:
-		animation_tree.set("parameters/shild_timescale/scale", velocity.length())
+	if shielding:
+		animation_tree.set("parameters/shield_timescale/scale", velocity.length())
 	
 	animation_tree.set("parameters/stand_run/blend_position", velocity.length()/SPEED)
 	if velocity.length()/SPEED > 1:
@@ -363,33 +381,44 @@ func _process(delta):
 	#Controls
 	var is_active = animation_tree.get(acton_name + "/active")
 	if Input.is_action_pressed("swipe"):
-		if not is_active:
-			#animation_tree.set(acton_name + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
-			acton_name = "parameters/swipe_" + str(swipe_stage)
-			animation_tree.set(acton_name + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-			#animation_tree.set("parameters/swipe_3/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-			print("Play " + str(swipe_stage))
-			swipe_counter = swipe_speed
-			#if not sword.find_child("swing").playing:
-			sword.find_child("swing").play()
-			if swipe_stage == 1:
-				swipe_1_effect.playing = true
-				#print("play1")
-			if swipe_stage == 2:
-				swipe_2_effect.playing = true
-				#print("play2")
-			if swipe_stage == 3:
-				swipe_3_effect.playing = true
-				#print("play3")
-			swipe_counter = swipe_speed
-			swipping = true
-			swipe_stage += 1
-			if swipe_stage > total_swipe_stages:
-				#print("reset")
+		if shielding or not is_on_floor():
+			if not mid_jump_swipe:
+				mid_jump_swipe = true
+				if is_on_floor():
+					jump_swipe_added = false
+				#new_speed.y += JUMP_VELOCITY
+				#var jump_direction = (piv.transform.basis * jump_swipe_dir).normalized()
+				#new_speed += jump_direction
+				#new_speed += jump_swipe_dir
+				animation_tree.set("parameters/jump_swipe/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		if not shielding:
+			if not is_active and is_on_floor() and not mid_jump_swipe:
+				#animation_tree.set(acton_name + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+				acton_name = "parameters/swipe_" + str(swipe_stage)
+				animation_tree.set(acton_name + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+				#animation_tree.set("parameters/swipe_3/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+				print("Play " + str(swipe_stage))
+				swipe_counter = swipe_speed
+				#if not sword.find_child("swing").playing:
+				sword.find_child("swing").play()
+				if swipe_stage == 1:
+					swipe_1_effect.playing = true
+					#print("play1")
+				if swipe_stage == 2:
+					swipe_2_effect.playing = true
+					#print("play2")
+				if swipe_stage == 3:
+					swipe_3_effect.playing = true
+					#print("play3")
+				swipe_counter = swipe_speed
+				swipping = true
+				swipe_stage += 1
+				if swipe_stage > total_swipe_stages:
+					#print("reset")
+					swipe_stage = 1
+		else:
+			if not is_active:
 				swipe_stage = 1
-	else:
-		if not is_active:
-			swipe_stage = 1
 	
 	
 	if use_controler:

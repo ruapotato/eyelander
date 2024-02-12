@@ -193,8 +193,6 @@ distance_fade_shadow = 3525.39
 distance_fade_length = 3319.9
 omni_range = 4096.0
 
-[node name="mesh" parent="." instance=ExtResource("11_6042p")]
-
 [node name="target" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.40391)
 
@@ -204,3 +202,5 @@ transform = Transform3D(-0.999764, 0.021745, 9.69863e-10, -0.021744, -0.999718, 
 [node name="butt_shape" type="CollisionShape3D" parent="butt"]
 transform = Transform3D(1, 1.42634e-08, -5.82077e-11, -6.37783e-10, 1, 0, -1.16415e-10, -7.45058e-09, 1, -0.093538, 0.466012, -0.0684414)
 shape = SubResource("SphereShape3D_awn8r")
+
+[node name="mesh" parent="." instance=ExtResource("11_6042p")]

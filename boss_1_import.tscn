@@ -1,7 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://b063afgfgcf3c"]
+[gd_scene load_steps=18 format=3 uid="uid://b063afgfgcf3c"]
 
 [ext_resource type="PackedScene" uid="uid://dxaglluylr1sg" path="res://import/boss_1.glb" id="1_ignb7"]
-[ext_resource type="Material" uid="uid://dnc00ghr63hgl" path="res://native/skin.tres" id="2_5mrau"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cuxhs"]
 animation = &"attach_1"
@@ -79,52 +78,46 @@ node_connections = [&"output", 0, &"rage", &"TimeScale", 0, &"moving", &"TimeSca
 [node name="boss_2" instance=ExtResource("1_ignb7")]
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/position = Vector3(1.11893, 14.0162, -9.13724)
+bones/0/position = Vector3(1.11893, 13.737, -9.13724)
 bones/0/rotation = Quaternion(0.736164, -0.0295269, 0.0319947, 0.675401)
-bones/1/rotation = Quaternion(-0.248744, -0.172111, -0.741534, 0.598858)
+bones/1/rotation = Quaternion(-0.258919, -0.165909, -0.736024, 0.603078)
 bones/2/rotation = Quaternion(0.438268, 0.0668664, -0.295323, 0.846306)
-bones/3/rotation = Quaternion(-0.238234, 0.188699, 0.685013, 0.662114)
+bones/3/rotation = Quaternion(-0.248811, 0.1834, 0.679117, 0.665776)
 bones/4/rotation = Quaternion(0.438265, -0.0668649, 0.295321, 0.846309)
 bones/7/rotation = Quaternion(0.194838, -0.130096, 0.0755277, 0.969231)
 bones/8/rotation = Quaternion(0.198067, 0.123456, -0.0985119, 0.96738)
 bones/9/rotation = Quaternion(0.193732, 0.00977137, 0.0366219, 0.980322)
-bones/12/rotation = Quaternion(0.128635, -0.574252, -0.437006, 0.68023)
+bones/12/rotation = Quaternion(0.114337, -0.551018, -0.444484, 0.696951)
 bones/12/scale = Vector3(1.15439, 1.15439, 1.15439)
 bones/13/rotation = Quaternion(0.028987, 0.199629, -0.253802, 0.945988)
 bones/13/scale = Vector3(1.00013, 1.34351, 1.00679)
-bones/14/rotation = Quaternion(0.128636, 0.574251, 0.437006, 0.680231)
+bones/14/rotation = Quaternion(0.114361, 0.551052, 0.444473, 0.696927)
 bones/14/scale = Vector3(1.15439, 1.15439, 1.15439)
 bones/15/rotation = Quaternion(0.0289858, -0.199626, 0.253803, 0.945988)
 bones/15/scale = Vector3(1.00013, 1.34351, 1.00679)
-bones/16/rotation = Quaternion(-0.0394066, -0.538687, -0.619856, 0.569247)
+bones/16/rotation = Quaternion(-0.0511537, -0.525979, -0.621161, 0.578695)
 bones/16/scale = Vector3(1.28774, 1.28774, 1.28774)
 bones/17/rotation = Quaternion(0.077453, -0.0657471, -0.209374, 0.972543)
-bones/18/rotation = Quaternion(-0.0196953, 0.539697, 0.598548, 0.591675)
+bones/18/rotation = Quaternion(-0.0318952, 0.527434, 0.599505, 0.601158)
 bones/18/scale = Vector3(1.28774, 1.28774, 1.28774)
 bones/19/rotation = Quaternion(0.0774488, 0.065749, 0.209372, 0.972544)
-bones/20/rotation = Quaternion(-0.071148, -0.257186, -0.57664, 0.772192)
+bones/20/rotation = Quaternion(-0.0790318, -0.248541, -0.563277, 0.784028)
 bones/21/rotation = Quaternion(0.287304, -0.0634732, -0.4826, 0.824939)
-bones/22/rotation = Quaternion(-0.0805118, 0.258235, 0.609173, 0.74548)
+bones/22/rotation = Quaternion(-0.0880954, 0.249297, 0.596378, 0.757908)
 bones/23/rotation = Quaternion(0.243098, 0.00481293, 0.535462, 0.808802)
 
-[node name="Cube" parent="Armature/Skeleton3D" index="0"]
-surface_material_override/0 = ExtResource("2_5mrau")
-surface_material_override/1 = ExtResource("2_5mrau")
-surface_material_override/2 = ExtResource("2_5mrau")
-surface_material_override/3 = ExtResource("2_5mrau")
-
 [node name="butt_bone" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.996212, -0.0866918, 0.00722172, -0.000254781, -0.0859227, -0.996305, 0.086992, 0.992523, -0.0856193, 1.11893, 14.0162, -9.13724)
+transform = Transform3D(0.996212, -0.0866918, 0.00722172, -0.000254781, -0.0859227, -0.996305, 0.086992, 0.992523, -0.0856193, 1.11893, 13.737, -9.13724)
 bone_name = "body"
 bone_idx = 0
 
 [node name="head_bone" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="2"]
-transform = Transform3D(0.99971, -0.0241336, 0.00195792, 0.00122079, -0.0305184, -0.999536, 0.0241825, 0.999243, -0.0304805, 0.424789, 13.9911, 1.52237)
+transform = Transform3D(0.99971, -0.0241336, 0.00195792, 0.00122079, -0.0305184, -0.999536, 0.0241825, 0.999243, -0.0304805, 0.424789, 13.7119, 1.52237)
 bone_name = "head"
 bone_idx = 6
 
 [node name="brain_bone" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="3"]
-transform = Transform3D(1, 0.00116039, -4.03018e-07, -4.60033e-07, 4.75746e-07, -1, -0.00115989, 0.999999, -3.12906e-08, 0.220512, 14.0162, 9.28861)
+transform = Transform3D(1, 0.00116039, -4.03018e-07, -4.60033e-07, 4.75746e-07, -1, -0.00115989, 0.999999, -3.12906e-08, 0.220512, 13.737, 9.28861)
 bone_name = "body_5"
 bone_idx = 11
 

@@ -108,8 +108,8 @@ func slam():
 			var knockback_force
 			if player.dazzed == 0:
 				#player.set_deferred("velocity", player.velocity + knockback_force)
-				if hit.collider.name == "shild":
-					#print("shild hit")
+				if hit.collider.name == "shield":
+					#print("shield hit")
 					knockback_force = knockback_direction  * (knockback_strength * .5)
 					knockback_force.y = 2
 					player.knockback = knockback_force
