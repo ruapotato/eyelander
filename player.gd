@@ -81,6 +81,13 @@ var backflip_added = true
 var backflip_dir = Vector3(0,.3,1)
 var backflip_speed = 30
 
+
+var mid_sidejump = false
+var sidejump_added = true
+var sidejump_dir_l = Vector3(-1,.3,0)
+var sidejump_dir_r = Vector3(1,.3,0)
+var sidejump_speed = 30
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	og_camera_angle = camera.rotation_degrees
@@ -194,6 +201,21 @@ func _physics_process(delta):
 		new_speed.y += JUMP_VELOCITY
 		#swipe_stage = 1
 	
+	# side jump
+	if mid_sidejump:
+		if not animation_tree.get("parameters/jump_left/active") and not animation_tree.get("parameters/jump_right/active"):
+			mid_sidejump = false
+			print("side jump done")
+			swipe_stage = 1
+		if not sidejump_added:
+			sidejump_added = true
+			if Input.is_action_pressed("left"):
+				var jump_direction = (mesh.transform.basis * sidejump_dir_l).normalized()
+				new_speed += jump_direction * sidejump_speed
+				print("New speed: " + str(new_speed))
+			if Input.is_action_pressed("right"):
+				var jump_direction = (mesh.transform.basis * sidejump_dir_r).normalized()
+				new_speed += jump_direction * sidejump_speed
 	# Backflip
 	if mid_backflip:
 		if not animation_tree.get("parameters/backflip/active"):
@@ -245,7 +267,7 @@ func _physics_process(delta):
 			new_speed.z = lerp(new_speed.z, 0.0, delta * 5)
 			#new_speed.x += move_toward(velocity.x, 0, SPEED)
 			#new_speed.z += move_toward(velocity.z, 0, SPEED)
-		if not shielding or mid_jump_swipe or mid_backflip:
+		if not shielding or mid_jump_swipe or mid_backflip or mid_sidejump:
 			var current_blend = animation_tree.get("parameters/shield/blend_amount")
 			var new_blend = lerp(current_blend,0.0, delta * 9)
 			animation_tree.set("parameters/shield/blend_amount", new_blend)
@@ -397,7 +419,7 @@ func _process(delta):
 	var is_active = animation_tree.get(acton_name + "/active")
 	if Input.is_action_pressed("swipe"):
 		if shielding or not is_on_floor():
-			if not mid_jump_swipe and not mid_backflip:
+			if not mid_jump_swipe and not mid_backflip and not mid_sidejump:
 				# Jump slash
 				if Input.is_action_pressed("forward") or not is_on_floor():
 					print("Jump slash")
@@ -414,7 +436,20 @@ func _process(delta):
 					animation_tree.set("parameters/backflip/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 					mid_backflip = true
 					backflip_added = false
-					
+				
+				# sidejump left
+				if Input.is_action_pressed("left") and is_on_floor():
+					print("Jump left")
+					animation_tree.set("parameters/jump_left/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+					mid_sidejump = true
+					sidejump_added = false
+				
+				# sidejump right
+				if Input.is_action_pressed("right") and is_on_floor():
+					print("Jump right")
+					animation_tree.set("parameters/jump_right/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+					mid_sidejump = true
+					sidejump_added = false
 				#new_speed.y += JUMP_VELOCITY
 				#var jump_direction = (piv.transform.basis * jump_swipe_dir).normalized()
 				#new_speed += jump_direction

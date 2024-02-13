@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dq8l3picifoh"]
+[gd_scene load_steps=33 format=3 uid="uid://dq8l3picifoh"]
 
 [ext_resource type="PackedScene" uid="uid://cwqomfsbuixc8" path="res://import/player.glb" id="1_j06kt"]
 [ext_resource type="Material" uid="uid://6csfmb05pmdq" path="res://native/lava.tres" id="2_yatk7"]
@@ -18,6 +18,12 @@ animation = &"jump_swipe"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_taadb"]
 animation = &"backflip"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m8x5a"]
+animation = &"jump_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ub3gm"]
+animation = &"jump_right"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v1vh2"]
 animation = &"swipe_1"
 
@@ -29,9 +35,17 @@ animation = &"swipe_1"
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_wwrtf"]
 
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_8vfk6"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_62haa"]
+
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_gibyi"]
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_3gtok"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_jce18"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_36ekn"]
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_xqxko"]
 
@@ -70,7 +84,7 @@ fadein_time = 0.07
 fadeout_time = 0.07
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_a6a74"]
-graph_offset = Vector2(22.9153, 108.867)
+graph_offset = Vector2(85.8892, 153.106)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_v1vh2")
 nodes/Animation/position = Vector2(340, 500)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_d7giy")
@@ -83,6 +97,10 @@ nodes/Animation/position = Vector2(340, 500)
 "nodes/Animation 5/position" = Vector2(820, 500)
 "nodes/Animation 6/node" = SubResource("AnimationNodeAnimation_taadb")
 "nodes/Animation 6/position" = Vector2(1000, 500)
+"nodes/Animation 7/node" = SubResource("AnimationNodeAnimation_m8x5a")
+"nodes/Animation 7/position" = Vector2(1140, 500)
+"nodes/Animation 8/node" = SubResource("AnimationNodeAnimation_ub3gm")
+"nodes/Animation 8/position" = Vector2(1280, 500)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_gibyi")
 nodes/TimeScale/position = Vector2(340, 380)
 "nodes/TimeScale 2/node" = SubResource("AnimationNodeTimeScale_5yng5")
@@ -93,8 +111,16 @@ nodes/TimeScale/position = Vector2(340, 380)
 "nodes/TimeScale 4/position" = Vector2(840, 380)
 "nodes/TimeScale 5/node" = SubResource("AnimationNodeTimeScale_wwrtf")
 "nodes/TimeScale 5/position" = Vector2(1000, 380)
+"nodes/TimeScale 6/node" = SubResource("AnimationNodeTimeScale_8vfk6")
+"nodes/TimeScale 6/position" = Vector2(1140, 380)
+"nodes/TimeScale 7/node" = SubResource("AnimationNodeTimeScale_62haa")
+"nodes/TimeScale 7/position" = Vector2(1280, 380)
 nodes/backflip/node = SubResource("AnimationNodeOneShot_3gtok")
 nodes/backflip/position = Vector2(1000, 180)
+nodes/jump_left/node = SubResource("AnimationNodeOneShot_jce18")
+nodes/jump_left/position = Vector2(1140, 160)
+nodes/jump_right/node = SubResource("AnimationNodeOneShot_36ekn")
+nodes/jump_right/position = Vector2(1300, 160)
 nodes/jump_swipe/node = SubResource("AnimationNodeOneShot_xqxko")
 nodes/jump_swipe/position = Vector2(840, 180)
 nodes/output/position = Vector2(1700, 100)
@@ -112,31 +138,31 @@ nodes/swipe_2/node = SubResource("AnimationNodeOneShot_bbjb6")
 nodes/swipe_2/position = Vector2(480, 180)
 nodes/swipe_3/node = SubResource("AnimationNodeOneShot_22f10")
 nodes/swipe_3/position = Vector2(660, 180)
-node_connections = [&"output", 0, &"shield", &"TimeScale", 0, &"Animation", &"TimeScale 2", 0, &"Animation 2", &"TimeScale 3", 0, &"Animation 3", &"TimeScale 4", 0, &"Animation 5", &"TimeScale 5", 0, &"Animation 6", &"backflip", 0, &"jump_swipe", &"backflip", 1, &"TimeScale 5", &"jump_swipe", 0, &"swipe_3", &"jump_swipe", 1, &"TimeScale 4", &"run_timescale", 0, &"stand_run", &"shield", 0, &"backflip", &"shield", 1, &"shild_timescale", &"shild_timescale", 0, &"Animation 4", &"swipe_1", 0, &"run_timescale", &"swipe_1", 1, &"TimeScale", &"swipe_2", 0, &"swipe_1", &"swipe_2", 1, &"TimeScale 2", &"swipe_3", 0, &"swipe_2", &"swipe_3", 1, &"TimeScale 3"]
+node_connections = [&"output", 0, &"shield", &"TimeScale", 0, &"Animation", &"TimeScale 2", 0, &"Animation 2", &"TimeScale 3", 0, &"Animation 3", &"TimeScale 4", 0, &"Animation 5", &"TimeScale 5", 0, &"Animation 6", &"backflip", 0, &"jump_swipe", &"backflip", 1, &"TimeScale 5", &"jump_swipe", 0, &"swipe_3", &"jump_swipe", 1, &"TimeScale 4", &"run_timescale", 0, &"stand_run", &"shield", 0, &"jump_right", &"shield", 1, &"shild_timescale", &"shild_timescale", 0, &"Animation 4", &"swipe_1", 0, &"run_timescale", &"swipe_1", 1, &"TimeScale", &"swipe_2", 0, &"swipe_1", &"swipe_2", 1, &"TimeScale 2", &"swipe_3", 0, &"swipe_2", &"swipe_3", 1, &"TimeScale 3", &"TimeScale 6", 0, &"Animation 7", &"TimeScale 7", 0, &"Animation 8", &"jump_left", 0, &"backflip", &"jump_left", 1, &"TimeScale 6", &"jump_right", 0, &"jump_left", &"jump_right", 1, &"TimeScale 7"]
 
 [node name="player2" instance=ExtResource("1_j06kt")]
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/position = Vector3(-0.0513586, -0.119401, -0.0469927)
+bones/0/position = Vector3(-0.0513393, -0.104878, -0.0471704)
 bones/0/rotation = Quaternion(0.018487, 0.00153879, 0.00701086, 0.999803)
-bones/1/rotation = Quaternion(0.709704, 0.103558, -0.69223, -0.0800866)
-bones/2/rotation = Quaternion(-0.076137, -0.0182596, 0.304571, 0.949266)
-bones/3/rotation = Quaternion(0.204007, -0.0598836, -0.760671, 0.613331)
-bones/4/rotation = Quaternion(0.658168, -0.0450989, 0.743251, -0.111171)
-bones/5/rotation = Quaternion(-0.0718015, 0.0196215, -0.286397, 0.955215)
-bones/6/rotation = Quaternion(0.104053, 0.0275375, 0.764202, 0.635932)
-bones/8/position = Vector3(-0.332285, -0.0487958, 0.0262752)
-bones/8/rotation = Quaternion(0.688443, -0.203249, -0.685991, 0.118967)
-bones/9/rotation = Quaternion(-0.0296145, -0.0150716, -0.156002, 0.987198)
+bones/1/rotation = Quaternion(0.710992, 0.0920262, -0.694331, -0.0626629)
+bones/2/rotation = Quaternion(-0.067982, -0.0184609, 0.271948, 0.95973)
+bones/3/rotation = Quaternion(0.201331, -0.058459, -0.752543, 0.624282)
+bones/4/rotation = Quaternion(0.659572, -0.035244, 0.745268, -0.0910927)
+bones/5/rotation = Quaternion(-0.062936, 0.0198374, -0.251035, 0.965726)
+bones/6/rotation = Quaternion(0.102323, 0.0284703, 0.754733, 0.647377)
+bones/8/position = Vector3(-0.332484, -0.052527, 0.0273928)
+bones/8/rotation = Quaternion(0.69101, -0.187085, -0.689285, 0.111315)
+bones/9/rotation = Quaternion(-0.019805, -0.0105305, -0.127277, 0.991614)
 bones/10/rotation = Quaternion(0.226757, -0.649015, -0.694394, 0.212553)
-bones/11/position = Vector3(0.319284, -0.0937479, 0.0366644)
-bones/11/rotation = Quaternion(0.693112, 0.135048, 0.690374, 0.157294)
-bones/12/rotation = Quaternion(0.0581688, 0.0120408, 0.109615, 0.992198)
+bones/11/position = Vector3(0.319505, -0.090014, 0.0355595)
+bones/11/rotation = Quaternion(0.695428, 0.12737, 0.693022, 0.140987)
+bones/12/rotation = Quaternion(0.0480929, 0.00819479, 0.0807362, 0.995541)
 bones/14/rotation = Quaternion(-0.0138425, -0.00869882, -0.0426955, 0.998954)
-bones/15/rotation = Quaternion(0.0290588, -0.0289414, -0.272956, 0.961152)
-bones/16/rotation = Quaternion(-0.618449, -0.0750194, -0.0253678, 0.781824)
-bones/17/rotation = Quaternion(0.0142104, 0.0409274, 0.236297, 0.970715)
-bones/18/rotation = Quaternion(-0.550051, 0.1148, 0.163914, 0.8108)
+bones/15/rotation = Quaternion(0.0258975, -0.0258267, -0.263754, 0.963896)
+bones/16/rotation = Quaternion(-0.625638, -0.0912986, -0.0466686, 0.773346)
+bones/17/rotation = Quaternion(0.017454, 0.0338993, 0.221296, 0.974461)
+bones/18/rotation = Quaternion(-0.589759, 0.118291, 0.134011, 0.787548)
 bones/19/position = Vector3(-0.186629, -0.618241, -0.432871)
 bones/20/position = Vector3(-0.068887, -1.573, 0.052553)
 bones/20/rotation = Quaternion(-0.552477, 0.595667, 0.441327, -0.381027)
@@ -148,12 +174,12 @@ bones/22/rotation = Quaternion(0.552477, 0.595667, 0.441327, 0.381027)
 surface_material_override/1 = ExtResource("2_yatk7")
 
 [node name="right_hand" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.0147463, 0.208989, 0.977806, -0.0037204, -0.977918, 0.208957, 0.999884, -0.000556592, 0.0151982, 0.347576, -0.275301, 0.0284847)
+transform = Transform3D(-0.0119362, 0.200654, 0.979588, 0.020105, -0.979413, 0.200863, 0.999726, 0.0220922, 0.00765626, 0.348659, -0.261047, 0.0241363)
 bone_name = "hand.r"
 bone_idx = 13
 
 [node name="left_hand" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="2"]
-transform = Transform3D(0.077525, -0.995347, -0.0571956, 0.474617, 0.0872957, -0.875853, 0.876771, 0.0407544, 0.479176, -0.455803, -0.237354, -0.00069204)
+transform = Transform3D(0.0746527, -0.99501, -0.0661725, 0.495147, 0.0945854, -0.863645, 0.865595, 0.0317082, 0.499738, -0.453956, -0.232092, -0.000453651)
 bone_name = "hand.l"
 bone_idx = 10
 
@@ -166,9 +192,17 @@ parameters/TimeScale/scale = 3.3
 "parameters/TimeScale 3/scale" = 3.3
 "parameters/TimeScale 4/scale" = 1.5
 "parameters/TimeScale 5/scale" = 2.0
+"parameters/TimeScale 6/scale" = 2.0
+"parameters/TimeScale 7/scale" = 2.0
 parameters/backflip/active = false
 parameters/backflip/internal_active = false
 parameters/backflip/request = 0
+parameters/jump_left/active = false
+parameters/jump_left/internal_active = false
+parameters/jump_left/request = 0
+parameters/jump_right/active = false
+parameters/jump_right/internal_active = false
+parameters/jump_right/request = 0
 parameters/jump_swipe/active = false
 parameters/jump_swipe/internal_active = false
 parameters/jump_swipe/request = 0
