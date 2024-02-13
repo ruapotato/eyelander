@@ -124,6 +124,7 @@ func _process(delta):
 	if not player or not player.level:
 		queue_free()
 		return
+	"""
 	#update lava level
 	if player.level != lava_level:
 		lava_level = player.level
@@ -182,3 +183,4 @@ func _process(delta):
 		elif repeat:
 			music.play()
 		#	$WorldEnvironment.environment.fog_light_energy  = 0
+"""
