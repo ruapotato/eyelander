@@ -142,26 +142,26 @@ node_connections = [&"output", 0, &"shield", &"TimeScale", 0, &"Animation", &"Ti
 [node name="player2" instance=ExtResource("1_j06kt")]
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/position = Vector3(-0.0513118, -0.0841277, -0.0474243)
+bones/0/position = Vector3(-0.0513577, -0.118768, -0.0470005)
 bones/0/rotation = Quaternion(0.018487, 0.00153879, 0.00701086, 0.999803)
-bones/1/rotation = Quaternion(0.712682, 0.0731682, -0.696858, -0.0334599)
-bones/2/rotation = Quaternion(-0.0543693, -0.0187424, 0.217493, 0.974366)
-bones/3/rotation = Quaternion(0.19715, -0.0564247, -0.738467, 0.642351)
-bones/4/rotation = Quaternion(0.66123, -0.0182685, 0.747829, -0.0565031)
-bones/5/rotation = Quaternion(-0.0476188, 0.0201395, -0.189939, 0.980434)
-bones/6/rotation = Quaternion(0.0992541, 0.0301104, 0.737877, 0.666918)
-bones/8/position = Vector3(-0.33292, -0.0607003, 0.029841)
-bones/8/rotation = Quaternion(0.695781, -0.151772, -0.695637, 0.0945712)
-bones/9/rotation = Quaternion(0.00156054, -0.00063533, -0.0644846, 0.997917)
+bones/1/rotation = Quaternion(0.709771, 0.103001, -0.692341, -0.0792531)
+bones/2/rotation = Quaternion(-0.0756794, -0.0182716, 0.30274, 0.949888)
+bones/3/rotation = Quaternion(0.203894, -0.0598213, -0.760339, 0.613786)
+bones/4/rotation = Quaternion(0.658243, -0.0446296, 0.743356, -0.110215)
+bones/5/rotation = Quaternion(-0.0713078, 0.0196343, -0.284428, 0.95584)
+bones/6/rotation = Quaternion(0.103983, 0.0275756, 0.763817, 0.636405)
+bones/8/position = Vector3(-0.332298, -0.0490564, 0.0263532)
+bones/8/rotation = Quaternion(0.688098, -0.205306, -0.685554, 0.11994)
+bones/9/rotation = Quaternion(-0.0308627, -0.0156493, -0.159652, 0.986567)
 bones/10/rotation = Quaternion(0.676333, 0.122935, -0.156252, 0.709257)
-bones/11/position = Vector3(0.319991, -0.0818349, 0.0331393)
-bones/11/rotation = Quaternion(0.699649, 0.110551, 0.697967, 0.105416)
-bones/12/rotation = Quaternion(0.0260553, -0.000183441, 0.0177637, 0.999503)
+bones/11/position = Vector3(0.319299, -0.093487, 0.0365872)
+bones/11/rotation = Quaternion(0.6928, 0.136024, 0.69002, 0.159371)
+bones/12/rotation = Quaternion(0.0594489, 0.0125302, 0.113287, 0.991703)
 bones/14/rotation = Quaternion(-0.0138425, -0.00869882, -0.0426955, 0.998954)
-bones/15/rotation = Quaternion(0.0213789, -0.0213745, -0.250564, 0.967628)
-bones/16/rotation = Quaternion(-0.634836, -0.114008, -0.0764864, 0.760352)
-bones/17/rotation = Quaternion(0.0220383, 0.0239295, 0.199942, 0.979268)
-bones/18/rotation = Quaternion(-0.642478, 0.122588, 0.0913611, 0.750897)
+bones/15/rotation = Quaternion(0.0289213, -0.0288059, -0.272556, 0.961274)
+bones/16/rotation = Quaternion(-0.61889, -0.0759876, -0.0266329, 0.781339)
+bones/17/rotation = Quaternion(0.0143742, 0.0405728, 0.235541, 0.970911)
+bones/18/rotation = Quaternion(-0.552451, 0.115017, 0.162155, 0.80949)
 bones/19/position = Vector3(-0.186629, -0.618241, -0.432871)
 bones/20/position = Vector3(-0.068887, -1.573, 0.052553)
 bones/20/rotation = Quaternion(-0.552477, 0.595667, 0.441327, -0.381027)
@@ -170,12 +170,12 @@ bones/22/position = Vector3(0.122766, -1.59024, 0.0526885)
 bones/22/rotation = Quaternion(0.552477, 0.595667, 0.441327, 0.381027)
 
 [node name="right_hand" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="0"]
-transform = Transform3D(-0.00512455, 0.183006, 0.983097, 0.0718549, -0.980503, 0.182897, 0.997401, 0.0715777, -0.00812521, 0.351387, -0.23662, 0.0149261)
+transform = Transform3D(-0.0150886, 0.210059, 0.977571, -0.0067521, -0.977683, 0.209978, 0.999863, -0.00343245, 0.0161702, 0.347461, -0.273778, 0.0290081)
 bone_name = "hand.r"
 bone_idx = 13
 
 [node name="left_hand" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.382619, -0.923841, -0.0108244, 0.0928411, 0.0267892, 0.99532, -0.919229, -0.381834, 0.0960207, -0.45092, -0.227582, -0.000273209)
+transform = Transform3D(0.358625, -0.93301, -0.0296245, 0.173962, 0.0356192, 0.984108, -0.917128, -0.358079, 0.175082, -0.456065, -0.236229, -0.000750914)
 bone_name = "hand.l"
 bone_idx = 10
 

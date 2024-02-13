@@ -3,8 +3,9 @@
 [ext_resource type="Shader" path="res://native/water.gdshader" id="1_qybfr"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_57g3i"]
-subdivide_width = 200
-subdivide_depth = 200
+size = Vector2(100, 100)
+subdivide_width = 1000
+subdivide_depth = 1000
 orientation = 1
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_44jrt"]
@@ -20,6 +21,7 @@ noise = SubResource("FastNoiseLite_44jrt")
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_nl1e6"]
 noise_type = 3
 seed = 666
+frequency = 0.005
 fractal_type = 2
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h8ptt"]
@@ -38,18 +40,18 @@ render_priority = 0
 shader = ExtResource("1_qybfr")
 shader_parameter/color = Color(0.00392157, 0.223529, 0.921569, 1)
 shader_parameter/color2 = Color(1, 0, 0, 1)
-shader_parameter/metallic = 0.0
-shader_parameter/roughness = 0.02
+shader_parameter/metallic = 0.944
+shader_parameter/roughness = 0.0
 shader_parameter/wave_dir = Vector2(2, 0)
 shader_parameter/wave_dir2 = Vector2(0, 1)
-shader_parameter/time_scale = 0.025
+shader_parameter/time_scale = 0.019
 shader_parameter/noise_scale = 10.0
-shader_parameter/height_scale = 0.15
+shader_parameter/height_scale = 0.485
 shader_parameter/color_deep = Color(0.23894, 1.82897e-05, 0.949448, 1)
 shader_parameter/color_shallow = Color(0, 0, 0.843137, 1)
 shader_parameter/beers_law = 5.0
 shader_parameter/depth_offset = -0.75
-shader_parameter/edge_scale = 0.145
+shader_parameter/edge_scale = 0.1
 shader_parameter/near = 1.0
 shader_parameter/far = 100.0
 shader_parameter/edge_color = Color(1, 1, 1, 1)

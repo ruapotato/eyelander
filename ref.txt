@@ -11,3 +11,5 @@ From https://opengameart.org/content/foot-walking-step-sounds-on-stone-water-sno
 
 # Big thanks to https://github.com/fbcosentino/godot-audiostreampreview/blob/main/addons/audio_preview/voice_preview_generator.gd
 # From https://godotengine.org/asset-library/asset/2257 parts of your code help me fix a nasty bug in light_sounds.gd
+
+# Big thanks to https://godotxc.com/asset/water-shader/ This was very helpful
