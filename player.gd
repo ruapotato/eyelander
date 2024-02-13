@@ -21,7 +21,7 @@ extends CharacterBody3D
 @onready var swipe_1_effect = $CollisionShape3D/swipes/swipe_1
 @onready var swipe_2_effect = $CollisionShape3D/swipes/swipe_2
 @onready var swipe_3_effect = $CollisionShape3D/swipes/swipe_3
-
+@onready var jump_swipe_effect = $CollisionShape3D/swipes/jump_swipe
 var total_swipe_stages = 3
 var swipe_stage = 1
 var walk_sound_every = 0
@@ -74,7 +74,12 @@ var acton_name
 var mid_jump_swipe = false
 var jump_swipe_added = false
 var jump_swipe_dir = Vector3(0,.4,-1)
-var jump_swipe_speed = 15
+var jump_swipe_speed = 20
+
+var mid_backflip = false
+var backflip_added = true
+var backflip_dir = Vector3(0,.3,1)
+var backflip_speed = 30
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -189,6 +194,16 @@ func _physics_process(delta):
 		new_speed.y += JUMP_VELOCITY
 		#swipe_stage = 1
 	
+	# Backflip
+	if mid_backflip:
+		if not animation_tree.get("parameters/backflip/active"):
+			mid_backflip = false
+			swipe_stage = 1
+		if not backflip_added:
+			backflip_added = true
+			var jump_direction = (mesh.transform.basis * backflip_dir).normalized()
+			new_speed += jump_direction * backflip_speed
+	
 	# Jump swipe
 	if mid_jump_swipe:
 		if not animation_tree.get("parameters/jump_swipe/active"):
@@ -230,7 +245,7 @@ func _physics_process(delta):
 			new_speed.z = lerp(new_speed.z, 0.0, delta * 5)
 			#new_speed.x += move_toward(velocity.x, 0, SPEED)
 			#new_speed.z += move_toward(velocity.z, 0, SPEED)
-		if not shielding or mid_jump_swipe:
+		if not shielding or mid_jump_swipe or mid_backflip:
 			var current_blend = animation_tree.get("parameters/shield/blend_amount")
 			var new_blend = lerp(current_blend,0.0, delta * 9)
 			animation_tree.set("parameters/shield/blend_amount", new_blend)
@@ -363,7 +378,7 @@ func _process(delta):
 	
 	#Rotate player
 	if not shielding:
-		mesh.rotation.y = lerp_angle(mesh.rotation.y, atan2(-velocity.x, -velocity.z), delta * 9)
+		mesh.rotation.y = lerp_angle(mesh.rotation.y, atan2(-velocity.x, -velocity.z), delta * 18)
 		collisionshape.rotation.y = mesh.rotation.y
 	
 	#set animations
@@ -382,17 +397,31 @@ func _process(delta):
 	var is_active = animation_tree.get(acton_name + "/active")
 	if Input.is_action_pressed("swipe"):
 		if shielding or not is_on_floor():
-			if not mid_jump_swipe:
-				mid_jump_swipe = true
-				if is_on_floor():
-					jump_swipe_added = false
+			if not mid_jump_swipe and not mid_backflip:
+				# Jump slash
+				if Input.is_action_pressed("forward") or not is_on_floor():
+					print("Jump slash")
+					animation_tree.set("parameters/jump_swipe/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+					mid_jump_swipe = true
+					sword.find_child("swing").seek(0.0)
+					sword.find_child("swing").play()
+					jump_swipe_effect.playing = true
+					if is_on_floor():
+						jump_swipe_added = false
+				# Backflip
+				if Input.is_action_pressed("backward") and is_on_floor():
+					print("Backflip")
+					animation_tree.set("parameters/backflip/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+					mid_backflip = true
+					backflip_added = false
+					
 				#new_speed.y += JUMP_VELOCITY
 				#var jump_direction = (piv.transform.basis * jump_swipe_dir).normalized()
 				#new_speed += jump_direction
 				#new_speed += jump_swipe_dir
-				animation_tree.set("parameters/jump_swipe/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+				
 		if not shielding:
-			if not is_active and is_on_floor() and not mid_jump_swipe:
+			if not is_active and is_on_floor() and not mid_jump_swipe and not mid_backflip:
 				#animation_tree.set(acton_name + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
 				acton_name = "parameters/swipe_" + str(swipe_stage)
 				animation_tree.set(acton_name + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dq8l3picifoh"]
+[gd_scene load_steps=27 format=3 uid="uid://dq8l3picifoh"]
 
 [ext_resource type="PackedScene" uid="uid://cwqomfsbuixc8" path="res://import/player.glb" id="1_j06kt"]
 [ext_resource type="Material" uid="uid://6csfmb05pmdq" path="res://native/lava.tres" id="2_yatk7"]
@@ -15,6 +15,9 @@ animation = &"shield_loop"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_23oky"]
 animation = &"jump_swipe"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_taadb"]
+animation = &"backflip"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v1vh2"]
 animation = &"swipe_1"
 
@@ -24,7 +27,11 @@ animation = &"swipe_1"
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_17w16"]
 
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_wwrtf"]
+
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_gibyi"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_3gtok"]
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_xqxko"]
 
@@ -63,7 +70,7 @@ fadein_time = 0.07
 fadeout_time = 0.07
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_a6a74"]
-graph_offset = Vector2(131, 409)
+graph_offset = Vector2(22.9153, 108.867)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_v1vh2")
 nodes/Animation/position = Vector2(340, 500)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_d7giy")
@@ -74,6 +81,8 @@ nodes/Animation/position = Vector2(340, 500)
 "nodes/Animation 4/position" = Vector2(1500, 340)
 "nodes/Animation 5/node" = SubResource("AnimationNodeAnimation_23oky")
 "nodes/Animation 5/position" = Vector2(820, 500)
+"nodes/Animation 6/node" = SubResource("AnimationNodeAnimation_taadb")
+"nodes/Animation 6/position" = Vector2(1000, 500)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_gibyi")
 nodes/TimeScale/position = Vector2(340, 380)
 "nodes/TimeScale 2/node" = SubResource("AnimationNodeTimeScale_5yng5")
@@ -82,6 +91,10 @@ nodes/TimeScale/position = Vector2(340, 380)
 "nodes/TimeScale 3/position" = Vector2(660, 380)
 "nodes/TimeScale 4/node" = SubResource("AnimationNodeTimeScale_17w16")
 "nodes/TimeScale 4/position" = Vector2(840, 380)
+"nodes/TimeScale 5/node" = SubResource("AnimationNodeTimeScale_wwrtf")
+"nodes/TimeScale 5/position" = Vector2(1000, 380)
+nodes/backflip/node = SubResource("AnimationNodeOneShot_3gtok")
+nodes/backflip/position = Vector2(1000, 180)
 nodes/jump_swipe/node = SubResource("AnimationNodeOneShot_xqxko")
 nodes/jump_swipe/position = Vector2(840, 180)
 nodes/output/position = Vector2(1700, 100)
@@ -99,31 +112,31 @@ nodes/swipe_2/node = SubResource("AnimationNodeOneShot_bbjb6")
 nodes/swipe_2/position = Vector2(480, 180)
 nodes/swipe_3/node = SubResource("AnimationNodeOneShot_22f10")
 nodes/swipe_3/position = Vector2(660, 180)
-node_connections = [&"output", 0, &"shield", &"TimeScale", 0, &"Animation", &"TimeScale 2", 0, &"Animation 2", &"TimeScale 3", 0, &"Animation 3", &"TimeScale 4", 0, &"Animation 5", &"jump_swipe", 0, &"swipe_3", &"jump_swipe", 1, &"TimeScale 4", &"run_timescale", 0, &"stand_run", &"shield", 0, &"jump_swipe", &"shield", 1, &"shild_timescale", &"shild_timescale", 0, &"Animation 4", &"swipe_1", 0, &"run_timescale", &"swipe_1", 1, &"TimeScale", &"swipe_2", 0, &"swipe_1", &"swipe_2", 1, &"TimeScale 2", &"swipe_3", 0, &"swipe_2", &"swipe_3", 1, &"TimeScale 3"]
+node_connections = [&"output", 0, &"shield", &"TimeScale", 0, &"Animation", &"TimeScale 2", 0, &"Animation 2", &"TimeScale 3", 0, &"Animation 3", &"TimeScale 4", 0, &"Animation 5", &"TimeScale 5", 0, &"Animation 6", &"backflip", 0, &"jump_swipe", &"backflip", 1, &"TimeScale 5", &"jump_swipe", 0, &"swipe_3", &"jump_swipe", 1, &"TimeScale 4", &"run_timescale", 0, &"stand_run", &"shield", 0, &"backflip", &"shield", 1, &"shild_timescale", &"shild_timescale", 0, &"Animation 4", &"swipe_1", 0, &"run_timescale", &"swipe_1", 1, &"TimeScale", &"swipe_2", 0, &"swipe_1", &"swipe_2", 1, &"TimeScale 2", &"swipe_3", 0, &"swipe_2", &"swipe_3", 1, &"TimeScale 3"]
 
 [node name="player2" instance=ExtResource("1_j06kt")]
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/position = Vector3(-0.0513421, -0.107002, -0.0471444)
+bones/0/position = Vector3(-0.0513586, -0.119401, -0.0469927)
 bones/0/rotation = Quaternion(0.018487, 0.00153879, 0.00701086, 0.999803)
-bones/1/rotation = Quaternion(0.710811, 0.0937653, -0.69404, -0.0653113)
-bones/2/rotation = Quaternion(-0.0692129, -0.0184321, 0.276872, 0.958234)
-bones/3/rotation = Quaternion(0.201732, -0.0586666, -0.753799, 0.622615)
-bones/4/rotation = Quaternion(0.659379, -0.0367522, 0.744985, -0.0941657)
-bones/5/rotation = Quaternion(-0.0642864, 0.0198065, -0.256421, 0.964221)
-bones/6/rotation = Quaternion(0.102592, 0.0283257, 0.756206, 0.64562)
-bones/8/position = Vector3(-0.332443, -0.0517675, 0.0271653)
-bones/8/rotation = Quaternion(0.690516, -0.190315, -0.688646, 0.112845)
-bones/9/rotation = Quaternion(-0.0217649, -0.0114379, -0.133022, 0.990808)
+bones/1/rotation = Quaternion(0.709704, 0.103558, -0.69223, -0.0800866)
+bones/2/rotation = Quaternion(-0.076137, -0.0182596, 0.304571, 0.949266)
+bones/3/rotation = Quaternion(0.204007, -0.0598836, -0.760671, 0.613331)
+bones/4/rotation = Quaternion(0.658168, -0.0450989, 0.743251, -0.111171)
+bones/5/rotation = Quaternion(-0.0718015, 0.0196215, -0.286397, 0.955215)
+bones/6/rotation = Quaternion(0.104053, 0.0275375, 0.764202, 0.635932)
+bones/8/position = Vector3(-0.332285, -0.0487958, 0.0262752)
+bones/8/rotation = Quaternion(0.688443, -0.203249, -0.685991, 0.118967)
+bones/9/rotation = Quaternion(-0.0296145, -0.0150716, -0.156002, 0.987198)
 bones/10/rotation = Quaternion(0.226757, -0.649015, -0.694394, 0.212553)
-bones/11/position = Vector3(0.31946, -0.090774, 0.0357844)
-bones/11/rotation = Quaternion(0.694984, 0.128905, 0.692513, 0.144245)
-bones/12/rotation = Quaternion(0.0501082, 0.00896325, 0.0865078, 0.99495)
+bones/11/position = Vector3(0.319284, -0.0937479, 0.0366644)
+bones/11/rotation = Quaternion(0.693112, 0.135048, 0.690374, 0.157294)
+bones/12/rotation = Quaternion(0.0581688, 0.0120408, 0.109615, 0.992198)
 bones/14/rotation = Quaternion(-0.0138425, -0.00869882, -0.0426955, 0.998954)
-bones/15/rotation = Quaternion(0.0263612, -0.0262835, -0.265105, 0.963501)
-bones/16/rotation = Quaternion(-0.624638, -0.0889653, -0.0436119, 0.774603)
-bones/17/rotation = Quaternion(0.0169842, 0.0349184, 0.223474, 0.973936)
-bones/18/rotation = Quaternion(-0.584158, 0.117811, 0.138337, 0.791039)
+bones/15/rotation = Quaternion(0.0290588, -0.0289414, -0.272956, 0.961152)
+bones/16/rotation = Quaternion(-0.618449, -0.0750194, -0.0253678, 0.781824)
+bones/17/rotation = Quaternion(0.0142104, 0.0409274, 0.236297, 0.970715)
+bones/18/rotation = Quaternion(-0.550051, 0.1148, 0.163914, 0.8108)
 bones/19/position = Vector3(-0.186629, -0.618241, -0.432871)
 bones/20/position = Vector3(-0.068887, -1.573, 0.052553)
 bones/20/rotation = Quaternion(-0.552477, 0.595667, 0.441327, -0.381027)
@@ -135,12 +148,12 @@ bones/22/rotation = Quaternion(0.552477, 0.595667, 0.441327, 0.381027)
 surface_material_override/1 = ExtResource("2_yatk7")
 
 [node name="right_hand" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.0125141, 0.202308, 0.979241, 0.0153461, -0.979164, 0.202489, 0.999803, 0.0175615, 0.00914861, 0.348435, -0.263229, 0.0249905)
+transform = Transform3D(-0.0147463, 0.208989, 0.977806, -0.0037204, -0.977918, 0.208957, 0.999884, -0.000556592, 0.0151982, 0.347576, -0.275301, 0.0284847)
 bone_name = "hand.r"
 bone_idx = 13
 
 [node name="left_hand" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="2"]
-transform = Transform3D(0.0752037, -0.995088, -0.0643552, 0.491074, 0.0931276, -0.866125, 0.867865, 0.0335326, 0.495666, -0.454301, -0.232443, -0.000502318)
+transform = Transform3D(0.077525, -0.995347, -0.0571956, 0.474617, 0.0872957, -0.875853, 0.876771, 0.0407544, 0.479176, -0.455803, -0.237354, -0.00069204)
 bone_name = "hand.l"
 bone_idx = 10
 
@@ -152,6 +165,10 @@ parameters/TimeScale/scale = 3.3
 "parameters/TimeScale 2/scale" = 3.3
 "parameters/TimeScale 3/scale" = 3.3
 "parameters/TimeScale 4/scale" = 1.5
+"parameters/TimeScale 5/scale" = 2.0
+parameters/backflip/active = false
+parameters/backflip/internal_active = false
+parameters/backflip/request = 0
 parameters/jump_swipe/active = false
 parameters/jump_swipe/internal_active = false
 parameters/jump_swipe/request = 0

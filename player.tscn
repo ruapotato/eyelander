@@ -41,6 +41,9 @@ transform = Transform3D(-0.947674, -0.31924, 0, 0.31924, -0.947674, 0, 0, 0, 1, 
 [node name="swipe_3" parent="CollisionShape3D/swipes" instance=ExtResource("19_dql1x")]
 transform = Transform3D(0.0195114, -0.99981, 0, 0.99981, 0.0195114, 0, 0, 0, 1, 0.258513, 0.256048, -0.783183)
 
+[node name="jump_swipe" parent="CollisionShape3D/swipes" instance=ExtResource("19_dql1x")]
+transform = Transform3D(0.0294079, -1.00971, 0, 1.26367, 0.0165237, -0.858509, 0.820952, 0.0107347, 1.32148, 0.258513, 0.256048, -0.783183)
+
 [node name="piv" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69941, 0)
 
