@@ -30,13 +30,14 @@ var inverce_light_power = 300.0
 var normal_music = preload("res://import/CC BY Mystery Mammal/Mystery Mammal - Boss Battle.wav")
 var hard_end_music = preload("res://import/CC BY BoxCat Games/BoxCat Games - Battle (End).wav")
 var last_boss = null
+var water
 #const IMAGE_HEIGHT_FACTOR: float = float(IMAGE_HEIGHT) / 256.0 # Converts sample raw height to pixel
 #const IMAGE_CENTER_Y = int(round(IMAGE_HEIGHT / 2.0))
 
 
 var img_x = 0
 
-
+	
 
 func _get_light_data(stream):
 	var new_sound_light_data = []
@@ -111,6 +112,7 @@ func _get_light_data(stream):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	water = $water
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	norm_sound_light_data = _get_light_data(normal_music)
 	#print(len(norm_sound_light_data))
@@ -124,6 +126,10 @@ func _process(delta):
 	if not player or not player.level:
 		queue_free()
 		return
+	if abs(water.global_position.x - player.global_position.x) > 20:
+		water.global_position.x = player.global_position.x
+	if abs(water.global_position.z - player.global_position.z) > 20:
+		water.global_position.z = player.global_position.z
 	"""
 	#update lava level
 	if player.level != lava_level:

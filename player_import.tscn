@@ -170,12 +170,12 @@ bones/22/position = Vector3(0.122766, -1.59024, 0.0526885)
 bones/22/rotation = Quaternion(0.552477, 0.595667, 0.441327, 0.381027)
 
 [node name="right_hand" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="0"]
-transform = Transform3D(-0.0150886, 0.210059, 0.977571, -0.0067521, -0.977683, 0.209978, 0.999863, -0.00343245, 0.0161702, 0.347461, -0.273778, 0.0290081)
+transform = Transform3D(-0.0150887, 0.210059, 0.977571, -0.00675019, -0.977683, 0.209978, 0.999863, -0.00343052, 0.0161698, 0.347461, -0.273778, 0.02901)
 bone_name = "hand.r"
 bone_idx = 13
 
 [node name="left_hand" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.358625, -0.93301, -0.0296245, 0.173962, 0.0356192, 0.984108, -0.917128, -0.358079, 0.175082, -0.456065, -0.236229, -0.000750914)
+transform = Transform3D(0.358625, -0.93301, -0.0296248, 0.17396, 0.0356181, 0.984108, -0.917129, -0.35808, 0.17508, -0.456065, -0.236229, -0.000749178)
 bone_name = "hand.l"
 bone_idx = 10
 
