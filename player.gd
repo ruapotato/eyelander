@@ -35,7 +35,7 @@ var min_zoom = -.25
 var mouse_sensitivity = .0035
 #var speed = 5
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-var JUMP_VELOCITY = 8
+var JUMP_VELOCITY = 15
 var SPEED = 5.0
 
 var level = 1

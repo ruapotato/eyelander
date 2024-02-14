@@ -16,4 +16,4 @@ transform = Transform3D(170.272, 0, 0, 0, 90.0021, 0, 0, 0, 170.272, 0, 24.0163,
 shape = SubResource("ConcavePolygonShape3D_fmtvp")
 
 [node name="grass" parent="." instance=ExtResource("2_ra6re")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.34012, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.267, 0)
