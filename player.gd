@@ -90,6 +90,7 @@ var sidejump_speed = 30
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	spring_arm.add_excluded_object(self)
 	og_camera_angle = camera.rotation_degrees
 	start_life = start_life / get_parent().hardness
 	life_gen = life_gen / get_parent().hardness
