@@ -8,4 +8,5 @@ albedo_color = Color(0.25098, 0.282353, 0.447059, 1)
 [node name="home_island" instance=ExtResource("1_uj6gi")]
 
 [node name="home_island2" parent="." index="0"]
+cast_shadow = 0
 surface_material_override/1 = SubResource("StandardMaterial3D_w0dwp")

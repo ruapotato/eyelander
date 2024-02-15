@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Eyelander"
 run/main_scene="res://main_menu.tscn"
-config/features=PackedStringArray("4.1", "Forward Plus")
+config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [display]
@@ -87,3 +87,7 @@ zoom_in={
 [physics]
 
 3d/default_gravity=25.0
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"

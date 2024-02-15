@@ -43,14 +43,13 @@ float forsnail(float amount, vec3 normal, vec3 view)
 	return pow((1.0 - clamp(dot(norm_norm, norm_view), 0.0, 1.0)), amount);
 	//return pow((1.0 - clamp(dot(normalized(normal), normalized(view)), 0.0, 1.0)), amount);
 }
-
-void vertex()
+/*void vertex()
 {
 	world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	height = texture(wave, world_pos.xz /noise_scale + TIME * time_scale).r;
 	VERTEX.y += height * height_scale;
 }
-
+*/
 void fragment() 
 {
 	// Depth stuff

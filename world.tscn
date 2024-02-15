@@ -1,12 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://djl75nao1pxlp"]
+[gd_scene load_steps=15 format=3 uid="uid://djl75nao1pxlp"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_1w3vy"]
 [ext_resource type="PackedScene" uid="uid://hj5galx0bqtw" path="res://player.tscn" id="1_ljbio"]
-[ext_resource type="Texture2D" uid="uid://c5qho4tsgog8n" path="res://import/CC_BY_4_Jockum Skoglund (hipshot).png" id="2_ypap7"]
+[ext_resource type="Texture2D" uid="uid://dwc7s40ywiwo1" path="res://import/island_sky.png" id="2_jffki"]
 [ext_resource type="AudioStream" uid="uid://c2ufr3y3vlb4y" path="res://sounds/BG_1.wav" id="7_p6r64"]
 [ext_resource type="Script" path="res://Light_sounds.gd" id="8_22f2x"]
 [ext_resource type="AudioStream" uid="uid://qohc7upiwrdn" path="res://sounds/BG_2.wav" id="9_2j71s"]
-[ext_resource type="PackedScene" uid="uid://5vc7pjj0nsgx" path="res://boss_3.tscn" id="10_jmdrx"]
 [ext_resource type="PackedScene" uid="uid://ba4gkumtnqglk" path="res://music.tscn" id="11_v52dv"]
 [ext_resource type="AudioStream" uid="uid://c17bx6jkxigyk" path="res://import/CC BY Mystery Mammal/Mystery Mammal - Boss Battle.wav" id="12_eeiv8"]
 [ext_resource type="PackedScene" uid="uid://lmxejmktuun0" path="res://water.tscn" id="14_ohx8n"]
@@ -14,17 +13,20 @@
 [ext_resource type="PackedScene" uid="uid://coau5svvlsdd" path="res://home_island.tscn" id="15_plujx"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_wk74a"]
-panorama = ExtResource("2_ypap7")
+panorama = ExtResource("2_jffki")
 
 [sub_resource type="Sky" id="Sky_vhrdr"]
 sky_material = SubResource("PanoramaSkyMaterial_wk74a")
+radiance_size = 5
 
 [sub_resource type="Environment" id="Environment_ux4ke"]
 background_mode = 2
 background_color = Color(0.54902, 0.54902, 0.54902, 1)
 background_canvas_max_layer = 1
 sky = SubResource("Sky_vhrdr")
-volumetric_fog_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.631373, 0, 0, 1)
+fog_density = 0.009
 volumetric_fog_density = 0.01
 volumetric_fog_albedo = Color(0.556863, 0.556863, 0.556863, 1)
 adjustment_enabled = true
@@ -77,9 +79,6 @@ distance_fade_shadow = 3525.39
 distance_fade_length = 3319.9
 omni_range = 4096.0
 
-[node name="boss_3" parent="." instance=ExtResource("10_jmdrx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -91.6876, -13.7787)
-
 [node name="music" parent="." instance=ExtResource("11_v52dv")]
 stream = ExtResource("12_eeiv8")
 volume_db = 0.0
@@ -88,7 +87,7 @@ volume_db = 0.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.1022, -5.09624, 0)
 
 [node name="water" parent="." instance=ExtResource("14_ohx8n")]
-transform = Transform3D(30, 0, 0, 0, 1, 0, 0, 0, 30, 0, 0, 5.43167)
+transform = Transform3D(15, 0, 0, 0, 1, 0, 0, 0, 15, 0, 0, 5.43167)
 
 [node name="Village" parent="." instance=ExtResource("15_47naq")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 89.5668, 8.91348, 260.454)

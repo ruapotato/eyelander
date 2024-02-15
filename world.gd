@@ -113,6 +113,7 @@ func get_needed_trees():
 	return(needed)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	#print(Engine.get_frames_per_second())
 	if not player or not player.level:
 		queue_free()
 		return

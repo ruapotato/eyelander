@@ -1,11 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://hj5galx0bqtw"]
+[gd_scene load_steps=18 format=3 uid="uid://hj5galx0bqtw"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_oeri7"]
 [ext_resource type="PackedScene" uid="uid://dovic5nx1uejg" path="res://sword.tscn" id="2_n5who"]
 [ext_resource type="PackedScene" uid="uid://dsnalbd7u0d68" path="res://shield.tscn" id="3_f2err"]
 [ext_resource type="PackedScene" uid="uid://c0f1cbrr54p8a" path="res://gui.tscn" id="4_dg2ap"]
 [ext_resource type="AudioStream" uid="uid://di003tlqiifkq" path="res://sounds/hurt2.wav" id="5_brbjp"]
-[ext_resource type="Script" path="res://Light_sounds.gd" id="6_47ugm"]
 [ext_resource type="AudioStream" uid="uid://chy3uwn0hlqjc" path="res://import/jute-dh-steps/stepdirt_1.wav" id="7_e1p6s"]
 [ext_resource type="AudioStream" uid="uid://lky2s6lpvtn5" path="res://import/jute-dh-steps/stepdirt_2.wav" id="8_ma7fy"]
 [ext_resource type="AudioStream" uid="uid://cpibwf5bya5nt" path="res://import/jute-dh-steps/stepdirt_3.wav" id="9_dqeyl"]
@@ -14,8 +13,6 @@
 [ext_resource type="AudioStream" uid="uid://ckagbohbcdk4w" path="res://import/jute-dh-steps/stepdirt_6.wav" id="12_tnttn"]
 [ext_resource type="AudioStream" uid="uid://blebvyohfm0hh" path="res://import/jute-dh-steps/stepdirt_7.wav" id="13_a1ryk"]
 [ext_resource type="AudioStream" uid="uid://dkgnp5ge3tnn8" path="res://import/jute-dh-steps/stepdirt_8.wav" id="14_64vdx"]
-[ext_resource type="AudioStream" uid="uid://ds6l7nqmji1te" path="res://sounds/slam2.wav" id="15_fpfsr"]
-[ext_resource type="AudioStream" uid="uid://blxqceakc4v5f" path="res://sounds/sound4.wav" id="16_bp0si"]
 [ext_resource type="AudioStream" uid="uid://bskrofaaw5ljm" path="res://sounds/hurt1.wav" id="17_7o54j"]
 [ext_resource type="PackedScene" uid="uid://dq8l3picifoh" path="res://player_import.tscn" id="18_vlox2"]
 [ext_resource type="PackedScene" uid="uid://ddlttjqiym5d7" path="res://swipe_effect.tscn" id="19_dql1x"]
@@ -68,21 +65,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.156918, -0.747707)
 stream = ExtResource("5_brbjp")
 max_db = 6.0
 doppler_tracking = 2
-script = ExtResource("6_47ugm")
-
-[node name="sound_light" type="OmniLight3D" parent="hurt"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0348836, -0.0037058)
-light_color = Color(0.502817, 0.663302, 1, 1)
-light_energy = 15.03
-light_size = 1.0
-omni_range = 4096.0
 
 [node name="sounds" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.691731, 0)
 
 [node name="walking_dirt" type="Node3D" parent="sounds"]
 transform = Transform3D(2.07591, 0, 0, 0, 1.69565, 0, 0, 0, 2.17674, 0, -0.909337, -0.134472)
 
 [node name="1" type="AudioStreamPlayer3D" parent="sounds/walking_dirt"]
+transform = Transform3D(0.481716, 0, 0, 0, 0.589744, 0, 0, 0, 0.459403, 0, 0, 0)
 stream = ExtResource("7_e1p6s")
 doppler_tracking = 2
 
@@ -116,15 +107,8 @@ doppler_tracking = 2
 
 [node name="effects" type="Node3D" parent="sounds"]
 
-[node name="slam" type="AudioStreamPlayer3D" parent="sounds/effects"]
-stream = ExtResource("15_fpfsr")
-doppler_tracking = 2
-
-[node name="roar" type="AudioStreamPlayer3D" parent="sounds/effects"]
-stream = ExtResource("16_bp0si")
-doppler_tracking = 2
-
 [node name="hurt" type="AudioStreamPlayer3D" parent="sounds/effects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.779008, 0)
 stream = ExtResource("17_7o54j")
 doppler_tracking = 2
 
