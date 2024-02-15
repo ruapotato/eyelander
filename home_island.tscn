@@ -17,3 +17,125 @@ shape = SubResource("ConcavePolygonShape3D_fmtvp")
 
 [node name="grass" parent="." instance=ExtResource("2_ra6re")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.267, 0)
+
+[node name="big_mushes" type="Node3D" parent="."]
+
+[node name="bmush" type="Node3D" parent="big_mushes"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 80.2628, 36.3716, 72.4521)
+
+[node name="bmush2" type="Node3D" parent="big_mushes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.70746, -30.1765)
+
+[node name="bmush3" type="Node3D" parent="big_mushes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.6312, 9.41676, -10.9972)
+
+[node name="bmush4" type="Node3D" parent="big_mushes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.6312, 23.2743, 76.5623)
+
+[node name="bmush5" type="Node3D" parent="big_mushes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.7648, 7.70746, -54.3975)
+
+[node name="bmush6" type="Node3D" parent="big_mushes"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -80.9852, 2.31875, -54.3975)
+
+[node name="bmush7" type="Node3D" parent="big_mushes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80.9852, 13.1569, -14.2672)
+
+[node name="bmush8" type="Node3D" parent="big_mushes"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -114.97, 7.70746, -14.2672)
+
+[node name="bmush9" type="Node3D" parent="big_mushes"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -114.97, 8.59341, 40.3396)
+
+[node name="bmush10" type="Node3D" parent="big_mushes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -86.4704, 16.3632, 108.945)
+
+[node name="bmush11" type="Node3D" parent="big_mushes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -86.4704, 21.2938, 90.3087)
+
+[node name="bmush12" type="Node3D" parent="big_mushes"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 11.2535, 11.536, 89.9697)
+
+[node name="bmush13" type="Node3D" parent="big_mushes"]
+transform = Transform3D(0.87, 0, 0, 0, 0.87, 0, 0, 0, 0.87, 11.2506, 13.3408, 17.6176)
+
+[node name="bmush14" type="Node3D" parent="big_mushes"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 46.6823, 8.17431, -71.704)
+
+[node name="bmush15" type="Node3D" parent="big_mushes"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 53.6238, 8.20878, -82.2958)
+
+[node name="bmush16" type="Node3D" parent="big_mushes"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 57.7777, 8.12995, -90.0844)
+
+[node name="bmush17" type="Node3D" parent="big_mushes"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 55.2332, 8.1014, -95.3273)
+
+[node name="bmush18" type="Node3D" parent="big_mushes"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 55.2332, 7.38054, -99.8687)
+
+[node name="bmush19" type="Node3D" parent="big_mushes"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 51.3255, 8.30865, -105.554)
+
+[node name="bmush20" type="Node3D" parent="big_mushes"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -75.7979, 21.2938, 97.016)
+
+[node name="bmush21" type="Node3D" parent="big_mushes"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -75.7979, 21.2938, 106.229)
+
+[node name="bmush22" type="Node3D" parent="big_mushes"]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -88.191, 25.8945, 73.2962)
+
+[node name="bmush23" type="Node3D" parent="big_mushes"]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -49.7886, 14.7066, 73.2962)
+
+[node name="bmush25" type="Node3D" parent="big_mushes"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -63.5977, 14.7066, 40.3821)
+
+[node name="bmush26" type="Node3D" parent="big_mushes"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -78.7619, 14.7066, 49.6024)
+
+[node name="bmush24" type="Node3D" parent="big_mushes"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -60.0707, 13.7066, 48.5993)
+
+[node name="bmush27" type="Node3D" parent="big_mushes"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -63.6302, 13.7066, 55.4488)
+
+[node name="bmush28" type="Node3D" parent="big_mushes"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -64.9792, 13.7066, 68.5733)
+
+[node name="bmush29" type="Node3D" parent="big_mushes"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -57.7155, 13.7066, 56.6837)
+
+[node name="bmush30" type="Node3D" parent="big_mushes"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -96.0574, 13.7066, 57.8228)
+
+[node name="bmush31" type="Node3D" parent="big_mushes"]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -54.5625, 19.9123, 76.4147)
+
+[node name="bmush32" type="Node3D" parent="big_mushes"]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -75.2434, 23.7993, 73.2455)
+
+[node name="bmush33" type="Node3D" parent="big_mushes"]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -43.5809, 11.329, 62.6456)
+
+[node name="bmush34" type="Node3D" parent="big_mushes"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -85.379, 26.2401, 76.3952)
+
+[node name="bmush35" type="Node3D" parent="big_mushes"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -58.7377, 23.8591, 76.3952)
+
+[node name="bmush36" type="Node3D" parent="big_mushes"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -34.2548, 12.8943, 76.3952)
+
+[node name="bmush37" type="Node3D" parent="big_mushes"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -5.56351, 12.8943, 76.3952)
+
+[node name="bmush38" type="Node3D" parent="big_mushes"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 24.1051, 12.8943, 84.2635)
+
+[node name="bmush39" type="Node3D" parent="big_mushes"]
+transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 36.5333, 26.3653, 84.2635)
+
+[node name="bmush40" type="Node3D" parent="big_mushes"]
+transform = Transform3D(2.2, 0, 0, 0, 2.2, 0, 0, 0, 2.2, 52.5888, 30.4311, 84.2635)

@@ -253,7 +253,7 @@ func _physics_process(delta):
 		var input_dir = Input.get_vector("left", "right", "forward", "backward")
 		var direction = (piv.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		var speed = SPEED
-		if shielding and not mid_jump_swipe:
+		if shielding and not mid_jump_swipe and is_on_floor():
 			speed = SPEED / 2
 			var current_blend = animation_tree.get("parameters/shield/blend_amount")
 			var new_blend = lerp(current_blend,1.0, delta * 9)
@@ -332,7 +332,7 @@ func _physics_process(delta):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
+	"""
 	if boss_life != boss.life:
 		boss_life = boss.life
 		if gui.find_child("BOSS_LIFE"):
@@ -349,7 +349,7 @@ func _process(delta):
 			gui.find_child("BOSS_LABLE").text = "Worm Boss"
 		if level == 3:
 			gui.find_child("BOSS_LABLE").text = "Reaper Boss"
-	
+	"""
 	if walk_shake > 0:
 		var walk_angle = Vector3(20,0,0)
 		camera.rotation_degrees = lerp(camera.rotation_degrees, walk_angle, delta * (velocity.length()/5))
@@ -411,7 +411,7 @@ func _process(delta):
 	animation_tree.set("parameters/stand_run/blend_position", velocity.length()/SPEED)
 	if velocity.length()/SPEED > 1:
 		animation_tree.set("parameters/run_timescale/scale", velocity.length()/SPEED)
-		print(velocity.length()/SPEED)
+		#print(velocity.length()/SPEED)
 	else:
 		animation_tree.set("parameters/run_timescale/scale", 1)
 	

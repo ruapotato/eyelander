@@ -2,7 +2,7 @@ extends Node3D
 @onready var music = $music
 @onready var env = $WorldEnvironment
 @onready var player = $player
-
+@onready var Tree1Scene = preload("res://big_shoom.tscn")
 # Big thanks to https://github.com/fbcosentino/godot-audiostreampreview/blob/main/addons/audio_preview/voice_preview_generator.gd
 # From https://godotengine.org/asset-library/asset/2257
 
@@ -31,105 +31,106 @@ var normal_music = preload("res://import/CC BY Mystery Mammal/Mystery Mammal - B
 var hard_end_music = preload("res://import/CC BY BoxCat Games/BoxCat Games - Battle (End).wav")
 var last_boss = null
 var water
+var last_known_pos = Vector3(-1,-1,-1)
 #const IMAGE_HEIGHT_FACTOR: float = float(IMAGE_HEIGHT) / 256.0 # Converts sample raw height to pixel
 #const IMAGE_CENTER_Y = int(round(IMAGE_HEIGHT / 2.0))
+
+var loaded = "home_island"
+
+var _tree_count = 100
+var trees = []
+var chunk_size = 3
+var render_range = 100
+var chunk_in_mem = []
+var rendred_trees = []
+var tree_index = 0
+
 
 
 var img_x = 0
 
-	
-
-func _get_light_data(stream):
-	var new_sound_light_data = []
-	var this_stream = stream.get_data
-	var data = stream.data
-	var reduced_data = PackedByteArray()
-	var data_size = data.size()
-	var sample_i = 0
-	var is_16bit = (stream.format == AudioStreamWAV.FORMAT_16_BITS)
-	var is_stereo = stream.stereo
-	
-	
-	# For display reasons, lower frequencies than the sampling rate might suffice. 
-	# According to the gentlemen of noble steem known as Nyquist and Shannon, 
-	# we can sample at SAMPLING_RATE
-	
-	
-	var sample_interval = 1
-	if stream.mix_rate > SAMPLING_RATE:
-		sample_interval = int(round(stream.mix_rate / SAMPLING_RATE))
-	if is_16bit:
-		sample_interval *= 2
-	if is_stereo:
-		sample_interval *= 2
-	
-	
-	# We use floor(), not round(), because extra elements in the end of data
-	# before next sampling interval are discarded
-	var reduced_data_size = int(floor( data_size / float(sample_interval) ))
-	reduced_data.resize(reduced_data_size)
-	
-	
-	# For drawing a preview, we use only one byte left channel per sample
-	# PCM16 is little endian, so MSB is index 1, not 0
-	# reduced_data will contain only that one byte per sample
-	var sample_in_i := 1 if is_16bit else 0
-	var sample_out_i := 0
-	while (sample_in_i < data_size) and (sample_out_i < reduced_data_size):
-		reduced_data[sample_out_i] = data[sample_in_i]
-		
-		sample_in_i += sample_interval
-		sample_out_i += 1
-	
-	
-	# From now on we work only with reduced_data 
-	#image_max_width
-	var image_compression = ceil(reduced_data_size / float(image_max_width))
-
-	var final_sample_i = (reduced_data_size - image_compression)
-
-	while sample_i < final_sample_i:
-		var min_val := 128
-		var max_val := 128
-		for block_i in range(image_compression):
-			var sample_val = reduced_data[sample_i]
-			# Convert signed bytes to unsigned bytes
-			sample_val += 128
-			if sample_val >= 256:
-				sample_val -= 256
-			
-			# Get minmax
-			if sample_val < min_val:
-				min_val = sample_val
-			if sample_val > max_val:
-				max_val = sample_val
-			
-			
-			sample_i += 1
-		
-		new_sound_light_data.append([min_val,max_val])
-	return(new_sound_light_data)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	water = $water
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	norm_sound_light_data = _get_light_data(normal_music)
-	#print(len(norm_sound_light_data))
-	hard_sound_light_data = _get_light_data(hard_end_music)
-	#print(len(hard_sound_light_data))
-	sound_light_data = norm_sound_light_data
 
 	
+	
+	for i in range(0,int(_tree_count)):
+		trees.append(Tree1Scene.instantiate())
+		#trees[-1].gravity_scale = 0
+		trees[-1].position = Vector3((randi()%60)-30,-100,(randi()%60)-30)
+		#trees[-1].contact_monitor = true
+		#trees[-1].max_contacts_reported = 99999
+		trees[-1].name = "tree_" + str(len(trees))
+		add_child.call_deferred(trees[-1])
+
+
+"""
+func get_most_dist(some_list_of_objects, from=player): 
+	var most_dist = some_list_of_objects[0]
+	for object in some_list_of_objects:
+		if object.global_position.distance_to(player.global_position) > most_dist.global_position.distance_to(player.global_position):
+			most_dist = object
+	return(most_dist)
+
+	var chunk_index_to_reuse = 0
+	for i in range(1, len(some_list_of_objects)):
+		var terrain_dist = some_list_of_objects[i].position.distance_to(from.position)
+		var known_best_dist = some_list_of_objects[chunk_index_to_reuse].position.distance_to(from.position)
+		if terrain_dist > known_best_dist:
+			chunk_index_to_reuse = i
+	return(some_list_of_objects[chunk_index_to_reuse])
+	"""
+
+func get_player_grid_pos():
+	var x_pos = int(player.global_position.x/chunk_size)
+	var y_pos = int(player.global_position.y/chunk_size)
+	var z_pos = int(player.global_position.z/chunk_size)
+	return(Vector3(x_pos,y_pos,z_pos))
+
+func spawn(what, where_and_size):
+	if what == Tree1Scene:
+		#var what_to_use = get_most_dist(trees)
+		var what_to_use = trees[tree_index]
+		if what_to_use in rendred_trees:
+			rendred_trees.erase(what_to_use)
+		tree_index += 1
+		if tree_index >= len(trees):
+			tree_index = 0
+		what_to_use.global_position = where_and_size[0]
+		what_to_use.scale = where_and_size[1]
+
+
+func get_needed_trees():
+	var needed = []
+	if loaded == "home_island":
+		for mush in find_child("big_mushes").get_children():
+			var mush_pos = mush.global_position
+			if mush_pos.distance_to(player.global_position) < render_range:
+				needed.append([mush_pos, mush.scale])
+	return(needed)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if not player or not player.level:
 		queue_free()
 		return
+	
+	# Update water
 	if abs(water.global_position.x - player.global_position.x) > 20:
 		water.global_position.x = player.global_position.x
 	if abs(water.global_position.z - player.global_position.z) > 20:
 		water.global_position.z = player.global_position.z
+	
+	# Update trees
+	#print(last_known_pos)
+	if get_player_grid_pos() != last_known_pos:
+		last_known_pos = get_player_grid_pos()
+		for needed_tree in get_needed_trees():
+			if needed_tree not in rendred_trees:
+				rendred_trees.append(needed_tree[0])
+				spawn(Tree1Scene, needed_tree)
 	"""
 	#update lava level
 	if player.level != lava_level:
