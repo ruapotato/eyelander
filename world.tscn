@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://djl75nao1pxlp"]
+[gd_scene load_steps=13 format=3 uid="uid://djl75nao1pxlp"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_1w3vy"]
 [ext_resource type="PackedScene" uid="uid://hj5galx0bqtw" path="res://player.tscn" id="1_ljbio"]
@@ -9,8 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://ba4gkumtnqglk" path="res://music.tscn" id="11_v52dv"]
 [ext_resource type="AudioStream" uid="uid://c17bx6jkxigyk" path="res://import/CC BY Mystery Mammal/Mystery Mammal - Boss Battle.wav" id="12_eeiv8"]
 [ext_resource type="PackedScene" uid="uid://lmxejmktuun0" path="res://water.tscn" id="14_ohx8n"]
-[ext_resource type="PackedScene" uid="uid://bfcm1bda2duee" path="res://village_import.tscn" id="15_47naq"]
-[ext_resource type="PackedScene" uid="uid://coau5svvlsdd" path="res://home_island.tscn" id="15_plujx"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_wk74a"]
 panorama = ExtResource("2_jffki")
@@ -25,7 +23,7 @@ background_color = Color(0.54902, 0.54902, 0.54902, 1)
 background_canvas_max_layer = 1
 sky = SubResource("Sky_vhrdr")
 fog_enabled = true
-fog_light_color = Color(0.631373, 0, 0, 1)
+fog_light_color = Color(0.631373, 0.290196, 0.290196, 1)
 fog_density = 0.009
 volumetric_fog_density = 0.01
 volumetric_fog_albedo = Color(0.556863, 0.556863, 0.556863, 1)
@@ -83,11 +81,5 @@ omni_range = 4096.0
 stream = ExtResource("12_eeiv8")
 volume_db = 0.0
 
-[node name="home_island" parent="." instance=ExtResource("15_plujx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.1022, -5.09624, 0)
-
 [node name="water" parent="." instance=ExtResource("14_ohx8n")]
 transform = Transform3D(15, 0, 0, 0, 1, 0, 0, 0, 15, 0, 0, 5.43167)
-
-[node name="Village" parent="." instance=ExtResource("15_47naq")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 89.5668, 8.91348, 260.454)

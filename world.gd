@@ -29,13 +29,15 @@ var lava_level = 0
 var inverce_light_power = 300.0
 var normal_music = preload("res://import/CC BY Mystery Mammal/Mystery Mammal - Boss Battle.wav")
 var hard_end_music = preload("res://import/CC BY BoxCat Games/BoxCat Games - Battle (End).wav")
+var home_island = preload("res://home_island.tscn")
 var last_boss = null
 var water
 var last_known_pos = Vector3(-1,-1,-1)
 #const IMAGE_HEIGHT_FACTOR: float = float(IMAGE_HEIGHT) / 256.0 # Converts sample raw height to pixel
 #const IMAGE_CENTER_Y = int(round(IMAGE_HEIGHT / 2.0))
 
-var loaded = "home_island"
+var init_load = [home_island, "room"]
+var loaded
 
 var _tree_count = 100
 var trees = []
@@ -50,13 +52,26 @@ var tree_index = 0
 var img_x = 0
 
 
+func load_place(what_and_where):
+	print(what_and_where)
+	if loaded:
+		loaded.queue_free()
+	var what = what_and_where[0]
+	loaded = what.instantiate()
+	add_child(loaded)
+	var where = loaded.find_child(what_and_where[1]).position
+	var rot = loaded.find_child(what_and_where[1]).rotation
+	print(where)
+	player.global_position = where
+	player.piv.rotation = rot
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	water = $water
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
 	
 	
+	load_place(init_load)
 	for i in range(0,int(_tree_count)):
 		trees.append(Tree1Scene.instantiate())
 		#trees[-1].gravity_scale = 0
@@ -105,8 +120,8 @@ func spawn(what, where_and_size):
 
 func get_needed_trees():
 	var needed = []
-	if loaded == "home_island":
-		for mush in find_child("big_mushes").get_children():
+	if loaded.name == "home_island":
+		for mush in loaded.find_child("big_mushes").get_children():
 			var mush_pos = mush.global_position
 			if mush_pos.distance_to(player.global_position) < render_range:
 				needed.append([mush_pos, mush.scale])
@@ -117,6 +132,12 @@ func _process(delta):
 	if not player or not player.level:
 		queue_free()
 		return
+	
+	# load new level if needed
+	if player.needs_to_load != null:
+		print(player.needs_to_load)
+		load_place(player.needs_to_load)
+		player.needs_to_load = null
 	
 	# Update water
 	if abs(water.global_position.x - player.global_position.x) > 20:

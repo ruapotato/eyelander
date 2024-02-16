@@ -22,6 +22,7 @@ extends CharacterBody3D
 @onready var swipe_2_effect = $CollisionShape3D/swipes/swipe_2
 @onready var swipe_3_effect = $CollisionShape3D/swipes/swipe_3
 @onready var jump_swipe_effect = $CollisionShape3D/swipes/jump_swipe
+var needs_to_load = null
 var total_swipe_stages = 3
 var swipe_stage = 1
 var walk_sound_every = 0
