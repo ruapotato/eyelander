@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://coau5svvlsdd"]
+[gd_scene load_steps=6 format=3 uid="uid://coau5svvlsdd"]
 
+[ext_resource type="Script" path="res://levels/home_island.gd" id="1_apl5u"]
 [ext_resource type="PackedScene" uid="uid://b5d5t4u4u4f5f" path="res://home_island_import.tscn" id="1_tuieb"]
 [ext_resource type="PackedScene" uid="uid://bfcm1bda2duee" path="res://village_import.tscn" id="3_5uwq0"]
 [ext_resource type="PackedScene" uid="uid://ciis218u8fqti" path="res://load_zone.tscn" id="4_2rrkv"]
+[ext_resource type="PackedScene" uid="uid://brctuubjouqvj" path="res://NPCs/npcs.tscn" id="4_5mlcm"]
 
-[node name="home_island" type="StaticBody3D"]
+[node name="home_island" type="Node3D"]
+script = ExtResource("1_apl5u")
 
 [node name="home_island" parent="." instance=ExtResource("1_tuieb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.95426, 19.7264)
@@ -147,3 +150,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.709, 8.56083, 190.396)
 
 [node name="village_main_house~main" parent="load_zones" instance=ExtResource("4_2rrkv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.388, 18.468, 242.679)
+
+[node name="NPCs" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.95426, 19.7264)
+
+[node name="Briska" parent="NPCs" instance=ExtResource("4_5mlcm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.8018, 5.73512, 237.953)

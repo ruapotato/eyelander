@@ -22,6 +22,10 @@ extends CharacterBody3D
 @onready var swipe_2_effect = $CollisionShape3D/swipes/swipe_2
 @onready var swipe_3_effect = $CollisionShape3D/swipes/swipe_3
 @onready var jump_swipe_effect = $CollisionShape3D/swipes/jump_swipe
+@onready var message_box = $GUI/MESSAGE
+@onready var message_warning = $GUI/MESSAGE_WARNING
+
+var message_ui = null
 var needs_to_load = null
 var total_swipe_stages = 3
 var swipe_stage = 1
@@ -70,7 +74,7 @@ var shake = 0
 var walk_shake = 0
 var has_won = false
 var effects_effector
-var use_controler = true
+var use_controler = false
 var acton_name
 var mid_jump_swipe = false
 var jump_swipe_added = false
@@ -273,84 +277,13 @@ func _physics_process(delta):
 			var current_blend = animation_tree.get("parameters/shield/blend_amount")
 			var new_blend = lerp(current_blend,0.0, delta * 9)
 			animation_tree.set("parameters/shield/blend_amount", new_blend)
-	"""jump_swipe_dir
-	if shielding:
-		# Set shielding pos
-		shield.rotation_degrees.y = lerp(shield.rotation_degrees.y, shielding_angle + piv.rotation_degrees.y, .2)
-		# Set camera 
-		#shield.rotation_degrees.x = spring_arm.rotation_degrees.x
-		# Set sword pos
-		sword.rotation_degrees.y = piv.rotation_degrees.y - 100
-	if not shielding:
-		shield.rotation_degrees.y = shield_hold_angle + piv.rotation_degrees.y
-	"""
-	"""
-	var swipe_done = swipe_stage > len(swipe_angles)
-	if swipe_done and sword.find_child("swing").playing:
-		sword.find_child("swing").stop()
-	if (swipping and not swipe_done) and not shielding:
-		if is_on_floor():
-			sword.rotation.x = lerp(sword.rotation.x, spring_arm.rotation.x * -1, .3)
-			var swipe_end_angle = swipe_angles[swipe_stage][0]
-			var swipe_start_angle =   swipe_angles[swipe_stage][1]
-			#print(swipe_counter)
-			swipe_counter -= delta
-			if swipe_counter <= 0:
-				swipe_counter = 0
-				swipping = false
-			else:
-				var angle_amount = swipe_counter/swipe_speed
-				var total_angles = swipe_end_angle - swipe_start_angle
-				var angle = (total_angles * angle_amount) + swipe_start_angle
-				#print(angle)
-				sword.rotation_degrees.y = angle + piv.rotation_degrees.y
-				sword.rotation.z = 0
-				#print(sword.rotation_degrees.y)
-		if swipping and not shielding and not is_on_floor():
-			#if new_speed.y < 0:
-			#sword.look_at(camera.global_position, Vector3(1,0,0))
-			if not sword.find_child("swing2").playing:
-				sword.find_child("swing2").play()
-			sword.rotation_degrees.y = lerp(sword.rotation_degrees.y, sword_center_angle + piv.rotation_degrees.y, .2)
-			#sword.rotate_object_local(Vector3(0,0,1), .5)
-			
-			sword.rotation.z = lerp(sword.rotation.z , 1.5, .3)
-			
-			#if  is_equal_approx(sword.rotation.z, 1.5):
-			sword.rotation.x = lerp(sword.rotation.x ,spring_arm.rotation.x * -1, .2)
-	if (not swipping or swipe_done) and not shielding:
-		#sword.rotation.y = lerp_angle(sword.rotation.y, atan2(-direction.x, -direction.z), .2)
-		#if not Input.is_action_pressed("swipe"):
-		sword.rotation_degrees.y = sword_hold_angle + piv.rotation_degrees.y 
-		sword.rotation.z = 0
-		sword.rotation.x = 0
-		
-		#print(sword.rotation.y)
-	"""
+	
 	velocity = new_speed
 	move_and_slide()
 		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	"""
-	if boss_life != boss.life:
-		boss_life = boss.life
-		if gui.find_child("BOSS_LIFE"):
-			var new_life = (float(boss.life)/float(boss.start_life)) * 100
-			gui.find_child("BOSS_LIFE").value = new_life
-			if new_life < 50 and new_life != 0:
-				gui.find_child("dragon_pissed").visible = true
-			else:
-				gui.find_child("dragon_pissed").visible = false
-				
-		if level == 1:
-			gui.find_child("BOSS_LABLE").text = "Spider Boss"
-		if level == 2:
-			gui.find_child("BOSS_LABLE").text = "Worm Boss"
-		if level == 3:
-			gui.find_child("BOSS_LABLE").text = "Reaper Boss"
-	"""
 	if walk_shake > 0:
 		var walk_angle = Vector3(20,0,0)
 		camera.rotation_degrees = lerp(camera.rotation_degrees, walk_angle, delta * (velocity.length()/5))
@@ -399,6 +332,22 @@ func _process(delta):
 			var RIP = game_over_screen.instantiate()
 			get_parent().add_child(RIP)
 			dead = true
+	
+	
+	#NPC messages
+	if not message_ui:
+		message_box.visible = false
+		message_warning.visible = false
+	if message_ui:
+		if not message_box.visible:
+			message_warning.visible = true
+			if Input.is_action_pressed("interact"):
+				message_box.text = message_ui
+				message_box.visible = true
+		else:
+			message_warning.visible = false
+			print("message...")
+		message_ui = null
 	
 	#Rotate player
 	if not shielding:
