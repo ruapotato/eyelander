@@ -24,6 +24,7 @@ extends CharacterBody3D
 @onready var jump_swipe_effect = $CollisionShape3D/swipes/jump_swipe
 @onready var message_box = $GUI/MESSAGE
 @onready var message_warning = $GUI/MESSAGE_WARNING
+@onready var message_bg = $GUI/MESSAGE_BG
 
 var message_index = -1
 var message_ui = null
@@ -127,8 +128,10 @@ func _unhandled_input(event):
 			if len(message_ui) > message_index:
 				message_box.text = message_ui[message_index]
 				message_box.visible = true
+				message_bg.visible = true
 			else:
 				message_box.visible = false
+				message_bg.visible = false
 				message_index = -1
 	
 	if Input.is_action_just_pressed("zoom_out"):
@@ -349,6 +352,7 @@ func _process(delta):
 	if not message_ui:
 		message_box.visible = false
 		message_warning.visible = false
+		message_bg.visible = false
 	if message_ui:
 		if not message_box.visible:
 			message_warning.visible = true
