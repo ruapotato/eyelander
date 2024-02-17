@@ -22,6 +22,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_jsrts")
 value = 100.0
 
 [node name="LIFE_LABLE" type="Label" parent="LIFE"]
+layout_mode = 0
 offset_left = 6.31041
 offset_top = 2.47018
 offset_right = 96.3104

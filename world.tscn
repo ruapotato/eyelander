@@ -1,11 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://djl75nao1pxlp"]
+[gd_scene load_steps=10 format=3 uid="uid://djl75nao1pxlp"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_1w3vy"]
 [ext_resource type="PackedScene" uid="uid://hj5galx0bqtw" path="res://player.tscn" id="1_ljbio"]
 [ext_resource type="Texture2D" uid="uid://dwc7s40ywiwo1" path="res://import/island_sky.png" id="2_jffki"]
-[ext_resource type="AudioStream" uid="uid://c2ufr3y3vlb4y" path="res://sounds/BG_1.wav" id="7_p6r64"]
-[ext_resource type="Script" path="res://Light_sounds.gd" id="8_22f2x"]
-[ext_resource type="AudioStream" uid="uid://qohc7upiwrdn" path="res://sounds/BG_2.wav" id="9_2j71s"]
 [ext_resource type="PackedScene" uid="uid://ba4gkumtnqglk" path="res://music.tscn" id="11_v52dv"]
 [ext_resource type="AudioStream" uid="uid://c17bx6jkxigyk" path="res://import/CC BY Mystery Mammal/Mystery Mammal - Boss Battle.wav" id="12_eeiv8"]
 [ext_resource type="PackedScene" uid="uid://lmxejmktuun0" path="res://water.tscn" id="14_ohx8n"]
@@ -23,12 +20,11 @@ background_color = Color(0.54902, 0.54902, 0.54902, 1)
 background_canvas_max_layer = 1
 sky = SubResource("Sky_vhrdr")
 fog_enabled = true
-fog_light_color = Color(0.631373, 0.290196, 0.290196, 1)
-fog_density = 0.009
+fog_light_color = Color(0.321569, 0.254902, 0.219608, 1)
+fog_density = 0.02
 volumetric_fog_density = 0.01
 volumetric_fog_albedo = Color(0.556863, 0.556863, 0.556863, 1)
 adjustment_enabled = true
-adjustment_saturation = 1.5
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_1w3vy")
@@ -42,40 +38,6 @@ environment = SubResource("Environment_ux4ke")
 
 [node name="player" parent="." instance=ExtResource("1_ljbio")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.4607, 9.81731)
-
-[node name="1_level_light" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.20978, 0)
-stream = ExtResource("7_p6r64")
-doppler_tracking = 2
-script = ExtResource("8_22f2x")
-
-[node name="sound_light" type="OmniLight3D" parent="1_level_light"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.154852, -1.21256, -0.00180435)
-light_color = Color(1, 0, 0, 1)
-light_energy = 15.03
-light_size = 1.0
-distance_fade_enabled = true
-distance_fade_begin = 3101.66
-distance_fade_shadow = 3525.39
-distance_fade_length = 3319.9
-omni_range = 4096.0
-
-[node name="2_level_light" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -43.9898, 0)
-stream = ExtResource("9_2j71s")
-doppler_tracking = 2
-script = ExtResource("8_22f2x")
-
-[node name="sound_light" type="OmniLight3D" parent="2_level_light"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.116435, 0.0348854, -0.106513)
-light_color = Color(1, 0, 0, 1)
-light_energy = 15.03
-light_size = 1.0
-distance_fade_enabled = true
-distance_fade_begin = 3101.66
-distance_fade_shadow = 3525.39
-distance_fade_length = 3319.9
-omni_range = 4096.0
 
 [node name="music" parent="." instance=ExtResource("11_v52dv")]
 stream = ExtResource("12_eeiv8")

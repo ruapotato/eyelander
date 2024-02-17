@@ -36,7 +36,7 @@ var last_known_pos = Vector3(-1,-1,-1)
 #const IMAGE_HEIGHT_FACTOR: float = float(IMAGE_HEIGHT) / 256.0 # Converts sample raw height to pixel
 #const IMAGE_CENTER_Y = int(round(IMAGE_HEIGHT / 2.0))
 
-var init_load = [home_island, "room"]
+var init_load = [home_island, "dock"]
 var loaded
 
 var _tree_count = 100

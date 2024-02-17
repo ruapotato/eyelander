@@ -70,7 +70,7 @@ var shake = 0
 var walk_shake = 0
 var has_won = false
 var effects_effector
-var use_controler = false
+var use_controler = true
 var acton_name
 var mid_jump_swipe = false
 var jump_swipe_added = false
