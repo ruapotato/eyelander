@@ -25,6 +25,7 @@ extends CharacterBody3D
 @onready var message_box = $GUI/MESSAGE
 @onready var message_warning = $GUI/MESSAGE_WARNING
 
+var message_index = -1
 var message_ui = null
 var needs_to_load = null
 var total_swipe_stages = 3
@@ -119,6 +120,16 @@ func _unhandled_input(event):
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 	
+	if Input.is_action_just_pressed("interact"):
+		# Update message box page
+		if message_ui:
+			message_index += 1
+			if len(message_ui) > message_index:
+				message_box.text = message_ui[message_index]
+				message_box.visible = true
+			else:
+				message_box.visible = false
+				message_index = -1
 	
 	if Input.is_action_just_pressed("zoom_out"):
 		#print(find_child("SpringArm3D").spring_length)
@@ -341,9 +352,9 @@ func _process(delta):
 	if message_ui:
 		if not message_box.visible:
 			message_warning.visible = true
-			if Input.is_action_pressed("interact"):
-				message_box.text = message_ui
-				message_box.visible = true
+			#if message_index > -1:
+			#	message_box.text = message_ui[message_index]
+			#	message_box.visible = true
 		else:
 			message_warning.visible = false
 			print("message...")
