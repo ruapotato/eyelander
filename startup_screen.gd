@@ -115,3 +115,23 @@ func _on_button_pressed():
 	setup_init_save(new_player_name, new_player_gender, game_save_index)
 	$setup.visible = false
 	start_game()
+
+
+func _on_delete_1_pressed():
+	var dir = DirAccess.open("user://")
+	dir.remove_absolute("user://savegame_1.json")
+	saved_games.erase(1)
+	$Save1.text = "File 1: New"
+
+
+func _on_delete_2_pressed():
+	var dir = DirAccess.open("user://")
+	dir.remove_absolute("user://savegame_2.json")
+	saved_games.erase(2)
+	$Save2.text = "File 2: New"
+
+func _on_delete_3_pressed():
+	var dir = DirAccess.open("user://")
+	dir.remove_absolute("user://savegame_3.json")
+	saved_games.erase(3)
+	$Save3.text = "File 3: New"
