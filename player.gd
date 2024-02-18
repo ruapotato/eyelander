@@ -26,6 +26,11 @@ extends CharacterBody3D
 @onready var message_warning = $GUI/MESSAGE_WARNING
 @onready var message_bg = $GUI/MESSAGE_BG
 
+var save_index = null
+var gender = null
+var player_picked_name = null
+
+var _save_file = null #"user://savegame.json" #TODO save index? 
 var message_index = -1
 var message_ui = null
 var needs_to_load = null
@@ -114,8 +119,38 @@ func _ready():
 	
 	#Setup effects
 	effects_effector = root.effects_effector
+	
+	
+	#load save
+	save_index = get_parent().game_index
+	_save_file = "user://savegame_" + str(save_index) + ".json"
+	var data = load_save(_save_file)
+	var gender = data['gender']
+	var player_picked_name = data['name']
+	if gender == "male":
+		mesh.find_child("Briska").visible = false
+		mesh.find_child("island_male_1").visible = true
+	else:
+		mesh.find_child("Briska").visible = true
+		mesh.find_child("island_male_1").visible = false
 	#print(effects_effector)
 
+
+func load_save(save_file):
+	var save_game = FileAccess.open(save_file, FileAccess.READ)
+	var json_string = save_game.get_line()
+	var json = JSON.new()
+	var parse_result = json.parse(json_string)
+	print(parse_result)
+	if parse_result == 0:
+		var save_data = json.get_data()
+		return(save_data)
+
+func _save_game():
+	var save_game = FileAccess.open(_save_file, FileAccess.WRITE)
+	var save_data = JSON.stringify({"gender":gender,
+	"name":player_picked_name})
+	save_game.store_line(save_data)
 
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("quit"):

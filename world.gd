@@ -24,6 +24,7 @@ var norm_sound_light_data = []
 var hard_sound_light_data = []
 var repeat = true
 var hardness = 1
+var game_index = null
 var made_trade
 var lava_level = 0
 var inverce_light_power = 300.0

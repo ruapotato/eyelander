@@ -1,9 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://3o4a8uaid6mb"]
+[gd_scene load_steps=8 format=3 uid="uid://3o4a8uaid6mb"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_8rasr"]
 [ext_resource type="PackedScene" uid="uid://w43j2moo5wgm" path="res://credit.tscn" id="2_58kwt"]
-[ext_resource type="Texture2D" uid="uid://dimtfefr5uw2n" path="res://import/cover_2.png" id="2_ed2mp"]
 [ext_resource type="PackedScene" uid="uid://bji7i8g8cwq16" path="res://settings.tscn" id="4_ix6np"]
+
+[sub_resource type="Gradient" id="Gradient_hc6rm"]
+offsets = PackedFloat32Array(0, 0.564935, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.423111, 0.286532, 0.257381, 1, 1, 0.727771, 0.683715, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1810s"]
+gradient = SubResource("Gradient_hc6rm")
 
 [sub_resource type="LabelSettings" id="LabelSettings_827c2"]
 font_size = 150
@@ -17,7 +23,8 @@ script = ExtResource("1_8rasr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(960, 540)
-texture = ExtResource("2_ed2mp")
+scale = Vector2(32.8, 18.36)
+texture = SubResource("GradientTexture2D_1810s")
 
 [node name="Label" type="Label" parent="."]
 offset_left = 227.0
@@ -46,19 +53,8 @@ offset_right = 1184.0
 offset_bottom = 1018.0
 scale = Vector2(1.27902, 1.36552)
 text = "This game is AGPL by David Hamner. 
-https://bitbucket.org/hackersgame/my_two_sense
-Built for https://itch.io/jam/boss-rush-jam-2024"
-horizontal_alignment = 1
-
-[node name="Label3" type="Label" parent="."]
-modulate = Color(1, 0, 0, 1)
-offset_left = 344.0
-offset_top = 746.0
-offset_right = 683.0
-offset_bottom = 798.0
-scale = Vector2(3.76696, 3.40636)
-text = "WARNING
-This game contains flashing lights"
+https://bitbucket.org/hackersgame/eyelander
+"
 horizontal_alignment = 1
 
 [node name="quit" type="Button" parent="."]

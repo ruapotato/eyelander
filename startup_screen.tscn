@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dwf8it2ykecp2"]
+[gd_scene load_steps=8 format=3 uid="uid://dwf8it2ykecp2"]
 
 [ext_resource type="Script" path="res://startup_screen.gd" id="1_mpcew"]
-[ext_resource type="Texture2D" uid="uid://dimtfefr5uw2n" path="res://import/cover_2.png" id="2_j4m8y"]
 
 [sub_resource type="Gradient" id="Gradient_mamd2"]
 colors = PackedColorArray(0, 0, 0, 1, 0.270222, 0.270222, 0.270222, 1)
@@ -17,32 +16,45 @@ texture = SubResource("GradientTexture2D_je8jc")
 [sub_resource type="Theme" id="Theme_nflsl"]
 Button/styles/normal = SubResource("StyleBoxTexture_lxmiq")
 
+[sub_resource type="Gradient" id="Gradient_514ns"]
+offsets = PackedFloat32Array(0, 0.564935, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.423111, 0.286532, 0.257381, 1, 1, 0.727771, 0.683715, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vssi1"]
+gradient = SubResource("Gradient_514ns")
+
 [node name="startup_screen" type="Node2D"]
 script = ExtResource("1_mpcew")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(960, 540)
-texture = ExtResource("2_j4m8y")
-
-[node name="Label2" type="Label" parent="."]
-offset_left = 463.0
-offset_top = 953.0
-offset_right = 1038.0
-offset_bottom = 1005.0
-scale = Vector2(1.98377, 3.25615)
-text = "(headphones recommended)"
-horizontal_alignment = 1
-
-[node name="no_way" type="Button" parent="."]
-offset_left = 769.0
-offset_top = 530.0
-offset_right = 862.0
-offset_bottom = 561.0
+[node name="Save1" type="Button" parent="."]
+offset_left = 752.0
+offset_top = 271.0
+offset_right = 845.0
+offset_bottom = 302.0
 scale = Vector2(5.45676, 4.36493)
 theme = SubResource("Theme_nflsl")
-text = "Start"
+text = "File 1"
+
+[node name="Save2" type="Button" parent="."]
+offset_left = 752.0
+offset_top = 430.0
+offset_right = 845.0
+offset_bottom = 461.0
+scale = Vector2(5.45676, 4.36493)
+theme = SubResource("Theme_nflsl")
+text = "File 2"
+
+[node name="Save3" type="Button" parent="."]
+offset_left = 752.0
+offset_top = 589.0
+offset_right = 845.0
+offset_bottom = 620.0
+scale = Vector2(5.45676, 4.36493)
+theme = SubResource("Theme_nflsl")
+text = "File 3"
 
 [node name="hardness" type="HSlider" parent="."]
+visible = false
 offset_left = 621.0
 offset_top = 833.0
 offset_right = 1016.0
@@ -56,6 +68,7 @@ tick_count = 11
 ticks_on_borders = true
 
 [node name="Label3" type="Label" parent="."]
+visible = false
 offset_left = 895.0
 offset_top = 737.0
 offset_right = 965.0
@@ -64,6 +77,7 @@ scale = Vector2(3.32977, 1.97397)
 text = "Difficulty"
 
 [node name="Label4" type="Label" parent="."]
+visible = false
 offset_left = 547.0
 offset_top = 798.0
 offset_right = 637.0
@@ -72,6 +86,7 @@ scale = Vector2(2.27353, 1.38862)
 text = "Just Testing"
 
 [node name="Label5" type="Label" parent="."]
+visible = false
 offset_left = 947.0
 offset_top = 798.0
 offset_right = 1037.0
@@ -80,6 +95,7 @@ scale = Vector2(2.27353, 1.38862)
 text = "Normal"
 
 [node name="Label6" type="Label" parent="."]
+visible = false
 offset_left = 1331.0
 offset_top = 798.0
 offset_right = 1421.0
@@ -87,4 +103,61 @@ offset_bottom = 824.0
 scale = Vector2(2.27353, 1.38862)
 text = "Nuts-o"
 
-[connection signal="button_down" from="no_way" to="." method="_on_no_way_button_down"]
+[node name="setup" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="setup"]
+position = Vector2(960, 540)
+scale = Vector2(32.8, 18.36)
+texture = SubResource("GradientTexture2D_vssi1")
+
+[node name="gender_picked" type="ItemList" parent="setup"]
+offset_left = 686.0
+offset_top = 493.0
+offset_right = 806.0
+offset_bottom = 558.0
+scale = Vector2(5.13119, 3.36464)
+allow_reselect = true
+item_count = 2
+item_0/text = "Female"
+item_1/text = "Male"
+
+[node name="name_picked" type="TextEdit" parent="setup"]
+offset_left = 585.0
+offset_top = 191.0
+offset_right = 714.0
+offset_bottom = 230.0
+scale = Vector2(6.2211, 4.38127)
+placeholder_text = "Grisy"
+
+[node name="Label" type="Label" parent="setup"]
+offset_left = 291.0
+offset_top = 232.0
+offset_right = 338.0
+offset_bottom = 255.0
+scale = Vector2(5.45206, 3.95244)
+text = "Name"
+
+[node name="Label2" type="Label" parent="setup"]
+offset_left = 291.0
+offset_top = 565.0
+offset_right = 349.0
+offset_bottom = 588.0
+scale = Vector2(5.45206, 3.95244)
+text = "Gender"
+
+[node name="Button" type="Button" parent="setup"]
+offset_left = 847.0
+offset_top = 808.0
+offset_right = 896.0
+offset_bottom = 839.0
+scale = Vector2(6.69148, 4.32503)
+text = "Done"
+
+[connection signal="button_down" from="Save1" to="." method="_on_no_way_button_down"]
+[connection signal="button_down" from="Save1" to="." method="_on_save_1_button_down"]
+[connection signal="button_down" from="Save2" to="." method="_on_no_way_button_down"]
+[connection signal="button_down" from="Save2" to="." method="_on_save_2_button_down"]
+[connection signal="button_down" from="Save3" to="." method="_on_no_way_button_down"]
+[connection signal="button_down" from="Save3" to="." method="_on_save_3_button_down"]
+[connection signal="pressed" from="setup/Button" to="." method="_on_button_pressed"]
