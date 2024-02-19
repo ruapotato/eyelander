@@ -32,12 +32,12 @@ var normal_music = preload("res://import/CC BY Mystery Mammal/Mystery Mammal - B
 var hard_end_music = preload("res://import/CC BY BoxCat Games/BoxCat Games - Battle (End).wav")
 var home_island = preload("res://home_island.tscn")
 var last_boss = null
-var water
+var water = null
 var last_known_pos = Vector3(-1,-1,-1)
 #const IMAGE_HEIGHT_FACTOR: float = float(IMAGE_HEIGHT) / 256.0 # Converts sample raw height to pixel
 #const IMAGE_CENTER_Y = int(round(IMAGE_HEIGHT / 2.0))
 
-var init_load = [home_island, "dock"]
+var init_load = null
 var loaded
 
 var _tree_count = 100
@@ -59,6 +59,10 @@ func load_place(what_and_where):
 		loaded.queue_free()
 	var what = what_and_where[0]
 	loaded = what.instantiate()
+	if loaded.find_child("water"):
+		water = loaded.find_child("water")
+	else:
+		water = null
 	add_child(loaded)
 	var where = loaded.find_child(what_and_where[1]).position
 	var rot = loaded.find_child(what_and_where[1]).rotation
@@ -68,7 +72,6 @@ func load_place(what_and_where):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	water = $water
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	
@@ -141,10 +144,11 @@ func _process(delta):
 		player.needs_to_load = null
 	
 	# Update water
-	if abs(water.global_position.x - player.global_position.x) > 20:
-		water.global_position.x = player.global_position.x
-	if abs(water.global_position.z - player.global_position.z) > 20:
-		water.global_position.z = player.global_position.z
+	if water:
+		if abs(water.global_position.x - player.global_position.x) > 20:
+			water.global_position.x = player.global_position.x
+		if abs(water.global_position.z - player.global_position.z) > 20:
+			water.global_position.z = player.global_position.z
 	
 	# Update trees
 	#print(last_known_pos)

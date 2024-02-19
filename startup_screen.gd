@@ -6,7 +6,6 @@ extends Node2D
 @onready var mouse_sensitivity_effector
 @onready var effects_effector
 var saved_games = {}
-"user://savegame.json"
 
 var new_game = null
 var game_started = false
@@ -61,6 +60,9 @@ func start_game():
 			new_game.queue_free()
 		new_game = game.instantiate()
 		new_game.hardness = hardness_menu.value/100
+		var spawn_p = saved_games[game_save_index]["spawn_point"]
+		var spawn_s = load("res://" + saved_games[game_save_index]["spawn_scene"] + ".tscn")
+		new_game.init_load = [spawn_s, spawn_p]
 		new_game.game_index = game_save_index
 		self.hide()
 		add_child(new_game)
@@ -99,8 +101,10 @@ func _on_save_3_button_down():
 func setup_init_save(p_name, p_gender, index):
 	var _save_file = "user://savegame_" + str(index) + ".json"
 	var save_game = FileAccess.open(_save_file, FileAccess.WRITE)
-	var save_data = JSON.stringify({"gender":p_gender,
-	"name":p_name})
+	var init_inventory = {"sword": 0, "shield": 0, "crystals": 0,"spawn_scene": "village_main_house", "spawn_point": "main", "equipped_items": [], "menu_items": []}
+	init_inventory["gender"] = p_gender
+	init_inventory["name"] = p_name
+	var save_data = JSON.stringify(init_inventory)
 	save_game.store_line(save_data)
 
 func _on_button_pressed():

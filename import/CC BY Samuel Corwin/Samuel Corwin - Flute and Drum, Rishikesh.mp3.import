@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bmbx7s4y26y4p"
+path="res://.godot/imported/Samuel Corwin - Flute and Drum, Rishikesh.mp3-ad510904203cb1f6bb15558f509c681b.mp3str"
+
+[deps]
+
+source_file="res://import/CC BY Samuel Corwin/Samuel Corwin - Flute and Drum, Rishikesh.mp3"
+dest_files=["res://.godot/imported/Samuel Corwin - Flute and Drum, Rishikesh.mp3-ad510904203cb1f6bb15558f509c681b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

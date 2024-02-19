@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://coau5svvlsdd"]
+[gd_scene load_steps=7 format=3 uid="uid://coau5svvlsdd"]
 
 [ext_resource type="Script" path="res://levels/home_island.gd" id="1_apl5u"]
 [ext_resource type="PackedScene" uid="uid://b5d5t4u4u4f5f" path="res://home_island_import.tscn" id="1_tuieb"]
 [ext_resource type="PackedScene" uid="uid://bfcm1bda2duee" path="res://village_import.tscn" id="3_5uwq0"]
 [ext_resource type="PackedScene" uid="uid://ciis218u8fqti" path="res://load_zone.tscn" id="4_2rrkv"]
 [ext_resource type="PackedScene" uid="uid://brctuubjouqvj" path="res://NPCs/npcs.tscn" id="4_5mlcm"]
+[ext_resource type="PackedScene" uid="uid://lmxejmktuun0" path="res://water.tscn" id="6_kogf5"]
 
 [node name="home_island" type="Node3D"]
 script = ExtResource("1_apl5u")
@@ -143,6 +144,9 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 56.349
 [node name="room" type="Node3D" parent="spawns"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80.0238, 17.2646, 241.793)
 
+[node name="shop" type="Node3D" parent="spawns"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 49.3617, 7.89273, 266.329)
+
 [node name="dock" type="Node3D" parent="spawns"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.709, 8.56083, 190.396)
 
@@ -151,8 +155,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.709, 8.56083, 190.396)
 [node name="village_main_house~main" parent="load_zones" instance=ExtResource("4_2rrkv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.388, 18.468, 242.679)
 
+[node name="shop~main" parent="load_zones" instance=ExtResource("4_2rrkv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.5807, 8.1617, 266.274)
+
 [node name="NPCs" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.95426, 19.7264)
 
 [node name="Briska" parent="NPCs" instance=ExtResource("4_5mlcm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.8018, 5.73512, 237.953)
+transform = Transform3D(1, 0, 0, 0, 0.87, 0, 0, 0, 1, 33.8018, 5.73512, 237.953)
+
+[node name="water" parent="." instance=ExtResource("6_kogf5")]

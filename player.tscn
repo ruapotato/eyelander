@@ -1,8 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://hj5galx0bqtw"]
+[gd_scene load_steps=16 format=3 uid="uid://hj5galx0bqtw"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_oeri7"]
-[ext_resource type="PackedScene" uid="uid://dovic5nx1uejg" path="res://sword.tscn" id="2_n5who"]
-[ext_resource type="PackedScene" uid="uid://dsnalbd7u0d68" path="res://shield.tscn" id="3_f2err"]
 [ext_resource type="PackedScene" uid="uid://c0f1cbrr54p8a" path="res://gui.tscn" id="4_dg2ap"]
 [ext_resource type="AudioStream" uid="uid://di003tlqiifkq" path="res://sounds/hurt2.wav" id="5_brbjp"]
 [ext_resource type="AudioStream" uid="uid://chy3uwn0hlqjc" path="res://import/jute-dh-steps/stepdirt_1.wav" id="7_e1p6s"]
@@ -51,12 +49,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0993335, 0)
 current = true
 
 [node name="AudioListener3D" type="AudioListener3D" parent="piv"]
-
-[node name="sword" parent="." instance=ExtResource("2_n5who")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.479999, 0)
-
-[node name="shield" parent="." instance=ExtResource("3_f2err")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.238144, 0)
 
 [node name="GUI" parent="." instance=ExtResource("4_dg2ap")]
 

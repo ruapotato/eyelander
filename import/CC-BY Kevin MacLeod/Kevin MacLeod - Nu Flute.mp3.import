@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://o73dbuihubwf"
+path="res://.godot/imported/Kevin MacLeod - Nu Flute.mp3-62dd5803b5664be53a722eef614a686b.mp3str"
+
+[deps]
+
+source_file="res://import/CC-BY Kevin MacLeod/Kevin MacLeod - Nu Flute.mp3"
+dest_files=["res://.godot/imported/Kevin MacLeod - Nu Flute.mp3-62dd5803b5664be53a722eef614a686b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -5,8 +5,19 @@ var city_center_npc_msg = ["[center][font_size=30]Have you noticed the water has
 "[center][font_size=30]I hope it stops soon :( [/font_size][/center]"]
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	# Setup City Center NPC
 	city_center_npc.message = city_center_npc_msg
-	pass # Replace with function body.
+	
+	var skin = StandardMaterial3D.new()
+	skin.albedo_color = Color("#aaeeff")
+	city_center_npc.find_child("Briska").set_surface_override_material(0, skin)
+	
+	var shirt = StandardMaterial3D.new()
+	shirt.albedo_color = Color("#000000")
+	city_center_npc.find_child("Briska").set_surface_override_material(1, shirt)
+	
+	#city_center_npc.find_child("Armature").scale.y = .6
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

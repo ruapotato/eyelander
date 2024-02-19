@@ -13,7 +13,7 @@ func _ready():
 	axis_lock_linear_y = true
 	axis_lock_linear_z = true
 	add_collision_exception_with(get_parent())
-	add_collision_exception_with(get_parent().find_child("sword"))
+	#add_collision_exception_with(get_parent().find_child("sword"))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

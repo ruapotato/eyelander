@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://c24e5hhjo3uw"]
+
+[ext_resource type="PackedScene" uid="uid://ciis218u8fqti" path="res://load_zone.tscn" id="1_76m8q"]
+[ext_resource type="Script" path="res://levels/shop.gd" id="1_ojp0w"]
+[ext_resource type="PackedScene" uid="uid://brctuubjouqvj" path="res://NPCs/npcs.tscn" id="2_4sm6m"]
+[ext_resource type="PackedScene" uid="uid://cv1xlkbasp5rq" path="res://shop_import.tscn" id="3_6xriw"]
+
+[node name="shop" type="Node3D"]
+script = ExtResource("1_ojp0w")
+
+[node name="spawns" type="Node3D" parent="."]
+
+[node name="main" type="Node3D" parent="spawns"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4.44411, 2.51934, -4.38834)
+
+[node name="load_zones" type="Node3D" parent="."]
+
+[node name="home_island~shop" parent="load_zones" instance=ExtResource("1_76m8q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.46208, 2.88646, -6.37222)
+
+[node name="NPCs" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.95426, 19.7264)
+
+[node name="island_male_1" parent="NPCs" instance=ExtResource("2_4sm6m")]
+transform = Transform3D(1.265, 0, 0, 0, 1.3, 0, 0, 0, 1.035, 4.65758, 0.273144, -18.8857)
+
+[node name="shop" parent="." instance=ExtResource("3_6xriw")]

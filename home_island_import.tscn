@@ -51,11 +51,11 @@ data = PackedVector3Array(-0.9222, -0.1794, 0.35, -0.9051, -0.2192, 0.4069, -0.9
 
 [node name="home_island" instance=ExtResource("1_uj6gi")]
 
-[node name="home_island2" parent="." index="1"]
+[node name="home_island2" parent="." index="0"]
 cast_shadow = 0
 surface_material_override/0 = SubResource("ShaderMaterial_5vp4f")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="3"]
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
 transform = Transform3D(170.272, 0, 0, 0, 90.0021, 0, 0, 0, 170.272, 0, 18.8892, 0)

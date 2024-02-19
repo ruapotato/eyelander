@@ -3,8 +3,8 @@ extends CharacterBody3D
 @onready var spring_arm = $piv/SpringArm3D
 @onready var piv = $piv
 @onready var mesh = $mesh
-@onready var sword = $sword
-@onready var shield = $shield
+@onready var sword = null
+@onready var shield = null
 @onready var camera = $piv/SpringArm3D/Camera3D
 @onready var gui = $GUI
 @onready var hurt_sund = $hurt
@@ -14,6 +14,8 @@ extends CharacterBody3D
 @onready var boss_2 = get_parent().find_child("boss_2")
 @onready var boss_3 = get_parent().find_child("boss_3")
 @onready var game_over_screen = preload("res://game_over.tscn")
+@onready var shield_1 = preload("res://shield.tscn")
+@onready var sword_1 = preload("res://sword.tscn")
 @onready var root = get_parent().get_parent()
 @onready var animation_tree = get_node("mesh/AnimationTree")
 @onready var right_hand_bone = get_node("mesh/Armature/Skeleton3D/right_hand")
@@ -26,6 +28,7 @@ extends CharacterBody3D
 @onready var message_warning = $GUI/MESSAGE_WARNING
 @onready var message_bg = $GUI/MESSAGE_BG
 
+var inventory = null
 var save_index = null
 var gender = null
 var player_picked_name = null
@@ -124,9 +127,15 @@ func _ready():
 	#load save
 	save_index = get_parent().game_index
 	_save_file = "user://savegame_" + str(save_index) + ".json"
-	var data = load_save(_save_file)
-	var gender = data['gender']
-	var player_picked_name = data['name']
+	inventory = load_save(_save_file)
+	var gender = inventory['gender']
+	var player_picked_name = inventory['name']
+	if inventory["sword"] == 1:
+		sword = sword_1.instantiate()
+		add_child(sword)
+	if inventory["shield"] == 1:
+		shield = shield_1.instantiate()
+		add_child(shield)
 	if gender == "male":
 		mesh.find_child("Briska").visible = false
 		mesh.find_child("island_male_1").visible = true
@@ -200,17 +209,18 @@ func _unhandled_input(event):
 
 	if Input.is_action_just_released("swipe"):
 		#swipe_stage = 1
-		if sword.find_child("swing").playing:
-			sword.find_child("swing").stop()
+		if sword:
+			if sword.find_child("swing").playing:
+				sword.find_child("swing").stop()
 	
 	if Input.is_action_just_pressed("shield"):
 		shielding = true
-		if sword.find_child("swing").playing:
+		if sword and sword.find_child("swing").playing:
 			sword.find_child("swing").stop()
 			swipping = false
 	if Input.is_action_just_released("shield"):
 		shielding = false
-		if Input.is_action_pressed("swipe"):
+		if sword and Input.is_action_pressed("swipe"):
 			sword.find_child("swing").play()
 	
 	#Update sowrd
@@ -418,7 +428,7 @@ func _process(delta):
 	
 	#Controls
 	var is_active = animation_tree.get(acton_name + "/active")
-	if Input.is_action_pressed("swipe"):
+	if Input.is_action_pressed("swipe") and sword:
 		if shielding or not is_on_floor():
 			if not mid_jump_swipe and not mid_backflip and not mid_sidejump:
 				# Jump slash

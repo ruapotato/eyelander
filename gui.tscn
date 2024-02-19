@@ -156,10 +156,10 @@ scale = Vector2(23.5781, 3.64844)
 texture = SubResource("GradientTexture2D_f2j4h")
 
 [node name="Label" type="Label" parent="MESSAGE_BG"]
-offset_left = -1.33598
-offset_top = 19.1178
-offset_right = 20.664
-offset_bottom = 42.1178
+offset_left = 30.049
+offset_top = 18.8437
+offset_right = 52.049
+offset_bottom = 41.8437
 scale = Vector2(0.070749, 0.448437)
 text = "  E"
 
