@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dogl3wqqfeh83"]
+[gd_scene load_steps=4 format=3 uid="uid://dogl3wqqfeh83"]
 
 [ext_resource type="PackedScene" uid="uid://ciis218u8fqti" path="res://load_zone.tscn" id="2_5xocx"]
 [ext_resource type="PackedScene" uid="uid://bsa6du5bo40h3" path="res://village_main_house_import.tscn" id="2_i56b1"]
+[ext_resource type="PackedScene" uid="uid://cll886cyjkrbr" path="res://crystal.tscn" id="3_7l3vy"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -19,3 +20,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.01319, 10.0607, 4.76042)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.709, 3.96341, 229.52)
 
 [node name="Village_main_house" parent="." instance=ExtResource("2_i56b1")]
+
+[node name="crystals" type="Node3D" parent="."]
+
+[node name="1_1" parent="crystals" instance=ExtResource("3_7l3vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.12878, 5.27713, -0.427832)
+
+[node name="5_2" parent="crystals" instance=ExtResource("3_7l3vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.12878, 5.27713, -3.3279)
+
+[node name="10_3" parent="crystals" instance=ExtResource("3_7l3vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.12878, 5.27713, -5.20744)
+
+[node name="20_4" parent="crystals" instance=ExtResource("3_7l3vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.12878, 5.27713, -6.78047)
+
+[node name="50_5" parent="crystals" instance=ExtResource("3_7l3vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.72736, 5.27713, -6.78047)
+
+[node name="100_6" parent="crystals" instance=ExtResource("3_7l3vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.72736, 5.27713, -4.16532)
+
+[node name="150_7" parent="crystals" instance=ExtResource("3_7l3vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.72736, 5.27713, -1.32641)
+
+[node name="200_8" parent="crystals" instance=ExtResource("3_7l3vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.72736, 5.27713, 1.61507)

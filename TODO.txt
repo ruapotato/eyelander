@@ -1,0 +1,8 @@
+200:purple
+150: black
+100:silver
+50:pink
+20:bl
+10:ye
+5:gr
+1:or

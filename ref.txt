@@ -4,6 +4,9 @@ From https://opengameart.org/content/foot-walking-step-sounds-on-stone-water-sno
  From https://opengameart.org/content/sky-textures 
  * import/CC-BY-SA 3.0 ryzom
 
+ From https://opengameart.org/content/level-up-power-up-coin-get-13-sounds under CC 0:
+  * import/CC 0 BY wobbleboxx/*
+ 
  From https://freemusicarchive.org/music under CC BY:
  * import/CC BY Kirk Osamayo/*
  * import/CC BY BoxCat Games/*

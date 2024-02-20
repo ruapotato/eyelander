@@ -393,6 +393,9 @@ func _process(delta):
 			dead = true
 	
 	
+	if str(inventory["crystals"]) != gui.find_child("crystals").text:
+		gui.find_child("crystals").text = str(inventory["crystals"])
+	
 	#NPC messages
 	if not message_ui:
 		message_box.visible = false

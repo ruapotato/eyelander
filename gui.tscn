@@ -1,4 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://c0f1cbrr54p8a"]
+[gd_scene load_steps=10 format=3 uid="uid://c0f1cbrr54p8a"]
+
+[ext_resource type="Texture2D" uid="uid://dl1tt2g4s8oql" path="res://import/crystals_icon.png" id="1_5ia8l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jsrts"]
 bg_color = Color(1, 0, 0, 1)
@@ -107,9 +109,10 @@ offset_bottom = 28.4002
 text = "Spider Boss"
 
 [node name="Label" type="Label" parent="."]
-offset_top = 1040.0
-offset_right = 604.0
-offset_bottom = 1066.0
+offset_left = 950.0
+offset_top = 1022.0
+offset_right = 1579.0
+offset_bottom = 1048.0
 scale = Vector2(1.51365, 1.54352)
 text = "Shield: Mouse Right     Sword: Mouse Left     Run: Shift     Jump: Space     Move: ASD
 "
@@ -129,10 +132,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
-offset_left = 915.0
-offset_top = 1019.0
-offset_right = 1514.0
-offset_bottom = 1045.0
+offset_left = 1865.0
+offset_top = 1001.0
+offset_right = 2464.0
+offset_bottom = 1027.0
 scale = Vector2(1.51365, 1.54352)
 text = "W"
 vertical_alignment = 1
@@ -172,3 +175,16 @@ offset_bottom = 1001.0
 theme = SubResource("Theme_srsa3")
 bbcode_enabled = true
 text = "[center][font_size=30]Follow the [b][color=red]Yellow Brick[/color][/b] road. [/font_size][/center]"
+
+[node name="crystals" type="Label" parent="."]
+offset_left = 60.0
+offset_top = 1028.0
+offset_right = 180.0
+offset_bottom = 1051.0
+scale = Vector2(1.92578, 1.54575)
+text = "0"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(37, 1047)
+scale = Vector2(0.22, 0.194445)
+texture = ExtResource("1_5ia8l")
