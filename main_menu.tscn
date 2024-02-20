@@ -27,12 +27,12 @@ scale = Vector2(32.8, 18.36)
 texture = SubResource("GradientTexture2D_1810s")
 
 [node name="Label" type="Label" parent="."]
-offset_left = 227.0
-offset_top = 84.0
-offset_right = 375.0
-offset_bottom = 111.0
+offset_left = 459.0
+offset_top = 64.0
+offset_right = 1177.0
+offset_bottom = 269.0
 scale = Vector2(1.45923, 1.25021)
-text = "My Two Sense"
+text = "Eyelander"
 label_settings = SubResource("LabelSettings_827c2")
 horizontal_alignment = 1
 
