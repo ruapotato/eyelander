@@ -32,6 +32,7 @@ var inventory = null
 var save_index = null
 var gender = null
 var player_picked_name = null
+var in_menu = false
 
 var _save_file = null #"user://savegame.json" #TODO save index? 
 var message_index = -1
@@ -102,9 +103,11 @@ var sidejump_added = true
 var sidejump_dir_l = Vector3(-1,.3,0)
 var sidejump_dir_r = Vector3(1,.3,0)
 var sidejump_speed = 30
+var pause_menu
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	pause_menu = gui.find_child("pause_menu")
 	spring_arm.add_excluded_object(self)
 	og_camera_angle = camera.rotation_degrees
 	start_life = start_life / get_parent().hardness
@@ -162,8 +165,21 @@ func _save_game():
 	save_game.store_line(save_data)
 
 func _unhandled_input(event):
-	if Input.is_action_just_pressed("quit"):
-		get_tree().quit()
+	#if Input.is_action_just_pressed("quit"):
+	#	get_tree().quit()
+	
+	if Input.is_action_just_pressed("pause"):
+		pause_menu.visible = !pause_menu.visible
+		in_menu = pause_menu.visible 
+		if in_menu:
+			Engine.time_scale = 0.0
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		else:
+			Engine.time_scale = 1.0
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	if in_menu:
+		return
 	
 	if Input.is_action_just_pressed("interact"):
 		# Update message box page
@@ -199,6 +215,8 @@ func _unhandled_input(event):
 
 		#piv.rotate_y(event.relative.x * -mouse_sensitivity)
 	
+	
+	
 	#Mouse controls
 	if event is InputEventMouseMotion and not dead and not has_won:
 		spring_arm.rotate_x(event.relative.y * -mouse_sensitivity)
@@ -206,7 +224,6 @@ func _unhandled_input(event):
 		piv.rotate_y(event.relative.x * -mouse_sensitivity)
 		
 		
-
 	if Input.is_action_just_released("swipe"):
 		#swipe_stage = 1
 		if sword:
@@ -430,6 +447,8 @@ func _process(delta):
 	
 	
 	#Controls
+	if in_menu:
+		return
 	var is_active = animation_tree.get(acton_name + "/active")
 	if Input.is_action_pressed("swipe") and sword:
 		if shielding or not is_on_floor():

@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://c0f1cbrr54p8a"]
+[gd_scene load_steps=11 format=3 uid="uid://c0f1cbrr54p8a"]
 
+[ext_resource type="Script" path="res://gui.gd" id="1_3n6be"]
 [ext_resource type="Texture2D" uid="uid://dl1tt2g4s8oql" path="res://import/crystals_icon.png" id="1_5ia8l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jsrts"]
@@ -74,6 +75,7 @@ Label/font_sizes/font_size = 29
 Label/styles/normal = SubResource("StyleBoxEmpty_0jxqx")
 
 [node name="GUI" type="Node2D"]
+script = ExtResource("1_3n6be")
 
 [node name="LIFE" type="ProgressBar" parent="."]
 offset_right = 276.0
@@ -188,3 +190,8 @@ text = "0"
 position = Vector2(37, 1047)
 scale = Vector2(0.22, 0.194445)
 texture = ExtResource("1_5ia8l")
+
+[node name="main_item_slots" type="Node2D" parent="."]
+
+[node name="pause_menu" type="Node2D" parent="."]
+visible = false
