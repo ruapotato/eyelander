@@ -58,6 +58,10 @@ func start_game():
 	if not game_started:
 		if new_game != null:
 			new_game.queue_free()
+		get_parent().find_child("EyeLand").visible = false
+		get_parent().find_child("Red_Dwarf").visible = false
+		get_parent().find_child("Space").queue_free()
+		
 		new_game = game.instantiate()
 		new_game.hardness = hardness_menu.value/100
 		var spawn_p = saved_games[game_save_index]["spawn_point"]
@@ -65,6 +69,8 @@ func start_game():
 		new_game.init_load = [spawn_s, spawn_p]
 		new_game.game_index = game_save_index
 		self.hide()
+		#get_parent().spin = false
+
 		add_child(new_game)
 		game_started = true
 
@@ -105,6 +111,7 @@ func setup_init_save(p_name, p_gender, index):
 	init_inventory["gender"] = p_gender
 	init_inventory["name"] = p_name
 	var save_data = JSON.stringify(init_inventory)
+	saved_games[index] = init_inventory
 	save_game.store_line(save_data)
 
 func _on_button_pressed():

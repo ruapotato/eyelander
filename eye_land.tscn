@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://bnhtry34ad3qt"]
+
+[ext_resource type="PackedScene" uid="uid://bdfqrsk7rh7gh" path="res://eyeland_import.tscn" id="1_6pmt4"]
+
+[sub_resource type="Gradient" id="Gradient_3iutl"]
+offsets = PackedFloat32Array(0.762712, 0.838983)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bva8j"]
+noise_type = 2
+frequency = 0.7488
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gfxuh"]
+width = 1000
+height = 1000
+seamless = true
+color_ramp = SubResource("Gradient_3iutl")
+noise = SubResource("FastNoiseLite_bva8j")
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vov3k"]
+panorama = SubResource("NoiseTexture2D_gfxuh")
+
+[sub_resource type="Sky" id="Sky_actk3"]
+sky_material = SubResource("PanoramaSkyMaterial_vov3k")
+
+[sub_resource type="Environment" id="Environment_bmd03"]
+background_mode = 2
+background_color = Color(0, 0, 0, 0)
+background_canvas_max_layer = 1
+sky = SubResource("Sky_actk3")
+ambient_light_sky_contribution = 0.0
+tonemap_mode = 2
+ssao_enabled = true
+sdfgi_enabled = true
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_krew8"]
+albedo_color = Color(0.992157, 0.654902, 0.54902, 1)
+emission_enabled = true
+emission = Color(0.992157, 0.654902, 0.54902, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_pqw0x"]
+radius = 250.0
+height = 500.0
+
+[node name="EyeLand" type="Node3D"]
+
+[node name="Space" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bmd03")
+
+[node name="EyeLand2" parent="." instance=ExtResource("1_6pmt4")]
+
+[node name="Red_Dwarf" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1883.4)
+material_override = SubResource("StandardMaterial3D_krew8")
+mesh = SubResource("SphereMesh_pqw0x")
+
+[node name="Red_Dwarf_light" type="DirectionalLight3D" parent="Red_Dwarf"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 6789.62)
+light_color = Color(0.992157, 0.654902, 0.54902, 1)
+light_energy = 0.5
+light_angular_distance = 19.09
+shadow_enabled = true

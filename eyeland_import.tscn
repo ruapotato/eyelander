@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdfqrsk7rh7gh"]
+
+[ext_resource type="PackedScene" uid="uid://mn114th4a17n" path="res://import/EyeLand.glb" id="1_pf5fv"]
+
+[node name="EyeLand2" instance=ExtResource("1_pf5fv")]

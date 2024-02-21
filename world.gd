@@ -74,7 +74,6 @@ func load_place(what_and_where):
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
-	
 	load_place(init_load)
 	for i in range(0,int(_tree_count)):
 		trees.append(Tree1Scene.instantiate())
