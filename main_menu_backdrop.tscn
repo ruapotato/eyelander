@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bvtip6j5ue3cd"]
+[gd_scene load_steps=18 format=3 uid="uid://bvtip6j5ue3cd"]
 
 [ext_resource type="PackedScene" uid="uid://bdfqrsk7rh7gh" path="res://eyeland_import.tscn" id="1_agdrn"]
 [ext_resource type="Script" path="res://main_menu_backdrop.gd" id="1_d1ihb"]
@@ -27,18 +27,55 @@ sky_material = SubResource("PanoramaSkyMaterial_vov3k")
 [sub_resource type="Environment" id="Environment_bmd03"]
 background_mode = 2
 background_color = Color(0, 0, 0, 0)
+background_energy_multiplier = 0.67
 background_canvas_max_layer = 1
 sky = SubResource("Sky_actk3")
 ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.0
 tonemap_mode = 2
+ssr_enabled = true
 ssao_enabled = true
+ssil_enabled = true
 sdfgi_enabled = true
 glow_enabled = true
+glow_intensity = 1.89
+glow_bloom = 0.36
+volumetric_fog_density = 0.001
+volumetric_fog_emission_energy = 0.0
+volumetric_fog_gi_inject = 0.02
+volumetric_fog_length = 110.16
+volumetric_fog_detail_spread = 6.0
+
+[sub_resource type="Gradient" id="Gradient_0dnlt"]
+offsets = PackedFloat32Array(0.57377, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jaux2"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xrelh"]
+color_ramp = SubResource("Gradient_0dnlt")
+noise = SubResource("FastNoiseLite_jaux2")
+
+[sub_resource type="Gradient" id="Gradient_c3l2j"]
+offsets = PackedFloat32Array(0, 0.00819672, 0.270492)
+colors = PackedColorArray(0, 0, 0, 1, 0.057377, 0.057377, 0.057377, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_n7jqx"]
+frequency = 0.0035
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5kchg"]
+seamless = true
+color_ramp = SubResource("Gradient_c3l2j")
+noise = SubResource("FastNoiseLite_n7jqx")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_krew8"]
 albedo_color = Color(0.992157, 0.654902, 0.54902, 1)
+albedo_texture = SubResource("NoiseTexture2D_xrelh")
 emission_enabled = true
 emission = Color(0.992157, 0.654902, 0.54902, 1)
+emission_energy_multiplier = 0.1
+emission_texture = SubResource("NoiseTexture2D_5kchg")
+grow = true
+grow_amount = 16.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_pqw0x"]
 radius = 250.0
@@ -53,20 +90,20 @@ script = ExtResource("1_d1ihb")
 environment = SubResource("Environment_bmd03")
 
 [node name="EyeLand" parent="." instance=ExtResource("1_agdrn")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Red_Dwarf" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1883.4)
 material_override = SubResource("StandardMaterial3D_krew8")
 mesh = SubResource("SphereMesh_pqw0x")
 
-[node name="Red_Dwarf_light" type="DirectionalLight3D" parent="Red_Dwarf"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 6789.62)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Red_Dwarf"]
+transform = Transform3D(-0.985627, 0, -0.168937, 0, 1, 0, 0.168937, 0, -0.985627, 0, 0, 621.777)
 light_color = Color(0.992157, 0.654902, 0.54902, 1)
-light_energy = 0.5
-light_angular_distance = 19.09
-shadow_enabled = true
+light_energy = 1.371
 
 [node name="cam_piv" type="Node3D" parent="."]
+transform = Transform3D(0.97722, 0, 0.212229, 0, 1, 0, -0.212229, 0, 0.97722, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="cam_piv"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 330.378)
