@@ -9,7 +9,7 @@ func _ready():
 	# Setup City Center NPC
 	city_center_npc.message = city_center_npc_msg
 	
-	var skin = StandardMaterial3D.new()
+	var skin = city_center_npc.find_child("Briska").get_active_material(0)
 	skin.albedo_color = Color("#aaeeff")
 	city_center_npc.find_child("Briska").set_surface_override_material(0, skin)
 	

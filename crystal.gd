@@ -49,6 +49,22 @@ func _ready():
 	#color_material.depth_draw_mode = BaseMaterial3D.DEPTH_DRAW_ALWAYS
 	#color_material.no_depth_test = true
 	
+	var outline_material = StandardMaterial3D.new()
+	outline_material.albedo_color = Color(0,0,0)
+	outline_material.metallic = .75
+	outline_material.roughness = .07
+	outline_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	#outline_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_DEPTH_PRE_PASS
+	#outline_material.blend_mode = BaseMaterial3D.BLEND_MODE_MIX
+	outline_material.cull_mode = BaseMaterial3D.CULL_FRONT
+	outline_material.grow = true
+	outline_material.grow_amount = .005
+	
+	color_material.next_pass = outline_material
+	color_material.roughness = .2
+	color_material.diffuse_mode = BaseMaterial3D.DIFFUSE_TOON
+	color_material.specular_mode = BaseMaterial3D.SPECULAR_TOON
+	
 	find_child("Upright_crystal").set_surface_override_material(0, color_material)
 	
 	#print(color)

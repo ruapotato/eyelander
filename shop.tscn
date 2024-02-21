@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ciis218u8fqti" path="res://load_zone.tscn" id="1_76m8q"]
 [ext_resource type="Script" path="res://levels/shop.gd" id="1_ojp0w"]
-[ext_resource type="PackedScene" uid="uid://brctuubjouqvj" path="res://NPCs/npcs.tscn" id="2_4sm6m"]
+[ext_resource type="PackedScene" uid="uid://brctuubjouqvj" path="res://npcs.tscn" id="2_4sm6m"]
 [ext_resource type="PackedScene" uid="uid://cv1xlkbasp5rq" path="res://shop_import.tscn" id="3_6xriw"]
 
 [node name="shop" type="Node3D"]

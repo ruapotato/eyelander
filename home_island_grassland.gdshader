@@ -22,7 +22,7 @@ void vertex()
 */
 void fragment() {
 	vec3 pix_color = texture(color, (UV) * 5.0).rgb;
-	vec3 pix_color2 = texture(color2, UV + TIME/3.0).rgb;
+	vec3 pix_color2 = texture(color2, UV * 10.0 + TIME/80.0).rgb;
 	//vec3 final_color = color3 - (pix_color * pix_color2);
 	vec3 final_color = pix_color * pix_color2 * color3;
 	final_color += (color3/5.0);

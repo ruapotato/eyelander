@@ -47,6 +47,7 @@ var dead = false
 var wind = Vector3(0,0,0)
 var max_zoom = 4.75
 var min_zoom = -.25
+var mini_map_cam_height = 30
 
 var mouse_sensitivity = .0035
 #var speed = 5
@@ -104,9 +105,11 @@ var sidejump_dir_l = Vector3(-1,.3,0)
 var sidejump_dir_r = Vector3(1,.3,0)
 var sidejump_speed = 30
 var pause_menu
+var mini_map_cam
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	mini_map_cam = gui.find_child("mini_map_cam")
 	pause_menu = gui.find_child("pause_menu")
 	spring_arm.add_excluded_object(self)
 	og_camera_angle = camera.rotation_degrees
@@ -126,7 +129,19 @@ func _ready():
 	#Setup effects
 	effects_effector = root.effects_effector
 	
+	var outline_material = StandardMaterial3D.new()
+	outline_material.albedo_color = Color(0,0,0)
+	outline_material.metallic = .75
+	outline_material.roughness = .07
+	outline_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	#outline_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_DEPTH_PRE_PASS
+	#outline_material.blend_mode = BaseMaterial3D.BLEND_MODE_MIX
+	outline_material.cull_mode = BaseMaterial3D.CULL_FRONT
+	outline_material.grow = true
+	outline_material.grow_amount = .01
 	
+	
+	var skin_mesh
 	#load save
 	save_index = get_parent().game_index
 	_save_file = "user://savegame_" + str(save_index) + ".json"
@@ -142,9 +157,21 @@ func _ready():
 	if gender == "male":
 		mesh.find_child("Briska").visible = false
 		mesh.find_child("island_male_1").visible = true
+		skin_mesh = mesh.find_child("island_male_1")
 	else:
 		mesh.find_child("Briska").visible = true
 		mesh.find_child("island_male_1").visible = false
+		skin_mesh = mesh.find_child("Briska")
+	
+	
+	#This works but will grump at you TODO find a way to find number of materials an object has
+	var i = 0
+	while skin_mesh.get_active_material(i):
+		skin_mesh.get_active_material(i).next_pass = outline_material
+		#skin_mesh.get_active_material(i).roughness = .2
+		skin_mesh.get_active_material(i).diffuse_mode = BaseMaterial3D.DIFFUSE_TOON
+		skin_mesh.get_active_material(i).specular_mode = BaseMaterial3D.SPECULAR_TOON
+		i = i + 1
 	#print(effects_effector)
 
 
@@ -355,6 +382,9 @@ func _physics_process(delta):
 			animation_tree.set("parameters/shield/blend_amount", new_blend)
 	
 	velocity = new_speed
+	mini_map_cam.global_position.x = global_position.x
+	mini_map_cam.global_position.z = global_position.z
+	mini_map_cam.global_position.y = global_position.y + abs(mini_map_cam_height * spring_arm.spring_length * 2)
 	move_and_slide()
 		
 

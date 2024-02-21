@@ -9,11 +9,11 @@ func _ready():
 	# Setup City Center NPC
 	shop_keep.message = shop_keep_msg
 	
-	var skin = StandardMaterial3D.new()
+	var skin = shop_keep.find_child("island_male_1").get_active_material(0)
 	skin.albedo_color = Color("#aaeeff")
 	shop_keep.find_child("island_male_1").set_surface_override_material(0, skin)
 	
-	var shirt = StandardMaterial3D.new()
+	var shirt = shop_keep.find_child("island_male_1").get_active_material(1)
 	shirt.albedo_color = Color("#000000")
 	shop_keep.find_child("island_male_1").set_surface_override_material(1, shirt)
 	
