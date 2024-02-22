@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c568b67ja44h8"
+path="res://.godot/imported/Kevin MacLeod - Nu Flute_edit.wav-6b50d566891216fcf23713ef6b4efdaf.sample"
+
+[deps]
+
+source_file="res://import/CC-BY Kevin MacLeod/Kevin MacLeod - Nu Flute_edit.wav"
+dest_files=["res://.godot/imported/Kevin MacLeod - Nu Flute_edit.wav-6b50d566891216fcf23713ef6b4efdaf.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

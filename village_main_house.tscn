@@ -1,10 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://dogl3wqqfeh83"]
+[gd_scene load_steps=5 format=3 uid="uid://dogl3wqqfeh83"]
 
+[ext_resource type="Script" path="res://village_main_house.gd" id="1_hvugt"]
 [ext_resource type="PackedScene" uid="uid://ciis218u8fqti" path="res://load_zone.tscn" id="2_5xocx"]
 [ext_resource type="PackedScene" uid="uid://bsa6du5bo40h3" path="res://village_main_house_import.tscn" id="2_i56b1"]
 [ext_resource type="PackedScene" uid="uid://cll886cyjkrbr" path="res://crystal.tscn" id="3_7l3vy"]
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_hvugt")
 
 [node name="load_zones" type="Node3D" parent="."]
 

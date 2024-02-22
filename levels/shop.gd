@@ -3,6 +3,10 @@ extends Node3D
 @onready var shop_keep = $NPCs/island_male_1
 var shop_keep_msg = ["[center][font_size=30]Have you noticed the water has been [b][color=red]rising[/color][/b] a lot recently? [/font_size][/center]",
 "[center][font_size=30]I hope it stops soon :( [/font_size][/center]"]
+
+var bg_music = "res://import/CC BY Samuel Corwin/Samuel Corwin - Flute and Drum, Rishikesh.mp3"
+var fight_music = "res://import/CC BY Mystery Mammal/Mystery Mammal - Boss Battle.wav"
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	

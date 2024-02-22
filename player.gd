@@ -34,7 +34,7 @@ var gender = null
 var player_picked_name = null
 var in_menu = false
 
-var _save_file = null #"user://savegame.json" #TODO save index? 
+var _save_file = null
 var message_index = -1
 var message_ui = null
 var needs_to_load = null

@@ -47,7 +47,8 @@ var render_range = 100
 var chunk_in_mem = []
 var rendred_trees = []
 var tree_index = 0
-
+var bg_music = null
+var fight_music = null
 
 
 var img_x = 0
@@ -59,6 +60,8 @@ func load_place(what_and_where):
 		loaded.queue_free()
 	var what = what_and_where[0]
 	loaded = what.instantiate()
+	fight_music = load(loaded.fight_music)
+	bg_music = load(loaded.bg_music)
 	if loaded.find_child("water"):
 		water = loaded.find_child("water")
 	else:
@@ -131,6 +134,10 @@ func get_needed_trees():
 	return(needed)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if music.stream != bg_music:
+		music.stream = bg_music
+		music.play()
+		
 	#print(Engine.get_frames_per_second())
 	if not player or not player.level:
 		queue_free()
