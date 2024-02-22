@@ -3,6 +3,7 @@ extends Node3D
 @onready var env = $WorldEnvironment
 @onready var player = $player
 @onready var Tree1Scene = preload("res://big_shoom.tscn")
+@onready var boboScene = preload("res://bobo.tscn")
 # Big thanks to https://github.com/fbcosentino/godot-audiostreampreview/blob/main/addons/audio_preview/voice_preview_generator.gd
 # From https://godotengine.org/asset-library/asset/2257
 

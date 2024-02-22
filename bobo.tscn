@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy5vwxwqq33qt"]
+
+[ext_resource type="Script" path="res://bobo.gd" id="1_bqhu8"]
+[ext_resource type="PackedScene" uid="uid://br6r046vjubgw" path="res://bobo_plant_import.tscn" id="1_emyva"]
+
+[node name="bobo" type="Node3D"]
+script = ExtResource("1_bqhu8")
+
+[node name="mesh" parent="." instance=ExtResource("1_emyva")]
