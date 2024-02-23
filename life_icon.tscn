@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3bg4prwubaot"]
+
+[ext_resource type="Texture2D" uid="uid://cb28b072xh5u5" path="res://import/life_icon.png" id="1_hxk01"]
+
+[node name="life_icon" type="Sprite2D"]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_hxk01")

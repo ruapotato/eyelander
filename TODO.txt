@@ -1,8 +1,22 @@
-200:purple
-150: black
-100:silver
-50:pink
-20:bl
-10:ye
-5:gr
-1:or
+
+ITEMS
+ -dried vine with cloth at end
+ -black spore dot with white flecks
+ -pot and spoon and lid
+ -life vessel
+
+Foods
+ -puffball mush (regular health)
+ -glow mush (makes you glow for a time period)
+ -purple mush (cures poison)
+ -ice mush (withstand cold)
+ -fire mush (withstand heat)
+  
+People/Shop
+ -food shop
+ -inn/sauna
+ -weapons shop
+ 
+Events
+ -village monster attack (many plants? or forest guy?) gives you your first vessel or soul ability
+when completed

@@ -1,9 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://dy5vwxwqq33qt"]
+[gd_scene load_steps=5 format=3 uid="uid://dy5vwxwqq33qt"]
 
 [ext_resource type="Script" path="res://bobo.gd" id="1_bqhu8"]
 [ext_resource type="PackedScene" uid="uid://br6r046vjubgw" path="res://bobo_plant_import.tscn" id="1_emyva"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5r0k5"]
+custom_solver_bias = 0.4
+radius = 0.2
+
+[sub_resource type="SphereMesh" id="SphereMesh_qc3nn"]
+radius = 0.2
+height = 0.4
 
 [node name="bobo" type="Node3D"]
 script = ExtResource("1_bqhu8")
 
 [node name="mesh" parent="." instance=ExtResource("1_emyva")]
+
+[node name="gem_bad_npc" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="gem_bad_npc"]
+shape = SubResource("SphereShape3D_5r0k5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="gem_bad_npc"]
+mesh = SubResource("SphereMesh_qc3nn")

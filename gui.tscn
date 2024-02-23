@@ -1,12 +1,23 @@
-[gd_scene load_steps=12 format=3 uid="uid://c0f1cbrr54p8a"]
+[gd_scene load_steps=13 format=3 uid="uid://c0f1cbrr54p8a"]
 
 [ext_resource type="Script" path="res://gui.gd" id="1_3n6be"]
 [ext_resource type="Texture2D" uid="uid://dl1tt2g4s8oql" path="res://import/crystals_icon.png" id="1_5ia8l"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_veejq"]
+bg_color = Color(0, 0, 0, 1)
+border_width_top = 4
+border_width_right = 4
+corner_radius_top_right = 16
+corner_radius_bottom_left = 4
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jsrts"]
-bg_color = Color(1, 0, 0, 1)
-corner_radius_bottom_right = 170
+bg_color = Color(0, 0.482353, 0.376471, 1)
+border_width_top = 4
+border_width_right = 4
+corner_radius_top_right = 219
 corner_detail = 10
+shadow_color = Color(0, 0.623529, 0.576471, 1)
+shadow_size = 15
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yfbxp"]
 bg_color = Color(0.337255, 0, 0.0235294, 1)
@@ -82,20 +93,25 @@ adjustment_contrast = 6.89
 [node name="GUI" type="Node2D"]
 script = ExtResource("1_3n6be")
 
-[node name="LIFE" type="ProgressBar" parent="."]
-offset_right = 276.0
-offset_bottom = 31.0
+[node name="compost" type="ProgressBar" parent="."]
+offset_left = 53.0
+offset_top = -1.0
+offset_right = 170.0
+offset_bottom = 21.0
+rotation = 1.57079
 scale = Vector2(2.85243, 2.42897)
+theme_override_styles/background = SubResource("StyleBoxFlat_veejq")
 theme_override_styles/fill = SubResource("StyleBoxFlat_jsrts")
-value = 100.0
+value = 50.0
+show_percentage = false
 
-[node name="LIFE_LABLE" type="Label" parent="LIFE"]
+[node name="compost_text" type="Label" parent="compost"]
 layout_mode = 0
-offset_left = 6.31041
-offset_top = 2.47018
-offset_right = 96.3104
-offset_bottom = 28.4702
-text = "Player Life"
+offset_left = 10.5172
+offset_top = 26.7604
+offset_right = 100.517
+offset_bottom = 52.7605
+text = "composted"
 
 [node name="BOSS_LIFE" type="ProgressBar" parent="."]
 visible = false

@@ -13,6 +13,7 @@ extends CharacterBody3D
 @onready var boss = get_parent().find_child("boss_1")
 @onready var boss_2 = get_parent().find_child("boss_2")
 @onready var boss_3 = get_parent().find_child("boss_3")
+@onready var gui_compost = gui.find_child("compost")
 @onready var game_over_screen = preload("res://game_over.tscn")
 @onready var shield_1 = preload("res://shield.tscn")
 @onready var sword_1 = preload("res://sword.tscn")
@@ -48,6 +49,7 @@ var wind = Vector3(0,0,0)
 var max_zoom = 4.75
 var min_zoom = -.25
 var mini_map_cam_height = 30
+var compost = 0
 
 var mouse_sensitivity = .0035
 #var speed = 5
@@ -60,7 +62,7 @@ var swipping = false
 var swipe_speed = .3
 var swipe_counter = 0
 var damage_todo = 0
-var start_life = 100
+var start_life = 3
 var life = start_life
 var life_gen = .5
 var boss_life = 0
@@ -172,8 +174,35 @@ func _ready():
 		skin_mesh.get_active_material(i).diffuse_mode = BaseMaterial3D.DIFFUSE_TOON
 		skin_mesh.get_active_material(i).specular_mode = BaseMaterial3D.SPECULAR_TOON
 		i = i + 1
+	
+	#setup life
+	hide_unused_life()
+	
 	#print(effects_effector)
 
+
+func hide_unused_life():
+	for obj in gui.get_children():
+		if "LIFE_" in obj.name:
+			var index = int(obj.name.split("_")[-1])
+			
+			if index <= start_life:
+				obj.visible = true
+				print("INDEX: " + str(index))
+			else:
+				obj.visible = false
+
+func update_life():
+	for obj in gui.get_children():
+		if "LIFE_" in obj.name:
+			var index = int(obj.name.split("_")[-1])
+			if index <= start_life:
+				if index <= life:
+					print("Life on: " + str(index))
+					obj.modulate = Color("#ffffff")
+				else:
+					print("Life off: " + str(index))
+					obj.modulate = Color("#000000")
 
 func load_save(save_file):
 	var save_game = FileAccess.open(save_file, FileAccess.READ)
@@ -419,19 +448,22 @@ func _process(delta):
 	else:
 		camera.rotation_degrees = lerp(camera.rotation_degrees, og_camera_angle, .03)
 	
-	if life < start_life:
-		life += delta * life_gen
-		gui.find_child("LIFE").value = (life/start_life) * 100
-	elif life > start_life:
+	if compost != gui_compost.value:
+		gui_compost.value = compost
+	#if life < start_life:
+	#	life += delta * life_gen
+		#gui.find_child("LIFE").value = (life/start_life) * 100
+	if life > start_life:
 		life = start_life
 	
 	if damage_todo != 0:
-		if not has_won:
-			if damage_todo > 15:
-				hurt_sund.play()
-				shake = 1
+		if not has_won and shake == 0:
+			hurt_sund.play()
+			shake = 1
+			print("Hurt: " + str(damage_todo))
 			life -= damage_todo
-		gui.find_child("LIFE").value = life
+		update_life()
+		print("life left: " + str(life))
 		damage_todo = 0
 		if life <= 0 and not dead:
 			print("You are dead")

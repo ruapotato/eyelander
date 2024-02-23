@@ -8,8 +8,9 @@ extends Area3D
 var init_pos
 var init_rot
 var knockback_strength = 10
-var damage = 50.0
+var damage = 1
 var jump_damage = 7
+var compost_gain = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -50,13 +51,10 @@ func get_target():
 	return(get_parent().get_parent().find_child("boss_1").global_position + Vector3(0,.5,0))
 
 func get_damage():
-	if not get_parent().is_on_floor():
-		return(get_parent().velocity.length() * jump_damage)
+	if swing_sound.playing:
+		return(damage)
 	else:
-		if swing_sound.playing:
-			return(randi_range(damage, damage * 2))
-		else:
-			return(0)
+		return(0)
 
 func _on_body_entered(body):
 	if get_parent().dead:
@@ -64,7 +62,13 @@ func _on_body_entered(body):
 	var hit_damage = get_damage()
 	if hit_damage == 0:
 		return
-	#print( body.name)
+	print( body.name)
+	if "bad_npc" in body.name:
+		player.compost += compost_gain
+		if "damage_todo" in body:
+			body.damage_todo += damage
+		elif "damage_todo" in body.get_parent():
+			body.get_parent().damage_todo += damage
 	if "spike" in body.name:
 		if body.bad:
 			if swing_sound.playing:
@@ -99,9 +103,9 @@ func _on_body_entered(body):
 			knockback_force = knockback_direction * knockback_strength
 			knockback_force.y = 5
 			body.get_parent().knockback = knockback_force
-	else:
-		if body.name != "shild":
-			hit_sound.play()
+	#else:
+	#	if body.name != "shild":
+	#		hit_sound.play()
 
 
 func _on_area_entered(area):

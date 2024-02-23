@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfbyod4pk7xxf"]
+
+[ext_resource type="PackedScene" uid="uid://b84nj1ly0a0ps" path="res://spore_import.tscn" id="1_6g66u"]
+[ext_resource type="Script" path="res://spore_drop.gd" id="1_gthp0"]
+
+[node name="spore_drop" type="Node3D"]
+script = ExtResource("1_gthp0")
+
+[node name="mesh" parent="." instance=ExtResource("1_6g66u")]

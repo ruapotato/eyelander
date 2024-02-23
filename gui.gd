@@ -5,10 +5,16 @@ var main_slot_pos = [1128,57]
 var buffer = 15
 var size = 75
 var item_slot = preload("res://item_bg.tscn")
+var life_icon = preload("res://life_icon.tscn")
 
 var backpack_slots_c = 10
 var backpack_slots_r = 5
 var backpack_slot_pos = [500,400]
+
+var life_buffer = 1
+var gui_life_slots_c = 8
+var gui_life_slots_r = 2
+var gui_life_slot_pos = [100,50]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,6 +37,20 @@ func _ready():
 			new_slot.name = "item_backpack_bg_" + str(c) + "X" + str(r)
 			new_slot.position = Vector2(my_pos_c, my_pos_r)
 			$pause_menu.add_child(new_slot)
+
+	# Setup life slots
+	var index = 0
+	for r in range(0, gui_life_slots_r):
+		for c in range(0, gui_life_slots_c):
+			index += 1
+			var my_pos_c = gui_life_slot_pos[0] + (c * size) + (c * life_buffer)
+			var my_pos_r = gui_life_slot_pos[1] + (r * size) + (r * life_buffer)
+			var new_slot = life_icon.instantiate()
+			new_slot.name = "LIFE_" + str(index)
+			print(new_slot.name)
+			new_slot.position = Vector2(my_pos_c, my_pos_r)
+			add_child(new_slot)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
