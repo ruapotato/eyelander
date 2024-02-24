@@ -11,8 +11,12 @@ var range = 1
 var snap_countdown = .2
 var can_snap_player = false
 var player_stuck = false
+var stuck_for = 1.5
+var stuck_counter = 0
 var life = 3
 var damage_todo = 0
+var can_be_hurt = true
+var dead = false
 
 
 func get_player():
@@ -28,11 +32,28 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	print(can_be_hurt)
 	if damage_todo != 0:
+		#if not animation_tree.get("parameters/hurt/active"):
+		#	if not animation_tree.get("parameters/bite/active"):
 		life -= damage_todo
+		if life > 0:
+			animation_tree.set("parameters/hurt/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+			can_be_hurt = false
+			$hert.play()
 		damage_todo = 0
 	if life <= 0:
-		queue_free()
+		if not dead:
+			animation_tree.set("parameters/die/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+			$die_sound.play()
+			$gem_bad_npc/CollisionShape3D.queue_free()
+			can_be_hurt = false
+			dead = true
+		elif not animation_tree.get("parameters/die/active"):
+			queue_free()
+		
+	if stuck_counter >= 0:
+		stuck_counter -= delta
 	gem.global_position = gem_bone.global_position
 	if snap_countdown > -1:
 		snap_countdown -= delta
@@ -40,16 +61,22 @@ func _process(delta):
 		can_snap_player = false
 	
 	if player_stuck:
-		if not animation_tree.get("parameters/bite/active"):
+		if stuck_counter <= 0:
 			player_stuck = false
+			#can_be_hurt = true
 		else:
 			player.velocity = Vector3(0,0,0)
 			player.new_speed = Vector3(0,0,0)
 			player.dazzed = .05
-	
+	if not can_be_hurt:
+		if not animation_tree.get("parameters/hurt/active"):
+			if not animation_tree.get("parameters/bite/active"):
+				if not animation_tree.get("parameters/die/active"):
+					can_be_hurt = true
 	if global_position.distance_to(player.global_position) < range:
 		if not animation_tree.get("parameters/bite/active"):
 			animation_tree.set("parameters/bite/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+			can_be_hurt = false
 			eat_sound.play()
 			snap_countdown = .2
 			can_snap_player = true
@@ -59,4 +86,6 @@ func _process(delta):
 			if player_stuck == false:
 				player.damage_todo = 1
 			player_stuck = true
+			can_be_hurt = false
+			stuck_counter = stuck_for
 

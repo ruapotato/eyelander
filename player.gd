@@ -50,9 +50,12 @@ var wind = Vector3(0,0,0)
 var max_zoom = 4.75
 var min_zoom = -.25
 var mini_map_cam_height = 30
+var max_compost = 3
 var compost = 3
 var heal_speed = 2
 var heal_count_down = 0
+var cast_cool_down_time = .35
+var cast_cool_down = 0
 
 var mouse_sensitivity = .0035
 #var speed = 5
@@ -455,13 +458,14 @@ func _process(delta):
 	if float(compost) > float(gui_compost.value):
 		gui_compost.value = lerp(float(gui_compost.value), float(compost), delta * 10)
 	elif float(compost) < float(gui_compost.value):
-		gui_compost.value = lerp(float(gui_compost.value), float(compost), delta * 5)
-		if abs(float(gui_compost.value) - float(compost)) < .2:
-			gui_compost.value = lerp(float(gui_compost.value), float(compost), delta * 20)
-	else:
-		print("equel")
-		print(gui_compost.value)
-		print(compost)
+		gui_compost.value = lerp(float(gui_compost.value), float(compost), delta * 1.3)
+		#if abs(float(gui_compost.value) - float(compost)) < .2:
+		#	gui_compost.value = lerp(float(gui_compost.value), float(compost), delta * 20)
+	
+	if cast_cool_down > 0:
+		cast_cool_down -= delta
+	if compost > max_compost:
+		compost = max_compost
 	#if life < start_life:
 	#	life += delta * life_gen
 		#gui.find_child("LIFE").value = (life/start_life) * 100
@@ -489,7 +493,7 @@ func _process(delta):
 	
 	
 	#healing
-	if Input.is_action_pressed("heal"):
+	if Input.is_action_pressed("heal") and cast_cool_down <= 0:
 		if not animation_tree.get("parameters/heal/active") and not heal_started:
 			if compost >= 1:
 				heal_started = true
@@ -499,12 +503,16 @@ func _process(delta):
 		elif not animation_tree.get("parameters/heal/active") and heal_started:
 			print("I'm am healed")
 			heal_started = false
+			gui_compost.value = compost
+			cast_cool_down = cast_cool_down_time
 			life += 1
 			if life > start_life:
 				life = start_life
 			update_life()
 	elif heal_started:
 		heal_started = false
+		# Reclame not spent compost
+		compost = gui_compost.value
 		if animation_tree.get("parameters/heal/active"):
 			animation_tree.set("parameters/heal/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
 			$sounds/heal.playing = false

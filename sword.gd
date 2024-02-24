@@ -65,14 +65,21 @@ func _on_body_entered(body):
 	var hit_damage = get_damage()
 	if hit_damage == 0:
 		return
-	print( body.name)
+
 	if "bad_npc" in body.name:
-		player.compost += compost_gain
-		$compost_add.play()
-		if "damage_todo" in body:
-			body.damage_todo += damage
-		elif "damage_todo" in body.get_parent():
-			body.get_parent().damage_todo += damage
+		var can_be_hurt = false
+		if "can_be_hurt" in body:
+			can_be_hurt = body.can_be_hurt
+		elif "can_be_hurt" in body.get_parent():
+			can_be_hurt = body.get_parent().can_be_hurt
+
+		if can_be_hurt:
+			player.compost += compost_gain
+			$compost_add.play()
+			if "damage_todo" in body:
+				body.damage_todo += damage
+			elif "damage_todo" in body.get_parent():
+				body.get_parent().damage_todo += damage
 	if "spike" in body.name:
 		if body.bad:
 			if swing_sound.playing:
