@@ -563,13 +563,14 @@ func _process(delta):
 				# Jump slash
 				if Input.is_action_pressed("forward") or not is_on_floor():
 					print("Jump slash")
+					#new_speed.y += JUMP_VELOCITY
 					animation_tree.set("parameters/jump_swipe/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 					mid_jump_swipe = true
 					sword.find_child("swing").seek(0.0)
 					sword.find_child("swing").play()
 					jump_swipe_effect.playing = true
-					if is_on_floor():
-						jump_swipe_added = false
+					#if is_on_floor():
+					jump_swipe_added = false
 				# Backflip
 				if Input.is_action_pressed("backward") and is_on_floor():
 					print("Backflip")
