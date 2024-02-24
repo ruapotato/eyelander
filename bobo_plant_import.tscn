@@ -849,14 +849,14 @@ node_connections = [&"TimeScale", 0, &"Animation", &"TimeScale 2", 0, &"Animatio
 [node name="bobo_plant" instance=ExtResource("1_tctv8")]
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/scale = Vector3(1, 0.37263, 1)
+bones/0/scale = Vector3(1, 0.362122, 1)
 bones/1/rotation = Quaternion(0.00860989, -5.14129e-05, 0.831504, 0.555452)
 bones/2/rotation = Quaternion(-0.802256, 0.00492501, 0.275738, 0.529461)
 bones/3/rotation = Quaternion(-0.498788, 0.00772052, -0.674759, 0.543922)
 bones/4/rotation = Quaternion(0.516986, -0.0145097, -0.675936, 0.525001)
 bones/5/rotation = Quaternion(0.826313, 0.00532821, 0.256461, 0.501404)
-bones/6/rotation = Quaternion(-0.00406252, 0.258546, -0.0158488, 0.96586)
-bones/6/scale = Vector3(0.830693, 0.830693, 0.830693)
+bones/6/rotation = Quaternion(-0.0142142, 0.252784, 0.0228708, 0.967148)
+bones/6/scale = Vector3(0.839433, 0.839433, 0.839433)
 
 [node name="Icosphere" parent="Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_yrf0w")
@@ -864,7 +864,7 @@ surface_material_override/1 = SubResource("StandardMaterial3D_lxf58")
 surface_material_override/2 = SubResource("StandardMaterial3D_nivy1")
 
 [node name="gem_bone" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.719219, 0.0236869, 0.414987, -0.027177, 0.830248, -0.000288764, -0.414773, -0.0133267, 0.719608, 0.023687, 0.836447, -0.0133267)
+transform = Transform3D(0.731275, -0.0431679, 0.409903, 0.0311032, 0.838215, 0.0327859, -0.410994, -0.0133736, 0.731814, -0.0431679, 0.844414, -0.0133736)
 bone_name = "gem"
 bone_idx = 7
 

@@ -35,6 +35,10 @@ var gender = null
 var player_picked_name = null
 var in_menu = false
 var heal_started = false
+var swimming = false
+var swim_up_speed = 5
+var swim_bob_level = 0
+var swim_walk_flip = 0.0
 
 var _save_file = null
 var message_index = -1
@@ -337,9 +341,13 @@ func _physics_process(delta):
 	else:
 		dazzed = 0
 	# Add the gravity.
-	if not is_on_floor():
+	if not is_on_floor() and not swimming:
 		new_speed.y -= gravity * delta
-
+	
+	if swimming and global_position.y < swim_bob_level - .1:
+		new_speed.y = lerp(new_speed.y,float(swim_up_speed * abs(global_position.y)), delta)
+		#global_position.y = lerp(global_position.y, swim_bob_level, delta * swim_up_speed)
+		
 	# Handle Jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		new_speed.y += JUMP_VELOCITY
@@ -426,6 +434,10 @@ func _physics_process(delta):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if global_position.y < 0:
+		swimming = true
+	else:
+		swimming = false
 	if walk_shake > 0:
 		var walk_angle = Vector3(20,0,0)
 		camera.rotation_degrees = lerp(camera.rotation_degrees, walk_angle, delta * (velocity.length()/5))
@@ -545,7 +557,12 @@ func _process(delta):
 	if shielding:
 		animation_tree.set("parameters/shield_timescale/scale", velocity.length())
 	
-	animation_tree.set("parameters/stand_run/blend_position", velocity.length()/SPEED)
+	if not swimming:
+		swim_walk_flip = lerp(swim_walk_flip, 0.0, delta)
+
+	else:
+		swim_walk_flip = lerp(swim_walk_flip, 1.0, delta)
+	animation_tree.set("parameters/stand_run_swim/blend_position", Vector2(velocity.length()/SPEED,swim_walk_flip))
 	if velocity.length()/SPEED > 1:
 		animation_tree.set("parameters/run_timescale/scale", velocity.length()/SPEED)
 		#print(velocity.length()/SPEED)
