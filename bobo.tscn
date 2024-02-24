@@ -8,11 +8,11 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5r0k5"]
 custom_solver_bias = 0.4
-radius = 0.2
+radius = 0.4
 
 [sub_resource type="SphereMesh" id="SphereMesh_qc3nn"]
-radius = 0.2
-height = 0.4
+radius = 0.4
+height = 0.8
 
 [node name="bobo" type="Node3D"]
 script = ExtResource("1_bqhu8")
@@ -24,8 +24,10 @@ script = ExtResource("1_bqhu8")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="gem_bad_npc"]
 shape = SubResource("SphereShape3D_5r0k5")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="gem_bad_npc"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="gem_bad_npc/CollisionShape3D"]
+visible = false
 mesh = SubResource("SphereMesh_qc3nn")
+skeleton = NodePath("../..")
 
 [node name="eat" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.134656, 0)
