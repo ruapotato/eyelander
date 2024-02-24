@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dy5vwxwqq33qt"]
+[gd_scene load_steps=6 format=3 uid="uid://dy5vwxwqq33qt"]
 
 [ext_resource type="Script" path="res://bobo.gd" id="1_bqhu8"]
 [ext_resource type="PackedScene" uid="uid://br6r046vjubgw" path="res://bobo_plant_import.tscn" id="1_emyva"]
+[ext_resource type="AudioStream" uid="uid://bdgjo7cqq77vv" path="res://import/CC0 by artisticdude/RPG Sound Pack/NPC/BOBO/muching.wav" id="3_t4o7j"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5r0k5"]
 custom_solver_bias = 0.4
@@ -23,3 +24,7 @@ shape = SubResource("SphereShape3D_5r0k5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="gem_bad_npc"]
 mesh = SubResource("SphereMesh_qc3nn")
+
+[node name="eat" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.134656, 0)
+stream = ExtResource("3_t4o7j")

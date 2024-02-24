@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://hiel47j6yxho"
+path="res://.godot/imported/133008__cosmicd__annulet-of-absorption_edited_short.wav-5b8b2ab3cb3e6add3c6587897d06289d.sample"
+
+[deps]
+
+source_file="res://import/CC0 by CosmicD/133008__cosmicd__annulet-of-absorption_edited_short.wav"
+dest_files=["res://.godot/imported/133008__cosmicd__annulet-of-absorption_edited_short.wav-5b8b2ab3cb3e6add3c6587897d06289d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

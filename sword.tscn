@@ -1,19 +1,26 @@
-[gd_scene load_steps=7 format=3 uid="uid://dovic5nx1uejg"]
+[gd_scene load_steps=9 format=3 uid="uid://dovic5nx1uejg"]
 
 [ext_resource type="Script" path="res://sword.gd" id="1_dx8f6"]
 [ext_resource type="PackedScene" uid="uid://bjdumkpli2d1t" path="res://sword_import.tscn" id="1_uj4pq"]
 [ext_resource type="AudioStream" uid="uid://bc8dlwhofk3ih" path="res://sounds/swing2.wav" id="3_tql76"]
 [ext_resource type="AudioStream" uid="uid://b6t6s702fb5mp" path="res://sounds/sound8.wav" id="5_k42r8"]
 [ext_resource type="AudioStream" uid="uid://dqr4xa2u14hji" path="res://sounds/sound5.wav" id="6_p6es3"]
+[ext_resource type="AudioStream" uid="uid://hiel47j6yxho" path="res://import/CC0 by CosmicD/133008__cosmicd__annulet-of-absorption_edited_short.wav" id="6_w33cj"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_odp1c"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_lyf4g"]
 
 [node name="sword3" type="Area3D"]
 script = ExtResource("1_dx8f6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.38723e-08, 0.466147, -0.00392199)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.38723e-08, 0.747742, -0.00392199)
 shape = SubResource("SphereShape3D_odp1c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+visible = false
+mesh = SubResource("SphereMesh_lyf4g")
 
 [node name="sword" parent="." instance=ExtResource("1_uj4pq")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7.38723e-08, 0, -0.00852352)
@@ -34,6 +41,17 @@ doppler_tracking = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0103275, 0.184535, 0.0091908)
 stream = ExtResource("6_p6es3")
 doppler_tracking = 2
+
+[node name="compost_add" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_w33cj")
+
+[node name="compost_light" type="OmniLight3D" parent="compost_add"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04026, -0.0738557)
+light_color = Color(0.0241838, 0.532904, 0.545257, 1)
+light_energy = 0.0
+shadow_enabled = true
+shadow_reverse_cull_face = true
+omni_range = 102.933
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -10,7 +10,7 @@ var init_rot
 var knockback_strength = 10
 var damage = 1
 var jump_damage = 7
-var compost_gain = 10
+var compost_gain = .34
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -45,7 +45,10 @@ func _process(delta):
 		global_position = player.right_hand_bone.global_position
 		global_rotation = player.right_hand_bone.global_rotation
 		#print(player.right_hand_bone)
-
+	if $compost_add.playing:
+		$compost_add/compost_light.light_energy = lerp($compost_add/compost_light.light_energy, 16.0, delta * 3)
+	else:
+		$compost_add/compost_light.light_energy = lerp($compost_add/compost_light.light_energy, 0.0, delta * 2)
 		
 func get_target():
 	return(get_parent().get_parent().find_child("boss_1").global_position + Vector3(0,.5,0))
@@ -65,6 +68,7 @@ func _on_body_entered(body):
 	print( body.name)
 	if "bad_npc" in body.name:
 		player.compost += compost_gain
+		$compost_add.play()
 		if "damage_todo" in body:
 			body.damage_todo += damage
 		elif "damage_todo" in body.get_parent():

@@ -14,7 +14,7 @@ var backpack_slot_pos = [500,400]
 var life_buffer = 1
 var gui_life_slots_c = 8
 var gui_life_slots_r = 2
-var gui_life_slot_pos = [100,50]
+var gui_life_slot_pos = [110,50]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -54,3 +54,16 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+#if $compost.value < 33:
+#	$compost.theme_override_styles.fill.bg_color = Color(1,0,0)
+#else:
+#	$compost.get_active_material(0)
+
+
+func _on_compost_value_changed(value):
+	pass
+	#print($compost.add_theme_stylebox_override())
+	#add_theme_stylebox_override ( "theme_override_styles/fill", load("res://MyStyleBox.tres") )
+	#print($compost.)

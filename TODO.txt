@@ -1,3 +1,8 @@
+Sounds:
+  Enverment sounds, wind, dripping drops in caves
+  Jump
+  Sword suck
+  plant
 
 ITEMS
  -dried vine with cloth at end

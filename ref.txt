@@ -12,6 +12,12 @@ From https://opengameart.org/content/foot-walking-step-sounds-on-stone-water-sno
  * import/CC BY BoxCat Games/*
  * import/CC BY Mystery Mammal/*
 
+From https://opengameart.org/content/rpg-sound-pack CC0:
+* imporot/CC0 by artisticdude/*
+
+From https://opengameart.org/content/epic-amulet-item CC0:
+* import/CC0 by CosmicD/*
+
 From https://blendswap.com/blend/7664 CC0
 * import/CC_0_village-on-stilts/*
 

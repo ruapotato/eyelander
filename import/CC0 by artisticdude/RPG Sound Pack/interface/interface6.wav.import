@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://btx1sumjq05vl"
+path="res://.godot/imported/interface6.wav-854095a6dd679a5b854ad42348e8d02e.sample"
+
+[deps]
+
+source_file="res://import/CC0 by artisticdude/RPG Sound Pack/interface/interface6.wav"
+dest_files=["res://.godot/imported/interface6.wav-854095a6dd679a5b854ad42348e8d02e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

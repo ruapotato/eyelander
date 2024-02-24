@@ -125,7 +125,7 @@ func _process(delta):
 		var min_max = sound_light_data[int(index)]
 		var DB = min_max[1] - min_max[0]
 
-		var light_power = DB / 10.0
+		var light_power = DB
 		light.light_energy  = lerp(light.light_energy,light_power,.1)
 	else:
 		light.light_energy  = lerp(light.light_energy,0.0,.1)

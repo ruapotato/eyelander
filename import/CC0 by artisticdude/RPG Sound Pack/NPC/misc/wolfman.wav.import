@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://daj50awc70sw7"
+path="res://.godot/imported/wolfman.wav-9339b52a91b597ee1b640f01b97f5a99.sample"
+
+[deps]
+
+source_file="res://import/CC0 by artisticdude/RPG Sound Pack/NPC/misc/wolfman.wav"
+dest_files=["res://.godot/imported/wolfman.wav-9339b52a91b597ee1b640f01b97f5a99.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

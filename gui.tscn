@@ -1,20 +1,25 @@
-[gd_scene load_steps=13 format=3 uid="uid://c0f1cbrr54p8a"]
+[gd_scene load_steps=15 format=3 uid="uid://c0f1cbrr54p8a"]
 
 [ext_resource type="Script" path="res://gui.gd" id="1_3n6be"]
 [ext_resource type="Texture2D" uid="uid://dl1tt2g4s8oql" path="res://import/crystals_icon.png" id="1_5ia8l"]
+[ext_resource type="Texture2D" uid="uid://cfvc4ga0ggujj" path="res://import/compost.png" id="2_dnvye"]
+[ext_resource type="Texture2D" uid="uid://bttktse7q53qy" path="res://import/compost2.png" id="3_auxot"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_veejq"]
 bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
 border_width_top = 4
 border_width_right = 4
-corner_radius_top_right = 16
-corner_radius_bottom_left = 4
+border_blend = true
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jsrts"]
 bg_color = Color(0, 0.482353, 0.376471, 1)
 border_width_top = 4
-border_width_right = 4
-corner_radius_top_right = 219
+border_blend = true
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
 corner_detail = 10
 shadow_color = Color(0, 0.623529, 0.576471, 1)
 shadow_size = 15
@@ -93,25 +98,29 @@ adjustment_contrast = 6.89
 [node name="GUI" type="Node2D"]
 script = ExtResource("1_3n6be")
 
-[node name="compost" type="ProgressBar" parent="."]
-offset_left = 53.0
-offset_top = -1.0
-offset_right = 170.0
-offset_bottom = 21.0
+[node name="compost" type="TextureProgressBar" parent="."]
+offset_left = 27.0
+offset_right = 539.0
+offset_bottom = 859.0
+scale = Vector2(0.204164, 0.390567)
+max_value = 3.0
+step = 0.01
+value = 3.0
+fill_mode = 2
+texture_under = ExtResource("2_dnvye")
+texture_progress = ExtResource("3_auxot")
+
+[node name="compost_old" type="ProgressBar" parent="."]
+visible = false
+offset_left = 79.0
+offset_right = 196.0
+offset_bottom = 22.0
 rotation = 1.57079
 scale = Vector2(2.85243, 2.42897)
 theme_override_styles/background = SubResource("StyleBoxFlat_veejq")
 theme_override_styles/fill = SubResource("StyleBoxFlat_jsrts")
-value = 50.0
+value = 33.0
 show_percentage = false
-
-[node name="compost_text" type="Label" parent="compost"]
-layout_mode = 0
-offset_left = 10.5172
-offset_top = 26.7604
-offset_right = 100.517
-offset_bottom = 52.7605
-text = "composted"
 
 [node name="BOSS_LIFE" type="ProgressBar" parent="."]
 visible = false
@@ -232,3 +241,6 @@ render_target_update_mode = 4
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 15, 0)
 environment = SubResource("Environment_jv8nb")
 current = true
+
+[connection signal="changed" from="compost_old" to="." method="_on_compost_changed"]
+[connection signal="value_changed" from="compost_old" to="." method="_on_compost_value_changed"]

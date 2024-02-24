@@ -4,6 +4,7 @@ extends Node3D
 @onready var animation_tree = find_child("mesh").find_child("AnimationTree")
 @onready var spore = preload("res://spore_drop.tscn")
 @onready var gem = $gem_bad_npc
+@onready var eat_sound = $eat
 
 var player
 var range = 1
@@ -49,6 +50,7 @@ func _process(delta):
 	if global_position.distance_to(player.global_position) < range:
 		if not animation_tree.get("parameters/bite/active"):
 			animation_tree.set("parameters/bite/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+			eat_sound.play()
 			snap_countdown = .2
 			can_snap_player = true
 
