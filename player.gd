@@ -118,8 +118,8 @@ var sidejump_dir_r = Vector3(1,.3,0)
 var sidejump_speed = 30
 var pause_menu
 var mini_map_cam
-var test_sword  = {"name": "sword_l1", "scene": preload("res://sword.tscn"),  "icon": preload("res://import/CC0 by Henrique Lazarini, 7Soul1/W_Sword022.png"), "count": 1, "max_count": 1, "handed": "right", "equipped": false}
-var test_shield = {"name": "shield_l1", "scene": preload("res://shield.tscn"),"icon": preload("res://import/CC0 by Henrique Lazarini, 7Soul1/E_Metal07.png"), "count": 1, "max_count": 1, "handed": "left", "equipped": false}
+var test_sword  = {"name": "sword_l1", "scene": "res://sword.tscn",  "icon": "res://import/CC0 by Henrique Lazarini, 7Soul1/W_Sword022.png", "count": 1, "max_count": 1, "handed": "right", "equipped": false}
+var test_shield = {"name": "shield_l1", "scene": "res://shield.tscn","icon": "res://import/CC0 by Henrique Lazarini, 7Soul1/E_Metal07.png", "count": 1, "max_count": 1, "handed": "left", "equipped": false}
 var empty_items = [[test_sword,test_shield,{},{},{}],
 [{},{},{},{},{},{},{},{},{},{}],
 [{},{},{},{},{},{},{},{},{},{}],
@@ -254,7 +254,7 @@ func select_slot(slot_index):
 	slot_index -= 1
 	if items[0][slot_index]:
 		var slot_item = items[0][slot_index]
-		var slot_scene = slot_item["scene"]
+		var slot_scene = load(slot_item["scene"])
 		if slot_item["handed"] == "right":
 			if right_hand_item.name != blank_item.name:
 				right_hand_item.queue_free()

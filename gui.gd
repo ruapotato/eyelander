@@ -78,7 +78,7 @@ func draw_items(items):
 				this_slot.modulate = Color(1,1,1)
 			else:
 				this_slot.modulate = Color(.2,.2,.2)
-			this_slot_icon.texture = slot_data["icon"]
+			this_slot_icon.texture = load(slot_data["icon"])
 			
 			#this_slot.add_child(slot_data["icon"])
 			#print("need to render: " + str(slot_data))
