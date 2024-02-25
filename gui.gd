@@ -45,7 +45,7 @@ func _ready():
 			new_slot.name = "item_backpack_bg_" + str(c) + "X" + str(r)
 			new_slot.position = Vector2(my_pos_c, my_pos_r)
 			col.append(new_slot)
-			$pause_menu.add_child(new_slot)
+			$backpack_slots.add_child(new_slot)
 		backpack_slots.append(col)
 
 	# Setup life slots
@@ -105,3 +105,9 @@ func _on_compost_value_changed(value):
 	#print($compost.add_theme_stylebox_override())
 	#add_theme_stylebox_override ( "theme_override_styles/fill", load("res://MyStyleBox.tres") )
 	#print($compost.)
+
+
+func _on_button_pressed():
+	for body in get_parent().get_children():
+		body.queue_free()
+	get_tree().reload_current_scene()

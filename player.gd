@@ -88,6 +88,7 @@ var boss_life = 0
 #					3: [sword_hold_angle, sword_far_left_angle]}
 
 var shielding = false
+var backpack_slots 
 var shield_hold_angle = 90
 var shielding_angle = 0
 var knockback = Vector3(0,0,0)
@@ -135,6 +136,7 @@ var right_hand_item = blank_item
 func _ready():
 	mini_map_cam = gui.find_child("mini_map_cam")
 	pause_menu = gui.find_child("pause_menu")
+	backpack_slots = gui.find_child("backpack_slots")
 	spring_arm.add_excluded_object(self)
 	og_camera_angle = camera.rotation_degrees
 	start_life = start_life / get_parent().hardness
@@ -278,6 +280,15 @@ func select_slot(slot_index):
 func _unhandled_input(event):
 	#if Input.is_action_just_pressed("quit"):
 	#	get_tree().quit()
+	if Input.is_action_just_pressed("inventory"):
+		backpack_slots.visible = !backpack_slots.visible
+		in_menu =  backpack_slots.visible 
+		if in_menu:
+			Engine.time_scale = 0.5
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		else:
+			Engine.time_scale = 1.0
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	if Input.is_action_just_pressed("pause"):
 		pause_menu.visible = !pause_menu.visible

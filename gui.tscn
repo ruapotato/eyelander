@@ -223,8 +223,28 @@ texture = ExtResource("1_5ia8l")
 
 [node name="main_item_slots" type="Node2D" parent="."]
 
+[node name="backpack_slots" type="Node2D" parent="."]
+visible = false
+
 [node name="pause_menu" type="Node2D" parent="."]
 visible = false
+
+[node name="Button" type="Button" parent="pause_menu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 781.0
+offset_top = 202.0
+offset_right = 877.0
+offset_bottom = 233.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3.40861, 3.5779)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Main Menu"
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 offset_left = 1602.0
@@ -244,3 +264,4 @@ current = true
 
 [connection signal="changed" from="compost_old" to="." method="_on_compost_changed"]
 [connection signal="value_changed" from="compost_old" to="." method="_on_compost_value_changed"]
+[connection signal="pressed" from="pause_menu/Button" to="." method="_on_button_pressed"]
