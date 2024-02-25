@@ -1,7 +1,7 @@
 extends Node2D
 
 var main_slots = 5
-var main_slot_pos = [1128,57]
+var main_slot_pos = [1500,57]
 var buffer = 15
 var size = 75
 var item_slot = preload("res://item_bg.tscn")

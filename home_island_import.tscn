@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://b5d5t4u4u4f5f"]
 
 [ext_resource type="PackedScene" uid="uid://i7scyldryt3u" path="res://import/home_island.glb" id="1_uj6gi"]
-[ext_resource type="Material" uid="uid://buj10gn61onqd" path="res://native/outline_big.tres" id="2_0pxjx"]
+[ext_resource type="Material" uid="uid://cw7kwo1bouf7g" path="res://native/outline_mid.tres" id="2_ee6qb"]
 [ext_resource type="Shader" path="res://home_island_grassland.gdshader" id="2_os3n2"]
 [ext_resource type="ArrayMesh" uid="uid://m5snb3pk5iqb" path="res://import/StayAtHomeDev_MIT/grass.res" id="4_n24i2"]
 
@@ -30,7 +30,7 @@ noise = SubResource("FastNoiseLite_gv2n4")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3jykc"]
 render_priority = 0
-next_pass = ExtResource("2_0pxjx")
+next_pass = ExtResource("2_ee6qb")
 shader = ExtResource("2_os3n2")
 shader_parameter/color3 = Color(0, 0.690196, 0.607843, 1)
 shader_parameter/noise_scale = 20.0
