@@ -32,7 +32,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print(can_be_hurt)
+	#print(can_be_hurt)
 	if damage_todo != 0:
 		#if not animation_tree.get("parameters/hurt/active"):
 		#	if not animation_tree.get("parameters/bite/active"):

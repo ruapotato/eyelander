@@ -18,6 +18,9 @@ From https://opengameart.org/content/rpg-sound-pack CC0:
 From https://opengameart.org/content/epic-amulet-item CC0:
 * import/CC0 by CosmicD/*
 
+From https://opengameart.org/content/496-pixel-art-icons-for-medievalfantasy-rpg CC0:
+* import/CC0 by Henrique Lazarini, 7Soul1/*
+
 From https://blendswap.com/blend/7664 CC0
 * import/CC_0_village-on-stilts/*
 

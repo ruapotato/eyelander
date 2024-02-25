@@ -3,8 +3,8 @@ extends CharacterBody3D
 @onready var spring_arm = $piv/SpringArm3D
 @onready var piv = $piv
 @onready var mesh = $mesh
-@onready var sword = null
-@onready var shield = null
+@onready var sword_l1 = null
+@onready var shield_l1 = null
 @onready var camera = $piv/SpringArm3D/Camera3D
 @onready var gui = $GUI
 @onready var hurt_sund = $hurt
@@ -80,11 +80,11 @@ var boss_life = 0
 #var swipe_end_angle = 30
 
 
-var sword_hold_angle = 123
-var sword_center_angle = 180
-var sword_far_left_angle = 250
-var swipe_angles = {1: [sword_hold_angle, sword_far_left_angle],
-					2: [sword_far_left_angle,sword_hold_angle]}
+#var sword_hold_angle = 123
+#var sword_center_angle = 180
+#var sword_far_left_angle = 250
+#var swipe_angles = {1: [sword_hold_angle, sword_far_left_angle],
+#					2: [sword_far_left_angle,sword_hold_angle]}
 #					3: [sword_hold_angle, sword_far_left_angle]}
 
 var shielding = false
@@ -118,6 +118,18 @@ var sidejump_dir_r = Vector3(1,.3,0)
 var sidejump_speed = 30
 var pause_menu
 var mini_map_cam
+var test_sword  = {"name": "sword_l1", "scene": preload("res://sword.tscn"),  "icon": preload("res://import/CC0 by Henrique Lazarini, 7Soul1/W_Sword022.png"), "count": 1, "max_count": 1, "handed": "right", "equipped": false}
+var test_shield = {"name": "shield_l1", "scene": preload("res://shield.tscn"),"icon": preload("res://import/CC0 by Henrique Lazarini, 7Soul1/E_Metal07.png"), "count": 1, "max_count": 1, "handed": "left", "equipped": false}
+var empty_items = [[test_sword,test_shield,{},{},{}],
+[{},{},{},{},{},{},{},{},{},{}],
+[{},{},{},{},{},{},{},{},{},{}],
+[{},{},{},{},{},{},{},{},{},{}],
+[{},{},{},{},{},{},{},{},{},{}],
+[{},{},{},{},{},{},{},{},{},{}]]
+var items = []
+var blank_item = {"name": "", "equipped": false}
+var left_hand_item = blank_item
+var right_hand_item = blank_item
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -160,12 +172,19 @@ func _ready():
 	inventory = load_save(_save_file)
 	var gender = inventory['gender']
 	var player_picked_name = inventory['name']
-	if inventory["sword"] == 1:
-		sword = sword_1.instantiate()
-		add_child(sword)
-	if inventory["shield"] == 1:
-		shield = shield_1.instantiate()
-		add_child(shield)
+	if items in inventory:
+		items = inventory["items"]
+	else:
+		items = empty_items
+	gui.draw_items(items)
+	# Setup possable inventory items
+	#if inventory["sword"] == 1:
+	#sword_l1 = sword_1.instantiate()
+	#add_child(sword_l1)
+	#if inventory["shield"] == 1:
+	#shield_l1 = shield_1.instantiate()
+	#add_child(shield_l1)
+	
 	if gender == "male":
 		mesh.find_child("Briska").visible = false
 		mesh.find_child("island_male_1").visible = true
@@ -230,6 +249,32 @@ func _save_game():
 	"name":player_picked_name})
 	save_game.store_line(save_data)
 
+
+func select_slot(slot_index):
+	slot_index -= 1
+	if items[0][slot_index]:
+		var slot_item = items[0][slot_index]
+		var slot_scene = slot_item["scene"]
+		if slot_item["handed"] == "right":
+			if right_hand_item.name != blank_item.name:
+				right_hand_item.queue_free()
+				right_hand_item = blank_item
+				items[0][slot_index]["equipped"] = false
+			else:
+				right_hand_item = slot_scene.instantiate()
+				add_child(right_hand_item)
+				items[0][slot_index]["equipped"] = true
+		if slot_item["handed"] == "left":
+			if left_hand_item.name != blank_item.name:
+				left_hand_item.queue_free()
+				left_hand_item = blank_item
+				items[0][slot_index]["equipped"] = false
+			else:
+				left_hand_item = slot_scene.instantiate()
+				add_child(left_hand_item)
+				items[0][slot_index]["equipped"] = true
+	gui.draw_items(items)
+
 func _unhandled_input(event):
 	#if Input.is_action_just_pressed("quit"):
 	#	get_tree().quit()
@@ -292,26 +337,25 @@ func _unhandled_input(event):
 		
 	if Input.is_action_just_released("swipe"):
 		#swipe_stage = 1
-		if sword:
-			if sword.find_child("swing").playing:
-				sword.find_child("swing").stop()
+		if "sword" in right_hand_item.name:
+			if right_hand_item.find_child("swing").playing:
+				right_hand_item.find_child("swing").stop()
 	
 	if Input.is_action_just_pressed("shield"):
 		shielding = true
-		if sword and sword.find_child("swing").playing:
-			sword.find_child("swing").stop()
+		if "sword" in right_hand_item.name and right_hand_item.find_child("swing").playing:
+			right_hand_item.find_child("swing").stop()
 			swipping = false
 	if Input.is_action_just_released("shield"):
 		shielding = false
-		if sword and Input.is_action_pressed("swipe"):
-			sword.find_child("swing").play()
+		if "sword" in right_hand_item.name and Input.is_action_pressed("swipe"):
+			right_hand_item.find_child("swing").play()
 	
-	#Update sowrd
-	#var swipping = false
-	#var swipe_speed = 1
-	#var swipe_start_angle = 30
-	#var swipe_end_angle = 120
-
+	# inventory
+	if Input.is_action_just_pressed("slot_1"):
+		select_slot(1)
+	if Input.is_action_just_pressed("slot_2"):
+		select_slot(2)
 func walk_sound():
 	if walking_on == "dirt":
 		var sound_to_use = dirt_sounds.get_children().pick_random()
@@ -574,7 +618,7 @@ func _process(delta):
 	if in_menu:
 		return
 	var is_active = animation_tree.get(acton_name + "/active")
-	if Input.is_action_pressed("swipe") and sword:
+	if Input.is_action_pressed("swipe") and "sword" in right_hand_item.name:
 		if shielding or not is_on_floor():
 			if not mid_jump_swipe and not mid_backflip and not mid_sidejump:
 				# Jump slash
@@ -583,8 +627,8 @@ func _process(delta):
 					#new_speed.y += JUMP_VELOCITY
 					animation_tree.set("parameters/jump_swipe/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 					mid_jump_swipe = true
-					sword.find_child("swing").seek(0.0)
-					sword.find_child("swing").play()
+					right_hand_item.find_child("swing").seek(0.0)
+					right_hand_item.find_child("swing").play()
 					jump_swipe_effect.playing = true
 					#if is_on_floor():
 					jump_swipe_added = false
@@ -622,7 +666,7 @@ func _process(delta):
 				print("Play " + str(swipe_stage))
 				swipe_counter = swipe_speed
 				#if not sword.find_child("swing").playing:
-				sword.find_child("swing").play()
+				right_hand_item.find_child("swing").play()
 				if swipe_stage == 1:
 					swipe_1_effect.playing = true
 					#print("play1")
