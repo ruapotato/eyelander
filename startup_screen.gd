@@ -107,7 +107,13 @@ func _on_save_3_button_down():
 func setup_init_save(p_name, p_gender, index):
 	var _save_file = "user://savegame_" + str(index) + ".json"
 	var save_game = FileAccess.open(_save_file, FileAccess.WRITE)
-	var init_inventory = {"sword": 0, "shield": 0, "crystals": 0,"spawn_scene": "village_main_house", "spawn_point": "main", "equipped_items": [], "menu_items": []}
+	var empty_items = [[{},{},{},{},{}],
+	[{},{},{},{},{},{},{},{},{},{}],
+	[{},{},{},{},{},{},{},{},{},{}],
+	[{},{},{},{},{},{},{},{},{},{}],
+	[{},{},{},{},{},{},{},{},{},{}],
+	[{},{},{},{},{},{},{},{},{},{}]]
+	var init_inventory = {"sword": 0, "shield": 0, "crystals": 0,"spawn_scene": "village_main_house", "spawn_point": "main", "menu_items": empty_items}
 	init_inventory["gender"] = p_gender
 	init_inventory["name"] = p_name
 	var save_data = JSON.stringify(init_inventory)

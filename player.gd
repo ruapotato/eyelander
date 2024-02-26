@@ -121,13 +121,16 @@ var pause_menu
 var mini_map_cam
 var test_sword  = {"name": "sword_l1", "scene": "res://sword.tscn",  "icon": "res://import/CC0 by Henrique Lazarini, 7Soul1/edits/WWW_killer.png", "count": 1, "max_count": 1, "handed": "right", "equipped": false}
 var test_shield = {"name": "shield_l1", "scene": "res://shield.tscn","icon": "res://import/CC0 by Henrique Lazarini, 7Soul1/edits/Shield.png", "count": 1, "max_count": 1, "handed": "left", "equipped": false}
-var empty_items = [[test_sword,test_shield,{},{},{}],
+#var empty_items = [[test_sword,test_shield,{},{},{}],
+"""
+var empty_items = [[{},{},{},{},{}],
 [{},{},{},{},{},{},{},{},{},{}],
 [{},{},{},{},{},{},{},{},{},{}],
 [{},{},{},{},{},{},{},{},{},{}],
 [{},{},{},{},{},{},{},{},{},{}],
 [{},{},{},{},{},{},{},{},{},{}]]
-var items = []
+"""
+var items
 var blank_item = {"name": "", "equipped": false}
 var left_hand_item = blank_item
 var right_hand_item = blank_item
@@ -174,10 +177,11 @@ func _ready():
 	inventory = load_save(_save_file)
 	var gender = inventory['gender']
 	var player_picked_name = inventory['name']
-	if items in inventory:
-		items = inventory["items"]
-	else:
-		items = empty_items
+	items = inventory['menu_items']
+	#if items in inventory:
+	#	items = inventory["items"]
+	#else:
+	#	items = empty_items
 	gui.draw_items(items)
 	# Setup possable inventory items
 	#if inventory["sword"] == 1:

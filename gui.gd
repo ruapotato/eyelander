@@ -181,3 +181,8 @@ func _on_button_pressed():
 	for body in get_parent().get_children():
 		body.queue_free()
 	get_tree().reload_current_scene()
+
+
+func _on_save_pressed():
+	get_parent().get_parent().save_data(player.items)
+

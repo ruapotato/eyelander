@@ -106,6 +106,24 @@ func get_most_dist(some_list_of_objects, from=player):
 	return(some_list_of_objects[chunk_index_to_reuse])
 	"""
 
+func save_data(inventory):
+	var _save_file = "user://savegame_" + str(game_index) + ".json"
+	var save_game = FileAccess.open(_save_file, FileAccess.WRITE)
+
+	var inventory_data = player.inventory
+	inventory_data["menu_items"] = player.items
+	#{"sword": 0, "shield": 0, "crystals": 0,"spawn_scene": "village_main_house", "spawn_point": "main", "menu_items": []}
+	#inventory["gender"] = p_gender
+	#inventory["name"] = p_name
+	var save_data = JSON.stringify(inventory_data)
+	#saved_games[index] = init_inventory
+	#save_game.store_line(save_data)
+	
+	
+	#var save_data = JSON.stringify(inventory)
+	save_game.store_line(save_data)
+
+
 func get_player_grid_pos():
 	var x_pos = int(player.global_position.x/chunk_size)
 	var y_pos = int(player.global_position.y/chunk_size)
