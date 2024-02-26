@@ -254,7 +254,7 @@ func _save_game():
 
 func select_slot(slot_index):
 	slot_index -= 1
-	if items[0][slot_index]:
+	if items[0][slot_index] and "scene" in items[0][slot_index]:
 		var slot_item = items[0][slot_index]
 		var slot_scene = load(slot_item["scene"])
 		if slot_item["handed"] == "right":
