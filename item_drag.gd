@@ -18,7 +18,6 @@ func get_player():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if selected:
-		print("selecte")
 		$icon.global_position = get_global_mouse_position()
 		if not Input.is_action_pressed("swipe"):
 			selected = false

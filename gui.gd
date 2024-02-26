@@ -67,7 +67,7 @@ func _ready():
 func get_slot_data(slot):
 	var data_index = [0,0]
 	if "item_bg" in slot.name:
-		data_index[0] = int(slot.name.split("_")[-1])
+		data_index[1] = int(slot.name.split("_")[-1])
 	elif "item_backpack_bg" in slot.name:
 		var end_bit = slot.name.split("_")[-1].split("X")
 		data_index[0] = int(end_bit[0]) + 1
