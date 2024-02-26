@@ -70,10 +70,11 @@ func get_slot_data(slot):
 		data_index[1] = int(slot.name.split("_")[-1])
 	elif "item_backpack_bg" in slot.name:
 		var end_bit = slot.name.split("_")[-1].split("X")
-		data_index[0] = int(end_bit[0]) 
+		data_index[0] = int(end_bit[0]) + 1
 		data_index[1] = int(end_bit[1])
-	var data = player.items[data_index[0]][data_index[1]]
+	print("slot: " + str(slot))
 	print("Data: " + str(data_index))
+	var data = player.items[data_index[0]][data_index[1]]
 	if data == {}:
 		return(player.blank_item)
 	
@@ -86,7 +87,7 @@ func set_slot_data(slot, data):
 		data_index[1] = int(slot.name.split("_")[-1])
 	elif "item_backpack_bg" in slot.name:
 		var end_bit = slot.name.split("_")[-1].split("X")
-		data_index[0] = int(end_bit[0])
+		data_index[0] = int(end_bit[0]) + 1
 		data_index[1] = int(end_bit[1])
 	player.items[data_index[0]][data_index[1]] = data
 
@@ -139,7 +140,7 @@ func draw_items(items):
 			if slot_data == {}:
 				continue
 			var slot_name = "item_backpack_bg_" + str(c) + "X" + str(r)
-			var this_slot = backpack_slots[r + 1][c]
+			var this_slot = backpack_slots[r][c]
 			var this_slot_icon = this_slot.find_child("icon")
 			#print(slot_data)
 			var in_use = slot_data["equipped"]
