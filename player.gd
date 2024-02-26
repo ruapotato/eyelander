@@ -119,8 +119,8 @@ var sidejump_dir_r = Vector3(1,.3,0)
 var sidejump_speed = 30
 var pause_menu
 var mini_map_cam
-var test_sword  = {"name": "sword_l1", "scene": "res://sword.tscn",  "icon": "res://import/CC0 by Henrique Lazarini, 7Soul1/W_Sword022.png", "count": 1, "max_count": 1, "handed": "right", "equipped": false}
-var test_shield = {"name": "shield_l1", "scene": "res://shield.tscn","icon": "res://import/CC0 by Henrique Lazarini, 7Soul1/E_Metal07.png", "count": 1, "max_count": 1, "handed": "left", "equipped": false}
+var test_sword  = {"name": "sword_l1", "scene": "res://sword.tscn",  "icon": "res://import/CC0 by Henrique Lazarini, 7Soul1/edits/WWW_killer.png", "count": 1, "max_count": 1, "handed": "right", "equipped": false}
+var test_shield = {"name": "shield_l1", "scene": "res://shield.tscn","icon": "res://import/CC0 by Henrique Lazarini, 7Soul1/edits/Shield.png", "count": 1, "max_count": 1, "handed": "left", "equipped": false}
 var empty_items = [[test_sword,test_shield,{},{},{}],
 [{},{},{},{},{},{},{},{},{},{}],
 [{},{},{},{},{},{},{},{},{},{}],
@@ -367,6 +367,15 @@ func _unhandled_input(event):
 		select_slot(1)
 	if Input.is_action_just_pressed("slot_2"):
 		select_slot(2)
+	if Input.is_action_just_pressed("slot_3"):
+		select_slot(3)
+	if Input.is_action_just_pressed("slot_4"):
+		select_slot(4)
+	if Input.is_action_just_pressed("slot_5"):
+		select_slot(5)
+
+	
+	
 func walk_sound():
 	if walking_on == "dirt":
 		var sound_to_use = dirt_sounds.get_children().pick_random()

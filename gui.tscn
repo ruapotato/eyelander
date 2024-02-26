@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://c0f1cbrr54p8a"]
+[gd_scene load_steps=16 format=3 uid="uid://c0f1cbrr54p8a"]
 
 [ext_resource type="Script" path="res://gui.gd" id="1_3n6be"]
 [ext_resource type="Texture2D" uid="uid://dl1tt2g4s8oql" path="res://import/crystals_icon.png" id="1_5ia8l"]
 [ext_resource type="Texture2D" uid="uid://cfvc4ga0ggujj" path="res://import/compost.png" id="2_dnvye"]
 [ext_resource type="Texture2D" uid="uid://bttktse7q53qy" path="res://import/compost2.png" id="3_auxot"]
+[ext_resource type="Texture2D" uid="uid://difwrmj57d0ob" path="res://import/item_slot_bg.png" id="5_xjl35"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_veejq"]
 bg_color = Color(0, 0, 0, 1)
@@ -97,6 +98,11 @@ adjustment_contrast = 6.89
 
 [node name="GUI" type="Node2D"]
 script = ExtResource("1_3n6be")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(1682.08, 56.449)
+scale = Vector2(0.617333, 0.121083)
+texture = ExtResource("5_xjl35")
 
 [node name="compost" type="TextureProgressBar" parent="."]
 offset_left = 16.0
@@ -225,6 +231,11 @@ texture = ExtResource("1_5ia8l")
 
 [node name="backpack_slots" type="Node2D" parent="."]
 visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="backpack_slots"]
+position = Vector2(905.085, 578.955)
+scale = Vector2(1.32133, 0.693333)
+texture = ExtResource("5_xjl35")
 
 [node name="pause_menu" type="Node2D" parent="."]
 visible = false

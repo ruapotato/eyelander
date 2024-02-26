@@ -22,7 +22,8 @@ func _process(delta):
 		if not Input.is_action_pressed("swipe"):
 			selected = false
 			player.gui.dragging = false
-			player.gui.swap_slots(self, player.gui.drag_hover)
+			if player.gui.drag_hover:
+				player.gui.swap_slots(self, player.gui.drag_hover)
 			print("drop")
 			$icon.position = Vector2(0,0)
 
