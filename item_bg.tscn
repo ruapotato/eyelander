@@ -1,11 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://bv8icjosfol3c"]
+[gd_scene load_steps=4 format=3 uid="uid://bv8icjosfol3c"]
 
 [ext_resource type="Texture2D" uid="uid://cp2fttynsxnil" path="res://import/item_slot.png" id="1_1tcax"]
+[ext_resource type="Script" path="res://item_drag.gd" id="2_fb2iq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqb3c"]
+size = Vector2(75, 75)
 
 [node name="item_bg" type="Sprite2D"]
 modulate = Color(0, 0, 0, 1)
 position = Vector2(1128, 57)
 texture = ExtResource("1_1tcax")
+script = ExtResource("2_fb2iq")
 
 [node name="icon" type="Sprite2D" parent="."]
 scale = Vector2(2.19999, 2.16)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+input_pickable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_uqb3c")
+
+[connection signal="input_event" from="StaticBody2D" to="." method="_on_static_body_2d_input_event"]
+[connection signal="mouse_entered" from="StaticBody2D" to="." method="_on_static_body_2d_mouse_entered"]
+[connection signal="mouse_exited" from="StaticBody2D" to="." method="_on_static_body_2d_mouse_exited"]

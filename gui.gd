@@ -20,6 +20,8 @@ var gui_life_slot_pos = [110,50]
 var rendered_items = []
 var top_slots = []
 
+var dragging = null
+var drag_hover = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -62,6 +64,49 @@ func _ready():
 			add_child(new_slot)
 
 
+func get_slot_data(slot):
+	var data_index = [0,0]
+	if "item_bg" in slot.name:
+		data_index[1] = int(slot.name.split("_")[-1])
+	elif "item_backpack_bg" in slot.name:
+		var end_bit = slot.name.split("_")[-1].split("X")
+		data_index[0] = int(end_bit[0]) 
+		data_index[1] = int(end_bit[1])
+	var data = player.items[data_index[0]][data_index[1]]
+	print("Data: " + str(data_index))
+	if data == {}:
+		return(player.blank_item)
+	
+	return(data)
+
+
+func set_slot_data(slot, data):
+	var data_index = [0,0]
+	if "item_bg" in slot.name:
+		data_index[1] = int(slot.name.split("_")[-1])
+	elif "item_backpack_bg" in slot.name:
+		var end_bit = slot.name.split("_")[-1].split("X")
+		data_index[0] = int(end_bit[0])
+		data_index[1] = int(end_bit[1])
+	player.items[data_index[0]][data_index[1]] = data
+
+
+func swap_slots(what_slot, where_slot):
+	var what_data = get_slot_data(what_slot)
+	var where_data = get_slot_data(where_slot)
+	#print("moving: " + str(what_data))
+	#print(what_slot)
+	#print("To: " + str(where_data))
+	#print(where_slot)
+	#print(player.items)
+	set_slot_data(where_slot, what_data)
+	set_slot_data(what_slot, where_data)
+	
+	#print(player.items)
+	draw_items(player.items)
+	#print(what_slot)
+	#print(where_slot)
+
 func draw_items(items):
 	print("Drawing ")
 	print(items)
@@ -73,16 +118,39 @@ func draw_items(items):
 			var slot_name = "item_bg_" + str(i)
 			var this_slot = top_slots[i]
 			var this_slot_icon = this_slot.find_child("icon")
+			print(slot_data)
 			var in_use = slot_data["equipped"]
 			if in_use:
 				this_slot.modulate = Color(1,1,1)
 			else:
 				this_slot.modulate = Color(.2,.2,.2)
-			this_slot_icon.texture = load(slot_data["icon"])
+			if "icon" in slot_data:
+				this_slot_icon.texture = load(slot_data["icon"])
+			else:
+				this_slot_icon.texture = null
 			
 			#this_slot.add_child(slot_data["icon"])
 			#print("need to render: " + str(slot_data))
-
+	
+	# backpack slots
+	for r in range(0, backpack_slots_r):
+		for c in range(0, backpack_slots_c):
+			var slot_data = items[r + 1][c] 
+			if slot_data == {}:
+				continue
+			var slot_name = "item_backpack_bg_" + str(c) + "X" + str(r)
+			var this_slot = backpack_slots[r + 1][c]
+			var this_slot_icon = this_slot.find_child("icon")
+			#print(slot_data)
+			var in_use = slot_data["equipped"]
+			if in_use:
+				this_slot.modulate = Color(1,1,1)
+			else:
+				this_slot.modulate = Color(.2,.2,.2)
+			if "icon" in slot_data:
+				this_slot_icon.texture = load(slot_data["icon"])
+			else:
+				this_slot_icon.texture = null
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
