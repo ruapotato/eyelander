@@ -864,7 +864,7 @@ surface_material_override/1 = SubResource("StandardMaterial3D_lxf58")
 surface_material_override/2 = SubResource("StandardMaterial3D_nivy1")
 
 [node name="gem_bone" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.731275, -0.0431679, 0.409903, 0.0311032, 0.838215, 0.0327859, -0.410994, -0.0133736, 0.731814, -0.0431679, 0.844414, -0.0133736)
+transform = Transform3D(0.731276, -0.043168, 0.409903, 0.0311032, 0.838216, 0.0327859, -0.410994, -0.0133736, 0.731815, -0.043168, 0.844415, -0.0133736)
 bone_name = "gem"
 bone_idx = 7
 

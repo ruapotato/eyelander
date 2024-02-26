@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bsa6du5bo40h3"]
 
-[ext_resource type="PackedScene" uid="uid://35vxy020ebux" path="res://import/CC_0_village-on-stilts/Village_main_house.glb" id="1_dy0gs"]
+[ext_resource type="PackedScene" path="res://import/CC_0_village-on-stilts/Village_main_house.glb" id="1_dy0gs"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_td731"]
 data = PackedVector3Array(-2.6188, 0.2102, -0.0854, 3.042, -0.6596, -0.0854, 3.5865, -0.1167, -0.0854, -2.6188, 0.2102, -0.0854, -3.0871, -0.2409, -0.0854, 3.042, -0.6596, -0.0854, 3.5865, -0.1167, 0.0854, -3.0871, -0.2409, 0.0854, -2.6188, 0.2102, 0.0854, 3.5865, -0.1167, 0.0854, 3.042, -0.6596, 0.0854, -3.0871, -0.2409, 0.0854, -3.0871, -0.2409, 0.0854, 3.042, -0.6596, -0.0854, -3.0871, -0.2409, -0.0854, -3.0871, -0.2409, 0.0854, 3.042, -0.6596, 0.0854, 3.042, -0.6596, -0.0854, 3.5865, -0.1167, 0.0854, -2.6188, 0.2102, -0.0854, 3.5865, -0.1167, -0.0854, 3.5865, -0.1167, 0.0854, -2.6188, 0.2102, 0.0854, -2.6188, 0.2102, -0.0854)
