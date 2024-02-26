@@ -38,17 +38,17 @@ func _ready():
 		
 	# Setup backpack slots
 
-	for c in range(0, backpack_slots_c):
-		var col = []
-		for r in range(0, backpack_slots_r):
+	for r in range(0, backpack_slots_r):
+		var row = []
+		for c in range(0, backpack_slots_c):
 			var my_pos_c = backpack_slot_pos[0] + (c * size) + (c * buffer)
 			var my_pos_r = backpack_slot_pos[1] + (r * size) + (r * buffer)
 			var new_slot = item_slot.instantiate()
-			new_slot.name = "item_backpack_bg_" + str(c) + "X" + str(r)
+			new_slot.name = "item_backpack_bg_" + str(r) + "X" + str(c)
 			new_slot.position = Vector2(my_pos_c, my_pos_r)
-			col.append(new_slot)
+			row.append(new_slot)
 			$backpack_slots.add_child(new_slot)
-		backpack_slots.append(col)
+		backpack_slots.append(row)
 
 	# Setup life slots
 	var index = 0
@@ -67,13 +67,14 @@ func _ready():
 func get_slot_data(slot):
 	var data_index = [0,0]
 	if "item_bg" in slot.name:
-		data_index[1] = int(slot.name.split("_")[-1])
+		data_index[0] = int(slot.name.split("_")[-1])
 	elif "item_backpack_bg" in slot.name:
 		var end_bit = slot.name.split("_")[-1].split("X")
 		data_index[0] = int(end_bit[0]) + 1
 		data_index[1] = int(end_bit[1])
 	print("slot: " + str(slot))
 	print("Data: " + str(data_index))
+	print(len(player.items))
 	var data = player.items[data_index[0]][data_index[1]]
 	if data == {}:
 		return(player.blank_item)
@@ -139,7 +140,7 @@ func draw_items(items):
 			var slot_data = items[r + 1][c] 
 			if slot_data == {}:
 				continue
-			var slot_name = "item_backpack_bg_" + str(c) + "X" + str(r)
+			var slot_name = "item_backpack_bg_" + str(r) + "X" + str(c)
 			var this_slot = backpack_slots[r][c]
 			var this_slot_icon = this_slot.find_child("icon")
 			#print(slot_data)
