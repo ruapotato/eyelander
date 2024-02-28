@@ -191,18 +191,18 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MESSAGE_BG" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(976.5, 900.25)
-scale = Vector2(23.5781, 3.64844)
+position = Vector2(904.5, 900.25)
+scale = Vector2(21.3281, 3.64844)
 texture = SubResource("GradientTexture2D_f2j4h")
 
-[node name="Label" type="Label" parent="MESSAGE_BG"]
-offset_left = 30.049
-offset_top = 18.8437
-offset_right = 52.049
-offset_bottom = 41.8437
+[node name="MESSAGE_LABLE" type="Label" parent="MESSAGE_BG"]
+offset_left = 30.359
+offset_top = 20.7623
+offset_right = 52.359
+offset_bottom = 43.7623
 scale = Vector2(0.070749, 0.448437)
 text = "  E"
+horizontal_alignment = 2
 
 [node name="MESSAGE" type="RichTextLabel" parent="."]
 visible = false

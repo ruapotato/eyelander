@@ -610,6 +610,7 @@ func _process(delta):
 		camera_look_target.look_at(look_at_override.global_position)
 		#camera_look_target.rotate_object_local(Vector3(0,1,0), -45)
 		camera.global_rotation.y = lerp_angle(camera.global_rotation.y, camera_look_target.global_rotation.y, delta)
+		gui.find_child("MESSAGE_LABLE").text = "Press F to buy, E for next item"
 		#piv.rotation = lerp(piv.rotation, Vector3(0,-PI,0), delta)
 		#print(camera.global_rotation)
 	else:

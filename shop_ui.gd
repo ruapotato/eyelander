@@ -10,7 +10,7 @@ var player
 func _ready():
 	player = get_player()
 	for obj in $items.get_children():
-		var mull_msg = "ui_" + obj.name
+		var mull_msg = obj.name
 		message.append(mull_msg)
 
 func get_player():
@@ -28,6 +28,11 @@ func _process(delta):
 		if player.message_index >= 1:
 			in_menu = true
 			player.look_at_override = $items.get_children()[player.message_index -1]
+			var this_msg = message[player.message_index]
+			var price = int(this_msg.split(" for ")[-1])
+			var buy_text = this_msg.split(" for ")[0]
+			print("spend: " + str(price))
+			#player.message_ui[player.message_index] = buy_text
 			
 		else:
 			in_menu = false
