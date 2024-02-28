@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c24e5hhjo3uw"]
+[gd_scene load_steps=6 format=3 uid="uid://c24e5hhjo3uw"]
 
 [ext_resource type="PackedScene" uid="uid://ciis218u8fqti" path="res://load_zone.tscn" id="1_76m8q"]
 [ext_resource type="Script" path="res://levels/shop.gd" id="1_ojp0w"]
 [ext_resource type="PackedScene" uid="uid://brctuubjouqvj" path="res://npcs.tscn" id="2_4sm6m"]
 [ext_resource type="PackedScene" uid="uid://cv1xlkbasp5rq" path="res://shop_import.tscn" id="3_6xriw"]
+[ext_resource type="PackedScene" uid="uid://bcdd41mgew1ep" path="res://shop_ui.tscn" id="5_ey7au"]
 
 [node name="shop" type="Node3D"]
 script = ExtResource("1_ojp0w")
@@ -25,3 +26,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.95426, 19.7264)
 transform = Transform3D(1.265, 0, 0, 0, 1.3, 0, 0, 0, 1.035, 4.65758, 0.273144, -18.8857)
 
 [node name="shop" parent="." instance=ExtResource("3_6xriw")]
+
+[node name="shop_ui" parent="." instance=ExtResource("5_ey7au")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3, 0)

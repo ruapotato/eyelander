@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bsa6du5bo40h3" path="res://village_main_house_import.tscn" id="2_i56b1"]
 [ext_resource type="PackedScene" uid="uid://cll886cyjkrbr" path="res://crystal.tscn" id="3_7l3vy"]
 
-[node name="Node3D" type="Node3D"]
+[node name="village_main_house" type="Node3D"]
 script = ExtResource("1_hvugt")
 
 [node name="load_zones" type="Node3D" parent="."]

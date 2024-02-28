@@ -8,7 +8,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_744lb"]
 size = Vector3(1.295, 0.19, 0.655)
 
-[node name="shild" type="RigidBody3D"]
+[node name="shield" type="RigidBody3D"]
 gravity_scale = 0.0
 script = ExtResource("1_dejry")
 

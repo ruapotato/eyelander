@@ -56,11 +56,13 @@ var img_x = 0
 
 
 func load_place(what_and_where):
-	print(what_and_where)
+	#print(what_and_where)
 	if loaded:
 		loaded.queue_free()
 	var what = what_and_where[0]
 	loaded = what.instantiate()
+	#print(loaded.name)
+	#print(what_and_where[1])
 	fight_music = load(loaded.fight_music)
 	bg_music = load(loaded.bg_music)
 	if loaded.find_child("water"):
@@ -70,9 +72,12 @@ func load_place(what_and_where):
 	add_child(loaded)
 	var where = loaded.find_child(what_and_where[1]).position
 	var rot = loaded.find_child(what_and_where[1]).rotation
-	print(where)
+	#print(where)
 	player.global_position = where
 	player.piv.rotation = rot
+	player.inventory["spawn_point"] = what_and_where[1]
+	player.inventory["spawn_scene"] = loaded.name
+	#"spawn_point":"main","spawn_scene":"village_main_house"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

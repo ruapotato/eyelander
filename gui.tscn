@@ -238,6 +238,7 @@ scale = Vector2(1.32133, 0.693333)
 texture = ExtResource("5_xjl35")
 
 [node name="pause_menu" type="Node2D" parent="."]
+visible = false
 
 [node name="Main Menu Button" type="Button" parent="pause_menu"]
 anchors_preset = 8

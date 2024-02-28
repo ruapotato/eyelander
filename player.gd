@@ -25,11 +25,13 @@ extends CharacterBody3D
 @onready var swipe_2_effect = $CollisionShape3D/swipes/swipe_2
 @onready var swipe_3_effect = $CollisionShape3D/swipes/swipe_3
 @onready var jump_swipe_effect = $CollisionShape3D/swipes/jump_swipe
+@onready var camera_look_target = $piv/SpringArm3D/camera_look_target
 @onready var message_box = $GUI/MESSAGE
 @onready var message_warning = $GUI/MESSAGE_WARNING
 @onready var message_bg = $GUI/MESSAGE_BG
 
 var inventory = null
+var look_at_override = null
 var save_index = null
 var gender = null
 var player_picked_name = null
@@ -342,9 +344,10 @@ func _unhandled_input(event):
 		#piv.rotate_y(event.relative.x * -mouse_sensitivity)
 	
 	
-	
+
+		#camera(look_at_override)
 	#Mouse controls
-	if event is InputEventMouseMotion and not dead and not has_won:
+	if event is InputEventMouseMotion and not dead and not has_won and not look_at_override:
 		spring_arm.rotate_x(event.relative.y * -mouse_sensitivity)
 		spring_arm.rotation.x = clamp(spring_arm.rotation.x, -PI/2, PI/2)
 		piv.rotate_y(event.relative.x * -mouse_sensitivity)
@@ -600,6 +603,24 @@ func _process(delta):
 	if str(inventory["crystals"]) != gui.find_child("crystals").text:
 		gui.find_child("crystals").text = str(inventory["crystals"])
 	
+	#Shop
+	if look_at_override:
+		#spring_arm.rotation = Vector3(0,0,0)
+		piv.rotation = Vector3(0,PI,0)
+		camera_look_target.look_at(look_at_override.global_position)
+		#camera_look_target.rotate_object_local(Vector3(0,1,0), -45)
+		camera.global_rotation.y = lerp_angle(camera.global_rotation.y, camera_look_target.global_rotation.y, delta)
+		#piv.rotation = lerp(piv.rotation, Vector3(0,-PI,0), delta)
+		#print(camera.global_rotation)
+	else:
+		camera.rotation = lerp(camera.rotation, Vector3(0,0,0),delta*10)
+		#print(piv.rotation)
+		#print(spring_arm.rotation)
+		#print(camera.rotation )
+		#spring_arm.global_rotation.x = lerp(spring_arm.global_rotation.x, 0.0, delta)
+		#piv.global_rotation.y = lerp(piv.global_rotation.y, 0.0, delta)
+		
+	
 	#NPC messages
 	if not message_ui:
 		message_box.visible = false
@@ -613,7 +634,7 @@ func _process(delta):
 			#	message_box.visible = true
 		else:
 			message_warning.visible = false
-			print("message...")
+			#print("message...")
 		message_ui = null
 	
 	#Rotate player

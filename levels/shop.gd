@@ -1,8 +1,8 @@
 extends Node3D
 
 @onready var shop_keep = $NPCs/island_male_1
-var shop_keep_msg = ["[center][font_size=30]Have you noticed the water has been [b][color=red]rising[/color][/b] a lot recently? [/font_size][/center]",
-"[center][font_size=30]I hope it stops soon :( [/font_size][/center]"]
+#var shop_keep_msg = ["[center][font_size=30]Have you noticed the water has been [b][color=red]rising[/color][/b] a lot recently? [/font_size][/center]",
+#"[center][font_size=30]I hope it stops soon :( [/font_size][/center]"]
 
 var bg_music = "res://import/CC BY Samuel Corwin/Samuel Corwin - Flute and Drum, Rishikesh.mp3"
 var fight_music = "res://import/CC BY Mystery Mammal/Mystery Mammal - Boss Battle.wav"
@@ -11,7 +11,7 @@ var fight_music = "res://import/CC BY Mystery Mammal/Mystery Mammal - Boss Battl
 func _ready():
 	
 	# Setup City Center NPC
-	shop_keep.message = shop_keep_msg
+	#shop_keep.message = shop_keep_msg
 	
 	var skin = shop_keep.find_child("island_male_1").get_active_material(0)
 	skin.albedo_color = Color("#aaeeff")
