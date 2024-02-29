@@ -59,7 +59,7 @@ func _ready():
 			var my_pos_r = gui_life_slot_pos[1] + (r * size) + (r * life_buffer)
 			var new_slot = life_icon.instantiate()
 			new_slot.name = "LIFE_" + str(index)
-			print(new_slot.name)
+			#print(new_slot.name)
 			new_slot.position = Vector2(my_pos_c, my_pos_r)
 			add_child(new_slot)
 
@@ -72,9 +72,9 @@ func get_slot_data(slot):
 		var end_bit = slot.name.split("_")[-1].split("X")
 		data_index[0] = int(end_bit[0]) + 1
 		data_index[1] = int(end_bit[1])
-	print("slot: " + str(slot))
-	print("Data: " + str(data_index))
-	print(len(player.items))
+	#print("slot: " + str(slot))
+	#print("Data: " + str(data_index))
+	#print(len(player.items))
 	var data = player.items[data_index[0]][data_index[1]]
 	if data == {}:
 		return(player.blank_item)

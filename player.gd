@@ -32,6 +32,7 @@ extends CharacterBody3D
 
 var inventory = null
 var look_at_override = null
+var message_options = null
 var save_index = null
 var gender = null
 var player_picked_name = null
@@ -44,6 +45,7 @@ var swim_walk_flip = 0.0
 
 var _save_file = null
 var message_index = -1
+var message_option_index = 1
 var message_ui = null
 var needs_to_load = null
 var total_swipe_stages = 3
@@ -369,6 +371,18 @@ func _unhandled_input(event):
 		if "sword" in right_hand_item.name and Input.is_action_pressed("swipe"):
 			right_hand_item.find_child("swing").play()
 	
+	
+	#Menu options
+	if message_options:
+		if Input.is_action_just_pressed("menu_down"):
+			message_option_index -= 1
+		if Input.is_action_just_pressed("menu_up"):
+			message_option_index += 1
+		if message_option_index > len(message_options):
+			message_option_index = 1
+		if message_option_index < 1:
+			message_option_index = len(message_options)
+	
 	# inventory
 	if Input.is_action_just_pressed("slot_1"):
 		select_slot(1)
@@ -381,6 +395,19 @@ func _unhandled_input(event):
 	if Input.is_action_just_pressed("slot_5"):
 		select_slot(5)
 
+
+func get_next_inventory_slot():
+	for item_index_r in range(0,len(items)):
+		for item_index_c in range(0,len(items[item_index_r])):
+			if items[item_index_r][item_index_c] == {} or items[item_index_r][item_index_c] == blank_item:
+				return([item_index_r,item_index_c])
+	return(false)
+
+func inventory_full():
+	if {} in items:
+		return false
+	else:
+		return true
 	
 	
 func walk_sound():
@@ -603,14 +630,41 @@ func _process(delta):
 	if str(inventory["crystals"]) != gui.find_child("crystals").text:
 		gui.find_child("crystals").text = str(inventory["crystals"])
 	
+	if not message_options and message_ui:
+		for menu_child in gui.find_child("MESSAGE_BG").get_children():
+			print("HI" + str(menu_child))
+			if "option" in menu_child.name:
+				if menu_child.text != "":
+					menu_child.text = ""
 	#Shop
+	
+	#var next_slot = get_next_inventory_slot()
+	#if not next_slot:
+	#	print("Inventroy Full")
+	#else:
+	#	print(next_slot)
+	
 	if look_at_override:
+		if message_options:
+			var tmp_draw_index = 1
+			for message_to_add in message_options:
+				var option_name = "option_" + str(tmp_draw_index)
+				#gui.find_child("MESSAGE_BG").find_child(option_name).text = message_to_add
+				var option_lable = find_child(option_name)
+				option_lable.text = message_to_add
+				if message_option_index == tmp_draw_index:
+					option_lable.set("theme_override_colors/font_color",Color(1,0,0)) 
+				else:
+					option_lable.set("theme_override_colors/font_color",Color(1,1,1))
+				tmp_draw_index += 1
+				
+			#print(message_options)
 		#spring_arm.rotation = Vector3(0,0,0)
 		piv.rotation = Vector3(0,PI,0)
 		camera_look_target.look_at(look_at_override.global_position)
 		#camera_look_target.rotate_object_local(Vector3(0,1,0), -45)
 		camera.global_rotation.y = lerp_angle(camera.global_rotation.y, camera_look_target.global_rotation.y, delta)
-		gui.find_child("MESSAGE_LABLE").text = "Press F to buy, E for next item"
+		#gui.find_child("MESSAGE_LABLE").text = "Press F to buy, E for next item"
 		#piv.rotation = lerp(piv.rotation, Vector3(0,-PI,0), delta)
 		#print(camera.global_rotation)
 	else:

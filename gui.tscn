@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c0f1cbrr54p8a"]
+[gd_scene load_steps=14 format=3 uid="uid://c0f1cbrr54p8a"]
 
 [ext_resource type="Script" path="res://gui.gd" id="1_3n6be"]
 [ext_resource type="Texture2D" uid="uid://dl1tt2g4s8oql" path="res://import/crystals_icon.png" id="1_5ia8l"]
@@ -31,12 +31,6 @@ corner_radius_bottom_left = 75
 
 [sub_resource type="LabelSettings" id="LabelSettings_xd5pi"]
 font_color = Color(1, 0, 0, 1)
-
-[sub_resource type="Gradient" id="Gradient_u75uo"]
-colors = PackedColorArray(0, 0, 0, 0.533333, 0, 0, 0, 0.533333)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_f2j4h"]
-gradient = SubResource("Gradient_u75uo")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0jxqx"]
 
@@ -191,18 +185,41 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MESSAGE_BG" type="Sprite2D" parent="."]
-position = Vector2(904.5, 900.25)
-scale = Vector2(21.3281, 3.64844)
-texture = SubResource("GradientTexture2D_f2j4h")
+position = Vector2(893.337, 900.25)
+scale = Vector2(1.80623, 0.421135)
+texture = ExtResource("5_xjl35")
 
 [node name="MESSAGE_LABLE" type="Label" parent="MESSAGE_BG"]
-offset_left = 30.359
-offset_top = 20.7623
-offset_right = 52.359
-offset_bottom = 43.7623
-scale = Vector2(0.070749, 0.448437)
-text = "  E"
+offset_left = 191.11
+offset_top = 270.103
+offset_right = 359.11
+offset_bottom = 339.103
+theme_override_font_sizes/font_size = 50
+text = "E"
 horizontal_alignment = 2
+
+[node name="option_1" type="Label" parent="MESSAGE_BG"]
+offset_left = -350.978
+offset_top = -67.0806
+offset_right = -262.978
+offset_bottom = -44.0806
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 50
+text = "Test"
+
+[node name="option_2" type="Label" parent="MESSAGE_BG"]
+offset_left = -352.104
+offset_top = 49.2716
+offset_right = -264.104
+offset_bottom = 72.2716
+theme_override_font_sizes/font_size = 50
+
+[node name="option_3" type="Label" parent="MESSAGE_BG"]
+offset_left = -352.104
+offset_top = 172.747
+offset_right = -264.104
+offset_bottom = 195.747
+theme_override_font_sizes/font_size = 50
 
 [node name="MESSAGE" type="RichTextLabel" parent="."]
 visible = false
