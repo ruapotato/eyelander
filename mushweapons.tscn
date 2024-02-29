@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c233wpuog013r"]
+
+[ext_resource type="PackedScene" uid="uid://dtsqaro0cllji" path="res://mushweapons_import.tscn" id="1_s8162"]
+
+[node name="mushweapons" type="Node3D"]
+
+[node name="mushweapons" parent="." instance=ExtResource("1_s8162")]

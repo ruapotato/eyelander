@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://coau5svvlsdd"]
+[gd_scene load_steps=11 format=3 uid="uid://coau5svvlsdd"]
 
 [ext_resource type="Script" path="res://levels/home_island.gd" id="1_apl5u"]
 [ext_resource type="PackedScene" uid="uid://b5d5t4u4u4f5f" path="res://home_island_import.tscn" id="1_tuieb"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b1tav805opjy1" path="res://mushhome_import.tscn" id="8_7l8c7"]
 [ext_resource type="PackedScene" uid="uid://bkum0gw72viiy" path="res://bridge_import.tscn" id="9_3agkp"]
 [ext_resource type="PackedScene" uid="uid://behug0sk0ic55" path="res://eyeland_cluster_import.tscn" id="9_gi2ev"]
+[ext_resource type="PackedScene" uid="uid://c233wpuog013r" path="res://mushweapons.tscn" id="10_g7odr"]
 
 [node name="home_island" type="Node3D"]
 script = ExtResource("1_apl5u")
@@ -37,7 +38,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.6783, 5.49118, 146.819)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.1968, 12.7514, 0.694742)
 
 [node name="shop" type="Node3D" parent="spawns"]
-transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -22.6714, 4.02403, -73.268)
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -21.8706, 4.02403, -73.268)
 
 [node name="dock" type="Node3D" parent="spawns"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.709, 8.56083, 190.396)
@@ -48,7 +49,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.709, 8.56083, 190.396)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.1641, 12.2368, 0.613524)
 
 [node name="shop~main" parent="load_zones" instance=ExtResource("4_2rrkv")]
-transform = Transform3D(0.690466, 0, -0.723365, 0, 1, 0, 0.723365, 0, 0.690466, -23.4232, 4.08816, -74.341)
+transform = Transform3D(0.690466, 0, -0.723365, 0, 1, 0, 0.723365, 0, 0.690466, -22.8946, 4.08816, -74.0408)
 
 [node name="NPCs" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.95426, 19.7264)
@@ -65,9 +66,6 @@ transform = Transform3D(0.999892, 0.0115486, 0.00913068, -0.0126785, 0.990719, 0
 
 [node name="mushhome" parent="." instance=ExtResource("8_7l8c7")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -47.7632, 12.0827, 0.721092)
-
-[node name="shop_mesh" parent="." instance=ExtResource("8_7l8c7")]
-transform = Transform3D(-0.738349, 0, -0.674418, 0, 1, 0, 0.674418, 0, -0.738349, -24.4075, 3.33804, -75.5258)
 
 [node name="EyeLand_cluster" parent="." instance=ExtResource("9_gi2ev")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.288895, 0, 0)
@@ -92,3 +90,6 @@ transform = Transform3D(-0.696965, 0, 0.717105, 0, 1, 0, -0.717105, 0, -0.696965
 
 [node name="bridge3" parent="." instance=ExtResource("9_3agkp")]
 transform = Transform3D(0.997623, 0, -0.0689032, 0, 1, 0, 0.0689032, 0, 0.997623, 4.55556, 4.32444, -43.1652)
+
+[node name="shop_mesh" parent="." instance=ExtResource("10_g7odr")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -23.7839, 3.38005, -74.9466)
