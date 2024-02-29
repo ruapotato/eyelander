@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://doiehmhwtsc2w"]
+
+[ext_resource type="Script" path="res://effects.gd" id="1_b77cu"]
+[ext_resource type="Material" uid="uid://dnc00ghr63hgl" path="res://native/skin.tres" id="2_dn66n"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r3omd"]
+lifetime_randomness = 0.16
+scale_min = 0.5
+scale_max = 2.0
+turbulence_enabled = true
+turbulence_noise_scale = 1.809
+
+[sub_resource type="TorusMesh" id="TorusMesh_y6qti"]
+inner_radius = 0.692
+outer_radius = 0.619
+
+[node name="heal_effect" type="Node3D"]
+script = ExtResource("1_b77cu")
+
+[node name="heal_particles" type="GPUParticles3D" parent="."]
+material_override = ExtResource("2_dn66n")
+emitting = false
+amount = 25
+amount_ratio = 0.619
+lifetime = 1.6
+one_shot = true
+randomness = 0.52
+interpolate = false
+process_material = SubResource("ParticleProcessMaterial_r3omd")
+draw_pass_1 = SubResource("TorusMesh_y6qti")

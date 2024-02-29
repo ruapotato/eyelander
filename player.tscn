@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://hj5galx0bqtw"]
+[gd_scene load_steps=19 format=3 uid="uid://hj5galx0bqtw"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_oeri7"]
 [ext_resource type="PackedScene" uid="uid://c0f1cbrr54p8a" path="res://gui.tscn" id="4_dg2ap"]
@@ -12,6 +12,8 @@
 [ext_resource type="AudioStream" uid="uid://blebvyohfm0hh" path="res://import/jute-dh-steps/stepdirt_7.wav" id="13_a1ryk"]
 [ext_resource type="AudioStream" uid="uid://dkgnp5ge3tnn8" path="res://import/jute-dh-steps/stepdirt_8.wav" id="14_64vdx"]
 [ext_resource type="AudioStream" uid="uid://b1pj4bmiyj1sl" path="res://import/CC0 by CosmicD/133008__cosmicd__annulet-of-absorption_edited_short2.wav" id="14_uray0"]
+[ext_resource type="Script" path="res://Light_sounds.gd" id="15_ahtke"]
+[ext_resource type="PackedScene" uid="uid://doiehmhwtsc2w" path="res://heal_effect.tscn" id="16_b36s2"]
 [ext_resource type="AudioStream" uid="uid://bskrofaaw5ljm" path="res://sounds/hurt1.wav" id="17_7o54j"]
 [ext_resource type="PackedScene" uid="uid://dq8l3picifoh" path="res://player_import.tscn" id="18_vlox2"]
 [ext_resource type="PackedScene" uid="uid://ddlttjqiym5d7" path="res://swipe_effect.tscn" id="19_dql1x"]
@@ -109,5 +111,14 @@ doppler_tracking = 2
 
 [node name="heal" type="AudioStreamPlayer3D" parent="sounds"]
 stream = ExtResource("14_uray0")
+script = ExtResource("15_ahtke")
+
+[node name="sound_light" type="OmniLight3D" parent="sounds/heal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21624, 0.322781)
+light_color = Color(1, 1, 0, 1)
+shadow_enabled = true
 
 [node name="mesh" parent="." instance=ExtResource("18_vlox2")]
+
+[node name="heal_effect" parent="." instance=ExtResource("16_b36s2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.78851, 0)

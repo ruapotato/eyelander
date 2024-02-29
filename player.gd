@@ -29,6 +29,7 @@ extends CharacterBody3D
 @onready var message_box = $GUI/MESSAGE
 @onready var message_warning = $GUI/MESSAGE_WARNING
 @onready var message_bg = $GUI/MESSAGE_BG
+@onready var heal_effect = find_child("heal_particles")
 
 var inventory = null
 var look_at_override = null
@@ -609,12 +610,14 @@ func _process(delta):
 				heal_started = true
 				compost -= 1
 				animation_tree.set("parameters/heal/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+				heal_effect.emitting = true
 				$sounds/heal.play()
 		elif not animation_tree.get("parameters/heal/active") and heal_started:
 			print("I'm am healed")
 			heal_started = false
 			gui_compost.value = compost
 			cast_cool_down = cast_cool_down_time
+			heal_effect.emitting = false
 			life += 1
 			if life > start_life:
 				life = start_life

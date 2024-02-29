@@ -5,7 +5,10 @@ func get_effect_amount():
 	var root_i_hope = get_parent()
 	while root_i_hope.name != "World":
 		root_i_hope = root_i_hope.get_parent()
-	return(root_i_hope.find_child("player").effects_effector)
+	if root_i_hope.find_child("player").effects_effector:
+		return(root_i_hope.find_child("player").effects_effector)
+	else:
+		return(1.0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

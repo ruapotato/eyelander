@@ -24,15 +24,9 @@ var made_trade
 var img_x = 0
 
 
-func did_i_trade():
-	var root_i_hope = get_parent()
-	while root_i_hope.name != "World":
-		root_i_hope = root_i_hope.get_parent()
-	return(root_i_hope.made_trade)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	made_trade = did_i_trade()
 	light.omni_attenuation = 3
 	light.shadow_enabled = false
 	light.light_energy = 0
@@ -111,7 +105,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#print(get_playback_position())
-	if playing and made_trade:
+	if playing:
 		var pos = get_playback_position()
 		var length = stream.get_length()
 		#print(pos)
@@ -126,6 +120,7 @@ func _process(delta):
 		var DB = min_max[1] - min_max[0]
 
 		var light_power = DB
-		light.light_energy  = lerp(light.light_energy,light_power,.1)
+		print(light_power)
+		light.light_energy  = lerp(light.light_energy,float(light_power),.1)
 	else:
 		light.light_energy  = lerp(light.light_energy,0.0,.1)
