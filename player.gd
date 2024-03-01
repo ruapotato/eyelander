@@ -423,7 +423,7 @@ func walk_sound():
 func _physics_process(delta):
 	if dead:
 		return
-	walk_sound_every = 1/(velocity.length()/3)
+	walk_sound_every = 1/(velocity.length()/2)
 	new_speed = velocity
 	if wind != Vector3(0,0,0):
 		new_speed += wind
@@ -714,7 +714,7 @@ func _process(delta):
 		animation_tree.set("parameters/run_timescale/scale", velocity.length()/SPEED)
 		#print(velocity.length()/SPEED)
 	else:
-		animation_tree.set("parameters/run_timescale/scale", 1)
+		animation_tree.set("parameters/run_timescale/scale", 1.7)
 	
 	
 	#Controls
