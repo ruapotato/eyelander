@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://coau5svvlsdd"]
+[gd_scene load_steps=15 format=3 uid="uid://coau5svvlsdd"]
 
 [ext_resource type="Script" path="res://levels/home_island.gd" id="1_apl5u"]
 [ext_resource type="PackedScene" uid="uid://b5d5t4u4u4f5f" path="res://home_island_import.tscn" id="1_tuieb"]
 [ext_resource type="PackedScene" uid="uid://ciis218u8fqti" path="res://load_zone.tscn" id="4_2rrkv"]
+[ext_resource type="PackedScene" uid="uid://5vc7pjj0nsgx" path="res://boss_3.tscn" id="5_frux4"]
 [ext_resource type="PackedScene" uid="uid://brctuubjouqvj" path="res://npcs.tscn" id="5_y2scv"]
 [ext_resource type="PackedScene" uid="uid://lmxejmktuun0" path="res://water.tscn" id="6_kogf5"]
 [ext_resource type="PackedScene" uid="uid://dy5vwxwqq33qt" path="res://bobo.tscn" id="7_kc5ra"]
@@ -10,27 +11,19 @@
 [ext_resource type="PackedScene" uid="uid://bkum0gw72viiy" path="res://bridge_import.tscn" id="9_3agkp"]
 [ext_resource type="PackedScene" uid="uid://behug0sk0ic55" path="res://eyeland_cluster_import.tscn" id="9_gi2ev"]
 [ext_resource type="PackedScene" uid="uid://c233wpuog013r" path="res://mushweapons.tscn" id="10_g7odr"]
+[ext_resource type="PackedScene" uid="uid://b6wujt56r71yp" path="res://big_shoom.tscn" id="12_lj6on"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pnhro"]
+size = Vector3(8, 8, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bnd6b"]
+size = Vector3(8, 8, 8)
 
 [node name="home_island" type="Node3D"]
 script = ExtResource("1_apl5u")
 
 [node name="home_island" parent="." instance=ExtResource("1_tuieb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.2894, -0.904583, 184.856)
-
-[node name="big_mushes" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.31427, 0)
-
-[node name="bmush" type="Node3D" parent="big_mushes"]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 5.82806, 1.84556, 159.157)
-
-[node name="bmush2" type="Node3D" parent="big_mushes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.795304, 176.392)
-
-[node name="bmush3" type="Node3D" parent="big_mushes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.457, 2.80268, 167.728)
-
-[node name="bmush4" type="Node3D" parent="big_mushes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.6783, 5.49118, 146.819)
 
 [node name="spawns" type="Node3D" parent="."]
 
@@ -43,6 +36,9 @@ transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -21.8706
 [node name="dock" type="Node3D" parent="spawns"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.709, 8.56083, 190.396)
 
+[node name="bigshoom" type="Node3D" parent="spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.7641, 11.8115, 186.534)
+
 [node name="load_zones" type="Node3D" parent="."]
 
 [node name="village_main_house~main" parent="load_zones" instance=ExtResource("4_2rrkv")]
@@ -51,11 +47,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.1641, 12.2368, 0.613524)
 [node name="shop~main" parent="load_zones" instance=ExtResource("4_2rrkv")]
 transform = Transform3D(0.690466, 0, -0.723365, 0, 1, 0, 0.723365, 0, 0.690466, -22.8946, 4.08816, -74.0408)
 
+[node name="shroom_dungeon~main" parent="load_zones" instance=ExtResource("4_2rrkv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.019, 8.41318, 197.259)
+
 [node name="NPCs" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.95426, 19.7264)
 
 [node name="Briska" parent="NPCs" instance=ExtResource("5_y2scv")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 0.87, 0, -1, 0, -4.37114e-08, -9.07125, -0.0485486, -65.5538)
+
+[node name="boss_3" parent="NPCs" instance=ExtResource("5_frux4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0037, 6.37135, -102.524)
 
 [node name="water" parent="." instance=ExtResource("6_kogf5")]
 
@@ -93,3 +95,17 @@ transform = Transform3D(0.997623, 0, -0.0689032, 0, 1, 0, 0.0689032, 0, 0.997623
 
 [node name="shop_mesh" parent="." instance=ExtResource("10_g7odr")]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -23.7839, 3.38005, -74.9466)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2197, 3.45511, 126.011)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.48283, -3.11206, 0)
+shape = SubResource("BoxShape3D_pnhro")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.63511, -3.00942, -1.00526)
+mesh = SubResource("BoxMesh_bnd6b")
+
+[node name="big_shoom" parent="." instance=ExtResource("12_lj6on")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.2425, 0, 202)

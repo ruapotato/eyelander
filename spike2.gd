@@ -1,22 +1,28 @@
 extends Area3D
 
 @onready var boss = get_parent().find_child("boss_3")
-@onready var player = get_parent().find_child("player")
+
 @onready var ring_x = $ring_x
 @onready var ring_y = $ring_y
 @onready var ring_z = $ring_z
 
-var damage = 40
+var player
+var damage = 1
 var ttl = 4
 var bad = true
 var target = Vector3(0,0,0)
 var speed = 13
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	player = get_player()
 	#wadd_collision_exception_with(boss)
 	pass # Replace with function body.
 
-
+func get_player():
+	var root_i_hope = get_parent()
+	while root_i_hope.name != "World":
+		root_i_hope = root_i_hope.get_parent()
+	return(root_i_hope.find_child("player"))
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	ring_x.rotate_y(delta * 2.2)

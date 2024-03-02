@@ -84,14 +84,14 @@ func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	load_place(init_load)
-	for i in range(0,int(_tree_count)):
-		trees.append(Tree1Scene.instantiate())
+	#for i in range(0,int(_tree_count)):
+	#	trees.append(Tree1Scene.instantiate())
 		#trees[-1].gravity_scale = 0
-		trees[-1].position = Vector3((randi()%60)-30,-100,(randi()%60)-30)
+	#	trees[-1].position = Vector3((randi()%60)-30,-100,(randi()%60)-30)
 		#trees[-1].contact_monitor = true
 		#trees[-1].max_contacts_reported = 99999
-		trees[-1].name = "tree_" + str(len(trees))
-		add_child.call_deferred(trees[-1])
+	#	trees[-1].name = "tree_" + str(len(trees))
+	#	add_child.call_deferred(trees[-1])
 
 
 """
@@ -150,12 +150,13 @@ func spawn(what, where_and_size):
 
 func get_needed_trees():
 	var needed = []
-	if loaded.name == "home_island":
-		for mush in loaded.find_child("big_mushes").get_children():
-			var mush_pos = mush.global_position
-			if mush_pos.distance_to(player.global_position) < render_range:
-				needed.append([mush_pos, mush.scale])
 	return(needed)
+	#if loaded.name == "home_island":
+	#	for mush in loaded.find_child("big_mushes").get_children():
+	#		var mush_pos = mush.global_position
+	#		if mush_pos.distance_to(player.global_position) < render_range:
+	#			needed.append([mush_pos, mush.scale])
+	#return(needed)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if music.stream != bg_music:
@@ -182,12 +183,12 @@ func _process(delta):
 	
 	# Update trees
 	#print(last_known_pos)
-	if get_player_grid_pos() != last_known_pos:
-		last_known_pos = get_player_grid_pos()
-		for needed_tree in get_needed_trees():
-			if needed_tree not in rendred_trees:
-				rendred_trees.append(needed_tree[0])
-				spawn(Tree1Scene, needed_tree)
+	#if get_player_grid_pos() != last_known_pos:
+	#	last_known_pos = get_player_grid_pos()
+	#	for needed_tree in get_needed_trees():
+	#		if needed_tree not in rendred_trees:
+	#			rendred_trees.append(needed_tree[0])
+	#			spawn(Tree1Scene, needed_tree)
 	"""
 	#update lava level
 	if player.level != lava_level:

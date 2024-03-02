@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgqdlwfw5r50j"]
+
+[ext_resource type="Script" path="res://shroom_dungeon.gd" id="1_6ev1k"]
+[ext_resource type="PackedScene" uid="uid://cbyh2ibahkn7w" path="res://shroom_dungeon_import.tscn" id="1_fwxl1"]
+[ext_resource type="PackedScene" uid="uid://ciis218u8fqti" path="res://load_zone.tscn" id="2_3wkyr"]
+
+[node name="shroom_dungeon" type="Node3D"]
+script = ExtResource("1_6ev1k")
+
+[node name="static_mesh" parent="." instance=ExtResource("1_fwxl1")]
+
+[node name="spawns" type="Node3D" parent="."]
+
+[node name="main" type="Node3D" parent="spawns"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -15.0368, 72.8537, -0.290114)
+
+[node name="load_zones" type="Node3D" parent="."]
+
+[node name="home_island~bigshoom" parent="load_zones" instance=ExtResource("2_3wkyr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.0096, 68.8752, 0.929886)

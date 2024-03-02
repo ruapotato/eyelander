@@ -12,12 +12,12 @@ extends CharacterBody3D
 @onready var spike = preload("res://spike2.tscn")
 @onready var win_screen = preload("res://end_screen.tscn")
 @onready var game_over_screen = preload("res://game_over.tscn")
-@onready var player = get_parent().find_child("player")
+#@onready var player = get_parent().find_child("player")
 @onready var smoke_effect = find_child("boss_3_particles")
 @onready var segment_life = 150
 var near = 3
 
-
+var player
 var swipping = false
 var swipe_speed = .2
 var swipe_counter = 0
@@ -76,14 +76,10 @@ func did_i_trade():
 func _ready():
 	scythe.visible = true
 	made_trade = did_i_trade()
-	start_life = start_life * get_parent().hardness
+	player = get_player()
+	#start_life = start_life * get_parent().hardness
 	#life = start_life
 	
-	if not made_trade:
-		find_child("mesh").visible = false
-		$boss_3_effect.visible = false
-		head.visible = false
-		$scythe.visible = false
 
 
 func get_target():
@@ -114,8 +110,10 @@ func process_action(delta):
 	
 	
 	if action == "tp":
-		var new_pos = Vector3(randf_range(-30,30),global_position.y,randf_range(-30,30))
-		global_position = new_pos
+		#var new_pos = Vector3(randf_range(-30,30),global_position.y,randf_range(-30,30))
+		global_position.x += randf_range(-30,30)
+		global_position.z += randf_range(-30,30)
+		#global_position = new_pos + player.global_position
 	
 	
 	if action == "shoot_bits":
@@ -143,7 +141,11 @@ func process_action(delta):
 				if not scythe.find_child("swing").playing:
 					scythe.find_child("swing").play()
 
-	
+func get_player():
+	var root_i_hope = get_parent()
+	while root_i_hope.name != "World":
+		root_i_hope = root_i_hope.get_parent()
+	return(root_i_hope.find_child("player"))
 
 func walk_sound():
 	if walking_on == "dirt":
@@ -175,9 +177,12 @@ func _physics_process(delta):
 	else:
 		dazzed = 0
 	# Add the gravity.
-	if not is_on_floor():
-		if global_position.distance_to(Vector3(0,global_position.y,0)) < 30:
-			new_speed.y -= gravity * delta * .2
+	if global_position.y < 0:
+		new_speed.y += gravity * delta
+	elif not is_on_floor():
+		new_speed.y -= gravity * delta
+		#if global_position.distance_to(Vector3(0,global_position.y,0)) < 30:
+		#	new_speed.y -= gravity * delta * .2
 
 	# Handle Jump.
 	#if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -276,12 +281,11 @@ func _physics_process(delta):
 func _process(delta):
 
 	if not init_done:
-		if player.level == 3:
-			if player.global_position.y < -70:
-				init_done = true
-				life = start_life
-				smoke_effect.emitting = true
-				print("Boss 3 ready")
+		if global_position.distance_to(player.global_position) < 5:
+			init_done = true
+			life = start_life
+			smoke_effect.emitting = true
+			print("Boss 3 ready")
 		return
 	
 	stage_counter += delta

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbyh2ibahkn7w"]
+
+[ext_resource type="PackedScene" uid="uid://jjhknp7aleg1" path="res://import/shroom_dungeon.glb" id="1_tlu2e"]
+[ext_resource type="Script" path="res://all_static_import.gd" id="2_kbcug"]
+
+[node name="shroom_dungeon" instance=ExtResource("1_tlu2e")]
+script = ExtResource("2_kbcug")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="15"]
