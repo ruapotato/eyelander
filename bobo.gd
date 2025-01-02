@@ -88,4 +88,3 @@ func _process(delta):
 			player_stuck = true
 			can_be_hurt = false
 			stuck_counter = stuck_for
-

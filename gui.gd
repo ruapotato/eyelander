@@ -185,4 +185,3 @@ func _on_button_pressed():
 
 func _on_save_pressed():
 	get_parent().get_parent().save_data(player.items)
-

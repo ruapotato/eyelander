@@ -1,4 +1,6 @@
 extends Node3D
+var bg_music = "res://import/CC-BY Kevin MacLeod/Kevin MacLeod - Nu Flute_edit.wav"
+var fight_music = "res://import/CC BY Mystery Mammal/Mystery Mammal - Boss Battle.wav"
 @onready var music = $music
 @onready var env = $WorldEnvironment
 @onready var player = $player
@@ -48,8 +50,6 @@ var render_range = 100
 var chunk_in_mem = []
 var rendred_trees = []
 var tree_index = 0
-var bg_music = null
-var fight_music = null
 
 
 var img_x = 0

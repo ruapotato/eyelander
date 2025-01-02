@@ -51,10 +51,10 @@ void vertex()
 	VERTEX.y += height * height_scale;
 }
 */
-void fragment() 
+void fragment()
 {
 	// Depth stuff
-	
+
 	float depth_texture = texture(DEPTH_TEXTURE, SCREEN_UV).r * 2.0 - 1.0;
 	float depth = PROJECTION_MATRIX[3][2] / (depth_texture + PROJECTION_MATRIX[2][2]);
 	float depth_blend = exp((depth+VERTEX.z + depth_offset) * -beers_law);
@@ -63,20 +63,20 @@ void fragment()
 	vec3 screen_color = textureLod(SCREEN_TEXTURE, SCREEN_UV, depth_blend_power * 2.5).rgb;
 	vec3 depth_color = mix(color_shallow.rgb, color_deep.rgb, depth_blend_power);
 	vec3 color3 = mix(screen_color * depth_color, depth_color * 0.25, depth_blend_power * 0.5);
-	
+
 	float z_depth = edge(texture(DEPTH_TEXTURE, SCREEN_UV).x);
 	float z_pos = edge(FRAGCOORD.z);
 	float z_diff = z_depth - z_pos;
-	
-	
-	
+
+
+
 	vec2 time = (TIME * wave_dir) * time_scale;
 	vec2 time2 = (TIME * wave_dir2) * time_scale;
-	
+
 	vec3 normal_1 = texture(texture_normal, world_pos.xz + time).rgb;
 	vec3 normal_2 = texture(texture_normal2, world_pos.xz + time2).rgb;
 	vec3 normal_blend = mix(normal_1, normal_2, 0.5);
-	
+
 	float forsnail = forsnail(6.0, NORMAL, VIEW);
 	vec3 surface_color = mix(color, color2, forsnail);
 	//vec3 normal_blend = mix(texture(texture_normal,UV).rgb, texture(texture_normal2,UV).rgb);

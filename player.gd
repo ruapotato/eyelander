@@ -71,6 +71,9 @@ var mouse_sensitivity = .0035
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var JUMP_VELOCITY = 15
 var SPEED = 5.0
+var slope_limit = 60.0  # Maximum walkable slope in degrees
+var slope_stop_min_velocity = 0.1  # Minimum velocity to stop on slopes
+var water_resistance = 0.3  # Movement resistance in water
 
 var level = 1
 var swipping = false
@@ -419,6 +422,11 @@ func walk_sound():
 		#$"sounds/walking_dirt/1".
 		sound_to_use.play()
 
+func get_slope_angle():
+	if is_on_floor():
+		var normal = get_floor_normal()
+		return rad_to_deg(acos(normal.dot(Vector3.UP)))
+	return 0.0
 
 func _physics_process(delta):
 	if dead:
@@ -442,6 +450,17 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor() and not swimming:
 		new_speed.y -= gravity * delta
+	
+	if is_on_floor():
+		var slope_angle = get_slope_angle()
+		if slope_angle > slope_limit:
+			# Too steep to walk, slide down
+			var slide_dir = get_floor_normal().cross(Vector3.UP).normalized()
+			new_speed += slide_dir * delta * gravity
+		elif velocity.length() < slope_stop_min_velocity:
+			# Stop on shallow slopes
+			new_speed.x = 0
+			new_speed.z = 0
 	
 	if swimming and global_position.y < swim_bob_level - .1:
 		new_speed.y = lerp(new_speed.y,float(swim_up_speed * abs(global_position.y)), delta)
@@ -795,4 +814,3 @@ func _process(delta):
 		#print(Input.get_joy_axis(0,2))
 		piv.rotate_y(Input.get_joy_axis(0,2) * -mouse_sensitivity * delta * 1000)
 		spring_arm.rotation.x =  lerp(spring_arm.rotation.x , (PI/2) * -Input.get_joy_axis(0,3), mouse_sensitivity * delta * 1000)
-

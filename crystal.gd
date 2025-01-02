@@ -107,4 +107,3 @@ func _on_body_entered(body):
 		player.inventory["crystals"] += value
 		#print(player.inventory["crystals"])
 		collected = true
-
