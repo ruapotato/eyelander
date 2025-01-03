@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dm2h68aqqdrk0"]
+[gd_scene load_steps=11 format=3 uid="uid://dm2h68aqqdrk0"]
 
 [ext_resource type="PackedScene" uid="uid://ciis218u8fqti" path="res://load_zone.tscn" id="1_mhwh2"]
 [ext_resource type="Script" path="res://planet.gd" id="1_s7kjq"]
 [ext_resource type="Script" path="res://demo/src/RuntimeNavigationBaker.gd" id="3_148e5"]
 [ext_resource type="Terrain3DAssets" uid="uid://dal3jhw6241qg" path="res://demo/data_og/assets.tres" id="4_do8v4"]
+[ext_resource type="Shader" path="res://native/eyeball_world2.gdshader" id="4_qnpse"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0lb48"]
 geometry_parsed_geometry_type = 1
@@ -34,20 +35,48 @@ noise = SubResource("FastNoiseLite_d8lcj")
 [sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_o0lt8"]
 _shader_parameters = {
 "_mouse_layer": 2147483648,
+"auto_base_texture": 0,
+"auto_height_reduction": 0.1,
+"auto_overlay_texture": 1,
+"auto_slope": 1.0,
+"beach_color": Color(0.76, 0.7, 0.5, 1),
 "blend_sharpness": 0.87,
+"desert_blend": 500.0,
+"desert_center_radius": 2000.0,
+"desert_color": Color(0.8, 0.6, 0.3, 1),
+"dual_scale_far": 170.0,
+"dual_scale_near": 100.0,
+"dual_scale_reduction": 0.3,
+"dual_scale_texture": 0,
 "height_blending": true,
 "macro_variation1": Color(0.878431, 0.862745, 0.901961, 1),
 "macro_variation2": Color(0.898039, 0.898039, 0.803922, 1),
+"midnight_color": Color(0.05, 0.05, 0.08, 1),
 "noise1_angle": 0.1,
 "noise1_offset": Vector2(0.5, 0.5),
 "noise1_scale": 0.04,
 "noise2_scale": 0.076,
 "noise3_scale": 0.225,
 "noise_texture": SubResource("NoiseTexture2D_bov7h"),
-"vertex_normals_distance": 128.0
+"ocean_deep_color": Color(0.05, 0.15, 0.3, 1),
+"ocean_ring_blend": 1000.0,
+"ocean_ring_start": 4000.0,
+"ocean_shallow_color": Color(0.2, 0.5, 0.7, 1),
+"outer_rim_blend": 1000.0,
+"outer_rim_start": 8000.0,
+"tri_scale_reduction": 0.3,
+"vertex_normals_distance": 128.0,
+"world_noise_height": 64.0,
+"world_noise_lod_distance": 7500.0,
+"world_noise_max_octaves": 4,
+"world_noise_min_octaves": 2,
+"world_noise_offset": Vector3(0, 0, 0),
+"world_noise_region_blend": 0.33,
+"world_noise_scale": 5.0
 }
 world_background = 0
 shader_override_enabled = true
+shader_override = ExtResource("4_qnpse")
 
 [node name="planet" type="Node3D"]
 script = ExtResource("1_s7kjq")
