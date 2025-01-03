@@ -103,6 +103,7 @@ debug_level = 2
 data_directory = "res://demo/data"
 material = SubResource("Terrain3DMaterial_o0lt8")
 assets = ExtResource("4_do8v4")
+collision_enabled = false
 collision_mask = 3
 top_level = true
 metadata/_edit_lock_ = true
