@@ -8,14 +8,14 @@
 
 [sub_resource type="VoxelGeneratorGraph" id="VoxelGeneratorGraph_5j2d0"]
 graph_data = {
-"connections": [[24, 0, 16, 0], [23, 0, 16, 1], [20, 0, 23, 1], [20, 0, 24, 1], [19, 0, 15, 1], [18, 0, 19, 0], [3, 0, 23, 0], [16, 0, 19, 1], [2, 0, 15, 0], [15, 0, 4, 0], [1, 0, 24, 0]],
+"connections": [[38, 0, 4, 0], [37, 0, 38, 1], [36, 0, 33, 1], [35, 0, 36, 0], [29, 0, 26, 1], [28, 0, 29, 1], [30, 0, 29, 0], [30, 0, 36, 1], [1, 0, 24, 0], [1, 0, 30, 2], [15, 0, 32, 0], [2, 0, 15, 0], [2, 0, 26, 0], [16, 0, 19, 1], [32, 0, 38, 0], [3, 0, 23, 0], [3, 0, 30, 3], [18, 0, 33, 0], [19, 0, 15, 1], [20, 0, 23, 1], [20, 0, 24, 1], [23, 0, 16, 1], [24, 0, 16, 0], [33, 0, 19, 0], [26, 0, 32, 1]],
 "nodes": {
 "1": {
 "gui_position": Vector2(440, 50),
 "type": "InputX"
 },
 "15": {
-"gui_position": Vector2(920, 180),
+"gui_position": Vector2(1020, -40),
 "type": "Add"
 },
 "16": {
@@ -25,13 +25,13 @@ graph_data = {
 "type": "FastNoise2D"
 },
 "18": {
-"gui_position": Vector2(180, 0),
+"gui_position": Vector2(120, 0),
 "name": &"height",
 "type": "Constant",
-"value": 50.0
+"value": 1.0
 },
 "19": {
-"gui_position": Vector2(820, 0),
+"gui_position": Vector2(800, -80),
 "type": "Multiply"
 },
 "2": {
@@ -52,13 +52,62 @@ graph_data = {
 "gui_position": Vector2(540, 80),
 "type": "Divide"
 },
+"26": {
+"gui_position": Vector2(960, 280),
+"type": "Add"
+},
+"28": {
+"gui_position": Vector2(60, 380),
+"name": &"world_bulge",
+"type": "Constant",
+"value": 0.1
+},
+"29": {
+"gui_position": Vector2(960, 380),
+"type": "Multiply"
+},
 "3": {
-"gui_position": Vector2(440, 250),
+"gui_position": Vector2(440, 240),
 "type": "InputZ"
+},
+"30": {
+"auto_connect": true,
+"gui_position": Vector2(540, 340),
+"type": "Distance2D",
+"x0": 0.0,
+"y0": 0.0
+},
+"32": {
+"gui_position": Vector2(1160, 80),
+"type": "Add"
+},
+"33": {
+"gui_position": Vector2(540, -180),
+"type": "Add"
+},
+"35": {
+"gui_position": Vector2(40, 300),
+"name": &"world_bulge_effect",
+"type": "Constant",
+"value": 0.25
+},
+"36": {
+"gui_position": Vector2(520, -60),
+"type": "Multiply"
+},
+"37": {
+"gui_position": Vector2(0, 460),
+"name": &"height_offset",
+"type": "Constant",
+"value": -25.0
+},
+"38": {
+"gui_position": Vector2(1320, 440),
+"type": "Add"
 },
 "4": {
 "auto_connect": true,
-"gui_position": Vector2(1180, 100),
+"gui_position": Vector2(1420, 120),
 "type": "OutputSDF"
 }
 },
