@@ -77,6 +77,10 @@ shader_parameter/ocean_ring_blend = 50.0
 shader_parameter/desert_center_radius = 100.0
 shader_parameter/desert_blend = 50.0
 shader_parameter/noise_scale = 20.0
+shader_parameter/color_noise_scale = 50.0
+shader_parameter/sand_detail_scale = 10.0
+shader_parameter/grass_scale = 25.0
+shader_parameter/texture_blend = 0.7
 
 [node name="planet" type="Node3D"]
 script = ExtResource("1_s7kjq")
