@@ -16,18 +16,24 @@ distance_fade_min_distance = 960.0
 distance_fade_max_distance = 480.0
 
 [sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_dw1mh"]
+resource_local_to_scene = false
+resource_name = ""
 height_offset = 0.5
 density = 10.0
 material_override = SubResource("StandardMaterial3D_aubfq")
 generated_type = 1
 
 [sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_mup2f"]
+resource_local_to_scene = false
+resource_name = ""
 name = "Rock"
 albedo_color = Color(1.596, 1.56, 1.5, 1)
 albedo_texture = ExtResource("1_v81ad")
 normal_texture = ExtResource("2_72dup")
 
 [sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_od0q7"]
+resource_local_to_scene = false
+resource_name = ""
 name = "Grass"
 id = 1
 albedo_color = Color(0.67451, 0.74902, 0.686275, 1)
@@ -35,5 +41,7 @@ albedo_texture = ExtResource("3_g8f2m")
 normal_texture = ExtResource("4_aw5y1")
 
 [resource]
-mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_dw1mh")])
-texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_mup2f"), SubResource("Terrain3DTextureAsset_od0q7")])
+resource_local_to_scene = false
+resource_name = ""
+mesh_list = [SubResource("Terrain3DMeshAsset_dw1mh")]
+texture_list = [SubResource("Terrain3DTextureAsset_mup2f"), SubResource("Terrain3DTextureAsset_od0q7")]

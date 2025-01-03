@@ -51,6 +51,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0993335, 0)
 [node name="Camera3D" type="Camera3D" parent="piv/SpringArm3D"]
 current = true
 
+[node name="VoxelViewer" type="VoxelViewer" parent="piv/SpringArm3D/Camera3D"]
+
 [node name="camera_look_target" type="Node3D" parent="piv/SpringArm3D"]
 
 [node name="AudioListener3D" type="AudioListener3D" parent="piv"]

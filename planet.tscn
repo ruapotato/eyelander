@@ -1,60 +1,57 @@
-[gd_scene load_steps=9 format=3 uid="uid://dm2h68aqqdrk0"]
+[gd_scene load_steps=7 format=3 uid="uid://dm2h68aqqdrk0"]
 
 [ext_resource type="PackedScene" uid="uid://ciis218u8fqti" path="res://load_zone.tscn" id="1_mhwh2"]
 [ext_resource type="Script" path="res://planet.gd" id="1_s7kjq"]
-[ext_resource type="Script" path="res://demo/src/RuntimeNavigationBaker.gd" id="3_148e5"]
-[ext_resource type="Terrain3DAssets" uid="uid://dal3jhw6241qg" path="res://demo/data_og/assets.tres" id="4_do8v4"]
-[ext_resource type="Texture2D" uid="uid://n76tgowh3ocu" path="res://world_noise.tres" id="4_dtrro"]
-[ext_resource type="Shader" path="res://native/eyeball_world2.gdshader" id="5_2py3a"]
+[ext_resource type="Material" uid="uid://b7oy1m6cgqmjk" path="res://materials/grass-rock.material" id="3_dolpq"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_0lb48"]
-geometry_parsed_geometry_type = 1
-agent_height = 2.0
-agent_max_slope = 30.0
+[sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_vn6fu"]
 
-[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_o0lt8"]
-_shader_parameters = {
-"_mouse_layer": 2147483648,
-"auto_base_texture": 0,
-"auto_height_reduction": 0.1,
-"auto_overlay_texture": 1,
-"auto_slope": 1.0,
-"beach_color": Color(0.76, 0.7, 0.5, 1),
-"blend_sharpness": 0.87,
-"desert_blend": 500.0,
-"desert_center_radius": 2000.0,
-"desert_color": Color(0.8, 0.6, 0.3, 1),
-"dual_scale_far": 170.0,
-"dual_scale_near": 100.0,
-"dual_scale_reduction": 0.3,
-"dual_scale_texture": 0,
-"height_blending": true,
-"macro_variation1": Color(0.878431, 0.862745, 0.901961, 1),
-"macro_variation2": Color(0.898039, 0.898039, 0.803922, 1),
-"midnight_color": Color(0.05, 0.05, 0.08, 1),
-"noise1_angle": 0.1,
-"noise1_offset": Vector2(0.5, 0.5),
-"noise1_scale": 0.04,
-"noise2_scale": 0.076,
-"noise3_scale": 0.225,
-"noise_texture": ExtResource("4_dtrro"),
-"ocean_deep_color": Color(0.05, 0.15, 0.3, 1),
-"ocean_ring_blend": 1000.0,
-"ocean_ring_start": 4000.0,
-"ocean_shallow_color": Color(0.2, 0.5, 0.7, 1),
-"outer_rim_blend": 1000.0,
-"outer_rim_start": 8000.0,
-"tri_scale_reduction": 0.3,
-"vertex_normals_distance": 128.0,
-"world_noise_height": 64.0,
-"world_noise_lod_distance": 7500.0,
-"world_noise_max_octaves": 4,
-"world_noise_min_octaves": 2,
-"world_noise_offset": Vector3(0, 0, 0),
-"world_noise_region_blend": 0.05,
-"world_noise_scale": 5.0
+[sub_resource type="VoxelGeneratorGraph" id="VoxelGeneratorGraph_5j2d0"]
+graph_data = {
+"connections": [[19, 0, 15, 1], [18, 0, 19, 0], [16, 0, 19, 1], [3, 0, 16, 1], [15, 0, 4, 0], [2, 0, 15, 0], [1, 0, 16, 0]],
+"nodes": {
+"1": {
+"gui_position": Vector2(440, 50),
+"type": "InputX"
+},
+"15": {
+"gui_position": Vector2(920, 180),
+"type": "Add"
+},
+"16": {
+"auto_connect": true,
+"gui_position": Vector2(600, 60),
+"noise": SubResource("ZN_FastNoiseLite_vn6fu"),
+"type": "FastNoise2D"
+},
+"18": {
+"gui_position": Vector2(180, 0),
+"name": &"height",
+"type": "Constant",
+"value": 10.0
+},
+"19": {
+"gui_position": Vector2(820, 0),
+"type": "Multiply"
+},
+"2": {
+"gui_position": Vector2(440, 150),
+"type": "InputY"
+},
+"3": {
+"gui_position": Vector2(440, 250),
+"type": "InputZ"
+},
+"4": {
+"auto_connect": true,
+"gui_position": Vector2(1180, 100),
+"type": "OutputSDF"
 }
-shader_override = ExtResource("5_2py3a")
+},
+"version": 2
+}
+
+[sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_mdr6i"]
 
 [node name="planet" type="Node3D"]
 script = ExtResource("1_s7kjq")
@@ -70,15 +67,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 968
 [node name="home_island~shop" parent="load_zones" instance=ExtResource("1_mhwh2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 999, 0)
 
-[node name="RuntimeNavigationBaker" type="Node" parent="."]
-script = ExtResource("3_148e5")
-enabled = false
-template = SubResource("NavigationMesh_0lb48")
-
-[node name="Terrain3D" type="Terrain3D" parent="."]
-data_directory = "res://worlds/world2"
-material = SubResource("Terrain3DMaterial_o0lt8")
-assets = ExtResource("4_do8v4")
-collision_mask = 3
-top_level = true
-metadata/_edit_lock_ = true
+[node name="VoxelLodTerrain" type="VoxelLodTerrain" parent="."]
+generator = SubResource("VoxelGeneratorGraph_5j2d0")
+mesher = SubResource("VoxelMesherTransvoxel_mdr6i")
+material = ExtResource("3_dolpq")
