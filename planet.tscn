@@ -28,7 +28,7 @@ graph_data = {
 "gui_position": Vector2(180, 0),
 "name": &"height",
 "type": "Constant",
-"value": 70.0
+"value": 50.0
 },
 "19": {
 "gui_position": Vector2(820, 0),
@@ -76,15 +76,7 @@ shader_parameter/ocean_ring_start = 300.0
 shader_parameter/ocean_ring_blend = 50.0
 shader_parameter/desert_center_radius = 100.0
 shader_parameter/desert_blend = 50.0
-shader_parameter/slope_threshold = 0.7
-shader_parameter/slope_smoothness = 0.1
 shader_parameter/noise_scale = 20.0
-shader_parameter/noise_influence = 0.3
-shader_parameter/midnight_color = Color(0.05, 0.05, 0.08, 1)
-shader_parameter/ocean_deep_color = Color(0.05, 0.15, 0.3, 1)
-shader_parameter/ocean_shallow_color = Color(0.2, 0.5, 0.7, 1)
-shader_parameter/beach_color = Color(0.76, 0.7, 0.5, 1)
-shader_parameter/desert_color = Color(0.8, 0.6, 0.3, 1)
 
 [node name="planet" type="Node3D"]
 script = ExtResource("1_s7kjq")
