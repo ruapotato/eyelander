@@ -1,82 +1,60 @@
 shader_type spatial;
 
-// Textures should preferably be in a TextureArray, so looking them up is cheap
 uniform sampler2DArray u_texture_array : source_color;
 
-// We'll need to pass data from the vertex shader to the fragment shader
-varying vec4 v_indices;
-varying vec4 v_weights;
 varying vec3 v_normal;
 varying vec3 v_pos;
 
-// We'll use a utility function to decode components.
-// It returns 4 values in the range [0..255].
-vec4 decode_8bit_vec4(float v) {
-    uint i = floatBitsToUint(v);
-    return vec4(
-        float(i & uint(0xff)),
-        float((i >> uint(8)) & uint(0xff)),
-        float((i >> uint(16)) & uint(0xff)),
-        float((i >> uint(24)) & uint(0xff)));
+// Biome parameters
+uniform float outer_rim_start = 500.0;
+uniform float outer_rim_blend = 100.0;
+uniform float ocean_ring_start = 300.0;
+uniform float ocean_ring_blend = 50.0;
+uniform float desert_center_radius = 100.0;
+uniform float desert_blend = 50.0;
+
+uniform vec3 midnight_color : source_color = vec3(0.05, 0.05, 0.08);
+uniform vec3 ocean_deep_color : source_color = vec3(0.05, 0.15, 0.3);
+uniform vec3 ocean_shallow_color : source_color = vec3(0.2, 0.5, 0.7);
+uniform vec3 beach_color : source_color = vec3(0.76, 0.7, 0.5);
+uniform vec3 desert_color : source_color = vec3(0.8, 0.6, 0.3);
+
+vec4 triplanar_texture(sampler2DArray tex, vec3 world_pos, vec3 normal, float layer) {
+    vec3 blend = abs(normal);
+    blend = blend / (blend.x + blend.y + blend.z);
+
+    vec4 tx = texture(tex, vec3(world_pos.yz * 0.2, layer));
+    vec4 ty = texture(tex, vec3(world_pos.xz * 0.2, layer));
+    vec4 tz = texture(tex, vec3(world_pos.xy * 0.2, layer));
+
+    return tx * blend.x + ty * blend.y + tz * blend.z;
 }
 
-// A voxel mesh can have overhangs in any direction,
-// so we may have to use triplanar mapping functions.
-vec3 get_triplanar_blend(vec3 world_normal) {
-    vec3 blending = abs(world_normal);
-    blending = normalize(max(blending, vec3(0.00001))); // Force weights to sum to 1.0
-    float b = blending.x + blending.y + blending.z;
-    return blending / vec3(b, b, b);
-}
+vec3 calculate_biome(vec3 world_pos) {
+    float dist = length(world_pos.xz);
 
-vec4 texture_array_triplanar(sampler2DArray tex, vec3 world_pos, vec3 blend, float i) {
-    vec4 xaxis = texture(tex, vec3(world_pos.yz, i));
-    vec4 yaxis = texture(tex, vec3(world_pos.xz, i));
-    vec4 zaxis = texture(tex, vec3(world_pos.xy, i));
-    // blend the results of the 3 planar projections.
-    return xaxis * blend.x + yaxis * blend.y + zaxis * blend.z;
+    float outer = smoothstep(outer_rim_start, outer_rim_start + outer_rim_blend, dist);
+    float ocean = smoothstep(ocean_ring_start, ocean_ring_start + ocean_ring_blend, dist) * (1.0 - outer);
+    float desert = 1.0 - smoothstep(desert_center_radius, desert_center_radius + desert_blend, dist);
+
+    vec3 color = mix(vec3(1.0), midnight_color, outer);
+    color = mix(color, ocean_deep_color, ocean);
+    color = mix(color, desert_color, desert);
+
+    return color;
 }
 
 void vertex() {
-    // Indices are integer values so we can decode them as-is
-    v_indices = decode_8bit_vec4(CUSTOM1.x);
-
-    // Weights must be in [0..1] so we divide them
-    v_weights = decode_8bit_vec4(CUSTOM1.y) / 255.0;
-
-    v_pos = VERTEX;
     v_normal = NORMAL;
-
-    //...
+    v_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
 }
 
 void fragment() {
-    // Define a texture scale for convenience.
-    // We can use an array instead if different scales per index is needed.
-    float uv_scale = 0.5;
+    vec3 world_normal = normalize((MODEL_MATRIX * vec4(v_normal, 0.0)).xyz);
+    vec4 tex = triplanar_texture(u_texture_array, v_pos, world_normal, 0.0);
+    vec3 biome = calculate_biome(v_pos);
 
-    // Sample the 4 blending textures, all with triplanar mapping.
-    // We can re-use the same triplanar blending factors for all of them so separating that part
-    // of the function improves performance a little.
-    vec3 blending = get_triplanar_blend(v_normal);
-    vec3 col0 = texture_array_triplanar(u_texture_array, v_pos * uv_scale, blending, v_indices.x).rgb;
-    vec3 col1 = texture_array_triplanar(u_texture_array, v_pos * uv_scale, blending, v_indices.y).rgb;
-    vec3 col2 = texture_array_triplanar(u_texture_array, v_pos * uv_scale, blending, v_indices.z).rgb;
-    vec3 col3 = texture_array_triplanar(u_texture_array, v_pos * uv_scale, blending, v_indices.w).rgb;
-
-    // Get weights and make sure they are normalized.
-    // We may add a tiny safety margin so we can afford some degree of error.
-    vec4 weights = v_weights;
-    weights /= (weights.x + weights.y + weights.z + weights.w + 0.00001);
-
-    // Calculate albedo
-    vec3 col = 
-        col0 * weights.r + 
-        col1 * weights.g + 
-        col2 * weights.b + 
-        col3 * weights.a;
-
-    ALBEDO = col;
-
-    //...
+    ALBEDO = tex.rgb * biome;
+    ROUGHNESS = 0.7;
+    SPECULAR = 0.3;
 }
