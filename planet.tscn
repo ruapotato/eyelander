@@ -1,36 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://dm2h68aqqdrk0"]
+[gd_scene load_steps=9 format=3 uid="uid://dm2h68aqqdrk0"]
 
 [ext_resource type="PackedScene" uid="uid://ciis218u8fqti" path="res://load_zone.tscn" id="1_mhwh2"]
 [ext_resource type="Script" path="res://planet.gd" id="1_s7kjq"]
 [ext_resource type="Script" path="res://demo/src/RuntimeNavigationBaker.gd" id="3_148e5"]
 [ext_resource type="Terrain3DAssets" uid="uid://dal3jhw6241qg" path="res://demo/data_og/assets.tres" id="4_do8v4"]
-[ext_resource type="Shader" path="res://native/eyeball_world2.gdshader" id="4_qnpse"]
+[ext_resource type="Texture2D" uid="uid://n76tgowh3ocu" path="res://world_noise.tres" id="4_dtrro"]
+[ext_resource type="Shader" path="res://native/eyeball_world2.gdshader" id="5_2py3a"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0lb48"]
 geometry_parsed_geometry_type = 1
 agent_height = 2.0
 agent_max_slope = 30.0
-
-[sub_resource type="Gradient" id="Gradient_vr1m7"]
-offsets = PackedFloat32Array(0.2, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_d8lcj"]
-noise_type = 2
-frequency = 0.03
-cellular_jitter = 3.0
-cellular_return_type = 0
-domain_warp_enabled = true
-domain_warp_type = 1
-domain_warp_amplitude = 50.0
-domain_warp_fractal_type = 2
-domain_warp_fractal_lacunarity = 1.5
-domain_warp_fractal_gain = 1.0
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bov7h"]
-seamless = true
-color_ramp = SubResource("Gradient_vr1m7")
-noise = SubResource("FastNoiseLite_d8lcj")
 
 [sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_o0lt8"]
 _shader_parameters = {
@@ -57,7 +37,7 @@ _shader_parameters = {
 "noise1_scale": 0.04,
 "noise2_scale": 0.076,
 "noise3_scale": 0.225,
-"noise_texture": SubResource("NoiseTexture2D_bov7h"),
+"noise_texture": ExtResource("4_dtrro"),
 "ocean_deep_color": Color(0.05, 0.15, 0.3, 1),
 "ocean_ring_blend": 1000.0,
 "ocean_ring_start": 4000.0,
@@ -71,12 +51,10 @@ _shader_parameters = {
 "world_noise_max_octaves": 4,
 "world_noise_min_octaves": 2,
 "world_noise_offset": Vector3(0, 0, 0),
-"world_noise_region_blend": 0.33,
+"world_noise_region_blend": 0.05,
 "world_noise_scale": 5.0
 }
-world_background = 0
-shader_override_enabled = true
-shader_override = ExtResource("4_qnpse")
+shader_override = ExtResource("5_2py3a")
 
 [node name="planet" type="Node3D"]
 script = ExtResource("1_s7kjq")
@@ -85,25 +63,22 @@ script = ExtResource("1_s7kjq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 316.705, 0)
 
 [node name="main" type="Node3D" parent="spawns"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 100, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 968.752, 0)
 
 [node name="load_zones" type="Node3D" parent="."]
 
 [node name="home_island~shop" parent="load_zones" instance=ExtResource("1_mhwh2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 999, 0)
 
-[node name="RuntimeNavigationBaker" type="Node" parent="." node_paths=PackedStringArray("player")]
+[node name="RuntimeNavigationBaker" type="Node" parent="."]
 script = ExtResource("3_148e5")
 enabled = false
 template = SubResource("NavigationMesh_0lb48")
-player = NodePath("")
 
 [node name="Terrain3D" type="Terrain3D" parent="."]
-debug_level = 2
-data_directory = "res://demo/data"
+data_directory = "res://worlds/world2"
 material = SubResource("Terrain3DMaterial_o0lt8")
 assets = ExtResource("4_do8v4")
-collision_enabled = false
 collision_mask = 3
 top_level = true
 metadata/_edit_lock_ = true
