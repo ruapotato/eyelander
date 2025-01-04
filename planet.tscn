@@ -4,111 +4,167 @@
 [ext_resource type="Script" path="res://planet.gd" id="1_s7kjq"]
 [ext_resource type="Shader" path="res://native/eyeball_world3.gdshader" id="3_lj0bq"]
 
-[sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_vn6fu"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qg7lp"]
+noise_type = 3
+frequency = 0.0189
 
-[sub_resource type="VoxelGeneratorGraph" id="VoxelGeneratorGraph_5j2d0"]
+[sub_resource type="VoxelGeneratorGraph" id="VoxelGeneratorGraph_n66pw"]
 graph_data = {
-"connections": [[38, 0, 4, 0], [37, 0, 38, 1], [36, 0, 33, 1], [35, 0, 36, 0], [29, 0, 26, 1], [28, 0, 29, 1], [30, 0, 29, 0], [30, 0, 36, 1], [1, 0, 24, 0], [1, 0, 30, 2], [15, 0, 32, 0], [2, 0, 15, 0], [2, 0, 26, 0], [16, 0, 19, 1], [32, 0, 38, 0], [3, 0, 23, 0], [3, 0, 30, 3], [18, 0, 33, 0], [19, 0, 15, 1], [20, 0, 23, 1], [20, 0, 24, 1], [23, 0, 16, 1], [24, 0, 16, 0], [33, 0, 19, 0], [26, 0, 32, 1]],
+"connections": [[41, 0, 40, 1], [40, 0, 11, 0], [39, 0, 33, 0], [13, 0, 39, 0], [12, 0, 13, 1], [11, 0, 4, 0], [10, 0, 13, 0], [9, 0, 10, 2], [8, 0, 10, 0], [7, 0, 8, 1], [7, 0, 9, 1], [36, 0, 31, 1], [6, 0, 15, 0], [6, 0, 20, 0], [6, 0, 29, 1], [35, 0, 31, 0], [33, 0, 40, 0], [3, 0, 6, 3], [3, 0, 9, 0], [32, 0, 33, 1], [2, 0, 22, 0], [31, 0, 41, 0], [1, 0, 6, 2], [1, 0, 8, 0], [30, 0, 36, 0], [15, 0, 17, 0], [16, 0, 18, 1], [17, 0, 16, 0], [18, 0, 39, 1], [20, 0, 23, 0], [21, 0, 22, 1], [22, 0, 18, 0], [23, 0, 21, 0], [24, 0, 20, 1], [29, 0, 30, 0]],
 "nodes": {
 "1": {
-"gui_position": Vector2(440, 50),
+"gui_position": Vector2(440, 20),
 "type": "InputX"
 },
-"15": {
-"gui_position": Vector2(1020, -40),
+"10": {
+"auto_connect": true,
+"gui_position": Vector2(740, 200),
+"noise": SubResource("FastNoiseLite_qg7lp"),
+"type": "Noise3D",
+"y": 0.0
+},
+"11": {
+"b": 0.0,
+"gui_position": Vector2(1940, 220),
 "type": "Add"
 },
-"16": {
-"auto_connect": true,
-"gui_position": Vector2(680, 80),
-"noise": SubResource("ZN_FastNoiseLite_vn6fu"),
-"type": "FastNoise2D"
-},
-"18": {
-"gui_position": Vector2(120, 0),
+"12": {
+"gui_position": Vector2(140, 260),
 "name": &"height",
 "type": "Constant",
-"value": 1.0
+"value": 10.0
 },
-"19": {
-"gui_position": Vector2(800, -80),
+"13": {
+"gui_position": Vector2(940, 160),
 "type": "Multiply"
+},
+"15": {
+"b": 0.3,
+"gui_position": Vector2(720, 400),
+"type": "Multiply"
+},
+"16": {
+"gui_position": Vector2(1180, 420),
+"max": 100.0,
+"min": 0.0,
+"type": "Clamp"
+},
+"17": {
+"b": -10.0,
+"gui_position": Vector2(960, 420),
+"type": "Add"
+},
+"18": {
+"gui_position": Vector2(1320, 300),
+"type": "Add"
 },
 "2": {
 "gui_position": Vector2(440, 150),
 "type": "InputY"
 },
 "20": {
-"gui_position": Vector2(140, 140),
-"name": &"scale",
-"type": "Constant",
-"value": 5.0
+"gui_position": Vector2(780, 600),
+"type": "Subtract"
 },
-"23": {
-"gui_position": Vector2(560, 220),
-"type": "Divide"
+"21": {
+"gui_position": Vector2(1340, 600),
+"max": 0.0,
+"min": -100.0,
+"type": "Clamp"
 },
-"24": {
-"gui_position": Vector2(540, 80),
-"type": "Divide"
-},
-"26": {
-"gui_position": Vector2(960, 280),
+"22": {
+"gui_position": Vector2(1543.38, 385.846),
 "type": "Add"
 },
-"28": {
-"gui_position": Vector2(60, 380),
-"name": &"world_bulge",
-"type": "Constant",
-"value": 0.1
-},
-"29": {
-"gui_position": Vector2(960, 380),
+"23": {
+"b": -1.0,
+"gui_position": Vector2(1120, 620),
 "type": "Multiply"
 },
+"24": {
+"gui_position": Vector2(160, 440),
+"name": &"outside_rim_start",
+"type": "Constant",
+"value": 500.0
+},
+"29": {
+"a": 15.0,
+"gui_position": Vector2(920, 40),
+"type": "Subtract"
+},
 "3": {
-"gui_position": Vector2(440, 240),
+"gui_position": Vector2(440, 280),
 "type": "InputZ"
 },
 "30": {
-"auto_connect": true,
-"gui_position": Vector2(540, 340),
-"type": "Distance2D",
-"x0": 0.0,
-"y0": 0.0
+"gui_position": Vector2(1080, -20),
+"max": 15.0,
+"min": 0.0,
+"type": "Clamp"
+},
+"31": {
+"gui_position": Vector2(1240, -140),
+"type": "Multiply"
 },
 "32": {
-"gui_position": Vector2(1160, 80),
-"type": "Add"
+"gui_position": Vector2(160, 580),
+"name": &"offset",
+"type": "Constant",
+"value": -75.0
 },
 "33": {
-"gui_position": Vector2(540, -180),
+"gui_position": Vector2(1680, 160),
 "type": "Add"
 },
 "35": {
-"gui_position": Vector2(40, 300),
-"name": &"world_bulge_effect",
-"type": "Constant",
-"value": 0.25
+"a": 0.0,
+"b": 1.0,
+"gui_position": Vector2(1020, -140),
+"type": "Add"
 },
 "36": {
-"gui_position": Vector2(520, -60),
+"b": -1.0,
+"gui_position": Vector2(1260, -20),
 "type": "Multiply"
 },
-"37": {
-"gui_position": Vector2(0, 460),
-"name": &"height_offset",
-"type": "Constant",
-"value": -25.0
-},
-"38": {
-"gui_position": Vector2(1320, 440),
+"39": {
+"gui_position": Vector2(1417.25, 141.725),
 "type": "Add"
 },
 "4": {
 "auto_connect": true,
-"gui_position": Vector2(1420, 120),
+"gui_position": Vector2(2100, 100),
 "type": "OutputSDF"
+},
+"40": {
+"gui_position": Vector2(1860, -40),
+"type": "Subtract"
+},
+"41": {
+"b": 1000.0,
+"gui_position": Vector2(1520, -60),
+"type": "Multiply"
+},
+"6": {
+"auto_connect": true,
+"gui_position": Vector2(560, 400),
+"type": "Distance2D",
+"x0": 0.0,
+"y0": 0.0
+},
+"7": {
+"gui_position": Vector2(140, 120),
+"name": &"scale",
+"type": "Constant",
+"value": 1.0
+},
+"8": {
+"gui_position": Vector2(600, 20),
+"type": "Multiply"
+},
+"9": {
+"gui_position": Vector2(580, 280),
+"type": "Multiply"
 }
 },
 "version": 2
@@ -135,10 +191,9 @@ shader_parameter/texture_blend = 0.7
 script = ExtResource("1_s7kjq")
 
 [node name="spawns" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 316.705, 0)
 
 [node name="main" type="Node3D" parent="spawns"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 40, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 63.7409, 115.707)
 
 [node name="load_zones" type="Node3D" parent="."]
 
@@ -146,6 +201,6 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 40,
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 999, 0)
 
 [node name="VoxelLodTerrain" type="VoxelLodTerrain" parent="."]
-generator = SubResource("VoxelGeneratorGraph_5j2d0")
+generator = SubResource("VoxelGeneratorGraph_n66pw")
 mesher = SubResource("VoxelMesherTransvoxel_mdr6i")
 material = SubResource("ShaderMaterial_jmbh3")
