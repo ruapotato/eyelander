@@ -10,160 +10,190 @@ frequency = 0.0189
 
 [sub_resource type="VoxelGeneratorGraph" id="VoxelGeneratorGraph_n66pw"]
 graph_data = {
-"connections": [[41, 0, 40, 1], [40, 0, 11, 0], [39, 0, 33, 0], [13, 0, 39, 0], [12, 0, 13, 1], [11, 0, 4, 0], [10, 0, 13, 0], [9, 0, 10, 2], [8, 0, 10, 0], [7, 0, 8, 1], [7, 0, 9, 1], [36, 0, 31, 1], [6, 0, 15, 0], [6, 0, 20, 0], [6, 0, 29, 1], [35, 0, 31, 0], [33, 0, 40, 0], [3, 0, 6, 3], [3, 0, 9, 0], [32, 0, 33, 1], [2, 0, 22, 0], [31, 0, 41, 0], [1, 0, 6, 2], [1, 0, 8, 0], [30, 0, 36, 0], [15, 0, 17, 0], [16, 0, 18, 1], [17, 0, 16, 0], [18, 0, 39, 1], [20, 0, 23, 0], [21, 0, 22, 1], [22, 0, 18, 0], [23, 0, 21, 0], [24, 0, 20, 1], [29, 0, 30, 0]],
+"connections": [[41, 0, 40, 1], [40, 0, 4, 0], [39, 0, 33, 0], [13, 0, 39, 0], [12, 0, 13, 1], [10, 0, 13, 0], [9, 0, 10, 2], [8, 0, 10, 0], [7, 0, 8, 1], [7, 0, 9, 1], [36, 0, 31, 1], [6, 0, 15, 0], [6, 0, 20, 0], [6, 0, 29, 1], [35, 0, 31, 0], [33, 0, 40, 0], [3, 0, 6, 3], [3, 0, 9, 0], [32, 0, 33, 1], [2, 0, 22, 0], [31, 0, 41, 0], [1, 0, 6, 2], [1, 0, 8, 0], [30, 0, 36, 0], [15, 0, 17, 0], [16, 0, 18, 1], [17, 0, 16, 0], [18, 0, 39, 1], [20, 0, 23, 0], [21, 0, 22, 1], [22, 0, 18, 0], [23, 0, 21, 0], [24, 0, 20, 1], [29, 0, 30, 0]],
 "nodes": {
 "1": {
-"gui_position": Vector2(440, 20),
+"gui_position": Vector2(260, -180),
 "type": "InputX"
 },
 "10": {
 "auto_connect": true,
-"gui_position": Vector2(740, 200),
+"gui_position": Vector2(660, -180),
 "noise": SubResource("FastNoiseLite_qg7lp"),
 "type": "Noise3D",
 "y": 0.0
 },
-"11": {
-"b": 0.0,
-"gui_position": Vector2(1940, 220),
-"type": "Add"
-},
 "12": {
-"gui_position": Vector2(140, 260),
+"gui_position": Vector2(-60, -100),
 "name": &"height",
 "type": "Constant",
 "value": 10.0
 },
 "13": {
-"gui_position": Vector2(940, 160),
+"gui_position": Vector2(780, -180),
 "type": "Multiply"
 },
 "15": {
 "b": 0.3,
-"gui_position": Vector2(720, 400),
+"gui_position": Vector2(680, 240),
 "type": "Multiply"
 },
 "16": {
-"gui_position": Vector2(1180, 420),
+"gui_position": Vector2(1000, 240),
 "max": 100.0,
 "min": 0.0,
 "type": "Clamp"
 },
 "17": {
 "b": -10.0,
-"gui_position": Vector2(960, 420),
+"gui_position": Vector2(900, 240),
 "type": "Add"
 },
 "18": {
-"gui_position": Vector2(1320, 300),
+"gui_position": Vector2(1120, 240),
 "type": "Add"
 },
 "2": {
-"gui_position": Vector2(440, 150),
+"gui_position": Vector2(260, -100),
 "type": "InputY"
 },
 "20": {
-"gui_position": Vector2(780, 600),
+"gui_position": Vector2(700, 360),
 "type": "Subtract"
 },
 "21": {
-"gui_position": Vector2(1340, 600),
+"gui_position": Vector2(940, 360),
 "max": 0.0,
 "min": -100.0,
 "type": "Clamp"
 },
 "22": {
-"gui_position": Vector2(1543.38, 385.846),
+"gui_position": Vector2(1080, 360),
 "type": "Add"
 },
 "23": {
 "b": -1.0,
-"gui_position": Vector2(1120, 620),
+"gui_position": Vector2(820, 360),
 "type": "Multiply"
 },
 "24": {
-"gui_position": Vector2(160, 440),
+"gui_position": Vector2(-60, -20),
 "name": &"outside_rim_start",
 "type": "Constant",
 "value": 500.0
 },
 "29": {
-"a": 15.0,
-"gui_position": Vector2(920, 40),
+"a": 4.0,
+"gui_position": Vector2(1000, -80),
 "type": "Subtract"
 },
 "3": {
-"gui_position": Vector2(440, 280),
+"gui_position": Vector2(260, -20),
 "type": "InputZ"
 },
 "30": {
-"gui_position": Vector2(1080, -20),
-"max": 15.0,
+"gui_position": Vector2(1140, -80),
+"max": 4.0,
 "min": 0.0,
 "type": "Clamp"
 },
 "31": {
-"gui_position": Vector2(1240, -140),
+"gui_position": Vector2(1140, -180),
 "type": "Multiply"
 },
 "32": {
-"gui_position": Vector2(160, 580),
+"gui_position": Vector2(-60, 60),
 "name": &"offset",
 "type": "Constant",
 "value": -75.0
 },
 "33": {
-"gui_position": Vector2(1680, 160),
+"gui_position": Vector2(1400, -60),
 "type": "Add"
 },
 "35": {
 "a": 0.0,
 "b": 1.0,
-"gui_position": Vector2(1020, -140),
+"gui_position": Vector2(1000, -180),
 "type": "Add"
 },
 "36": {
 "b": -1.0,
-"gui_position": Vector2(1260, -20),
+"gui_position": Vector2(1260, -60),
 "type": "Multiply"
 },
 "39": {
-"gui_position": Vector2(1417.25, 141.725),
+"gui_position": Vector2(800, -60),
 "type": "Add"
 },
 "4": {
 "auto_connect": true,
-"gui_position": Vector2(2100, 100),
+"gui_position": Vector2(1700, 100),
 "type": "OutputSDF"
 },
 "40": {
-"gui_position": Vector2(1860, -40),
+"gui_position": Vector2(1380, -180),
 "type": "Subtract"
 },
 "41": {
 "b": 1000.0,
-"gui_position": Vector2(1520, -60),
+"gui_position": Vector2(1260, -180),
 "type": "Multiply"
+},
+"42": {
+"gui_position": Vector2(1000, -260),
+"gui_size": Vector2(474.604, 57.175),
+"name": &"Volcano hole",
+"text": "",
+"type": "Comment"
+},
+"43": {
+"gui_position": Vector2(640, -260),
+"gui_size": Vector2(230.234, 55.4257),
+"name": &"Ground noise",
+"text": "",
+"type": "Comment"
+},
+"44": {
+"gui_position": Vector2(680, 160),
+"gui_size": Vector2(536.183, 62.0514),
+"name": &"Overall world shape",
+"text": "",
+"type": "Comment"
+},
+"45": {
+"gui_position": Vector2(-60, -260),
+"gui_size": Vector2(230.234, 55.4257),
+"name": &"Config",
+"text": "",
+"type": "Comment"
+},
+"46": {
+"gui_position": Vector2(260, -260),
+"gui_size": Vector2(230.234, 55.4257),
+"name": &"Vars",
+"text": "",
+"type": "Comment"
 },
 "6": {
 "auto_connect": true,
-"gui_position": Vector2(560, 400),
+"gui_position": Vector2(380, 20),
 "type": "Distance2D",
 "x0": 0.0,
 "y0": 0.0
 },
 "7": {
-"gui_position": Vector2(140, 120),
+"gui_position": Vector2(-60, -180),
 "name": &"scale",
 "type": "Constant",
 "value": 1.0
 },
 "8": {
-"gui_position": Vector2(600, 20),
+"gui_position": Vector2(400, -180),
 "type": "Multiply"
 },
 "9": {
-"gui_position": Vector2(580, 280),
+"gui_position": Vector2(400, -80),
 "type": "Multiply"
 }
 },
