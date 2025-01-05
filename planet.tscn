@@ -47,7 +47,7 @@ graph_data = {
 "type": "Multiply"
 },
 "102": {
-"b": 300.0,
+"b": 350.0,
 "gui_position": Vector2(1560, 420),
 "type": "Subtract"
 },
@@ -176,7 +176,7 @@ graph_data = {
 "type": "Multiply"
 },
 "15": {
-"b": 0.3,
+"b": 0.11,
 "gui_position": Vector2(680, 240),
 "type": "Multiply"
 },
@@ -187,7 +187,7 @@ graph_data = {
 "type": "Clamp"
 },
 "17": {
-"b": -10.0,
+"b": -9.0,
 "gui_position": Vector2(900, 240),
 "type": "Add"
 },
@@ -247,7 +247,7 @@ graph_data = {
 "gui_position": Vector2(-60, 60),
 "name": &"offset",
 "type": "Constant",
-"value": -75.0
+"value": -70.0
 },
 "33": {
 "gui_position": Vector2(1380, -60),
@@ -340,7 +340,7 @@ graph_data = {
 "type": "Comment"
 },
 "53": {
-"b": 1.0,
+"b": 3.0,
 "gui_position": Vector2(1900, -180),
 "type": "Multiply"
 },
