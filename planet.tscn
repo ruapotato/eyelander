@@ -10,7 +10,7 @@ frequency = 0.0189
 
 [sub_resource type="VoxelGeneratorGraph" id="VoxelGeneratorGraph_n66pw"]
 graph_data = {
-"connections": [[41, 0, 40, 1], [40, 0, 4, 0], [39, 0, 33, 0], [13, 0, 39, 0], [12, 0, 13, 1], [10, 0, 13, 0], [9, 0, 10, 2], [8, 0, 10, 0], [7, 0, 8, 1], [7, 0, 9, 1], [36, 0, 31, 1], [6, 0, 15, 0], [6, 0, 20, 0], [6, 0, 29, 1], [35, 0, 31, 0], [33, 0, 40, 0], [3, 0, 6, 3], [3, 0, 9, 0], [32, 0, 33, 1], [2, 0, 22, 0], [31, 0, 41, 0], [1, 0, 6, 2], [1, 0, 8, 0], [30, 0, 36, 0], [15, 0, 17, 0], [16, 0, 18, 1], [17, 0, 16, 0], [18, 0, 39, 1], [20, 0, 23, 0], [21, 0, 22, 1], [22, 0, 18, 0], [23, 0, 21, 0], [24, 0, 20, 1], [29, 0, 30, 0]],
+"connections": [[84, 0, 80, 0], [55, 0, 4, 0], [53, 0, 48, 1], [50, 0, 53, 0], [48, 0, 55, 1], [47, 0, 50, 0], [41, 0, 40, 1], [40, 0, 48, 0], [39, 0, 33, 0], [13, 0, 39, 0], [12, 0, 13, 1], [10, 0, 13, 0], [9, 0, 10, 2], [8, 0, 10, 0], [7, 0, 8, 1], [7, 0, 9, 1], [36, 0, 31, 1], [6, 0, 15, 0], [6, 0, 20, 0], [6, 0, 29, 1], [6, 0, 47, 0], [6, 0, 80, 1], [35, 0, 31, 0], [33, 0, 40, 0], [3, 0, 6, 3], [3, 0, 9, 0], [32, 0, 33, 1], [2, 0, 22, 0], [31, 0, 41, 0], [1, 0, 6, 2], [1, 0, 8, 0], [30, 0, 36, 0], [15, 0, 17, 0], [16, 0, 18, 1], [76, 0, 82, 0], [76, 0, 84, 0], [17, 0, 16, 0], [18, 0, 39, 1], [20, 0, 23, 0], [80, 0, 68, 1], [21, 0, 22, 1], [22, 0, 18, 0], [23, 0, 21, 0], [24, 0, 20, 1], [29, 0, 30, 0]],
 "nodes": {
 "1": {
 "gui_position": Vector2(260, -180),
@@ -68,7 +68,7 @@ graph_data = {
 "type": "Clamp"
 },
 "22": {
-"gui_position": Vector2(1080, 360),
+"gui_position": Vector2(1080, 380),
 "type": "Add"
 },
 "23": {
@@ -108,7 +108,7 @@ graph_data = {
 "value": -75.0
 },
 "33": {
-"gui_position": Vector2(1400, -60),
+"gui_position": Vector2(1380, -60),
 "type": "Add"
 },
 "35": {
@@ -123,12 +123,12 @@ graph_data = {
 "type": "Multiply"
 },
 "39": {
-"gui_position": Vector2(800, -60),
+"gui_position": Vector2(780, -80),
 "type": "Add"
 },
 "4": {
 "auto_connect": true,
-"gui_position": Vector2(1700, 100),
+"gui_position": Vector2(2200, 60),
 "type": "OutputSDF"
 },
 "40": {
@@ -175,6 +175,45 @@ graph_data = {
 "text": "",
 "type": "Comment"
 },
+"47": {
+"b": 0.5,
+"gui_position": Vector2(1640, -180),
+"type": "Multiply"
+},
+"48": {
+"gui_position": Vector2(2000, 40),
+"type": "Add"
+},
+"50": {
+"gui_position": Vector2(1760, -180),
+"max": 15.0,
+"min": 0.0,
+"type": "Clamp"
+},
+"51": {
+"gui_position": Vector2(1600, -260),
+"gui_size": Vector2(474.604, 57.175),
+"name": &"Volcano spike",
+"text": "",
+"type": "Comment"
+},
+"53": {
+"b": 1.0,
+"gui_position": Vector2(1900, -180),
+"type": "Multiply"
+},
+"55": {
+"a": 0.0,
+"gui_position": Vector2(2000, 180),
+"type": "Add"
+},
+"57": {
+"gui_position": Vector2(1420, 200),
+"gui_size": Vector2(555.67, 58.1538),
+"name": &"Islands",
+"text": "",
+"type": "Comment"
+},
 "6": {
 "auto_connect": true,
 "gui_position": Vector2(380, 20),
@@ -182,15 +221,39 @@ graph_data = {
 "x0": 0.0,
 "y0": 0.0
 },
+"68": {
+"a": 0.0,
+"gui_position": Vector2(2060, 300),
+"type": "Add"
+},
 "7": {
 "gui_position": Vector2(-60, -180),
 "name": &"scale",
 "type": "Constant",
 "value": 1.0
 },
+"76": {
+"gui_position": Vector2(1380, 280),
+"type": "InputY"
+},
 "8": {
 "gui_position": Vector2(400, -180),
 "type": "Multiply"
+},
+"80": {
+"gui_position": Vector2(1800, 340),
+"type": "Subtract"
+},
+"82": {
+"gui_position": Vector2(1580, 460),
+"max": 100.0,
+"min": 1.0,
+"type": "Clamp"
+},
+"84": {
+"b": 0.3,
+"gui_position": Vector2(1540, 280),
+"type": "Divide"
 },
 "9": {
 "gui_position": Vector2(400, -80),
