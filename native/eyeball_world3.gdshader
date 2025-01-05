@@ -13,12 +13,12 @@ varying vec3 v_pos;
 varying vec3 v_view_dir;
 
 // Biome parameters
-uniform float outer_rim_start = 500.0;
-uniform float outer_rim_blend = 100.0;
-uniform float ocean_ring_start = 300.0;
-uniform float ocean_ring_blend = 50.0;
-uniform float desert_center_radius = 100.0;
-uniform float desert_blend = 50.0;
+const float outer_rim_start = 5000.0;
+const float outer_rim_blend = 4000.0;
+const float ocean_ring_start = 2800.0;
+const float ocean_ring_blend = 3800.0;
+const float desert_center_radius = 2300.0;
+const float desert_blend = 000.0;
 
 // Base colors with variations - Further darkened desert colors
 const vec3 DESERT_COLOR_A = vec3(0.35, 0.28, 0.15);  // Significantly darker base
