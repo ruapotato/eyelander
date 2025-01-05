@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dm2h68aqqdrk0"]
+[gd_scene load_steps=9 format=3 uid="uid://dm2h68aqqdrk0"]
 
 [ext_resource type="PackedScene" uid="uid://ciis218u8fqti" path="res://load_zone.tscn" id="1_mhwh2"]
 [ext_resource type="Script" path="res://planet.gd" id="1_s7kjq"]
@@ -8,9 +8,14 @@
 noise_type = 3
 frequency = 0.0189
 
+[sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_pn0d8"]
+noise_type = 2
+period = 252.0
+fractal_type = 3
+
 [sub_resource type="VoxelGeneratorGraph" id="VoxelGeneratorGraph_n66pw"]
 graph_data = {
-"connections": [[84, 0, 80, 0], [55, 0, 4, 0], [53, 0, 48, 1], [50, 0, 53, 0], [48, 0, 55, 1], [47, 0, 50, 0], [41, 0, 40, 1], [40, 0, 48, 0], [39, 0, 33, 0], [13, 0, 39, 0], [12, 0, 13, 1], [10, 0, 13, 0], [9, 0, 10, 2], [8, 0, 10, 0], [7, 0, 8, 1], [7, 0, 9, 1], [36, 0, 31, 1], [6, 0, 15, 0], [6, 0, 20, 0], [6, 0, 29, 1], [6, 0, 47, 0], [6, 0, 80, 1], [35, 0, 31, 0], [33, 0, 40, 0], [3, 0, 6, 3], [3, 0, 9, 0], [32, 0, 33, 1], [2, 0, 22, 0], [31, 0, 41, 0], [1, 0, 6, 2], [1, 0, 8, 0], [30, 0, 36, 0], [15, 0, 17, 0], [16, 0, 18, 1], [76, 0, 82, 0], [76, 0, 84, 0], [17, 0, 16, 0], [18, 0, 39, 1], [20, 0, 23, 0], [80, 0, 68, 1], [21, 0, 22, 1], [22, 0, 18, 0], [23, 0, 21, 0], [24, 0, 20, 1], [29, 0, 30, 0]],
+"connections": [[55, 0, 4, 0], [53, 0, 48, 1], [50, 0, 53, 0], [48, 0, 55, 0], [106, 0, 55, 1], [47, 0, 50, 0], [105, 0, 106, 1], [104, 0, 105, 0], [103, 0, 101, 1], [102, 0, 103, 0], [101, 0, 106, 0], [100, 0, 102, 0], [100, 0, 104, 0], [41, 0, 40, 1], [40, 0, 48, 0], [39, 0, 33, 0], [13, 0, 39, 0], [12, 0, 13, 1], [10, 0, 13, 0], [9, 0, 10, 2], [8, 0, 10, 0], [7, 0, 8, 1], [7, 0, 9, 1], [36, 0, 31, 1], [6, 0, 15, 0], [6, 0, 20, 0], [6, 0, 29, 1], [6, 0, 47, 0], [35, 0, 31, 0], [33, 0, 40, 0], [3, 0, 6, 3], [3, 0, 9, 0], [32, 0, 33, 1], [2, 0, 22, 0], [90, 0, 101, 0], [31, 0, 41, 0], [1, 0, 6, 2], [1, 0, 8, 0], [89, 0, 90, 1], [30, 0, 36, 0], [15, 0, 17, 0], [16, 0, 18, 1], [17, 0, 16, 0], [18, 0, 39, 1], [20, 0, 23, 0], [21, 0, 22, 1], [22, 0, 18, 0], [23, 0, 21, 0], [24, 0, 20, 1], [88, 0, 90, 0], [29, 0, 30, 0]],
 "nodes": {
 "1": {
 "gui_position": Vector2(260, -180),
@@ -22,6 +27,45 @@ graph_data = {
 "noise": SubResource("FastNoiseLite_qg7lp"),
 "type": "Noise3D",
 "y": 0.0
+},
+"100": {
+"auto_connect": true,
+"gui_position": Vector2(1420, 420),
+"type": "Distance2D",
+"x0": 0.0,
+"x1": 0.0,
+"y0": 0.0,
+"y1": 0.0
+},
+"101": {
+"gui_position": Vector2(1680, 280),
+"type": "Multiply"
+},
+"102": {
+"b": 300.0,
+"gui_position": Vector2(1560, 420),
+"type": "Subtract"
+},
+"103": {
+"gui_position": Vector2(1680, 420),
+"max": 1e+06,
+"min": 0.0,
+"type": "Clamp"
+},
+"104": {
+"b": 500.0,
+"gui_position": Vector2(1560, 520),
+"type": "Subtract"
+},
+"105": {
+"gui_position": Vector2(1840, 420),
+"max": 1e+06,
+"min": 1.0,
+"type": "Clamp"
+},
+"106": {
+"gui_position": Vector2(1860, 300),
+"type": "Divide"
 },
 "12": {
 "gui_position": Vector2(-60, -100),
@@ -128,7 +172,7 @@ graph_data = {
 },
 "4": {
 "auto_connect": true,
-"gui_position": Vector2(2200, 60),
+"gui_position": Vector2(2340, 80),
 "type": "OutputSDF"
 },
 "40": {
@@ -203,8 +247,7 @@ graph_data = {
 "type": "Multiply"
 },
 "55": {
-"a": 0.0,
-"gui_position": Vector2(2000, 180),
+"gui_position": Vector2(2180, 160),
 "type": "Add"
 },
 "57": {
@@ -221,42 +264,37 @@ graph_data = {
 "x0": 0.0,
 "y0": 0.0
 },
-"68": {
-"a": 0.0,
-"gui_position": Vector2(2060, 300),
-"type": "Add"
-},
 "7": {
 "gui_position": Vector2(-60, -180),
 "name": &"scale",
 "type": "Constant",
 "value": 1.0
 },
-"76": {
-"gui_position": Vector2(1380, 280),
-"type": "InputY"
-},
 "8": {
 "gui_position": Vector2(400, -180),
 "type": "Multiply"
 },
-"80": {
-"gui_position": Vector2(1800, 340),
-"type": "Subtract"
+"88": {
+"auto_connect": true,
+"gui_position": Vector2(1420, 280),
+"noise": SubResource("ZN_FastNoiseLite_pn0d8"),
+"type": "FastNoise3D",
+"x": 0.0,
+"y": 0.0,
+"z": 0.0
 },
-"82": {
-"gui_position": Vector2(1580, 460),
-"max": 100.0,
-"min": 1.0,
-"type": "Clamp"
-},
-"84": {
-"b": 0.3,
-"gui_position": Vector2(1540, 280),
-"type": "Divide"
+"89": {
+"gui_position": Vector2(-60, 140),
+"name": &"island_height",
+"type": "Constant",
+"value": 1.0
 },
 "9": {
 "gui_position": Vector2(400, -80),
+"type": "Multiply"
+},
+"90": {
+"gui_position": Vector2(1580, 280),
 "type": "Multiply"
 }
 },
