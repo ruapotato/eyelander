@@ -1,9 +1,17 @@
 [gd_scene load_steps=14 format=3 uid="uid://b5d5t4u4u4f5f"]
 
 [ext_resource type="PackedScene" uid="uid://i7scyldryt3u" path="res://import/home_island.glb" id="1_uj6gi"]
-[ext_resource type="Material" uid="uid://cw7kwo1bouf7g" path="res://native/outline_mid.tres" id="2_ee6qb"]
 [ext_resource type="Shader" path="res://home_island_grassland.gdshader" id="2_os3n2"]
 [ext_resource type="ArrayMesh" uid="uid://m5snb3pk5iqb" path="res://import/StayAtHomeDev_MIT/grass.res" id="4_n24i2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qqrbn"]
+cull_mode = 1
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0, 0, 0, 1)
+grow = true
+grow_amount = 0.01
 
 [sub_resource type="Gradient" id="Gradient_8lotp"]
 offsets = PackedFloat32Array(0.770492, 1)
@@ -30,7 +38,7 @@ noise = SubResource("FastNoiseLite_gv2n4")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3jykc"]
 render_priority = 0
-next_pass = ExtResource("2_ee6qb")
+next_pass = SubResource("StandardMaterial3D_qqrbn")
 shader = ExtResource("2_os3n2")
 shader_parameter/color3 = Color(0, 0.690196, 0.607843, 1)
 shader_parameter/noise_scale = 20.0
