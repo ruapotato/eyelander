@@ -1,21 +1,26 @@
-[gd_scene load_steps=9 format=3 uid="uid://dm2h68aqqdrk0"]
+[gd_scene load_steps=10 format=3 uid="uid://dm2h68aqqdrk0"]
 
 [ext_resource type="PackedScene" uid="uid://ciis218u8fqti" path="res://load_zone.tscn" id="1_mhwh2"]
 [ext_resource type="Script" path="res://planet.gd" id="1_s7kjq"]
 [ext_resource type="Shader" path="res://native/eyeball_world3.gdshader" id="3_lj0bq"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_qg7lp"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_o7ww2"]
 noise_type = 3
-frequency = 0.0189
+frequency = 0.001
+fractal_type = 3
 
 [sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_pn0d8"]
 noise_type = 2
 period = 252.0
 fractal_type = 3
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qg7lp"]
+noise_type = 3
+frequency = 0.0189
+
 [sub_resource type="VoxelGeneratorGraph" id="VoxelGeneratorGraph_n66pw"]
 graph_data = {
-"connections": [[111, 0, 55, 1], [108, 0, 109, 0], [55, 0, 4, 0], [112, 0, 110, 0], [53, 0, 48, 1], [110, 0, 111, 1], [109, 0, 112, 0], [50, 0, 53, 0], [48, 0, 55, 0], [106, 0, 111, 0], [47, 0, 50, 0], [105, 0, 106, 1], [104, 0, 105, 0], [103, 0, 101, 1], [102, 0, 103, 0], [101, 0, 106, 0], [100, 0, 102, 0], [100, 0, 104, 0], [41, 0, 40, 1], [40, 0, 48, 0], [39, 0, 33, 0], [13, 0, 39, 0], [12, 0, 13, 1], [10, 0, 13, 0], [9, 0, 10, 2], [8, 0, 10, 0], [7, 0, 8, 1], [7, 0, 9, 1], [36, 0, 31, 1], [6, 0, 15, 0], [6, 0, 20, 0], [6, 0, 29, 1], [6, 0, 47, 0], [35, 0, 31, 0], [33, 0, 40, 0], [3, 0, 6, 3], [3, 0, 9, 0], [32, 0, 33, 1], [2, 0, 22, 0], [90, 0, 101, 0], [31, 0, 41, 0], [1, 0, 6, 2], [1, 0, 8, 0], [89, 0, 112, 1], [30, 0, 36, 0], [15, 0, 17, 0], [16, 0, 18, 1], [17, 0, 16, 0], [18, 0, 39, 1], [20, 0, 23, 0], [21, 0, 22, 1], [22, 0, 18, 0], [23, 0, 21, 0], [24, 0, 20, 1], [88, 0, 90, 0], [29, 0, 30, 0]],
+"connections": [[127, 0, 124, 1], [125, 0, 115, 1], [124, 0, 4, 0], [122, 0, 115, 0], [121, 0, 125, 0], [120, 0, 121, 0], [117, 0, 124, 0], [115, 0, 127, 0], [29, 0, 30, 0], [88, 0, 90, 0], [24, 0, 20, 1], [23, 0, 21, 0], [22, 0, 18, 0], [21, 0, 22, 1], [20, 0, 23, 0], [18, 0, 39, 1], [17, 0, 16, 0], [16, 0, 18, 1], [15, 0, 17, 0], [30, 0, 36, 0], [89, 0, 112, 1], [1, 0, 6, 2], [1, 0, 8, 0], [31, 0, 41, 0], [90, 0, 101, 0], [2, 0, 22, 0], [32, 0, 33, 1], [3, 0, 6, 3], [3, 0, 9, 0], [33, 0, 40, 0], [35, 0, 31, 0], [6, 0, 15, 0], [6, 0, 20, 0], [6, 0, 29, 1], [6, 0, 47, 0], [36, 0, 31, 1], [7, 0, 8, 1], [7, 0, 9, 1], [8, 0, 10, 0], [9, 0, 10, 2], [10, 0, 13, 0], [12, 0, 13, 1], [13, 0, 39, 0], [39, 0, 33, 0], [40, 0, 48, 0], [41, 0, 40, 1], [100, 0, 102, 0], [100, 0, 104, 0], [101, 0, 106, 0], [102, 0, 103, 0], [103, 0, 101, 1], [104, 0, 105, 0], [105, 0, 106, 1], [47, 0, 50, 0], [106, 0, 111, 0], [48, 0, 55, 0], [50, 0, 53, 0], [109, 0, 112, 0], [110, 0, 111, 1], [53, 0, 48, 1], [112, 0, 110, 0], [55, 0, 117, 0], [114, 0, 120, 0], [108, 0, 109, 0], [111, 0, 117, 1]],
 "nodes": {
 "1": {
 "gui_position": Vector2(260, -180),
@@ -68,33 +73,103 @@ graph_data = {
 "type": "Divide"
 },
 "108": {
-"gui_position": Vector2(1500, 680),
+"gui_position": Vector2(1400, 700),
 "type": "InputY"
 },
 "109": {
-"gui_position": Vector2(1620, 680),
+"gui_position": Vector2(1480, 700),
 "max": 30.0,
 "min": 0.0,
 "type": "Clamp"
 },
 "110": {
 "b": 1.0,
-"gui_position": Vector2(1860.01, 656.475),
+"gui_position": Vector2(1720, 700),
 "type": "Add"
 },
 "111": {
-"gui_position": Vector2(2020, 580),
+"gui_position": Vector2(1840, 700),
 "type": "Divide"
 },
 "112": {
-"gui_position": Vector2(1740, 720),
+"gui_position": Vector2(1620, 700),
 "type": "Divide"
+},
+"113": {
+"gui_position": Vector2(1400, 620),
+"gui_size": Vector2(545.339, 23.8821),
+"text": "Lower islands once they pass water level.",
+"type": "Comment"
+},
+"114": {
+"auto_connect": true,
+"gui_position": Vector2(2140, 400),
+"type": "Distance2D",
+"x0": 0.0,
+"x1": 0.0,
+"y0": 0.0,
+"y1": 0.0
+},
+"115": {
+"gui_position": Vector2(2320, 280),
+"type": "Multiply"
+},
+"117": {
+"gui_position": Vector2(2420, -180),
+"type": "Add"
 },
 "12": {
 "gui_position": Vector2(-60, -100),
 "name": &"height",
 "type": "Constant",
 "value": 10.0
+},
+"120": {
+"b": 500.0,
+"gui_position": Vector2(2280, 420),
+"type": "Subtract"
+},
+"121": {
+"gui_position": Vector2(2400, 440),
+"max": 100.0,
+"min": 0.0,
+"type": "Clamp"
+},
+"122": {
+"auto_connect": true,
+"gui_position": Vector2(2140, 280),
+"noise": SubResource("FastNoiseLite_o7ww2"),
+"type": "Noise2D",
+"x": 0.0,
+"y": 0.0
+},
+"124": {
+"gui_position": Vector2(2520, -180),
+"type": "Add"
+},
+"125": {
+"b": 2.0,
+"gui_position": Vector2(2460, 280),
+"type": "Multiply"
+},
+"126": {
+"gui_position": Vector2(2120, 200),
+"gui_size": Vector2(555.67, 58.1538),
+"name": &"Midnight Mountains",
+"text": "",
+"type": "Comment"
+},
+"127": {
+"b": 0.0,
+"gui_position": Vector2(2560, 440),
+"type": "Add"
+},
+"128": {
+"gui_position": Vector2(2200, -260),
+"gui_size": Vector2(427.372, 49.4373),
+"name": &"Combine",
+"text": "",
+"type": "Comment"
 },
 "13": {
 "gui_position": Vector2(780, -180),
@@ -195,7 +270,7 @@ graph_data = {
 },
 "4": {
 "auto_connect": true,
-"gui_position": Vector2(2340, 80),
+"gui_position": Vector2(2880, -180),
 "type": "OutputSDF"
 },
 "40": {
@@ -248,7 +323,7 @@ graph_data = {
 "type": "Multiply"
 },
 "48": {
-"gui_position": Vector2(2000, 40),
+"gui_position": Vector2(2220, -180),
 "type": "Add"
 },
 "50": {
@@ -270,7 +345,8 @@ graph_data = {
 "type": "Multiply"
 },
 "55": {
-"gui_position": Vector2(2180, 160),
+"b": 0.0,
+"gui_position": Vector2(2320, -180),
 "type": "Add"
 },
 "57": {
