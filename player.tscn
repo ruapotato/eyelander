@@ -118,6 +118,9 @@ script = ExtResource("15_ahtke")
 [node name="sound_light" type="OmniLight3D" parent="sounds/heal"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21624, 0.322781)
 light_color = Color(1, 1, 0, 1)
+light_energy = 0.0
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
 shadow_enabled = true
 
 [node name="mesh" parent="." instance=ExtResource("18_vlox2")]

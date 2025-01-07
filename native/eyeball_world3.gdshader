@@ -25,8 +25,8 @@ const float volcano_core_radius = 5.0;
 const float volcano_height = 1.0;
 
 // Base colors with variations - Further darkened desert colors
-const vec3 VOLCANO_DARK = vec3(0.15, 0.12, 0.1);
-const vec3 VOLCANO_LIGHT = vec3(0.4, 0.35, 0.3);
+const vec3 VOLCANO_DARK = vec3(0.05, 0.02, 0.01);
+const vec3 VOLCANO_LIGHT = vec3(0.1, 0.15, 0.3);
 const vec3 VOLCANO_GLOW = vec3(1.0, 0.3, 0.1);
 const vec3 DESERT_COLOR_A = vec3(0.35, 0.28, 0.15);  // Significantly darker base
 const vec3 DESERT_COLOR_B = vec3(0.28, 0.22, 0.12);  // Significantly darker base

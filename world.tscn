@@ -6,59 +6,47 @@
 [ext_resource type="AudioStream" uid="uid://c17bx6jkxigyk" path="res://import/CC BY Mystery Mammal/Mystery Mammal - Boss Battle.wav" id="12_eeiv8"]
 [ext_resource type="PackedScene" uid="uid://lmxejmktuun0" path="res://water.tscn" id="14_ohx8n"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jwcys"]
-sky_top_color = Color(0.184314, 0.227451, 0.286275, 1)
-sky_horizon_color = Color(0.32549, 0, 0.0392157, 1)
-sky_energy_multiplier = 5.74
-ground_horizon_color = Color(0, 0, 0, 1)
-ground_curve = 0.0627667
-sun_angle_max = 0.0
-sun_curve = 8.07259
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_60s76"]
+sky_top_color = Color(0.153511, 0.533538, 1, 1)
+sky_horizon_color = Color(0.74, 0.87, 1, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+sun_angle_max = 11.65
+sun_curve = 1.33148
 
-[sub_resource type="Sky" id="Sky_0ytlo"]
-sky_material = SubResource("ProceduralSkyMaterial_jwcys")
+[sub_resource type="Sky" id="Sky_wa2q5"]
+sky_material = SubResource("ProceduralSkyMaterial_60s76")
 
-[sub_resource type="Environment" id="Environment_ux4ke"]
+[sub_resource type="Environment" id="Environment_6nfmc"]
 background_mode = 2
-background_color = Color(0.54902, 0.54902, 0.54902, 1)
-background_canvas_max_layer = 1
-sky = SubResource("Sky_0ytlo")
+sky = SubResource("Sky_wa2q5")
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.0
+tonemap_mode = 2
 ssr_enabled = true
 ssao_enabled = true
 ssil_enabled = true
 sdfgi_enabled = true
 glow_enabled = true
-glow_intensity = 1.89
-glow_strength = 0.52
-glow_bloom = 0.55
-glow_blend_mode = 0
-fog_light_color = Color(0.321569, 0.254902, 0.219608, 1)
-fog_density = 0.02
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.0471
-volumetric_fog_albedo = Color(0.556863, 0.556863, 0.556863, 1)
-volumetric_fog_anisotropy = -0.71
-volumetric_fog_detail_spread = 6.0
-volumetric_fog_sky_affect = 0.716
-volumetric_fog_temporal_reprojection_amount = 0.775
-adjustment_enabled = true
-adjustment_contrast = 1.45
-adjustment_saturation = 0.92
+volumetric_fog_emission_energy = 0.0
+volumetric_fog_gi_inject = 16.0
+volumetric_fog_length = 0.1
+volumetric_fog_detail_spread = 0.5
+volumetric_fog_sky_affect = 0.18
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_1w3vy")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 28.9327, 0)
-light_color = Color(1, 0.729412, 0.862745, 1)
-light_angular_distance = 90.0
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 shadow_enabled = true
+shadow_opacity = 0.58
+shadow_blur = 0.708
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_ux4ke")
+environment = SubResource("Environment_6nfmc")
 
 [node name="player" parent="." instance=ExtResource("1_ljbio")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.4607, 9.81731)
 
 [node name="music" parent="." instance=ExtResource("11_v52dv")]
 stream = ExtResource("12_eeiv8")
