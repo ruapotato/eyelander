@@ -18,9 +18,16 @@ const float outer_rim_blend = 8900.0;
 const float ocean_ring_start = 2450.0;
 const float ocean_ring_blend = 2200.0;
 const float desert_center_radius = 1800.0;
-const float desert_blend = 000.0;
+const float desert_blend = 100.0;
+const float volcano_radius = 120.0;
+const float volcano_blend = 100.0;
+const float volcano_core_radius = 5.0;
+const float volcano_height = 1.0;
 
 // Base colors with variations - Further darkened desert colors
+const vec3 VOLCANO_DARK = vec3(0.15, 0.12, 0.1);
+const vec3 VOLCANO_LIGHT = vec3(0.4, 0.35, 0.3);
+const vec3 VOLCANO_GLOW = vec3(1.0, 0.3, 0.1);
 const vec3 DESERT_COLOR_A = vec3(0.35, 0.28, 0.15);  // Significantly darker base
 const vec3 DESERT_COLOR_B = vec3(0.28, 0.22, 0.12);  // Significantly darker base
 const vec3 DESERT_SPARKLE = vec3(1.8, 1.7, 1.4);     // More controlled sparkle brightness
@@ -120,7 +127,26 @@ float get_sparkle(vec2 position, vec3 view_dir, vec3 normal) {
 
     return sparkle * view_factor * SPARKLE_INTENSITY * variation;
 }
-
+vec3 get_volcano_texture(vec3 world_pos, vec3 normal) {
+    float height = world_pos.y;
+    float slope = get_slope_factor(normal);
+    
+    // Core glow effect
+    float dist_to_center = length(world_pos.xz);
+    float core_factor = smoothstep(volcano_core_radius + 50.0, volcano_core_radius, dist_to_center);
+    
+    // Height-based rock variation
+    float height_factor = smoothstep(0.0, volcano_height, height);
+    
+    // Combine rock colors based on slope
+    vec3 rock_color = mix(VOLCANO_DARK, VOLCANO_LIGHT, pow(slope, 0.5));
+    
+    // Add glow based on core proximity and vertical surfaces
+    float glow_intensity = core_factor + (slope * (1.0 - core_factor) * 0.3);
+    vec3 final_color = mix(rock_color, VOLCANO_GLOW, glow_intensity);
+    
+    return final_color;
+}
 vec3 get_grass_texture(vec2 world_pos) {
     vec2 uv1 = world_pos / grass_scale;
     vec2 uv2 = (world_pos + vec2(3.7, 1.9)) / (grass_scale * 0.7);
@@ -157,11 +183,17 @@ vec3 get_varied_color(vec3 color_a, vec3 color_b, vec2 world_pos) {
 vec3 calculate_biome(vec3 world_pos, vec3 normal, vec3 view_dir) {
     float dist = length(world_pos.xz);
     float slope = get_slope_factor(normal);
-
+    
+    // Add volcano blend
+    float volcano = smoothstep(volcano_radius + volcano_blend, volcano_radius, dist);
+    
+    // Previous biome calculations
     float outer = smoothstep(outer_rim_start, outer_rim_start + outer_rim_blend, dist);
     float ocean = smoothstep(ocean_ring_start, ocean_ring_start + ocean_ring_blend * 0.5, dist) * (1.0 - outer);
     float desert = 1.0 - smoothstep(desert_center_radius, desert_center_radius + desert_blend, dist);
 
+    // Calculate all terrain types
+    vec3 volcano_terrain = get_volcano_texture(world_pos, normal);
     vec3 desert_base = get_varied_color(DESERT_COLOR_A, DESERT_COLOR_B, world_pos.xz);
     vec3 green_base = get_varied_color(GREEN_COLOR_A, GREEN_COLOR_B, world_pos.xz);
     vec3 night_base = get_varied_color(NIGHT_COLOR_A, NIGHT_COLOR_B, world_pos.xz);
@@ -178,7 +210,10 @@ vec3 calculate_biome(vec3 world_pos, vec3 normal, vec3 view_dir) {
     night_terrain = get_slope_color(night_terrain, slope);
 
     vec3 outer_terrain = mix(ocean_terrain, night_terrain, outer);
-    return mix(desert_terrain, outer_terrain, smoothstep(0.0, 1.0, ocean + outer));
+    vec3 base_terrain = mix(desert_terrain, outer_terrain, smoothstep(0.0, 1.0, ocean + outer));
+    
+    // Blend volcano with base terrain
+    return mix(base_terrain, volcano_terrain, volcano);
 }
 
 void vertex() {

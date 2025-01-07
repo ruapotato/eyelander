@@ -436,7 +436,7 @@ script = ExtResource("1_s7kjq")
 [node name="spawns" type="Node3D" parent="."]
 
 [node name="main" type="Node3D" parent="spawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.4929, 160.103, 214.585)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.0986, 141.014, 214.585)
 
 [node name="load_zones" type="Node3D" parent="."]
 
